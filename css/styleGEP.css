@@ -1,0 +1,51 @@
+@charset "UTF-8";
+/*Cabeçalho*/
+header{
+    height:70px;
+    background-color:#ffffff;
+}
+header img{
+    float:left;
+    height:70px;
+    width:70px;
+    margin:0px auto;
+}
+/*Configuração Geral*/
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Times New Rome';
+}
+
+body {
+    background-image: url('../img/fundo_pg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/*Título da Página*/
+h1{
+    text-align:center;
+}
+.btn{
+  margin: 20px auto;
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0); 
+  border: none; 
+  border-radius: 8px; 
+  padding: 1px 20px; 
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: background-color 0.3s, transform 0.2s;
+  display: block;
+  width: 120px;
+  text-align: center;
+  text-decoration: none;
+}
+.btn:hover{
+    background-color: #b3e7da;
+    transform: scale(1.05); 
+}
+
