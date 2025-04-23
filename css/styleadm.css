@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/*Cabeçalho*/
+h1 {
+    text-align: center;
+}
+h3{
+    text-align: center;
+}
+h6{
+    text-align: center;
+}
+
+
+
+header{
+    height:90px;
+    background-color:#ffffff;
+}
+header img{
+    float:left;
+    height:90px;
+    width:90px;
+    margin:0px auto;
+}
+html,body{
+    height: 100%;
+    margin: 0;
+    font-family: 'Times New Roman';
+
+
+}
+body {
+    background-image: url('../img/fundo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
