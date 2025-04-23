@@ -10,18 +10,32 @@ h6{
     text-align: center;
 }
 
-
-
 header{
-    height:90px;
+    height:100px;
     background-color:#ffffff;
+    margin: 0% auto;
 }
 header img{
     float:left;
     height:90px;
     width:90px;
-    margin:0px auto;
+    margin:0px;
 }
+/* Botão */
+.btn {
+    background-color: #fff;
+    color: rgb(0, 0, 0);
+    padding: 15px 30px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 12px;
+    font-size: 20px;
+    margin: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+
 html,body{
     height: 100%;
     margin: 0;
@@ -29,6 +43,15 @@ html,body{
 
 
 }
+
+
+body {
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
 body {
     background-image: url('../img/fundo.png');
     background-size: cover;
