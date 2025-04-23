@@ -1,66 +1,93 @@
-.retangulo {
-    width: 500px;
-    height: 500px;
-    background-color: rgb(255, 255, 255);
-    margin: 0 auto;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-  }
+html, body {
+   height:100%;
+   margin: 0;
+   font-family: 'Times new Roman';
+  
+}
 
 body {
-    background-color: #e8f0ef;
-    background-position: center; 
-	  display: flex;
-    justify-content: center;  
-    align-items: center;      
-    height: 100vh; /* Se quiser centralizar verticalmente também */
- 
+   background-image: url('../img/fundo_pg.png');
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+
 
 }
+
+header img {
+    height:70px;
+    width:70px;
+
+}
+header {
+  background-color: white;
+  width: 100%;
+  height: 70px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+
+}
+
+.retangulo {
+  margin-top: 20px;
+  padding-top: 10px;
+  width: 450px;
+  height: 500px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 .titulo {
-    text-align: center;
-    font-family: 'Times New Roman';
-    color: rgb(99, 179, 168);
+  text-align: center;
+  font-family: 'Times New Roman';
+  color: rgb(99, 179, 168);
 }
 
-label { 
-     display: block; /* Vai adicionar um espaço entre a etiqueta e o campo*/
-     margin-bottom: 10px; /*Espaçamento inferior a direita*/
-     background-position: center; 
-	   display: flex;
-     font-size:20px;
-     justify-content: center;  
-     align-items: center;     
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-align: center;
 }
 
-/*.select {
-     background-color: rgb(255, 255, 255);
-     width: 100;
-     height:50px;
-     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-
-}*/
- 
 input[type="date"] {
-     border:1px solid #7c7c7c;
-     border-radius: 3px;
-     font-size: 16px;
-     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-     text-align:center;
-     display: block;
-     margin: 0 auto;
-  
+  border: 1px solid #7c7c7c;
+  border-radius: 3px;
+  font-size: 16px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: block;
+  margin: 0 auto;
 }
-
 
 input[type="date"]:focus {
-  outline: none; 
+  outline: none;
   box-shadow: 0 0 5px #89cec6;
-  border-color: #9ddac1; 
-  align-items: center;
-  
+  border-color: #9ddac1;
 }
+
+.final {
+  margin-top: 50px;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-align: center;
+
+}
+
+
+ 
