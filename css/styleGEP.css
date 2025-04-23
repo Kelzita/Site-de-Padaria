@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/*Cabeçalho*/
+header{
+    height:70px;
+    background-color:#ffffff;
+}
+header img{
+    float:left;
+    height:70px;
+    width:70px;
+    margin:0px auto;
+}
+/*Configuração Geral*/
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Times New Rome';
+}
+
+body {
+    background-image: url('../img/fundo_pg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+h1{
+    text-align:center;
+}
