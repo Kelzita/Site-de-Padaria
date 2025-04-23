@@ -88,6 +88,25 @@ input[type="date"]:focus {
   text-align: center;
 
 }
+.gerar {
+  margin: 20px auto;
+  background-color: #ffffff; /* Verde suave */
+  color: rgb(0, 0, 0); /* Cor do texto */
+  border: none; /* Remove borda padrão */
+  border-radius: 8px; /* Borda arredondada */
+  padding: 10px 20px; /* Espaçamento interno */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer; /* Mãozinha no hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: background-color 0.3s, transform 0.2s;
+  display: block;
+  width: 120px; /* Largura ajustada para parecer botão */
+  text-align: center;
+  text-decoration: none;
+}
 
-
- 
+.gerar:hover {
+  background-color: #b3e7da; /* Tom mais escuro ao passar o mouse */
+  transform: scale(1.05); /* Leve aumento no hover */
+}
