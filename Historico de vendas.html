@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Padaria Pão Genial</title>
-    <link rel="stylesheet" href="css/styleHV.css" />
-  </head>
-  <body>
-    <header>
-      <img src="img/logo.png" title="Logo da Padaria">
-      
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Padaria Pão Genial</title>
+  <link rel="stylesheet" href="css/styleHV.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
 
-    <div class="retangulo">
-      <h1 class="titulo">HISTÓRICO DE VENDAS</h1>
-      <label for="dataInicial">Selecione a data inicial:</label>
-      <input type="date" id="dataInicial" name="data">
+  <header>
+    <span class="menu-btn" onclick="toggleMenu()">☰</span>
+    <img src="img/logo.png" title="Logo da Padaria">
+    <div id="sidebar" class="sidebar">
+        <a href="#"><i class="fas fa-home"></i> Início</a>
+        <a href="#"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
+        <a href="#"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
+        <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
+        <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        
+    </div>
+  </header>
 
-      <label class="final" for="dataFinal">Selecione a data Final:</label>
-      <input class="inputfinal" type="date" id="dataFinal" name="data">
-		 
-      <a href="HistoricoVendas.html" class="gerar">Gerar Histórico</a>
+  <div class="retangulo">
+    <h1 class="titulo">HISTÓRICO DE VENDAS</h1>
+
+    <label for="dataInicial">Selecione a data inicial:</label>
+    <input type="date" id="dataInicial" name="data">
+
+    <label class="final" for="dataFinal">Selecione a data final:</label>
+    <input class="inputfinal" type="date" id="dataFinal" name="data">
+
+    <a href="HistoricoVendas.html" class="gerar">Gerar Histórico</a>
+    <a href="Suporte.html" class="suporte-btn">
+        <i class="fas fa-headset"></i> Suporte
+    </a>
+    <img src="img/OSMARZINHO.jpg" class="osmar" title="osmarpão"/>
  
-         
-         
-     </div>
- </div>
-  </body>
+      
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
+    }
+
+  </script>
+
+</body>
 </html>
