@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suporte - Padaria Pão Genial</title>
+  <link rel="stylesheet" href="css/styleSup.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <header>
+    <span class="menu-btn" onclick="toggleMenu()">☰</span>
+    <img src="img/logo.png" title="Logo da Padaria">
+    <div id="sidebar" class="sidebar">
+      <a href="#"><i class="fas fa-home"></i> Início</a>
+      <a href="#"><i class="fas fa-boxes-stacked"></i> Produtos e Estoque</a>
+      <a href="#"><i class="fas fa-user-tie"></i> Funcionários</a>
+      <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
+      <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
+      <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+    </div>
+  </header>
+
+  <div class="retangulo">
+    <a href="Historico de vendas.html" class="voltar"><i class="fas fa-chevron-left"></i> Voltar</a>
+    <h1 class="titulo">SUPORTE PARA FUNCIONÁRIOS</h1>
+
+    <form id="suporte-form" action="#" method="POST">
+      <label for="nome">Seu nome (funcionário):</label>
+      <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+
+      <label for="email">Seu e-mail (funcionário):</label>
+      <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+
+      <label for="problema">Descreva o problema ou dúvida:</label>
+      <textarea id="problema" name="problema" rows="5" placeholder="Ex: Falta de produtos, problemas com o sistema de caixa..." required></textarea>
+
+      <div class="opcoes-envio">
+        <button type="submit" class="gerar" onclick="enviarFormulario(event)">Enviar Solicitação</button>
+      </div>
+    </form>
+
+    <h2>Ou entre em contato diretamente:</h2>
+    <div class="contato">
+      <a href="https://wa.me/559294552420" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i> Suporte via WhatsApp
+      </a>
+      <a href="mejr@gmail.com" class="email-btn">
+        <i class="fas fa-envelope"></i> Enviar E-mail
+      </a>
+      <p class="atencao">
+        Caso seja um erro do sistema, a equipe técnica será acionada imediatamente.
+    </div>
+
+ 
+    </p>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
+    }
+
+  </script>
+
+</body>
+</html>
