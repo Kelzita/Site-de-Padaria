@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Padaria Pão Genial</title>
+  <link rel="stylesheet" href="css/styleadmin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <header>
+    <span class="menu-btn" onclick="toggleMenu()">☰</span>
+    <img src="img/logo.png" title="Logo da Padaria">
+    <div id="sidebar" class="sidebar">
+        <a href="Historico de vendas.html"><i class="fas fa-home"></i> Início</a>
+        <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
+        <a href="#"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
+        <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
+        <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        
+    </div>
+  </header>
+
+  <div class="retangulo">
+
+    <div class="painel-botoes">
+        <h1 class="titulo">ADMINISTRAÇÃO <i class="fas fa-screwdriver-wrench"></i></h1>
+      
+        <a href="Historico de vendas.html" class="botao">
+            <i class="fas fa-clock-rotate-left"></i> HISTÓRICO DE VENDAS
+          </a>
+          
+          <a href="gestaoestoque.html" class="botao">
+            <i class="fas fa-boxes-stacked"></i> GESTÃO DE PRODUTOS/ESTOQUE
+          </a>
+          
+          <a href="#" class="botao">
+            <i class="fas fa-users-cog"></i> GESTÃO DE FUNCIONÁRIOS
+          </a>
+          
+          <a href="#" class="botao">
+            <i class="fas fa-chart-line"></i> RELATÓRIO DE VENDAS
+          </a>
+          
+          <a href="#" class="botao">
+            <i class="fas fa-cash-register"></i> CAIXA
+          </a>
+          
+          <a href="#" class="botao">
+            <i class="fas fa-clipboard-list"></i> COMANDA
+          </a>
+          
+        <a href="Suporte.html" class="suporte-btn">
+            <i class="fas fa-headset"></i> Suporte
+        </a>
+      
+        <img src="img/OSMARZINHO.jpg" alt="Mascote" class="osmar">
+      </div>
+      
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
+    }
+
+  </script>
+
+</body>
+</html>

@@ -298,3 +298,10 @@ button.gerar:hover {
 .voltar:hover {
   color: #6fb7af;
 }
+.seta {
+  width: 35px ;
+  height: 25px ;
+  margin-top: 0px;
+  margin-left: 0px;
+  left: 5px;
+}
