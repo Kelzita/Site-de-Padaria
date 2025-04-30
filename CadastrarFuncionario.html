@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastrar Funcionário</title>
+  <link rel="stylesheet" href="css/stylecadfunc.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="js/scriptredefinir.js"></script>
+</head>
+<body>
+
+  <header>
+    <span class="menu-btn" onclick="toggleMenu()" role="button" aria-label="Abrir Menu">☰</span>
+    <img src="img/logo.png" alt="Logo da Padaria" title="Logo da Padaria" />
+    <nav id="sidebar" class="sidebar">
+      <a href="#"><i class="fas fa-home"></i> Início</a>
+      <a href="#"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
+      <a href="#"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
+      <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
+      <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
+      <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="retangulo">
+      <form class="formulario-cadastro">
+        <a href="gestaoestoque.html" class="voltar"> 
+            <img class="seta" src="img/btn_voltar.png" title="seta"></a>
+        <h1 class="titulo">CADASTRAR FUNCIONÁRIO</h1>
+
+
+        <label for="nome"><i class="fas fa-user"></i> Nome do Funcionário:</label>
+        <input type="text" id="nomefunc" name="nome_funcionario" placeholder="Insira o nome" required />
+
+        <label for="nome"><i class="fas fa-address-card"></i> CPF:</label>
+        <input type="text" maxlength="11"
+              oninput="this.value = this.value.replace(/\D/g, '').slice(0, 12)"
+              placeholder="Insira o cpf (sem símbolos)">
+
+              <label for="nome"><i class="fas fa-id-card"></i> RG:</label>
+              <input type="text" maxlength="8"
+                    oninput="this.value = this.value.replace(/\D/g, '').slice(0, 12)"
+                    placeholder="Insira o RG(sem símbolos)">
+
+        <label for="email"><i class="fas fa-envelope"></i> E-mail:</label>
+        <input type="text" id="email" name="email1" placeholder="Insira o E-mail" />
+
+        <label for="email"><i class="fas fa-phone"></i> Telefone:</label>
+        <input type="int" id="tel" name="telefone" placeholder="Insira o Telefone" />
+
+        <label for="unidade"><i class="fas 	fa-user-tie"></i> Função:</label>
+        <select id="func" name="funcao" required>
+
+          <option value="text">Caixa</option>
+          <option value="text">Balconista</option>
+          <option value="text">Administrador</option>
+          <option value="text">Gestor de Estoque</option>
+
+        </select>
+
+        <label for="validade"><i class="fas fa-calendar-alt"></i> Data de Admissão:</label>
+        <input type="date" id="admissao" name="data_admissao" required />
+
+        <label for="preco"><i class="fas fa-money-bill-wave"></i> Salário:</label>
+        <input type="number" id="preco" name="preco" placeholder="R$" step="0.01" min="0" required />
+
+        
+  
+
+        <button type="submit" class="btn-cadastrar">
+          <i class="fas fa-check-circle"></i> Cadastrar
+        </button>
+       <!-- <img src="img/OSMARZINHO.jpg" class="osmarzinho" alt="Mascote Osmarzinho" />--> 
+    </div>
+      </form>
+
+      
+  </main>
+
+</body>
+</html>

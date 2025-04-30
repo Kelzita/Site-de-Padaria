@@ -6,6 +6,7 @@
   <title>Cadastrar Produto</title>
   <link rel="stylesheet" href="css/stylecadprod.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="js/scriptredefinir.js"></script>
 </head>
 <body>
 
@@ -29,6 +30,9 @@
             <img class="seta" src="img/btn_voltar.png" title="seta"></a>
         <h1 class="titulo">CADASTRO DO PRODUTO</h1>
 
+        <label for="id_produto"><i class="fas fa-id-badge"></i> ID:</label>
+        <input type="text" id="id_produto" name="id_produto" placeholder="ID do Produto" required />
+
         <label for="nome"><i class="fas fa-book"></i> Nome do Produto:</label>
         <input type="text" id="nome" name="nome_produto" placeholder="Digite o nome" required />
 
@@ -50,8 +54,7 @@
         <label for="preco"><i class="fas fa-money-bill-wave"></i> Preço:</label>
         <input type="number" id="preco" name="preco" placeholder="R$" step="0.01" min="0" required />
 
-        <label for="id_produto"><i class="fas fa-id-badge"></i> ID:</label>
-        <input type="text" id="id_produto" name="id_produto" placeholder="ID do Produto" required />
+  
 
         <button type="submit" class="btn-cadastrar">
           <i class="fas fa-check-circle"></i> Cadastrar
@@ -62,13 +65,6 @@
 
       
   </main>
-
-  <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById("sidebar");
-      sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
-    }
-  </script>
 
 </body>
 </html>

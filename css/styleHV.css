@@ -57,7 +57,7 @@ header {
 label {
   display: block;
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 30px;
   text-align: center;
 }
 
@@ -182,3 +182,7 @@ input[type="date"]:focus {
   margin-left: 0px;
   left: 5px;
 }
+ .titulo {
+    font-size: 25px !important;
+  }
+  

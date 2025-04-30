@@ -1,0 +1,110 @@
+
+
+Ícones de Redes Sociais
+- `fa-facebook`
+- `fa-twitter`
+- `fa-instagram`
+- `fa-linkedin`
+- `fa-github`
+- `fa-youtube`
+- `fa-pinterest`
+- `fa-snapchat`
+
+Ícones de Ações
+- `fa-home`
+- `fa-search`
+- `fa-heart`
+- `fa-cart-plus`
+- `fa-plus`
+- `fa-minus`
+- `fa-check`
+- `fa-times`
+- `fa-pencil-alt`
+- `fa-trash-alt`
+
+Ícones de Arquivos
+- `fa-file`
+- `fa-file-pdf`
+- `fa-file-word`
+- `fa-file-excel`
+- `fa-file-image`
+- `fa-file-audio`
+- `fa-file-video`
+
+Ícones de Interface de Usuário
+- `fa-user`
+- `fa-users`
+- `fa-cog`
+- `fa-wrench`
+- `fa-bell`
+- `fa-envelope`
+- `fa-gear`
+- `fa-lock`
+- `fa-unlock`
+- `fa-sign-in-alt`
+- `fa-sign-out-alt`
+
+Ícones de Setas e Navegação
+- `fa-arrow-up`
+- `fa-arrow-down`
+- `fa-arrow-left`
+- `fa-arrow-right`
+- `fa-arrow-circle-up`
+- `fa-arrow-circle-down`
+- `fa-arrow-circle-left`
+- `fa-arrow-circle-right`
+
+Ícones de Mídia
+- `fa-play`
+- `fa-pause`
+- `fa-stop`
+- `fa-volume-up`
+- `fa-volume-off`
+- `fa-music`
+- `fa-camera`
+- `fa-video`
+
+Ícones de Armazenamento e Nuvem
+- `fa-cloud`
+- `fa-cloud-upload-alt`
+- `fa-cloud-download-alt`
+- `fa-database`
+
+Ícones de Indicadores e Alertas
+- `fa-exclamation`
+- `fa-exclamation-circle`
+- `fa-info`
+- `fa-info-circle`
+- `fa-warning`
+- `fa-ban`
+- `fa-question-circle`
+
+Ícones de Comércio e Pagamentos
+- `fa-credit-card`
+- `fa-wallet`
+- `fa-dollar-sign`
+- `fa-shopping-cart`
+- `fa-tags`
+- `fa-gift`
+- `fa-money-bill`
+
+Ícones de Tempo e Clima
+- `fa-sun`
+- `fa-moon`
+- `fa-cloud-sun`
+- `fa-cloud-moon`
+- `fa-snowflake`
+- `fa-cloud-rain`
+- `fa-cloud-showers-heavy`
+
+Ícones de Diversos
+- `fa-thumbs-up`
+- `fa-thumbs-down`
+- `fa-cogs`
+- `fa-hands-helping`
+- `fa-handshake`
+- `fa-bicycle`
+- `fa-pizza-slice`
+- `fa-burger`
+- `fa-umbrella`
+

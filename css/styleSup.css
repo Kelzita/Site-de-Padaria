@@ -198,6 +198,9 @@ h2{
   text-align: center;
 
 }
+.titulo {
+  font-size: 25px !important;
+}
 
 label {
   display: block;
