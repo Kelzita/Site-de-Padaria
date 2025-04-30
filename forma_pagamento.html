@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Padaria Pão Genial</title>
+  <link rel="stylesheet" href="css/stylegestaofunc.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <header>
+    <span class="menu-btn" onclick="toggleMenu()">☰</span>
+    <img src="img/logo.png" title="Logo da Padaria">
+    <div id="sidebar" class="sidebar">
+      <a href="Historico de vendas.html"><i class="fas fa-home"></i> Início</a>
+      <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
+      <a href="gestao_funcionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
+      <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
+      <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
+      <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+    </div>
+  </header>
+
+  <div class="retangulo">
+    <a href="adm.html" class="voltar"> 
+        <img class="seta" src="img/btn_voltar.png" title="seta"></a>
+    <div class="painel-botoes">
+        <h1 class="titulo">FORMA DE PAGAMENTO <i class="fas fa-screwdriver-wrench"></i></h1>
+
+      <a href="#" class="botao">
+        <i class="fas fa-money-bill-wave"></i> DINHEIRO
+      </a>
+      
+      <a href="#" class="botao">
+        <i class="fas fa-credit-card"></i> CARTÃO DE CRÉDITO
+      </a>
+      
+      <a href="#" class="botao">
+        <i class="fas fa-credit-card"></i> CARTÃO DE DÉBITO
+      </a>
+      
+      <a href="#" class="botao">
+        <i class="fas fa-qrcode"></i> PIX
+      </a>
+      
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
+    }
+  </script>
+</body>
+</html>
