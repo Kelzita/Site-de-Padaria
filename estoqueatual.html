@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Estoque Atual</title>
+        <link rel="stylesheet" type="text/css" href="css/styleEA.css" />
+    </head>
+    <body>
+        <header>
+            <span class="menu-btn" onclick="toggleMenu()">☰</span>
+            <img src="img/logo_pg.png" title="Logo da Padaria">
+            <div id="sidebar" class="sidebar">
+                <a href="#"><i class="fas fa-home"></i> Início</a>
+                <a href="#"><i class="fas fa-boxes-stacked"></i> Produtos e Estoque</a>
+                <a href="#"><i class="fas fa-user-tie"></i> Funcionários</a>
+                <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
+                <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
+                <a href="#"><i class="fas fa-receipt"></i> Comanda</a>
+                <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+        </header>
+        <h1>ESTOQUE ATUAL</h1>
+        <div id="alerta" class="alerta"></div>
+        <div class="barra-pesquisa">
+            <input type="text" id="busca" placeholder="Pesquisar o id do produto" onkeyup="filtrar()">
+            <img src="img/lupa.webp" alt="Lupa" class="icone-lupa">
+        </div>
+
+        <table id="tabela" class="cab_tab">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Validade</th>
+                    <th>Quantidade</th>
+                    <th>Fornecedor</th>
+                    <th>Unidade de Medida</th>
+                    <th>Preço</th>
+                </tr>
+            </thead>
+            <tbody id="corpoTabela"></tbody>
+        </table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

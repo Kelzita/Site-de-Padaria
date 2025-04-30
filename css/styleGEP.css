@@ -99,6 +99,7 @@ h1{
     height: 40px;
 }
 
+/*Side Bar*/
 .menu-btn {
     margin-top: 15px;
     position: absolute; 
@@ -159,6 +160,7 @@ h1{
     background-color: #6fb7af;
     transform: scale(1.05);
   }  
+  
 /*Seta para voltar*/
   .seta {
     width: 40px ;
