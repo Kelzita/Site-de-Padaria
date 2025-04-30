@@ -17,6 +17,14 @@ header img{
     margin:0px;
 }
 
+.menu-btn {
+    position: absolute;
+    left: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color: rgb(99, 179, 168);
+    z-index: 11;
+  }
 
 .btn {
     background-color: #ffffff;
@@ -69,6 +77,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
 }
+
 
 
 
