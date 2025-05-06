@@ -140,8 +140,13 @@ td {
   .suporte-btn i {
     margin-right: 5px;
   }
-  
-  .suporte-btn:hover {
-    background-color: #6fb7af;
-    transform: scale(1.05);
-  } 
+
+  /*Seta para voltar*/
+  .seta {
+    width: 40px;
+    height: 30px;
+    position: fixed; /* ou absolute, dependendo do contexto */
+    bottom: 20px; /* distância do fundo */
+    left: 20px;   /* distância da esquerda */
+    z-index: 1000; /* opcional: garante que fique acima de outros elementos */
+  }
