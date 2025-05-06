@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerenciar Produtos</title>
+  <link rel="stylesheet" href="css/styleEA.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="js/sidebar.js"></script>
+  <script src="js/editarproduto.js"></script>
+</head>
+<body>
+  <header>
+    <span class="menu-btn" onclick="toggleMenu()">☰</span>
+    <img src="img/logo_pg.png" title="Logo da Padaria">
+    <div id="sidebar" class="sidebar">
+      <a href="Historico de vendas.html"><i class="fas fa-home"></i> Início</a>
+      <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
+      <a href="GestaodeFuncionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
+      <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
+      <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
+      <a href="Suporte.html"><i class="fas fa-headset"></i> Suporte</a>
+      <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+    </div>
+  </header>
+
+  <h1>GERENCIAR PRODUTOS</h1>
+
+  <table class="tabela-produtos">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Validade</th>
+      <th>Quantidade</th>
+      <th>Fornecedor</th>
+      <th>Unidade</th>
+      <th>Preço</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody id="tabelaProdutos"></tbody>
+</table>
+
+</body>
+</html>

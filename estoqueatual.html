@@ -4,25 +4,25 @@
         <meta charset="UTF-8">
         <title>Estoque Atual</title>
         <link rel="stylesheet" type="text/css" href="css/styleEA.css" />
-    </head>
+        <script src="js/estoqueatual.js"></script>
     <body>
         <header>
             <span class="menu-btn" onclick="toggleMenu()">☰</span>
             <img src="img/logo_pg.png" title="Logo da Padaria">
             <div id="sidebar" class="sidebar">
-                <a href="#"><i class="fas fa-home"></i> Início</a>
-                <a href="#"><i class="fas fa-boxes-stacked"></i> Produtos e Estoque</a>
-                <a href="#"><i class="fas fa-user-tie"></i> Funcionários</a>
+                <a href="Historico de vendas.html"><i class="fas fa-home"></i> Início</a>
+                <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
+                <a href="GestaodeFuncionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
                 <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
                 <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
-                <a href="#"><i class="fas fa-receipt"></i> Comanda</a>
+                <a href="Suporte.html"><i class="fas fa-headset"></i> Suporte</a>
                 <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
             </div>
         </header>
         <h1>ESTOQUE ATUAL</h1>
         <div id="alerta" class="alerta"></div>
         <div class="barra-pesquisa">
-            <input type="text" id="busca" placeholder="Pesquisar o id do produto" onkeyup="filtrar()">
+            <input type="text" id="busca" placeholder="Pesquisar Produto" onkeyup="filtrar()">
             <img src="img/lupa.webp" alt="Lupa" class="icone-lupa">
         </div>
 
@@ -40,6 +40,9 @@
             </thead>
             <tbody id="corpoTabela"></tbody>
         </table>
+
+
+            
 </body>
 </html>
 

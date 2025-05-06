@@ -145,3 +145,29 @@ td {
     background-color: #6fb7af;
     transform: scale(1.05);
   } 
+.btn-editar, .btn-salvar, .btn-cancelar, .btn-apagar {
+  margin: 2px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-editar { background-color: #0275d8; color: white; }
+.btn-salvar { background-color: #5cb85c; color: white; }
+.btn-cancelar { background-color: #f0ad4e; color: white; }
+.btn-apagar { background-color: #d9534f; color: white; }
+
+.btn-editar:hover { background-color: #025aa5; }
+.btn-salvar:hover { background-color: #449d44; }
+.btn-cancelar:hover { background-color: #ec971f; }
+.btn-apagar:hover { background-color: #c9302c; }
+
+  .seta {
+    width: 40px ;
+    height: 30px ;
+    margin-top: 380px;
+    margin-left: 0px;
+    left: 5px;
+    position: absolute;
+  }
