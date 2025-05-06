@@ -128,4 +128,29 @@ function apagarProduto(index) {
   }
 }
 
+function filtrar() {
+  const filtro = document.getElementById("busca").value.toUpperCase();
+  const corpoTabela = document.getElementById("tabelaProdutos");
+  const linhas = corpoTabela.getElementsByTagName("tr");
+
+  for (let i = 0; i < linhas.length; i++) {
+    const colunas = linhas[i].getElementsByTagName("td");
+
+    const spanId = colunas[0].querySelector("span")?.textContent.toUpperCase() || "";
+    const inputId = colunas[0].querySelector("input")?.value.toUpperCase() || "";
+    const id = spanId || inputId;
+
+    const spanNome = colunas[1].querySelector("span")?.textContent.toUpperCase() || "";
+    const inputNome = colunas[1].querySelector("input")?.value.toUpperCase() || "";
+    const nome = spanNome || inputNome;
+
+    if (id.includes(filtro) || nome.includes(filtro)) {
+      linhas[i].style.display = "";
+    } else {
+      linhas[i].style.display = "none";
+    }
+  }
+}
+
+
 window.onload = carregarProdutos;
