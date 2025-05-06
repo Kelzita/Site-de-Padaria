@@ -1,0 +1,100 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body, html {
+    height: 100%;
+  }
+  
+  /* Background */
+  .background {
+    background: url('background.png') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Login box */
+  .login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  .login-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+  }
+  
+  /* Labels */
+  .login-box label {
+    font-size: 12px;
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 10px;
+  }
+  
+  /* Input fields */
+  .input-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .input-box .icon {
+    margin-right: 8px;
+  }
+  
+  .input-box input {
+    border: none;
+    outline: none;
+    flex: 1;
+  }
+  
+  /* Esqueceu a senha */
+  .forgot {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    margin-bottom: 15px;
+    color: #4d90fe;
+    text-decoration: none;
+  }
+  
+  .forgot:hover {
+    text-decoration: underline;
+  }
+  
+  /* Botão de login */
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #dbe6e4;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #b5d0ce;
+  }
+  
+  /* Personagem no canto inferior */
+  .character {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 70px;
+  }
+  
