@@ -1,181 +1,194 @@
 html, body {
-    height: 100%;
-    margin: 0;
-    font-family: 'Times New Roman';
-  }
-  
-  body {
-    background-image: url('../img/fundo_pg.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  header {
-    background-color: white;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    padding-left: 60px;
-    box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-  }
-  
-  header img {
-    height: 70px;
-    width: 70px;
-  }
-  
-  .menu-btn {
-    position: absolute;
-    left: 15px;
-    font-size: 30px;
-    cursor: pointer;
-    color: rgb(99, 179, 168);
-    z-index: 11;
-  }
-  
-  .sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #89cec6;
-    overflow-x: hidden;
-    transition: 0.3s;
-    padding-top: 70px;
-    z-index: 9;
-  }
-  
-  .sidebar a {
-    padding: 15px 25px;
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    display: block;
-    transition: 0.2s;
-  }
-  
-  .sidebar a:hover {
-    background-color: #6fb7af;
-  }
-  
-  .retangulo {
-    background-color: white;
-    padding: 30px;
-    width: 420px;
-    height: 500px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    z-index: 5;
-  }
-  
-  .osmar {
-    width: 70px;
-    height: 70px;
-    position: absolute;
-    right: 20px;
-    bottom: 10px;
-  }
-  
-  .botao {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30%;
-    margin: 8px auto 0 auto;
-    padding: 8px 6px;
-    font-size: 16px;
-    background-color: #ffffff;
-    color: #000000;
-    border: 1px solid #b4b4b4;
-    cursor: pointer;
-    transition: 0.3s ease;
-    font-weight: bold;
-    box-shadow: 0 4px 6px #0000000d;
-    text-decoration: none;
-  }
-  
-  
-  .botao i {
-    margin-right: 10px;
-  }
-  
-  .botao:hover {
-    background-color: #b3e7da;
-    transform: scale(1.03);
-  }
-  
-  table.comanda {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    font-family: sans-serif;
-    border: 1px solid #000;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-top: 20px;
-  }
-  
-  
-  table.comanda th{
-    border: 1px solid #000;
-    padding: 5px;
-    text-align: center;
-    color: #e3a427 ;
-    
-  }
+  height: 100%;
+  margin: 0;
+  font-family: 'Times New Roman';
+}
 
-  table.comanda td {
-    border: 1px solid #000;
-    padding: 25px;
-    text-align: center;
-    color: #e3a427 ;
-    
-  }
-  
-  .linha-comanda {
-    text-align: left;
-    font-weight: bold;
-    font-size: 1.2em;
-    position: relative;
-  }
-  
-  .comanda-titulo {
-    float: left;
-    color: #e3a427;
-  }
-  
-  .comanda-numero {
-    float: right;
-    margin-right: 20px;
-  }
+body {
+  background-image: url('../img/fundo_pg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
- /* Canto superior esquerdo */
+header {
+  background-color: white;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+header img {
+  height: 70px;
+  width: 70px;
+}
+
+.menu-btn {
+  position: absolute;
+  left: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  color: rgb(99, 179, 168);
+  z-index: 11;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #89cec6;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 70px;
+  z-index: 9;
+}
+
+.sidebar a {
+  padding: 15px 25px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: #6fb7af;
+}
+
+.retangulo {
+  background-color: white;
+  padding: 30px;
+  width: 420px;
+  height: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+.osmar {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}
+
+.botao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  margin: 8px auto 0 auto;
+  padding: 8px 6px;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #b4b4b4;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-weight: bold;
+  box-shadow: 0 4px 6px #0000000d;
+  text-decoration: none;
+}
+
+
+.botao i {
+  margin-right: 10px;
+}
+
+.botao:hover {
+  background-color: #b3e7da;
+  transform: scale(1.03);
+}
+
+table.comanda {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: sans-serif;
+  border: 1px solid #000;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+
+table.comanda th{
+  border: 1px solid #000;
+  padding: 5px;
+  text-align: center;
+  color: #e3a427 ;
+  
+}
+
+table.comanda td {
+  border: 1px solid #000;
+  padding: 10px;
+  text-align: center;
+  color: #e3a427;
+  height: 50px;
+  max-width: 200px; /* ajuste conforme necessário */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-word;
+
+}
+
+table.comanda td:focus {
+  outline: none;
+  background-color: transparent;
+  border: 1px solid #000;
+}
+
+
+
+.linha-comanda {
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.2em;
+  position: relative;
+}
+
+.comanda-titulo {
+  float: left;
+  color: #e3a427;
+}
+
+.comanda-numero {
+  float: right;
+  margin-right: 20px;
+}
+
+/* Canto superior esquerdo */
 table.comanda thead tr:first-child th:first-child {
-    border-top-left-radius: 12px;
-  }
-  
-  /* Canto superior direito */
-  table.comanda thead tr:first-child th:last-child {
-    border-top-right-radius: 12px;
-  }
-  
-  /* Canto inferior esquerdo */
-  table.comanda tbody tr:last-child td:first-child {
-    border-bottom-left-radius: 12px;
-  }
-  
-  /* Canto inferior direito */
-  table.comanda tbody tr:last-child td:last-child {
-    border-bottom-right-radius: 12px;
-  }
-  
+  border-top-left-radius: 12px;
+}
+
+/* Canto superior direito */
+table.comanda thead tr:first-child th:last-child {
+  border-top-right-radius: 12px;
+}
+
+/* Canto inferior esquerdo */
+table.comanda tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+/* Canto inferior direito */
+table.comanda tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
