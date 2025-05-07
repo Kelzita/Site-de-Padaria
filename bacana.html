@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>PDV Padaria Verde</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #eafaf1;
+      color: #333;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 10px;
+      padding: 20px;
+      max-width: 1400px;
+      margin: auto;
+    }
+    header {
+      grid-column: 1 / -1;
+      background-color: #2e7d32;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 1.8em;
+      border-radius: 10px;
+    }
+    .barras, .codigo, .resumo, .comandos, .lista-itens {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    .barras img {
+      width: 100px;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px;
+    }
+    .barras label, .codigo label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+    .barras input, .codigo input {
+      width: 100%;
+      padding: 8px;
+      font-size: 1em;
+      margin-top: 5px;
+    }
+    .valores {
+      margin-top: 10px;
+    }
+    .valores div {
+      margin-bottom: 5px;
+    }
+    .produtos {
+      grid-column: 2 / 3;
+      grid-row: 2 / span 2;
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      overflow-y: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #c8e6c9;
+    }
+    .totais {
+      grid-column: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .totais .resumo {
+      margin-bottom: 10px;
+    }
+    .resumo div {
+      margin: 5px 0;
+      font-size: 1.2em;
+    }
+    .resumo .destaque {
+      font-size: 1.6em;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+    .comandos {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .comandos button {
+      flex: 1;
+      padding: 15px;
+      font-size: 1em;
+      border: none;
+      border-radius: 10px;
+      background-color: #a5d6a7;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .comandos button:hover {
+      background-color: #81c784;
+    }
+    .lista-itens {
+      grid-column: 1 / -1;
+    }
+    .lista-itens select {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>CAIXA ABERTO - PADARIA VERDE 🍞</header>
+
+    <div class="barras">
+      <img src="https://img.icons8.com/color/96/shopping-cart-loaded.png" alt="Carrinho">
+      <label for="codigoBarra">CÓDIGO DE BARRAS:</label>
+      <input type="text" id="codigoBarra" placeholder="Digite ou escaneie...">
+      <label for="quantidade">QUANTIDADE:</label>
+      <input type="number" id="quantidade" min="1" value="1">
+      <div class="valores">
+        <div><strong>VALOR UNITÁRIO:</strong> R$ <span id="valorUnit">0,00</span></div>
+        <div><strong>TOTAL DO ITEM:</strong> R$ <span id="valorItem">0,00</span></div>
+      </div>
+    </div>
+
+    <div class="produtos">
+      <h3>LISTA DE PRODUTOS</h3>
+      <table id="tabelaProdutos">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Descrição</th>
+            <th>Qtd</th>
+            <th>Vlr. Unit.</th>
+            <th>Total</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="codigo">
+      <label for="codigoVenda">CÓDIGO DA VENDA:</label>
+      <input type="text" id="codigoVenda" value="69883">
+    </div>
+
+    <div class="totais">
+      <div class="resumo">
+        <div><strong>SUBTOTAL:</strong> <span class="destaque" id="subtotal">R$ 0,00</span></div>
+        <div><strong>TOTAL RECEBIDO:</strong> R$ <input type="number" id="recebido" value="0" style="width: 100px;"> </div>
+        <div><strong>TROCO:</strong> <span id="troco">R$ 0,00</span></div>
+      </div>
+    </div>
+
+    <div class="lista-itens">
+      <label for="listaRapida">LISTA RÁPIDA DE ITENS:</label>
+      <select id="listaRapida">
+        <option value="">-- Selecione um produto --</option>
+        <option value="7891000055128">Pão Francês - R$ 0.80</option>
+        <option value="7891000055555">Café com Leite - R$ 3.50</option>
+        <option value="7891000055999">Pão de Queijo - R$ 1.50</option>
+        <option value="7891000055888">Bolo de Fubá - R$ 4.00</option>
+        <option value="7891000055777">Sonho Recheado - R$ 3.00</option>
+        <option value="7891000055666">Suco Natural - R$ 4.50</option>
+      </select>
+    </div>
+
+    <div class="comandos">
+      <button onclick="novaVenda()">F1 - Nova Venda</button>
+      <button onclick="pesquisarProduto()">F2 - Pesquisar Produto</button>
+      <button onclick="cancelarItem()">F3 - Cancelar Item</button>
+      <button onclick="finalizarVenda()">F4 - Finalizar Venda</button>
+      <button onclick="reimprimir()">F5 - Reimprimir</button>
+      <button onclick="sair()">ESC - Sair</button>
+    </div>
+  </div>
+
+  <script>
+    const produtos = {
+      '7891000055128': { nome: 'Pão Francês', preco: 0.80 },
+      '7891000055555': { nome: 'Café com Leite', preco: 3.50 },
+      '7891000055999': { nome: 'Pão de Queijo', preco: 1.50 },
+      '7891000055888': { nome: 'Bolo de Fubá', preco: 4.00 },
+      '7891000055777': { nome: 'Sonho Recheado', preco: 3.00 },
+      '7891000055666': { nome: 'Suco Natural', preco: 4.50 }
+    };
+
+    let contador = 1;
+    let subtotal = 0;
+
+    document.getElementById('codigoBarra').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        processarProduto(this.value);
+        this.value = '';
+      }
+    });
+
+    document.getElementById('listaRapida').addEventListener('change', function() {
+      if (this.value) {
+        processarProduto(this.value);
+        this.value = '';
+      }
+    });
+
+    document.getElementById('recebido').addEventListener('input', function() {
+      const recebido = parseFloat(this.value) || 0;
+      const troco = recebido - subtotal;
+      document.getElementById('troco').textContent = 'R$ ' + troco.toFixed(2);
+    });
+
+    function processarProduto(codigo) {
+      const quantidade = parseInt(document.getElementById('quantidade').value);
+      if (produtos[codigo]) {
+        const produto = produtos[codigo];
+        adicionarProduto(produto, quantidade);
+      } else {
+        alert('Produto não encontrado!');
+      }
+    }
+
+    function adicionarProduto(produto, quantidade) {
+      const tabela = document.querySelector('#tabelaProdutos tbody');
+      const row = document.createElement('tr');
+      const total = produto.preco * quantidade;
+
+      row.innerHTML = `
+        <td>${contador}</td>
+        <td>${produto.nome}</td>
+        <td>${quantidade}</td>
+        <td>R$ ${produto.preco.toFixed(2)}</td>
+        <td>R$ ${total.toFixed(2)}</td>
+        <td><button onclick="removerProduto(this, ${total})">Remover</button></td>
+      `;
+      tabela.appendChild(row);
+
+      subtotal += total;
+      document.getElementById('subtotal').textContent = 'R$ ' + subtotal.toFixed(2);
+      document.getElementById('valorUnit').textContent = produto.preco.toFixed(2);
+      document.getElementById('valorItem').textContent = total.toFixed(2);
+      contador++;
+    }
+
+    function removerProduto(button, valor) {
+      const row = button.parentElement.parentElement;
+      row.remove();
+      subtotal -= valor;
+      document.getElementById('subtotal').textContent = 'R$ ' + subtotal.toFixed(2);
+      document.getElementById('troco').textContent = 'R$ 0,00';
+    }
+
+    function novaVenda() {
+      location.reload();
+    }
+    function pesquisarProduto() {
+      alert('Função de pesquisa em desenvolvimento!');
+    }
+    function cancelarItem() {
+      alert('Selecione um item para cancelar!');
+    }
+    function finalizarVenda() {
+      alert('Venda finalizada com sucesso! Troco: ' + document.getElementById('troco').textContent);
+      novaVenda();
+    }
+    function reimprimir() {
+      alert('Reimprimindo cupom...');
+    }
+    function sair() {
+      alert('Encerrando sistema...');
+    }
+  </script>
+</body>
+</html>
