@@ -1,34 +1,38 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Login - Padaria</title>
+  <link rel="stylesheet" href="css/stylelogin.css">
 </head>
 <body>
-  <div class="background">
-    <div class="login-box">
-      <h2>LOGIN</h2>
-      <form>
-        <label for="usuario">USUÁRIO</label>
-        <div class="input-box">
-          <span class="icon">👤</span>
-          <input type="text" id="usuario" name="usuario" required>
-        </div>
+  <div class="login-box">
+    <h2>LOGIN</h2>
+    <form>
+      <label for="usuario">USUÁRIO</label>
+      <div class="input-group">
+        <span class="icon">👤</span>
+        <input type="text" id="usuario" name="usuario" placeholder="Digite seu usuário" required>
+      </div>
 
-        <label for="senha">SENHA</label>
-        <div class="input-box">
-          <span class="icon">🔑</span>
-          <input type="password" id="senha" name="senha" required>
-        </div>
+      <label for="senha">SENHA</label>
+      <div class="input-group">
+        <span class="icon">🔒</span>
+        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+      </div>
 
-        <a href="#" class="forgot">ESQUECEU A SENHA?</a>
+      <a href="#" class="forgot">ESQUECEU A SENHA?</a>
 
-        <button type="submit">LOGAR</button>
-      </form>
-      <img src="personagem.png" class="character" alt="Personagem">
-    </div>
+      <button type="submit">LOGAR</button>
+    </form>
+    <img src="img/pao.png" alt="Mascote" class="mascot">
   </div>
+  <script> scr="js/teladelogin.js"</script>
+  <script>
+    function login(){
+      
+    }
+
+  </script>
 </body>
 </html>
