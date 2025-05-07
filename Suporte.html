@@ -6,6 +6,7 @@
   <title>Suporte - Padaria Pão Genial</title>
   <link rel="stylesheet" href="css/styleSup.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script src="js/sidebar.js"></script>
 </head>
 <body>
@@ -24,7 +25,6 @@
   </header>
 
   <div class="retangulo">
-
     <h1 class="titulo">SUPORTE PARA FUNCIONÁRIOS</h1>
 
     <form id="suporte-form" action="#" method="POST">
@@ -38,7 +38,7 @@
       <textarea id="problema" name="problema" rows="5" placeholder="Ex: Falta de produtos, problemas com o sistema de caixa..." required></textarea>
 
       <div class="opcoes-envio">
-        <button type="submit" class="gerar" onclick="enviarFormulario(event)">Enviar Solicitação</button>
+        <button type="button" class="gerar" onclick="enviarFormulario(event)">Enviar Solicitação</button>
       </div>
     </form>
 
@@ -47,17 +47,53 @@
       <a href="https://wa.me/559294552420" class="whatsapp-btn" target="_blank">
         <i class="fab fa-whatsapp"></i> Suporte via WhatsApp
       </a>
-      <a href="mejr@gmail.com" class="email-btn">
+      <a href="mailto:mejr@gmail.com" class="email-btn">
         <i class="fas fa-envelope"></i> Enviar E-mail
       </a>
       <p class="atencao">
         Caso seja um erro do sistema, a equipe técnica será acionada imediatamente.
+      </p>
     </div>
-
- 
-    </p>
   </div>
 
+  <script>
+
+  // Inicializar o EmailJS
+  (function() {
+    emailjs.init("oX0S43x9VLo9LSazU"); // Certifique-se de que é seu PUBLIC KEY (não SECRET KEY)
+  })();
+
+  function enviarFormulario(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const problema = document.getElementById("problema").value.trim();
+
+    if (!nome || !email || !problema) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    const templateParams = {
+      nome: nome,
+      email: email,
+      problema: problema
+    };
+
+    emailjs.send("service_qui0lfq", "template_3rx478n", templateParams)
+      .then(function(response) {
+        console.log("SUCESSO:", response);
+        alert("Solicitação enviada com sucesso!");
+        document.getElementById("suporte-form").reset();
+      }, function(error) {
+        console.error("ERRO:", error);
+        alert("Erro ao enviar a solicitação. Verifique a conexão ou as configurações do EmailJS.");
+      });
+  }
+
+
+  </script>
 
 </body>
 </html>

@@ -63,7 +63,6 @@ html, body {
  
  input[type="date"] {
    border: 1px solid #7c7c7c;
-   border-radius: 3px;
    font-size: 16px;
    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
    text-align: center;
@@ -89,8 +88,7 @@ html, body {
    margin: 20px auto;
    background-color: #ffffff; 
    color: rgb(0, 0, 0); 
-   border: none; 
-   border-radius: 8px; 
+   border: none;  
    padding: 10px 20px; 
    font-size: 16px;
    font-weight: bold;
@@ -123,6 +121,7 @@ html, body {
    width: 0;
    position: fixed;
    top: 0;
+   text-align: justify;
    left: 0;
    background-color: #89cec6;
    overflow-x: hidden;
@@ -170,8 +169,7 @@ html, body {
  
  textarea {
   width: 100%;
-  border: 1px solid #7c7c7c;
-  border-radius: 4px;
+  border: 1px solid #000000;
   padding: 10px;
   font-size: 16px;
   resize: vertical;
@@ -215,7 +213,6 @@ input, textarea {
   padding: 8px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
-  border-radius: 4px;
   font-size: 16px;
   box-sizing: border-box;
 }

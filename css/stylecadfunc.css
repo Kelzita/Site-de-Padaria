@@ -51,6 +51,7 @@ html, body {
     position: fixed;
     top: 0;
     left: 0;
+    text-align: justify;
     background-color: #89cec6;
     overflow-x: hidden;
     transition: 0.3s;
@@ -98,7 +99,7 @@ html, body {
   /* Retângulo central com formulário */
   .retangulo {
     padding-top: 5px;
-    height: 800px;
+    height: 900px;
     width: 500px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -222,5 +223,29 @@ html, body {
     text-align: center;
     font-family: 'Times New Roman';
     color: rgb(0, 0, 0);
+  }
+ 
+  .input-box {
+    position: relative;
+    width: 80%; /* Alinha com os outros campos, que estão com 80% de largura */
+    margin: 0 auto; /* Garante que o elemento seja centralizado horizontalmente */
+  }
+  
+  /* Estilo do campo de input */
+  .input-box input {
+    width: 100%;
+    padding: 10px; /* Ajustado para não ficar excessivo */
+    font-size: 16px; /* Consistente com o tamanho das fontes dos outros campos */
+    border: 1px solid #7c7c7c; /* Borda igual aos outros inputs */
+    box-sizing: border-box; /* Para incluir o padding no tamanho total do input */
+  }
+  
+  /* Posiciona o ícone de olho dentro da caixa */
+  .toggle-senha {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Distância da borda direita */
+    transform: translateY(-50%); /* Centraliza verticalmente */
+    cursor: pointer;
   }
   

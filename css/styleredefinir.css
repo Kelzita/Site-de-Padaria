@@ -49,6 +49,7 @@ html, body {
     width: 0;
     position: fixed;
     top: 0;
+    text-align: justify;
     left: 0;
     background-color: #89cec6;
     overflow-x: hidden;
