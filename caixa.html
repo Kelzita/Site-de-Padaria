@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Caixa</title>
+        <link rel="stylesheet" href="css/stylecaixa.css" />
+        <script src="js/sidebar.js"></script>
+        <script src="js/caixa.js"></script>
+    </head>
+    <body>
+        <div class="container ">
+            <header>
+                <span class="menu-btn" onclick="toggleMenu()">☰</span>
+                <div id="sidebar" class="sidebar">
+                    <a href="Historico de vendas.html"><i class="fas fa-home"></i> Início</a>
+                    <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
+                    <a href="GestaodeFuncionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
+                    <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
+                    <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
+                    <a href="Suporte.html"><i class="fas fa-headset"></i> Suporte</a>
+                    <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                </div>
+                CAIXA ABERTO- PADARIA PÃO GENIAL 🍞
+            </header>
+            <div class="barras">
+                <img src="img/logo_pg.png" title="Logo da Padaria">
+                <label for="codigoBarra">CÓDIGO DE BARRAS:</label>
+                <input type="text" id="codigoBarra" placeholder="Digite ou escaneie...">
+                <label for="quantidade">QUANTIDADE:</label>
+                <input type="number" id="quantidade" min="1" value="1">
+                <div class="valores">
+                    <div><strong>VALOR UNITÁRIO:</strong>R$<span id=valorUnit>0,00</span></div>
+                    <div><strong>TOTAL DO ITEM:</strong>R$<span id="valorItem">0,00</span></div>
+                </div>
+            </div>
+
+            <div class="produtos">
+                <h3>LISTA DE PRODUTOS</h3>
+                <table id="tabelaProdutos">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Descrição</th>
+                            <th>Qtd</th>
+                            <th>Vlr. Unit.</th>
+                            <th>Total</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="codigo">
+                <label for="codigoVenda">CÓDIGO DA VENDA:</label>
+                <input type="text" id="codigoVenda" value="69883">
+            </div>
+
+            <div class="totais">
+                <div class="resumo">
+                    <div><strong>SUBTOTAL:</strong><span class="destaque" id="subtotal">R$ 0,00</span> </div>
+                    <!--Analisar esta parte-->
+                    <div><strong>TOTAL RECEBIDO:</strong> R$ <input type="number" id="recebido" value="0"> </div>
+                    <div><strong>TROCO:</strong><span id="troco">R$ 0,00</span></div>
+                </div>
+            </div>
+
+            <div class="comandos">
+                <button onclick="novaVenda()">F1 - Nova Venda</button>
+                <button onclick="pesquisarProduto()">F2 - Pesquisar Produto</button>
+                <button onclick="cancelarItem()">F3 - Cancelar Item</button>
+                <button onclick="finalizarVenda()">F4 - Finalizar Venda</button>
+                <button onclick="reimprimir()">F5 - Reimprimir</button>
+                <button onclick="sair()">ESC - Sair</button>
+              </div>
+            </div>
+    </body>
+</html>

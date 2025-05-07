@@ -1,0 +1,185 @@
+@charset "UTF-8";
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family: 'Times New Rome';
+    background-color: #E8F0EF ;
+    color: #333;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 10px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: auto;
+}
+
+header{
+    grid-column: 1 / -1;
+    background-color:#4682B4;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.8em;
+    border-radius: 10px;
+}
+
+.barras, .codigo, .resumo, .comandos, .lista-itens{
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.barraslabel, .codigo label{
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+.barras input, .codigo input{
+    width: 100%;
+    padding: 8px;
+    font-size: 1em;
+    margin-top: 5px;
+}
+
+.valores{
+    margin-top: 10px;
+}
+
+.valores div{
+    margin-bottom: 5px;
+}
+
+.produtos{
+    grid-column: 2 / 3;
+    grid-row: 2 / span 2;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    overflow-y: auto; 
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td{
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+th{
+    background-color: #F0FFFF ;
+}
+
+.totais {
+    grid-column: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .totais .resumo {
+    margin-bottom: 10px;
+  }
+  .resumo div {
+    margin: 5px 0;
+    font-size: 1.2em;
+  }
+  .resumo .destaque {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #2e7d32;
+  }
+  .comandos {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .comandos button {
+    flex: 1;
+    padding: 15px;
+    font-size: 1em;
+    border: none;
+    border-radius: 10px;
+    background-color: #F0FFFF;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .comandos button:hover {
+    background-color: #6495ED;
+  }
+
+/*Side Bar*/
+.menu-btn {
+    margin-top: 15px;
+    position: absolute; 
+    left: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color:rgb(99, 179, 168);
+    z-index: 11;
+  }
+  
+  
+  .sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #89cec6;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 70px; 
+    z-index: 9;
+  }
+  
+  .sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.2s;
+  }
+  
+  .sidebar a:hover {
+    background-color: #6fb7af; 
+  }
+  
+  .suporte-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #89cec6;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .suporte-btn i {
+    margin-right: 5px;
+  }
+  
+  .suporte-btn:hover {
+    background-color: #6fb7af;
+    transform: scale(1.05);
+  }  
