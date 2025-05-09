@@ -30,6 +30,7 @@ header {
   z-index: 10;
 }
 
+
 .retangulo {
   background-color: white;
   padding: 30px;
@@ -183,7 +184,7 @@ input[type="date"]:focus {
   font-size: 14px;
   background-color: #ffffff;
   color: black;
-  border: 1px solid #ccc;
+  border: 1px solid #ccc; 
   cursor: pointer;
   transition: 0.3s ease;
   font-weight: bold;
