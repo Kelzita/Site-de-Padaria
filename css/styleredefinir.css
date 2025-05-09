@@ -27,13 +27,13 @@ html, body {
     left: 0;
     z-index: 10;
   }
-  
+  /* Imagem no Header*/
   header img {
     height: 70px;
     width: 70px;
   }
   
-  /* Botão do menu */
+ /*Botão de menu*/
   .menu-btn {
     position: absolute;
     left: 15px;
@@ -43,7 +43,7 @@ html, body {
     z-index: 11;
   }
   
-  /* Sidebar (menu lateral) */
+  /*sidebar*/
   .sidebar {
     height: 100%;
     width: 0;
@@ -57,7 +57,7 @@ html, body {
     padding-top: 70px;
     z-index: 9;
   }
-  
+  /*animação da sidebar*/
   .sidebar a {
     padding: 15px 25px;
     text-decoration: none;
@@ -66,37 +66,11 @@ html, body {
     display: block;
     transition: 0.2s;
   }
-  
+  /* hover da sidebar*/
   .sidebar a:hover {
     background-color: #6fb7af;
   }
-  
-  .suporte-btn {
-    position: absolute;
-    bottom: 55px;
-    left: 450px;
-    background-color: #89cec6;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: background-color 0.3s, transform 0.2s;
-
-  }
-  
-  .suporte-btn i {
-    margin-right:5px;
-   
-  }
-  
-  .suporte-btn:hover {
-    background-color: #6fb7af;
-    transform: scale(1.05);
-  }
-
+  /*Retangulo no centro da página*/
   .retangulo {
     padding-top: 5px;
     height: 500px;
@@ -108,17 +82,28 @@ html, body {
     margin-top: calc(70px + 30px); 
   }
   
-  .titulo, .formulario-cadastro h1 {
+  .formulario-cadastro h1 {
     text-align: center;
     font-family: 'Times New Roman', serif;
     color: rgb(0, 0, 0);
     font-size: 300px;
     font-weight: bold;
   }
+    /*titulo*/
+  .titulo h1{ 
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Times New Roman';
+    color: rgb(0, 0, 0);
+  
+  
+  } 
+  /*titulo redefinir senha - tamanho*/
   .titulo {
     font-size: 25px !important;
   }
   
+  /*subtitulo vermelho*/
   .subtitulo {
     font-size: 15px;
     color:red;
@@ -129,86 +114,88 @@ html, body {
   .formulario-cadastro {
     width: 100%;
   }
-  
+  /* estilo do retangulo da label, input e select*/
   .formulario-cadastro label,
   .formulario-cadastro input,
   .formulario-cadastro select {
-    display: block;
+    display: block; /* cada elemento ocupando uma linha inteira */
     width: 80%; /* todos com o mesmo tamanho */
     margin: 10px auto; /* centralizados no retângulo */
-    font-size: 16px;
+    font-size: 16px; /* tamanho da fonte */
     box-sizing: border-box; /* impede que o padding aumente o tamanho real */
   }
-  
-  .formulario-cadastro label {
-    font-weight: bold;
+  /* estilo das labels*/
+  .formulario-cadastro label { 
+    font-weight: bold; /* negrito para as labels*/
     text-align: left; /* para manter o texto da label alinhado à esquerda dentro do bloco central */
   }
-  
+  /* input e o select */
   .formulario-cadastro input,
   .formulario-cadastro select {
-    padding: 10px;
-    border: 1px solid #7c7c7c;
-    font-size: 15px;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* espaço interno */
+    border: 1px solid #000000; /* borda preta*/
+    font-size: 15px; /* tamanho da fonte*/
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* sombra leve no input */
   }
-  
+  /* foco do input (quando clicado)*/
   .formulario-cadastro input:focus,
   .formulario-cadastro select:focus {
-    outline: none;
-    box-shadow: 0 0 5px #89cec6;
-    border-color: #9ddac1;
+    outline: none; /* remove o contorno padrão */
+    box-shadow: 0 0 5px #89cec6; /* sombra azul clara quando clica no input*/
+    border-color: #9ddac1; /* muda a cor da borda do input para azul claro*/ 
   }
   
   /* Botão de cadastro */
   .btn-cadastrar {
     display: block; /* necessário para usar margin auto */
     margin: 20px auto; /* centraliza horizontalmente */
-    width: 30%;
-    height: 30%;
-    margin-bottom: 10px;
-    background-color: #ffffff;
-    text-align: center;
-    color: #000;
-    border: 1px solid #000; /* borda preta definida corretamente */
-    padding: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 30%; /* largura do botão */
+    height: 30%; /* altura do botão */
+    margin-bottom: 10px; /* espaço abaixo do botão */
+    background-color: #ffffff; /* cor do fundo do botão */
+    text-align: center; /* centraliza o texto que está inserido dentro do botão */
+    color: #000; /* cor do texto dentro do botão */
+    border: 1px solid #000; /* borda preta do botão, tamanho, cor e estilo */
+    padding: 12px; /* espaço interno do botão */
+    font-size: 18px; /* tamanho da fonte */
+    font-weight: bold; /* fonte em negrito */
+    cursor: pointer; /* cursor muda para uma mãozinha quando coloca o mouse em cima do botão */
+    transition: background-color 0.3s, transform 0.2s; /* animação para a mudança de cor do botão e transformação*/
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* sombra leve no botão */ 
   }
-  
+  /* hover do botão */
   .btn-cadastrar:hover {
-    background-color: #bbe9dd;
-    transform: scale(1.05);
+    background-color: #bbe9dd; /* cor de fundo do botão quando passa o mouse em cima */
+    transform: scale(1.05); /* aumenta o tamanho do botão quando passa o mouse em cima*/
   }
   
   /* Mascote */
  .osmar {
-    width: 70px;
-    height: 70px;
-    margin: 50px ;
-    position: sticky;
-    margin-top: 45px !important;
-    margin-left: 390px;
-    right: 20px;
-    bottom: 0px;
+    width: 70px; /* largura da imagem*/
+    height: 70px; /* altura da imagem*/
+    margin: 50px ; /* espaçamento em volta da imagem*/
+    position: sticky; /* imagem fixa na tela*/
+    margin-top: 45px !important; /* espaçamento superior em volta da imagem ( dito como importante! )*/
+    margin-left: 390px; /* espaçamento esquerdo em volta da imagem*/
+    right: 20px; /* espaçamento direito em volta da imagem*/
+    bottom: 0px; /* espaçamento inferior me volta da imagem*/
   }
   
-  /* Responsivo */
+  /* responsividade */
   @media (max-width: 768px) {
-    .retangulo {
-      width: 90%;
-      padding: 10px;
+    .retangulo { 
+      width: 90%; /* largura do retangulo em telas menores*/
+      padding: 10px; /* espaçamento interno do retangulo */ 
+      /* este atributo serve para responsivisar o retangulo, ou seja, para que ele seja capaz de ficar menor em telas
+       menores */ 
     }
-  
+  /* responsividade do retangulo*/
     .formulario-cadastro label {
       display: inline-block;
       width: 150px; /* ou ajuste para 120px, 180px, conforme seu gosto */
-      margin-top: 10px;
-      font-weight: bold;
-      font-size: 18px;
+      margin-top: 10px; /* espaço acima da label*/
+      font-weight: bold; /* negrito para as labels*/
+      font-size: 18px; /*
       text-align: left;
       vertical-align: top;
     }
