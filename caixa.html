@@ -25,16 +25,14 @@
             </header>
             <div class="barras">
                 <img src="img/logo_pg.png" title="Logo da Padaria">
-                <label for="codigoBarra">CÓDIGO DE BARRAS:</label>
-                <input type="text" id="codigoBarra" placeholder="Digite ou escaneie...">
-                <label for="quantidade">QUANTIDADE:</label>
+                <label for="quantidade"><strong>QUANTIDADE:</strong></label>
                 <input type="number" id="quantidade" min="1" value="1">
                 <div class="valores">
                     <div><strong>VALOR UNITÁRIO:</strong>R$<span id=valorUnit>0,00</span></div>
                     <div><strong>TOTAL DO ITEM:</strong>R$<span id="valorItem">0,00</span></div>
                 </div>
             </div>
-
+            
             <div class="produtos">
                 <h3>LISTA DE PRODUTOS</h3>
                 <table id="tabelaProdutos">
@@ -72,7 +70,6 @@
                 <button onclick="pesquisarProduto()">F2 - Pesquisar Produto</button>
                 <button onclick="cancelarItem()">F3 - Cancelar Item</button>
                 <button onclick="finalizarVenda()">F4 - Finalizar Venda</button>
-                <button onclick="reimprimir()">F5 - Reimprimir</button>
                 <button onclick="sair()">ESC - Sair</button>
               </div>
             </div>
