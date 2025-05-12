@@ -29,44 +29,25 @@
       <form class="formulario-cadastro" id="formCadastro" onsubmit="cadastrar(event)">
         <a href="gestaoestoque.html" class="voltar">
             <img class="seta" src="img/btn_voltar.png" title="seta"></a>
-        <h1 class="titulo">CADASTRAR FUNCIONÁRIO</h1>
+        <h1 class="titulo">CADASTRAR FORNECEDOR</h1>
 
         <!-- Campos de cadastro (Idênticos ao seu código original) -->
-        <label for="nome"><i class="fas fa-user"></i> Nome do Funcionário:</label>
+        <label for="nome"><i class="fas fa-user"></i> Nome do Fornecedor:</label>
         <input type="text" id="nomefunc" name="nome_funcionario" placeholder="Insira o nome" required />
 
-        <label for="cpf"><i class="fas fa-address-card"></i> CPF:</label>
+        <label for="cpf"><i class="fas fa-address-card"></i> CNPJ:</label>
         <input type="text" id="cpf" name="cpf" maxlength="11" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 11)" pattern="\d{11}" placeholder="Insira o CPF (somente números)" required />
 
-        <label for="rg"><i class="fas fa-id-card"></i> RG:</label>
+        <label for="rg"><i class="fas fa-id-card"></i> Email:</label>
         <input type="text" id="rg" name="rg" maxlength="8" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 8)" pattern="\d{8}" placeholder="Insira o RG (somente números)" required />
 
-        <label for="senha"><i class="fas fa-key"></i> Senha:</label>
-        <div class="input-box">
-          <input type="password" id="senha" name="senha" required placeholder="Insira sua senha" minlength="6" />
-          <span class="toggle-senha" id="toggleSenha"><i class="fa-solid fa-eye"></i></span>
-        </div>
+        
 
-        <label for="email"><i class="fas fa-envelope"></i> E-mail:</label>
-        <input type="email" id="email" name="email" placeholder="Insira o E-mail" required />
-
+        
         <label for="telefone"><i class="fas fa-phone"></i> Telefone:</label>
         <input type="tel" id="telefone" name="telefone" placeholder="(11) 91234-5678" required />
 
-        <label for="funcao"><i class="fas fa-user-tie"></i> Função:</label>
-        <select id="funcao" name="funcao" required>
-          <option value="Caixa">Caixa</option>
-          <option value="Balconista">Balconista</option>
-          <option value="Administrador">Administrador</option>
-          <option value="Gestor de Estoque">Gestor de Estoque</option>
-        </select>
-
-        <label for="admissao"><i class="fas fa-calendar-alt"></i> Data de Admissão:</label>
-        <input type="date" id="admissao" name="data_admissao" required max="" />
-
-        <label for="salario"><i class="fas fa-money-bill-wave"></i> Salário:</label>
-        <input type="number" id="salario" name="salario" placeholder="R$" step="0.01" min="0" required />
-
+        
         <button type="submit" class="btn-cadastrar"><i class="fas fa-check-circle"></i> Cadastrar</button>
       </form>
     </div>
