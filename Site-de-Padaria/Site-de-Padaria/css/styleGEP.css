@@ -1,0 +1,171 @@
+@charset "UTF-8";
+/*Cabeçalho*/
+header{
+    height:70px;
+    background-color:#ffffff;
+}
+header img{
+    float:left;
+    height:70px;
+    width:70px;
+    margin:0px auto;
+    padding-left: 60px;
+}
+/*Configuração Geral*/
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Times New Rome';
+}
+
+body {
+    background-image: url('../img/fundo_pg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/*Título da Página*/
+h1{
+    text-align:center;
+}
+
+/*Botões*/
+.button-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.top-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 200px; /* Espaçamento entre os botões */
+    margin-bottom: 30px;
+}
+
+.btn1,
+.btn2{
+  margin: 0;
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0); 
+  border: none; 
+  border-radius: 8px; 
+  padding: 40px 50px; 
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: background-color 0.3s, transform 0.2s;
+  display: inline-block;
+  width: 200px;
+  white-space: nowrap; /* Garante que o texto não quebre em duas linhas */
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn1:hover,
+.btn2:hover {
+    background-color: #b3e7da;
+    transform: scale(1.05); 
+}
+
+.btn3{
+    margin: 50px auto 0;
+    background-color: #ffffff; 
+    color: rgb(0, 0, 0); 
+    border: none; 
+    border-radius: 8px; 
+    padding: 40px 50px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s, transform 0.2s;
+    display: inline-block;
+    width: 200px;
+    white-space: nowrap; /* Garante que o texto não quebre em duas linhas */
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn3:hover{
+    background-color: #b3e7da;
+    transform: scale(1.05); 
+}
+
+/*Icon dos Botões*/
+.btn-icon {
+    margin-top: 10px;
+    width: 50px;
+    height: 40px;
+}
+
+/*Side Bar*/
+.menu-btn {
+    margin-top: 15px;
+    position: absolute; 
+    left: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color:rgb(99, 179, 168);
+    z-index: 11;
+  }
+  
+  
+  .sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #89cec6;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 70px; 
+    z-index: 9;
+  }
+  
+  .sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.2s;
+  }
+  
+  .sidebar a:hover {
+    background-color: #6fb7af; 
+  }
+  
+  .suporte-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #89cec6;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .suporte-btn i {
+    margin-right: 5px;
+  }
+  
+  .suporte-btn:hover {
+    background-color: #6fb7af;
+    transform: scale(1.05);
+  }  
+  
+/*Seta para voltar*/
+  .seta {
+    width: 40px ;
+    height: 30px ;
+    margin-top: 30px;
+    margin-left: 50px;
+    left: 5px;
+}

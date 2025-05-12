@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Histórico de Venda</title>
+  <link rel="stylesheet" href="css/styleHV.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="js/scriptredefinir.js"></script>
+</head>
+<body>
+
+  <header>
+    <span class="menu-btn" onclick="toggleMenu()">☰</span>
+    <img src="img/logo.png" title="Logo da Padaria">
+    <div id="sidebar" class="sidebar">
+        <a href="#"><i class="fas fa-home"></i> Início</a>
+        <a href="#"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
+        <a href="#"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
+        <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
+        <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        
+    </div>
+  </header>
+  
+
+  <div class="retangulo">
+
+    <a href="adm.html" class="voltar"> 
+      <img class="seta" src="img/btn_voltar.png" title="seta"></a>
+    <h1 class="titulo">HISTÓRICO DE VENDAS  <i class="fas fa-history"></i></h1>
+
+    <label for="dataInicial">Selecione a data inicial:</label>
+    <input type="date" id="dataInicial" name="data">
+
+    <label class="final" for="dataFinal">Selecione a data final:</label>
+    <input class="inputfinal" type="date" id="dataFinal" name="data">
+
+    <a href="HistoricoVendas.html" class="gerar">Gerar Histórico</a>
+    <a href="Suporte.html" class="suporte-btn">
+        <i class="fas fa-headset"></i> Suporte
+    </a>
+    <img src="img/OSMARZINHO.jpg" class="osmar" title="osmarpão"/>
+ 
+    
+</body>
+</html>

@@ -1,0 +1,310 @@
+html, body {
+    height:100%;
+    margin: 0;
+    font-family: 'Times new Roman';
+   
+ }
+ 
+ body {
+    background-image: url('../img/fundo_pg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+ 
+ 
+ }
+ 
+ header img {
+     height:70px;
+     width:70px;
+ 
+ }
+ header {
+   background-color: white;
+   width: 100%;
+   height: 70px;
+   display: flex;
+   align-items: center;
+   padding-left: 60px; /* deixou espaço pro botão */
+   box-sizing: border-box;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 10;
+ }
+ 
+ .retangulo {
+   margin-top: 20px;
+   padding-top: 10px;
+   width: 450px;
+   height: 520px;
+   background-color: rgb(255, 255, 255);
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+   padding: 20px;
+   box-sizing: border-box;
+ }
+ 
+ .titulo {
+   text-align: center;
+   font-family: 'Times New Roman';
+   color: rgb(0, 0, 0);
+ }
+ 
+ label {
+   display: block;
+   margin-bottom: 10px;
+   font-size: 20px;
+   text-align: center;
+ }
+ 
+ input[type="date"] {
+   border: 1px solid #7c7c7c;
+   border-radius: 3px;
+   font-size: 16px;
+   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+   text-align: center;
+   display: block;
+   margin: 0 auto;
+ }
+ 
+ input[type="date"]:focus {
+   outline: none;
+   box-shadow: 0 0 5px #89cec6;
+   border-color: #9ddac1;
+ }
+ 
+ .final {
+   margin-top: 50px;
+   display: block;
+   margin-bottom: 10px;
+   font-size: 20px;
+   text-align: center;
+ 
+ }
+ .gerar {
+   margin: 20px auto;
+   background-color: #ffffff; 
+   color: rgb(0, 0, 0); 
+   border: none; 
+   border-radius: 8px; 
+   padding: 10px 20px; 
+   font-size: 16px;
+   font-weight: bold;
+   cursor: pointer;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+   transition: background-color 0.3s, transform 0.2s;
+   display: block;
+   width: 120px;
+   text-align: center;
+   text-decoration: none;
+ }
+ 
+ .gerar:hover {
+   background-color: #b3e7da;
+   transform: scale(1.05); 
+ }
+ /* Botão do menu (hamburger) */
+ .menu-btn {
+   position: absolute;  /* dentro do header */
+   left: 15px;
+   font-size: 30px;
+   cursor: pointer;
+   color:rgb(99, 179, 168);
+   z-index: 11;
+ }
+ 
+ /* Sidebar (menu lateral) */
+ .sidebar {
+   height: 100%;
+   width: 0;
+   position: fixed;
+   top: 0;
+   left: 0;
+   background-color: #89cec6;
+   overflow-x: hidden;
+   transition: 0.3s;
+   padding-top: 70px; /* igual à altura do header */
+   z-index: 9;
+ }
+ 
+ .sidebar a {
+   padding: 15px 25px;
+   text-decoration: none;
+   font-size: 18px;
+   color: white;
+   display: block;
+   transition: 0.2s;
+ }
+ 
+ .sidebar a:hover {
+   background-color: #6fb7af; /* tom mais escuro e harmônico */
+ }
+ 
+ .suporte-btn {
+   position: absolute;
+   bottom: 20px;
+   left: 20px; /* <-- agora no canto inferior esquerdo */
+   background-color: #89cec6;
+   color: white;
+   padding: 10px 15px;
+   border-radius: 20px;
+   font-size: 14px;
+   font-weight: bold;
+   text-decoration: none;
+   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+   transition: background-color 0.3s, transform 0.2s;
+ }
+ 
+ .suporte-btn i {
+   margin-right: 5px;
+ }
+ 
+ .suporte-btn:hover {
+   background-color: #6fb7af;
+   transform: scale(1.05);
+ }
+ 
+ textarea {
+  width: 100%;
+  border: 1px solid #7c7c7c;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  resize: vertical;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 auto 20px auto;
+  font-family: 'Times New Roman';
+}
+
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 5px #89cec6;
+  border-color: #9ddac1;
+}
+h1.titulo {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+h2{
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+
+}
+.titulo {
+  font-size: 25px !important;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  height: 50px; /* Ajustei a altura para não ficar tão grande */
+}
+
+
+button.gerar {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 10px 15px;  /* Menor padding */
+  font-size: 12px;    /* Texto menor */
+  font-weight: bold;
+  border: 1px solid black; /* Borda de 1px */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+  width: 150px;
+
+}
+
+button.gerar:hover {
+  background-color: #6fb7af;
+}
+
+button.gerar:hover {
+  background-color: #6fb7af;
+}
+
+.contato {
+  margin-top: 10px;
+  text-align: center; /* Para centralizar os botões */
+}
+
+.contato a {
+  display: inline-block;
+  margin: 5px;
+  text-decoration: none;
+  color: #fff;
+  padding: 5px 10px; /* Botões menores */
+  border-radius: 3px;
+  font-size: 14px; /* Texto menor */
+  background-color: #65978c; /* Cor do WhatsApp */
+  text-align: center;
+  
+}
+
+.contato a.email-btn {
+  background-color: #65978c; /* Cor do E-mail */
+}
+
+.contato a:hover {
+  opacity: 0.8;
+}
+
+.atencao {
+  font-size: 12px;
+  color: #f44336; /* Cor de atenção */
+  margin-top: 0px;
+}
+.voltar {
+  display: inline-block;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  color: #000000;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+  
+}
+
+.voltar i {
+  margin-right: 6px;
+}
+
+.voltar:hover {
+  color: #6fb7af;
+}
+.seta {
+  width: 35px ;
+  height: 25px ;
+  margin-top: 0px;
+  margin-left: 0px;
+  left: 5px;
+}
