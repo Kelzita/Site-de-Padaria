@@ -1,7 +1,7 @@
 function Comanda() {
     const numero = document.getElementById("numeroComanda").value.trim();
     const linhas = document.querySelectorAll(".comanda tbody tr");
-    let resultado = `COMANDA Nº: ${numero}\n\n`;
+    let resultado = `Comanda Nº: ${numero} enviada!`;
   
     linhas.forEach((linha, index) => {
       const colunas = linha.querySelectorAll("td");
@@ -10,9 +10,7 @@ function Comanda() {
       const qtde = colunas[2].innerText.trim();
   
       // Adiciona à string somente se houver algo preenchido
-      if (codProd || produto || qtde) {
-        resultado += `Item ${index + 1} → COD: ${codProd} | PRODUTO: ${produto} | QTDE: ${qtde}\n`;
-      }
+    
     });
   
     alert(resultado);
