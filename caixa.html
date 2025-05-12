@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Caixa</title>
         <link rel="stylesheet" href="css/stylecaixa.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
         <script src="js/sidebar.js"></script>
         <script src="js/caixa.js"></script>
     </head>
@@ -13,11 +14,11 @@
             <header>
                 <span class="menu-btn" onclick="toggleMenu()">☰</span>
                 <div id="sidebar" class="sidebar">
-                    <a href="Historico de vendas.html"><i class="fas fa-home"></i> Início</a>
+                    <a href="admreserva.html"><i class="fas fa-home"></i> Início</a>
                     <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
                     <a href="GestaodeFuncionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
                     <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
-                    <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
+                    <a href="caixa.html"><i class="fas fa-cash-register"></i> Caixa</a>
                     <a href="Suporte.html"><i class="fas fa-headset"></i> Suporte</a>
                     <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
                 </div>
@@ -32,7 +33,13 @@
                     <div><strong>TOTAL DO ITEM:</strong>R$<span id="valorItem">0,00</span></div>
                 </div>
             </div>
-            
+
+            <div class="codigo">
+                <label for="codigoProduto">CÓDIGO DO PRODUTO:</label>
+                <input type="text" id="codigoProduto" value="69883">
+            </div>
+
+
             <div class="produtos">
                 <h3>LISTA DE PRODUTOS</h3>
                 <table id="tabelaProdutos">
@@ -51,16 +58,17 @@
                 </table>
             </div>
 
-            <div class="codigo">
-                <label for="codigoVenda">CÓDIGO DA VENDA:</label>
-                <input type="text" id="codigoVenda" value="69883">
+            <div class="numcomanda">
+                <label for="">NÚMERO DA COMANDA:</label>
+                <input type="text" id="numcomanda" value="1">
             </div>
+            
 
             <div class="totais">
                 <div class="resumo">
                     <div><strong>SUBTOTAL:</strong><span class="destaque" id="subtotal">R$ 0,00</span> </div>
                     <!--Analisar esta parte-->
-                    <div><strong>TOTAL RECEBIDO:</strong> R$ <input type="number" id="recebido" value="0"> </div>
+                    <div><strong>TOTAL RECEBIDO:</strong> R$ <input type="number" id="recebido" value="0" style="width: 100px;"> </div>
                     <div><strong>TROCO:</strong><span id="troco">R$ 0,00</span></div>
                 </div>
             </div>
