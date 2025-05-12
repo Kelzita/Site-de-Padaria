@@ -69,9 +69,9 @@ header img {
 
 .retangulo {
   background-color: white;
-  padding: 30px;
+  padding: 50px;
   width: 420px;
-  height: 500px;
+  height: 510px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -212,4 +212,10 @@ table.comanda tbody tr:last-child td:first-child {
 /* Canto inferior direito */
 table.comanda tbody tr:last-child td:last-child {
   border-bottom-right-radius: 12px;
+}
+
+.seta {
+  width: 40px ;
+  margin-top: 10px;
+  margin-right: 10px;
 }

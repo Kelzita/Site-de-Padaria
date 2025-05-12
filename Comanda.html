@@ -6,25 +6,29 @@
   <title>Padaria Pão Genial</title>
   <link rel="stylesheet" href="css/stylecomanda.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script src="js/scriptredefinir.js"></script>
+  <script src="js/sidebar.js"></script>
 </head>
 <body>
+
   <header>
-    <span class="menu-btn" onclick="toggleMenu()" role="button" aria-label="Abrir Menu">☰</span>
-    <img src="img/logo.png" alt="Logo da Padaria" title="Logo da Padaria" />
-    <nav id="sidebar" class="sidebar">
-      <a href="Historico de vendas.html"><i class="fas fa-home"></i> Início</a>
+    <span class="menu-btn" onclick="toggleMenu()">☰</span>
+    <img src="img/logo.png" title="Logo da Padaria">
+    <div id="sidebar" class="sidebar">
+      <a href="admreserva.html"><i class="fas fa-home"></i> Início</a>
       <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
       <a href="GestaodeFuncionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
       <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
       <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
       <a href="Suporte.html"><i class="fas fa-headset"></i> Suporte</a>
       <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
-    </nav>
+        
+    </div>
   </header>
 
   <div class="retangulo">
     <div class="painel-botoes">
+      <a href="adm.html" class="voltar"> 
+        <img class="seta" src="img/btn_voltar.png" title="seta"></a>
       <img src="img/pao.png" alt="Mascote" class="osmar">
       
       <table class="comanda">
@@ -80,12 +84,6 @@
 
   </div>
   <script src="js/comanda.js"></script>
-  
-  <script>
-    function enviarComanda() {
-      alert('Comanda enviada!');
-    }
-  </script>
 </body>
 
 </html>
