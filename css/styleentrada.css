@@ -1,0 +1,355 @@
+
+/* header*/
+header {
+    background-color: white;
+    height:70px;
+    display:flex;
+}
+body {
+    background-image: url('../img/fundo_pg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+ 
+ 
+ }
+ 
+ header img {
+    float:left;
+    height:70px;
+    width:70px;
+    margin:0px auto;
+    padding-left: 60px;
+    margin-left: 0px;
+ }
+/*body*/
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Times New Rome';
+    background-image: url('../img/fundo_pg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/* retangulo no fundo*/
+.retangulo {
+    margin-top: 20px;
+    padding-top: 10px;
+    width: 500px;
+    height: 500px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    box-sizing: border-box;
+  }
+/*titulo de saudação para o caixa*/
+.saudacao {
+    font-size: 20px;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/*botão de abrir caixa*/
+.abrircaixa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid #ccc; 
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    
+}
+/*botão de abrir caixa - icone*/      
+.abrircaixa i {
+    margin-right: 10px;
+
+}
+/*hover do botão de abrir caixa, sendo ele um efeito de transição*/     
+.abrircaixa:hover {
+    background-color: #b3e7da;
+    transform: scale(1.03);
+}
+
+.gerar, .abrircaixa {
+    width: 80%;
+    max-width: 340px;
+    margin: 0 auto 16px auto; /* espaçamento inferior aumentado */
+    padding: 10px 16px; /* levemente mais confortável ao toque */
+  }
+  .fecharcaixa{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid #ccc; 
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    
+}
+/*botão de abrir caixa - icone*/      
+.fecharcaixa i {
+    margin-right: 10px;
+
+}
+/*hover do botão de abrir caixa, sendo ele um efeito de transição*/     
+.fecharcaixa:hover {
+    background-color: #b3e7da;
+    transform: scale(1.03);
+}
+
+.gerar, .fecharcaixa {
+    width: 80%;
+    max-width: 340px;
+    margin: 0 auto 16px auto; /* espaçamento inferior aumentado */
+    padding: 10px 16px; /* levemente mais confortável ao toque */
+  }
+.titulo {
+    font-size: 24px;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+
+
+}
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.4);
+
+}
+
+
+
+h2,h3 { 
+   font-size: 20px !important;
+
+
+}
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    
+
+    
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.Formulario-ValorInicial label {
+    display: inline-block;
+    width: 150px; /* ou ajuste para 120px, 180px, conforme seu gosto */
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.Formulario-ValorInicial input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+
+    font-size: 16px;
+    box-sizing: border-box;
+    border-color:black;
+
+}
+
+.Formulario-ValorInicial select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+    
+.confirmar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid #ccc; 
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    margin-left: 10px;
+    margin-top: 0px;
+    margin-bottom: 70px;
+    border-color: black;
+}
+.confirmar i {
+    margin-right: 10px;
+
+}
+  
+.confirmar:hover {
+    background-color: #b3e7da;
+    transform: scale(1.03);
+
+}
+.button-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.top-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 200px; /* Espaçamento entre os botões */
+    margin-bottom: 30px;
+}
+
+.btn1,
+.btn2{
+  margin: 0;
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0); 
+  border: none; 
+  border-radius: 8px; 
+  padding: 40px 50px; 
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: background-color 0.3s, transform 0.2s;
+  display: inline-block;
+  width: 200px;
+  white-space: nowrap; /* Garante que o texto não quebre em duas linhas */
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn1:hover,
+.btn2:hover {
+    background-color: #b3e7da;
+    transform: scale(1.05); 
+}
+
+.btn3{
+    margin: 50px auto 0;
+    background-color: #ffffff; 
+    color: rgb(0, 0, 0); 
+    border: none; 
+    border-radius: 8px; 
+    padding: 40px 50px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s, transform 0.2s;
+    display: inline-block;
+    width: 200px;
+    white-space: nowrap; /* Garante que o texto não quebre em duas linhas */
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn3:hover{
+    background-color: #b3e7da;
+    transform: scale(1.05); 
+}
+
+/*Icon dos Botões*/
+.btn-icon {
+    margin-top: 10px;
+    width: 50px;
+    height: 40px;
+}
+
+/*Side Bar*/
+.menu-btn {
+    margin-top: 15px;
+    position: absolute; 
+    left: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color:rgb(99, 179, 168);
+    z-index: 11;
+  }
+  
+/* Sidebar (menu lateral) */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: justify;
+    background-color: #89cec6;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 70px; /* igual à altura do header */
+    z-index: 9;
+  }
+  
+  .sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.2s;
+  }
+  
+  .sidebar a:hover {
+    background-color: #6fb7af; /* tom mais escuro e harmônico */
+  }
+  

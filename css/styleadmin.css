@@ -216,3 +216,11 @@ input[type="date"]:focus {
   margin: 0 auto 16px auto; /* espaçamento inferior aumentado */
   padding: 10px 16px; /* levemente mais confortável ao toque */
 }
+.saudacao {
+  font-size: 20px;
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  margin-top: 0px;
+  font-weight: bold;
+}
