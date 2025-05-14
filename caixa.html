@@ -36,7 +36,9 @@
 
             <div class="codigo">
                 <label for="codigoProduto">CÓDIGO DO PRODUTO:</label>
-                <input type="text" id="codigoProduto" value="69883">
+                <input type="text" id="codigoProduto" value="Insira o código..." onkeydown="if(event.key === 'Enter'){ processarProduto(this.value); }">
+
+
             </div>
 
 
@@ -60,7 +62,7 @@
 
             <div class="numcomanda">
                 <label for="">NÚMERO DA COMANDA:</label>
-                <input type="text" id="numcomanda" value="1">
+                <input type="number" id="numcomanda" value="1">
             </div>
             
 
@@ -68,16 +70,17 @@
                 <div class="resumo">
                     <div><strong>SUBTOTAL:</strong><span class="destaque" id="subtotal">R$ 0,00</span> </div>
                     <!--Analisar esta parte-->
-                    <div><strong>TOTAL RECEBIDO:</strong> R$ <input type="number" id="recebido" value="0" style="width: 100px;"> </div>
-                    <div><strong>TROCO:</strong><span id="troco">R$ 0,00</span></div>
                 </div>
             </div>
 
             <div class="comandos">
                 <button onclick="novaVenda()">F1 - Nova Venda</button>
+                
+            
                 <button onclick="pesquisarProduto()">F2 - Pesquisar Produto</button>
-                <button onclick="cancelarItem()">F3 - Cancelar Item</button>
-                <button onclick="finalizarVenda()">F4 - Finalizar Venda</button>
+                
+                <button onclick="finalizarVenda()">F3 - Finalizar Venda</button>
+                
                 <button onclick="sair()">ESC - Sair</button>
               </div>
             </div>

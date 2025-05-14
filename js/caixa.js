@@ -65,72 +65,102 @@ const produtos = {
 let contador = 1;
 let subtotal = 0;
 
-document.getElementById('recebido').addEventListener('input', function() {
-    const recebido = parseFloat(this.value) || 0;
-    const troco = recebido - subtotal;
-    document.getElementById('troco').textContent = 'R$' + troco.toFixed(2);
-});
 
 function processarProduto(codigo) {
-    const quantidade = parseInt(document.getElementById('quantidade').value);
-    if (produtos[codigo]) {
-        const produto = produtos[codigo];
-        adicionarProduto(produto, quantidade);
-    }else{
-        alert('Produto não encontrado!');
-    }     
-    }
+  const quantidade = parseInt(document.getElementById('quantidade').value);
+  if (produtos[codigo]) {
+    const produto = produtos[codigo];
+    adicionarProduto(produto, quantidade);
+  } else {
+    alert('Produto não encontrado!');
+  }
+}
 
 function adicionarProduto(produto, quantidade) {
-    const tabela = document.querySelector('#tabela tbody');
-    const row = document.createElement('tr');
-    const total = produto.preco * quantidade;
+  const tabela = document.querySelector('#tabelaProdutos tbody');
+  const row = document.createElement('tr');
+  const total = produto.preco * quantidade;
 
-    row.innerHTML = `
-        <td>${contador}</td>
-        <td>${produto.nome}</td>
-        <td>${quantidade}</td>
-        <td>R$${produto.preco.toFixed(2)}</td>
-        <td>R$${total.toFixed(2)}</td>
-        <td><button onclick = "removerProduto(this,${total}">Remover</button></td>
-    `;
-    tabela.appendChild(row);
+  row.innerHTML = `
+    <td>${contador}</td>
+    <td>${produto.nome}</td>
+    <td>${quantidade}</td>
+    <td>R$ ${produto.preco.toFixed(2)}</td>
+    <td>R$ ${total.toFixed(2)}</td>
+    <td><button onclick="removerProduto(this, ${total})">Remover</button></td>
+  `;
+  tabela.appendChild(row);
 
-    subtotal += total;
-    document.getElementById('subtotal').textContent = 'R$' + subtotal.toFixed(2);
-    document.getElementById('valorUnit').textContent = produto.preco.toFixed(2);
-    document.getElementById('valorItem').textContent = total.toFixed(2);
-   contador++; 
+  subtotal += total;
+  document.getElementById('subtotal').textContent = 'R$ ' + subtotal.toFixed(2);
+  document.getElementById('valorUnit').textContent = produto.preco.toFixed(2);
+  document.getElementById('valorItem').textContent = total.toFixed(2);
+  contador++;
 }
 
 function removerProduto(button, valor) {
-    const row = button.parentElement.parentElement;
-    row.remove();
-    subtotal -= valor;
-    document.getElementById('subtotal').textContent = 'R$' + subtotal.toFixed(2);
-    document.getElementById('troco').textContent = 'R$ 0,00';
-}
+    const senha = prompt("Digite a senha do administrador para remover o item:");
+  
+    if (senha ==="genival1020") {
+      const row = button.parentElement.parentElement;
+      row.remove();
+      subtotal -= valor;
+      document.getElementById('subtotal').textContent = 'R$ ' + subtotal.toFixed(2);
+      document.getElementById('troco').textContent = 'R$ 0,00';
+    } else {
+      alert("Senha incorreta. Remoção cancelada.");
+    }
+  }
+  
+
 
 function novaVenda(){
     location.reload();
 }
 
 function pesquisarProduto() {
-     
-}
-
-function cancelarItem() {
-    alert('Selecione um item para cancelar!');
+    const termo = prompt("Digite o nome do produto:").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    if (!termo || termo.trim() === '') {
+      alert('Pesquisa cancelada ou inválida.');
+      return;
+    }
+  
+    let produtoEncontrado = null;
+    let codigoEncontrado = null;
+  
+    for (const codigo in produtos) {
+      const nomeNormalizado = produtos[codigo].nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      if (nomeNormalizado.includes(termo)) {
+        produtoEncontrado = produtos[codigo];
+        codigoEncontrado = codigo;
+        break; 
+      }
+    }
+  
+    if (produtoEncontrado) {
+      const qtdStr = prompt(`Produto ${produtoEncontrado.nome} encontrado!"\nDigite a quantidade:`);
+      const quantidade = parseInt(qtdStr);
+  
+      if (!isNaN(quantidade) && quantidade > 0) {
+        adicionarProduto(produtoEncontrado, quantidade);
+        document.getElementById('codigoProduto').value = codigoEncontrado;
+      } else {
+        alert('Quantidade inválida.');
+      }
+    } else {
+      alert('Produto não encontrado!');
+    }
   }
+  
+  
   function finalizarVenda() {
-    alert('Venda finalizada com sucesso! Troco: ' + document.getElementById('troco').textContent);
-    novaVenda();
+
+    window.location.href = 'FormadePagamento.html';
+
   }
-  function reimprimir() {
-    alert('Reimprimindo cupom...');
-  }
+ 
   function sair() {
-    alert('Encerrando sistema...');
+    window.location.href = 'Entrada-caixa.html';
   }
 
 
