@@ -10,5 +10,23 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Pagamento Aprovado");
       });
     });
+   // Função para abrir o modal
+function abrirModal() {
+  document.getElementById('modal').style.display = 'flex';
+}
+
+// Função para fechar o modal
+function fecharModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+// Função para finalizar a venda
+function finalizarVenda() {
+  alert('Venda finalizada com sucesso!');
+  fecharModal(); // Fecha o modal após finalizar a venda
+}
+
+    
   });
-  
+
+
