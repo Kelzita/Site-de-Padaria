@@ -1,100 +1,154 @@
-/* Reset */
+/* Reset e base */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
-  
-  body, html {
-    height: 100%;
-  }
-  
-  /* Background */
-  .background {
-    background: url('background.png') no-repeat center center;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  /* Login box */
-  .login-box {
-    background: white;
-    padding: 40px;
-    border-radius: 10px;
-    position: relative;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-  }
-  
-  .login-box h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-  }
-  
-  /* Labels */
-  .login-box label {
-    font-size: 12px;
-    display: block;
-    margin-bottom: 5px;
-    margin-top: 10px;
-  }
-  
-  /* Input fields */
-  .input-box {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
-    padding: 8px;
-    margin-bottom: 10px;
-  }
-  
-  .input-box .icon {
-    margin-right: 8px;
-  }
-  
-  .input-box input {
-    border: none;
-    outline: none;
-    flex: 1;
-  }
-  
-  /* Esqueceu a senha */
-  .forgot {
-    display: block;
-    text-align: right;
-    font-size: 12px;
-    margin-bottom: 15px;
-    color: #4d90fe;
-    text-decoration: none;
-  }
-  
-  .forgot:hover {
-    text-decoration: underline;
-  }
-  
-  /* Botão de login */
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #dbe6e4;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #b5d0ce;
-  }
-  
-  /* Personagem no canto inferior */
-  .character {
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    width: 70px;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: url('../img/fundo_pg.png') no-repeat center center;
+  background-size: cover;
+}
+
+/* Header fixo com botão de menu */
+header {
+  background-color: white;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+header img {
+  height: 70px;
+  width: 70px;
+}
+
+.menu-btn {
+  position: absolute;
+  left: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  color: rgb(99, 179, 168);
+  z-index: 11;
+}
+
+/* Sidebar */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #89cec6;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 70px;
+  z-index: 9;
+}
+
+.sidebar a {
+  padding: 15px 25px;
+  font-size: 18px;
+  color: white;
+  display: block;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: #6fb7af;
+}
+
+/* Login */
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-top: 70px; /* espaço pro header */
+}
+
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  width: 300px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+label {
+  font-size: 12px;
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.input-box .icon {
+  margin-right: 8px;
+}
+
+.input-box input {
+  border: none;
+  outline: none;
+  flex: 1;
+}
+
+.forgot {
+  display: block;
+  text-align: right;
+  font-size: 12px;
+  margin-bottom: 15px;
+  color: #4d90fe;
+  text-decoration: none;
+}
+
+.forgot:hover {
+  text-decoration: underline;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #dbe6e4;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #b5d0ce;
+}
+
+/* Imagem decorativa */
+.character {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 70px;
+}
