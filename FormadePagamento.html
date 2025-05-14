@@ -9,22 +9,7 @@
 </head>
 
 <body>
-  <header>
-    <span class="menu-btn" onclick="toggleMenu()">☰</span>
-    <img src="img/logo.png" title="Logo da Padaria">
-    <div id="sidebar" class="sidebar">
-      <a href="Historico de vendas.html"><i class="fas fa-home"></i> Início</a>
-      <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
-      <a href="gestao_funcionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
-      <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
-      <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
-      <a href="Tela de Login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
-    </div>
-  </header>
-
   <div class="retangulo">
-    <a href="adm.html" class="voltar"> 
-        <img class="seta" src="img/btn_voltar.png" title="seta"></a>
     <div class="painel-botoes">
         <h1 class="titulo">FORMA DE PAGAMENTO <i class="fa-solid fa-cart-shopping"></i></h1>
 
@@ -47,15 +32,15 @@
       <a href="#" class="botao">
         <i class="fas fa-qrcode"></i> PIX
       </a>
+
+
+
     </div>
-      <script>
-        function toggleMenu() {
-          const sidebar = document.getElementById("sidebar");
-          sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
-        }
-      </script>
+    <div class="comandos">
+      <button onclick="finalizarVenda()">F4 - Finalizar Venda</button>
+    </div>
       <script src="js/formadepagamento.js"></script>
-    
+      
   </div>
 </body>
 </html>
