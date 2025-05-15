@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Funcionários</title>
+    <link rel="stylesheet" href="css/styleEA.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="js/sidebar.js"></script>
+    <script src="js/gerenciarfuncionarios.js" defer></script>
+</head>
+<body>
+    <header>
+        <span class="menu-btn" onclick="toggleMenu()">☰</span>
+        <img src="img/logo_pg.png" title="Logo da Padaria">
+        <div id="sidebar" class="sidebar">
+            <a href="admreserva.html"><i class="fas fa-home"></i> Início</a>
+            <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
+            <a href="GestaodeFuncionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
+            <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
+            <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
+            <a href="Suporte.html"><i class="fas fa-headset"></i> Suporte</a>
+            <a href="Tela de Login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        </div>
+    </header>
+
+    <h1>GERENCIAR FUNCIONÁRIOS</h1>
+    <div id="alerta" class="alerta"></div>
+    <div class="barra-pesquisa">
+            <input type="text" id="busca" placeholder="Pesquisar Funcionário" onkeyup="filtrar()">
+            <img src="img/lupa.webp" alt="Lupa" class="icone-lupa">
+    </div>
+    <table class="tabela-funcionarios">
+        <thead>
+            <tr>
+                <th id="novoId">ID</th>
+                <th id="nomefunc">Nome</th>
+                <th id="cpf">CPF</th>
+                <th id="telefone">Telefone</th>
+                <th id="email">Email</th>
+                <th id="rua">Rua</th>
+                <th id="numero">Número</th>
+                <th id="bairro">Bairro</th>
+                <th id="cidade">Cidade</th>
+                <th id="uf">UF</th>
+                <th id="dataadmissao">Data Admissão</th>
+                <th id="salario">Salário</th>
+                <th id="rg">RG</th>
+                <th id="senha">Senha</th>
+                <th id="funcao">Função</th>
+                <th id="acoes">Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaFuncionarios"></tbody>
+    </table>
+
+     <!-- Modal de Edição -->
+  <div id="modalEdicao" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">&times;</span>
+      <h2>Editar Funcionário</h2>
+      <form id="formEditar">
+        <input type="hidden" id="editIndex" />
+        <label>Nome:</label>
+        <input type="text" id="editNome" required />
+
+        <label>CPF:</label>
+        <input type="text" id="editCpf" required />
+
+        <label>Email:</label>
+        <input type="email" id="editEmail" required />
+
+        <label>Função:</label>
+        <select id="editFuncao">
+          <option>Caixa</option>
+          <option>Balconista</option>
+          <option>Administrador</option>
+          <option>Gestor de Estoque</option>
+        </select>
+
+        <button type="submit">Salvar Alterações</button>
+      </form>
+
+ <style>
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+    }
+
+    form label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: bold;
+    }
+
+    form input,
+    form select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    form button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    form button:hover {
+        background-color: #45a049;
+    }
+</STYLE>    
+
+<script>
+// Array para armazenar funcionários localmente
+let funcionarios = [];
+
+// Função para cadastrar funcionário (deve ser chamada no cadastro)
+function cadastrarFuncionario(funcionario) {
+  // Gerar ID automático (incremental)
+  funcionario.id = funcionarios.length > 0 ? funcionarios[funcionarios.length - 1].id + 1 : 1;
+  funcionario.ativo = true; // marcar ativo
+
+  funcionarios.push(funcionario);
+  atualizarTabela();
+}
+
+// Atualiza a tabela HTML com os funcionários ativos
+function atualizarTabela() {
+  const tbody = document.getElementById('tabelaFuncionarios');
+  tbody.innerHTML = '';
+
+  funcionarios.forEach((func, index) => {
+    if (!func.ativo) return; // só mostrar ativos
+
+    const tr = document.createElement('tr');
+
+    tr.innerHTML = `
+      <td>${func.id}</td>
+      <td>${func.nome}</td>
+      <td>${func.cpf}</td>
+      <td>${func.telefone}</td>
+      <td>${func.email}</td>
+      <td>${func.rua}</td>
+      <td>${func.numero}</td>
+      <td>${func.bairro}</td>
+      <td>${func.cidade}</td>
+      <td>${func.uf}</td>
+      <td>${func.dataAdmissao}</td>
+      <td>${func.salario.toFixed(2)}</td>
+      <td>${func.rg}</td>
+      <td>******</td>
+      <td>${func.funcao}</td>
+      <td>
+        <button onclick="abrirModalEdicao(${func.id})">Editar</button>
+        <button onclick="inativarFuncionario(${func.id})" style="color:red">Inativar</button>
+      </td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+}
+
+// Abre o modal e carrega dados do funcionário para edição
+function abrirModalEdicao(id) {
+  const func = funcionarios.find(f => f.id === id);
+  if (!func) return alert('Funcionário não encontrado');
+
+  document.getElementById('editIndex').value = id;
+  document.getElementById('editNome').value = func.nome;
+  document.getElementById('editCpf').value = func.cpf;
+  document.getElementById('editEmail').value = func.email;
+  document.getElementById('editFuncao').value = func.funcao;
+
+  document.getElementById('modalEdicao').style.display = 'block';
+}
+
+// Fecha o modal
+function fecharModal() {
+  document.getElementById('modalEdicao').style.display = 'none';
+}
+
+// Salva as alterações do modal
+document.getElementById('formEditar').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const id = parseInt(document.getElementById('editIndex').value);
+  const nome = document.getElementById('editNome').value;
+  const cpf = document.getElementById('editCpf').value;
+  const email = document.getElementById('editEmail').value;
+  const funcao = document.getElementById('editFuncao').value;
+
+  const funcIndex = funcionarios.findIndex(f => f.id === id);
+  if (funcIndex === -1) return alert('Funcionário não encontrado para editar');
+
+  funcionarios[funcIndex].nome = nome;
+  funcionarios[funcIndex].cpf = cpf;
+  funcionarios[funcIndex].email = email;
+  funcionarios[funcIndex].funcao = funcao;
+
+  atualizarTabela();
+  fecharModal();
+});
+
+// Marca funcionário como inativo (remove da lista visualmente)
+function inativarFuncionario(id) {
+  const funcIndex = funcionarios.findIndex(f => f.id === id);
+  if (funcIndex === -1) return alert('Funcionário não encontrado para inativar');
+
+  if (!confirm('Tem certeza que deseja inativar este funcionário?')) return;
+
+  funcionarios[funcIndex].ativo = false;
+  atualizarTabela();
+}
+
+// Função de busca já tinha no HTML, você pode implementar o filtro assim:
+function filtrar() {
+  const textoBusca = document.getElementById('busca').value.toLowerCase();
+  const tbody = document.getElementById('tabelaFuncionarios');
+  const linhas = tbody.getElementsByTagName('tr');
+
+  for (let linha of linhas) {
+    const nome = linha.cells[1].textContent.toLowerCase();
+    linha.style.display = nome.includes(textoBusca) ? '' : 'none';
+  }
+}
+
+// --- Agora, para integrar o cadastro com a lista ---
+// Supondo que seu formulário de cadastro chama a função "cadastrar(event)" no submit (como no seu HTML):
+
+function cadastrar(event) {
+  event.preventDefault();
+
+  // Pega os dados do formulário de cadastro
+  const form = event.target;
+
+  const novoFuncionario = {
+    nome: form.nome_funcionario.value,
+    cpf: form.cpf.value,
+    rg: form.rg.value,
+    senha: form.senha.value,
+    email: form.email.value,
+    telefone: form.telefone.value,
+    rua: form.rua.value,
+    numero: form.numero.value,
+    bairro: form.bairro.value,
+    cidade: form.cidade.value,
+    uf: form.uf.value,
+    funcao: form.funcao.value,
+    dataAdmissao: form.data_admissao.value,
+    salario: parseFloat(form.salario.value),
+  };
+
+  cadastrarFuncionario(novoFuncionario);
+
+  alert('Funcionário cadastrado com sucesso!');
+
+  form.reset();
+
+  // Aqui, para facilitar teste, se você quiser já ir para a página de listagem, pode fazer:
+  // window.location.href = 'pagina-listagem.html'; // ajuste o nome do arquivo
+}
+
+// Inicializa a tabela vazia ao carregar a página de listagem
+document.addEventListener('DOMContentLoaded', () => {
+  atualizarTabela();
+
+  // Fecha modal clicando fora da caixa
+  window.onclick = function (event) {
+    const modal = document.getElementById('modalEdicao');
+    if (event.target == modal) {
+      fecharModal();
+    }
+  };
+});
+
+
+
+
+</script>
+</body>
+</html>
