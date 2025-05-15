@@ -1,16 +1,21 @@
 <?php
-$servidor = "localhost";
-$usuario = "root"; // padrão do XAMPP
-$senha = "root";    // padrão do XAMPP
-$banco = "padaria_pao_genial"; // nome do seu banco
+// Configurações do banco de dados
+$host = 'localhost'; // Endereço do servidor MySQL
+$user = 'root'; // Usuário do banco de dados
+$password = 'root'; // Senha do banco de dados
+$database = 'padaria_pão_genial'; // Nome do banco de dados
 
-// Cria a conexão
-$conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
+// Criando a conexão com o banco de dados
+$conn = new mysqli($host, $user, $password, $database);
 
-// Verifica se houve erro
-if (!$conexao) {
-  die("Falha na conexão: " . mysqli_connect_error());
+// Verificando se houve erro na conexão
+if ($conn->connect_error) {
+    die("Falha na conexão: " . $conn->connect_error);
 }
 
+// Exibindo mensagem de sucesso
 echo "Conexão bem-sucedida com o banco de dados!";
+
+// Fechando a conexão (opcional, caso não seja mais necessária)
+// $conn->close();
 ?>
