@@ -122,7 +122,10 @@ th{
     grid-column: 1 / -1;
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
   }
   .comandos button {
     flex: 1;
@@ -133,9 +136,11 @@ th{
     background-color: #5dc0c0;
     cursor: pointer;
     transition: 0.3s;
+    color: white;
   }
   .comandos button:hover {
     background-color: #6495ED;
+    color:#fff;
   }
 
 
@@ -200,3 +205,11 @@ th{
     background-color: #6fb7af;
     transform: scale(1.05);
   }  
+
+  /*Seta para voltar*/
+  .seta {
+    width: 40px ;
+    height: 30px ;
+    margin-left: 50px;
+    left: 5px;
+}

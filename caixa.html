@@ -36,9 +36,7 @@
 
             <div class="codigo">
                 <label for="codigoProduto">CÓDIGO DO PRODUTO:</label>
-                <input type="text" id="codigoProduto" value="Insira o código..." onkeydown="if(event.key === 'Enter'){ processarProduto(this.value); }">
-
-
+                <input type="text" id="codigoProduto" placeholder="Insira o código..." onkeydown="if(event.key === 'Enter'){ processarProduto(this.value); }">
             </div>
 
 
@@ -74,15 +72,19 @@
             </div>
 
             <div class="comandos">
-                <button onclick="novaVenda()">F1 - Nova Venda</button>
+              
                 
-            
-                <button onclick="pesquisarProduto()">F2 - Pesquisar Produto</button>
+                <button onclick="pesquisarProduto()">F1 - Pesquisar Produto</button>
                 
-                <button onclick="finalizarVenda()">F3 - Finalizar Venda</button>
+                <button onclick="finalizarVenda()">F2 - Finalizar Venda</button>
                 
                 <button onclick="sair()">ESC - Sair</button>
               </div>
+            </div>
+
+            <div>
+                <a href="Entrada-caixa.html" class="voltar"> 
+                    <img class="seta" src="img/btn_voltar.png" title="seta"></a>
             </div>
     </body>
 </html>

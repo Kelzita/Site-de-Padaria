@@ -114,8 +114,14 @@ function removerProduto(button, valor) {
   
 
 
-function novaVenda(){
-    location.reload();
+  function novaVenda() {
+    const confnovavenda = confirm("Você tem certeza que deseja iniciar uma nova venda?");
+    if (confnovavenda) {
+        alert("Nova venda iniciada!");
+        location.reload();
+    } else {
+        alert("Venda mantida!");
+    }
 }
 
 function pesquisarProduto() {
@@ -162,8 +168,3 @@ function pesquisarProduto() {
   function sair() {
     window.location.href = 'Entrada-caixa.html';
   }
-
-
-
-
-
