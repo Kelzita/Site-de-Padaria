@@ -1,319 +1,176 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Gerenciar Funcionários</title>
-    <link rel="stylesheet" href="css/styleEA.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="js/sidebar.js"></script>
-    <script src="js/gerenciarfuncionarios.js" defer></script>
+  <meta charset="UTF-8">
+  <title>Gerenciar Produtos</title>
+  <link rel="stylesheet" href="css/styleLF.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <script src="js/sidebar.js"></script>
+  <script src="js/gerenciarfuncionarios.js"></script>
+  
 </head>
 <body>
-    <header>
-        <span class="menu-btn" onclick="toggleMenu()">☰</span>
-        <img src="img/logo_pg.png" title="Logo da Padaria">
-        <div id="sidebar" class="sidebar">
-            <a href="admreserva.html"><i class="fas fa-home"></i> Início</a>
-            <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
-            <a href="GestaodeFuncionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
-            <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
-            <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
-            <a href="Suporte.html"><i class="fas fa-headset"></i> Suporte</a>
-            <a href="Tela de Login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
-        </div>
-    </header>
-
-    <h1>GERENCIAR FUNCIONÁRIOS</h1>
-    <div id="alerta" class="alerta"></div>
-    <div class="barra-pesquisa">
-            <input type="text" id="busca" placeholder="Pesquisar Funcionário" onkeyup="filtrar()">
-            <img src="img/lupa.webp" alt="Lupa" class="icone-lupa">
+  <header>
+    <span class="menu-btn" onclick="toggleMenu()">☰</span>
+    <img src="img/logo_pg.png" title="Logo da Padaria">
+    <div id="sidebar" class="sidebar">
+      <a href="admreserva.html"><i class="fas fa-home"></i> Início</a>
+      <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
+      <a href="GestaodeFuncionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
+      <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
+      <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
+      <a href="Suporte.html"><i class="fas fa-headset"></i> Suporte</a>
+      <a href="Tela de Login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
     </div>
-    <table class="tabela-funcionarios">
-        <thead>
-            <tr>
-                <th id="novoId">ID</th>
-                <th id="nomefunc">Nome</th>
-                <th id="cpf">CPF</th>
-                <th id="telefone">Telefone</th>
-                <th id="email">Email</th>
-                <th id="rua">Rua</th>
-                <th id="numero">Número</th>
-                <th id="bairro">Bairro</th>
-                <th id="cidade">Cidade</th>
-                <th id="uf">UF</th>
-                <th id="dataadmissao">Data Admissão</th>
-                <th id="salario">Salário</th>
-                <th id="rg">RG</th>
-                <th id="senha">Senha</th>
-                <th id="funcao">Função</th>
-                <th id="acoes">Ações</th>
-            </tr>
-        </thead>
-        <tbody id="tabelaFuncionarios"></tbody>
-    </table>
+  </header>
 
-     <!-- Modal de Edição -->
-  <div id="modalEdicao" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="fecharModal()">&times;</span>
-      <h2>Editar Funcionário</h2>
-      <form id="formEditar">
-        <input type="hidden" id="editIndex" />
-        <label>Nome:</label>
-        <input type="text" id="editNome" required />
+  <h1>GERENCIAR FUNCIONÁRIOS</h1>
+  <div id="alerta" class="alerta"></div>
+  <div class="barra-pesquisa">
+      <input type="text" id="busca" placeholder="Pesquisar Funcionário" onkeyup="filtrar()">
+      <img src="img/lupa.webp" alt="Lupa" class="icone-lupa">
+  </div>
+  <table class="tabela-produtos">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>RG</th>
+        <th>Senha</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Rua</th>
+        <th>Numero</th>
+        <th>Bairro</th>
+        <th>Cidade</th>
+        <th>UF</th>
+        <th>Função</th>
+        <th>Data de Admissão</th>
+        <th>Salário</th>
+        <th>Status</th>
+        <th><i class="fas fa-cog"></i> </th>
+      </tr>
+    </thead>
+    <tbody id="tabelaProdutos">
+      <!-- Aqui serão inseridas as linhas via JS -->
+    </tbody>
+  </table>
 
-        <label>CPF:</label>
-        <input type="text" id="editCpf" required />
+  
+<!-- Modal fora da tabela -->
+<div id="modalEdicao" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+  background: rgba(0,0,0,0.5); justify-content:center; align-items:center;">
+  <div class="modal-content" style="background:#fff; padding:20px; border-radius:5px; width:400px; position:relative;">
+    <span id="fecharModal" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:20px;">&times;</span>
+    <h2>Editar Funcionário</h2>
+    <form id="formEdicao">
+      <input type="hidden" id="indiceEdicao">
 
-        <label>Email:</label>
-        <input type="email" id="editEmail" required />
+      <label>Nome:</label>
+      <input type="text" id="nomeEdicao" required>
 
-        <label>Função:</label>
-        <select id="editFuncao">
-          <option>Caixa</option>
-          <option>Balconista</option>
-          <option>Administrador</option>
-          <option>Gestor de Estoque</option>
-        </select>
+      <label>CPF:</label>
+      <input type="text" id="cpfEdicao" required pattern="\d{11}" maxlength="11"
+      placeholder="Somente números" title="Digite apenas números">
 
-        <button type="submit">Salvar Alterações</button>
-      </form>
+      <label>RG:</label>
+      <input type="text" id="rgEdicao" required pattern="\d{9}" maxlength="9"
+      placeholder="Somente números" title="Digite apenas números">
 
- <style>
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
+      <label>Senha:</label>
+      <div style="display:flex; align-items:center;">
+        <input type="password" id="senhaEdicao" required style="flex:1;">
+        <button type="button" id="toggleSenha" style="margin-left:5px;"><i class="fa-solid fa-eye"></i></button>
+      </div>
 
-    .modal-content {
-        background-color: #fefefe;
-        margin: 10% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 50%;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+      <label>Email:</label>
+      <input type="email" id="emailEdicao" required>
 
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-    }
+      <label>Telefone:</label>
+      <input type="text" id="telefoneEdicao" required pattern="\(\d{2}\) \d{4,5}-\d{4}" maxlength="15"
+       placeholder="(00) 00000-0000" title="Formato: (00) 00000-0000"> 
 
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-    }
+      <label>Rua:</label>
+      <input type="text" id="ruaEdicao" required>
 
-    form label {
-        display: block;
-        margin: 10px 0 5px;
-        font-weight: bold;
-    }
+      <label>Número:</label>
+      <input type="text" id="numeroEdicao" required>
 
-    form input,
-    form select {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
+      <label>Bairro:</label>
+      <input type="text" id="bairroEdicao" required>
 
-    form button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-    }
+      <label>Cidade:</label>
+      <input type="text" id="cidadeEdicao" required>
 
-    form button:hover {
-        background-color: #45a049;
-    }
-</STYLE>    
+      
+      <label>UF:</label>
+      <select id="ufEdicao" required>
+        <option value="" disabled selected>Selecione a UF</option>
+        <option value="AC">AC - Acre</option>
+        <option value="AL">AL - Alagoas</option>
+        <option value="AP">AP - Amapá</option>
+        <option value="AM">AM - Amazonas</option>
+        <option value="BA">BA - Bahia</option>
+        <option value="CE">CE - Ceará</option>
+        <option value="DF">DF - Distrito Federal</option>
+        <option value="ES">ES - Espírito Santo</option>
+        <option value="GO">GO - Goiás</option>
+        <option value="MA">MA - Maranhão</option>
+        <option value="MT">MT - Mato Grosso</option>
+        <option value="MS">MS - Mato Grosso do Sul</option>
+        <option value="MG">MG - Minas Gerais</option>
+        <option value="PA">PA - Pará</option>
+        <option value="PB">PB - Paraíba</option>
+        <option value="PR">PR - Paraná</option>
+        <option value="PE">PE - Pernambuco</option>
+        <option value="PI">PI - Piauí</option>
+        <option value="RJ">RJ - Rio de Janeiro</option>
+        <option value="RN">RN - Rio Grande do Norte</option>
+        <option value="RS">RS - Rio Grande do Sul</option>
+        <option value="RO">RO - Rondônia</option>
+        <option value="RR">RR - Roraima</option>
+        <option value="SC">SC - Santa Catarina</option>
+        <option value="SP">SP - São Paulo</option>
+        <option value="SE">SE - Sergipe</option>
+        <option value="TO">TO - Tocantins</option>
+      </select>
+
+      <label>Função:</label>
+      <select id="funcaoEdicao" name="funcao" required>
+        <option value="">Selecione a função</option>
+        <option value="Caixa">Caixa</option>
+        <option value="Balconista">Balconista</option>
+        <option value="Administrador">Administrador</option>
+        <option value="Gestor de Estoque">Gestor de Estoque</option>
+      </select>
+      <label>Data de Admissão:</label>
+      <input type="date" id="admissaoEdicao" required>
+
+      <label>Salário:</label>
+      <input type="number" id="salarioEdicao" step="0.01" min="0" required>
+
+      <br><br>
+      <button type="submit"><i class="fas fa-save"></i>  Salvar</button>
+    </form>
+  </div>
+</div>
 
 <script>
-// Array para armazenar funcionários localmente
-let funcionarios = [];
-
-// Função para cadastrar funcionário (deve ser chamada no cadastro)
-function cadastrarFuncionario(funcionario) {
-  // Gerar ID automático (incremental)
-  funcionario.id = funcionarios.length > 0 ? funcionarios[funcionarios.length - 1].id + 1 : 1;
-  funcionario.ativo = true; // marcar ativo
-
-  funcionarios.push(funcionario);
-  atualizarTabela();
-}
-
-// Atualiza a tabela HTML com os funcionários ativos
-function atualizarTabela() {
-  const tbody = document.getElementById('tabelaFuncionarios');
-  tbody.innerHTML = '';
-
-  funcionarios.forEach((func, index) => {
-    if (!func.ativo) return; // só mostrar ativos
-
-    const tr = document.createElement('tr');
-
-    tr.innerHTML = `
-      <td>${func.id}</td>
-      <td>${func.nome}</td>
-      <td>${func.cpf}</td>
-      <td>${func.telefone}</td>
-      <td>${func.email}</td>
-      <td>${func.rua}</td>
-      <td>${func.numero}</td>
-      <td>${func.bairro}</td>
-      <td>${func.cidade}</td>
-      <td>${func.uf}</td>
-      <td>${func.dataAdmissao}</td>
-      <td>${func.salario.toFixed(2)}</td>
-      <td>${func.rg}</td>
-      <td>******</td>
-      <td>${func.funcao}</td>
-      <td>
-        <button onclick="abrirModalEdicao(${func.id})">Editar</button>
-        <button onclick="inativarFuncionario(${func.id})" style="color:red">Inativar</button>
-      </td>
-    `;
-
-    tbody.appendChild(tr);
+  document.getElementById('toggleSenha').addEventListener('click', () => {
+    const senhaInput = document.getElementById('senhaEdicao');
+    senhaInput.type = senhaInput.type === 'password' ? 'text' : 'password';
   });
-}
-
-// Abre o modal e carrega dados do funcionário para edição
-function abrirModalEdicao(id) {
-  const func = funcionarios.find(f => f.id === id);
-  if (!func) return alert('Funcionário não encontrado');
-
-  document.getElementById('editIndex').value = id;
-  document.getElementById('editNome').value = func.nome;
-  document.getElementById('editCpf').value = func.cpf;
-  document.getElementById('editEmail').value = func.email;
-  document.getElementById('editFuncao').value = func.funcao;
-
-  document.getElementById('modalEdicao').style.display = 'block';
-}
-
-// Fecha o modal
-function fecharModal() {
-  document.getElementById('modalEdicao').style.display = 'none';
-}
-
-// Salva as alterações do modal
-document.getElementById('formEditar').addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  const id = parseInt(document.getElementById('editIndex').value);
-  const nome = document.getElementById('editNome').value;
-  const cpf = document.getElementById('editCpf').value;
-  const email = document.getElementById('editEmail').value;
-  const funcao = document.getElementById('editFuncao').value;
-
-  const funcIndex = funcionarios.findIndex(f => f.id === id);
-  if (funcIndex === -1) return alert('Funcionário não encontrado para editar');
-
-  funcionarios[funcIndex].nome = nome;
-  funcionarios[funcIndex].cpf = cpf;
-  funcionarios[funcIndex].email = email;
-  funcionarios[funcIndex].funcao = funcao;
-
-  atualizarTabela();
-  fecharModal();
-});
-
-// Marca funcionário como inativo (remove da lista visualmente)
-function inativarFuncionario(id) {
-  const funcIndex = funcionarios.findIndex(f => f.id === id);
-  if (funcIndex === -1) return alert('Funcionário não encontrado para inativar');
-
-  if (!confirm('Tem certeza que deseja inativar este funcionário?')) return;
-
-  funcionarios[funcIndex].ativo = false;
-  atualizarTabela();
-}
-
-// Função de busca já tinha no HTML, você pode implementar o filtro assim:
-function filtrar() {
-  const textoBusca = document.getElementById('busca').value.toLowerCase();
-  const tbody = document.getElementById('tabelaFuncionarios');
-  const linhas = tbody.getElementsByTagName('tr');
-
-  for (let linha of linhas) {
-    const nome = linha.cells[1].textContent.toLowerCase();
-    linha.style.display = nome.includes(textoBusca) ? '' : 'none';
-  }
-}
-
-// --- Agora, para integrar o cadastro com a lista ---
-// Supondo que seu formulário de cadastro chama a função "cadastrar(event)" no submit (como no seu HTML):
-
-function cadastrar(event) {
-  event.preventDefault();
-
-  // Pega os dados do formulário de cadastro
-  const form = event.target;
-
-  const novoFuncionario = {
-    nome: form.nome_funcionario.value,
-    cpf: form.cpf.value,
-    rg: form.rg.value,
-    senha: form.senha.value,
-    email: form.email.value,
-    telefone: form.telefone.value,
-    rua: form.rua.value,
-    numero: form.numero.value,
-    bairro: form.bairro.value,
-    cidade: form.cidade.value,
-    uf: form.uf.value,
-    funcao: form.funcao.value,
-    dataAdmissao: form.data_admissao.value,
-    salario: parseFloat(form.salario.value),
-  };
-
-  cadastrarFuncionario(novoFuncionario);
-
-  alert('Funcionário cadastrado com sucesso!');
-
-  form.reset();
-
-  // Aqui, para facilitar teste, se você quiser já ir para a página de listagem, pode fazer:
-  // window.location.href = 'pagina-listagem.html'; // ajuste o nome do arquivo
-}
-
-// Inicializa a tabela vazia ao carregar a página de listagem
-document.addEventListener('DOMContentLoaded', () => {
-  atualizarTabela();
-
-  // Fecha modal clicando fora da caixa
-  window.onclick = function (event) {
-    const modal = document.getElementById('modalEdicao');
-    if (event.target == modal) {
-      fecharModal();
-    }
-  };
-});
-
-
-
-
 </script>
+
+
+  <!-- Script deve vir depois do conteúdo para garantir carregamento -->
+  <script src="js/gerenciarfuncionarios.js"></script>  
+
+
+
+</table>
+
 </body>
 </html>
