@@ -39,32 +39,6 @@ html, body {
     z-index: 11;
   }
   
-  .sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #89cec6;
-    overflow-x: hidden;
-    transition: 0.3s;
-    padding-top: 70px;
-    z-index: 9;
-  }
-  
-  .sidebar a {
-    padding: 15px 25px;
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    display: block;
-    transition: 0.2s;
-  }
-  
-  .sidebar a:hover {
-    background-color: #6fb7af;
-  }
-  
   .retangulo {
     background-color: white;
     padding: 30px;
@@ -126,4 +100,55 @@ html, body {
     bottom: 10px;
   }
   
- 
+.modal, .modal-qr {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-conteudo, .modal-qr-conteudo {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal-botoes button, .modal-qr-conteudo button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-botoes button {
+  background-color: #28a745;
+  color: white;
+}
+
+.modal-qr-conteudo button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.modal-botoes button:hover {
+  background-color: #218838;
+}
+
+.modal-qr-conteudo button:hover {
+  background-color: #c82333;
+}
+
+.qr-img {
+  max-width: 300px;
+  margin: 20px 0;
+}
+
