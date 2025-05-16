@@ -9,38 +9,49 @@
 </head>
 
 <body>
+  <header>
+    <img src="img/logo_pg.png" title="Logo da Padaria">
+  </header>
   <div class="retangulo">
     <div class="painel-botoes">
         <h1 class="titulo">FORMA DE PAGAMENTO <i class="fa-solid fa-cart-shopping"></i></h1>
 
-      <a href="#" class="botao">
-        <i class="fas fa-money-bill-wave"><i class="fa-solid fa-coins"></i></i>DINHEIRO
-      </a>
+        <button class="botao" onclick="mostrarQrCode()">
+          <i class="fas fa-money-bill-wave"> <i class="fa-solid fa-coins"></i></i> DINHEIRO
 
-      <a href="#" class="botao">
+      <button class="botao" onclick="mostrarQrCode()">
         <i class="fas fa-credit-card"></i> CARTÃO DE CRÉDITO
-      </a>
-
-      <a href="#" class="botao">
-        <i class="fas fa-credit-card"></i> CARTÃO DE DÉBITO
-      </a>
-
-      <a href="#" class="botao">
-        <i class="fas fa-utensils"></i> VALE DE ALIMENTAÇÃO
-      </a>
-
-      <a href="#" class="botao">
-        <i class="fas fa-qrcode"></i> PIX
-      </a>
-
-
-
-    </div>
-    <div class="comandos">
-      <button onclick="finalizarVenda()">F4 - Finalizar Venda</button>
-    </div>
-      <script src="js/formadepagamento.js"></script>
       
+
+      <button class="botao" onclick="mostrarQrCode()">
+        <i class="fas fa-credit-card"></i> CARTÃO DE DÉBITO
+    
+
+      <button class="botao" onclick="mostrarQrCode()">
+        <i class="fas fa-utensils"></i> VALE DE ALIMENTAÇÃO
+      
+      <button class="botao" onclick="mostrarQrCode()">
+        <i class="fas fa-qrcode"></i> PIX
+
+        <div id="modalQrCode" class="modal-qr">
+          <div class="modal-qr-conteudo">
+            <h2>Escaneie o QR Code para pagar</h2>
+            <img src="img/qrcode_fp.png" alt="QR Code PIX" class="qr-img">
+            <button onclick="fecharQrCode()">Finalizar Venda</button>
+          </div>
+          <div id="modal" class="modal">
+            <div class="modal-conteudo">
+              <p>Deseja finalizar a venda?</p>
+              <div class="modal-botoes">
+                <button onclick="finalizarVenda()">Finalizar Venda</button>
+                <button onclick="fecharModal()">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <script src="js/formadepagamento.js"></script>
+    
   </div>
 </body>
 </html>

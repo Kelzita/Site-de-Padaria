@@ -31,12 +31,10 @@
   <main>
     <div class="retangulo">
       <form class="formulario-cadastro" id="formCadastro" onsubmit="cadastrar(event)">
-        <a href="GestaodeFuncionarios.html" class="voltar">
+        <a href="gestaoestoque.html" class="voltar">
           <img class="seta" src="img/btn_voltar.png" title="seta"></a>
         <h1 class="titulo">CADASTRAR FUNCIONÁRIO</h1>
 
-        <!-- Campos de cadastro (Idênticos ao seu código original) -->
-        <form id="form-cadastro-funcionario">
           <label for="nomefunc"><i class="fas fa-user"></i> Nome do Funcionário:</label>
           <input type="text" id="nomefunc" name="nome_funcionario" placeholder="Insira o nome" required />
 
@@ -46,8 +44,8 @@
             placeholder="Insira o CPF (somente números)" required />
 
           <label for="rg"><i class="fas fa-id-card"></i> RG:</label>
-          <input type="text" id="rg" name="rg" maxlength="8"
-            oninput="this.value = this.value.replace(/\D/g, '').slice(0, 8)" pattern="\d{8}"
+          <input type="text" id="rg" name="rg" maxlength="9"
+            oninput="this.value = this.value.replace(/\D/g, '').slice(0, 9)" pattern="\d{9}"
             placeholder="Insira o RG (somente números)" required />
 
           <label for="senha"><i class="fas fa-key"></i> Senha:</label>
@@ -60,7 +58,8 @@
           <input type="email" id="email" name="email" placeholder="Insira o E-mail" required />
 
           <label for="telefone"><i class="fas fa-phone"></i> Telefone:</label>
-          <input type="tel" id="telefone" name="telefone" placeholder="(11) 91234-5678" required />
+          <input type="text" id="telefone" required pattern="\(\d{2}\) \d{4,5}-\d{4}" maxlength="15"
+          placeholder="(00) 00000-0000" title="Formato: (00) 00000-0000"> 
 
           <label for="rua"><i class="fas fa-road"></i> Rua:</label>
           <input type="text" id="rua" name="rua" placeholder="Insira a rua" required />
