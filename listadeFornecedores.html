@@ -1,12 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
-        <title>Estoque Atual</title>
-        <link rel="stylesheet" type="text/css" href="css/styleEA.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <title>Padaria Pão Genial</title>
+        <link rel="stylesheet" type="text/css" href="css/styleListaFornecedores.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
         <script src="js/sidebar.js"></script>
-        <script src="js/estoqueatual.js"></script>
+        <script src="js/listafornecedores.js" defer></script>
+    </head>
     <body>
         <header>
             <span class="menu-btn" onclick="toggleMenu()">☰</span>
@@ -17,43 +18,34 @@
                 <a href="GestaodeFuncionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
                 <a href="gestaodeFornecedor.html"><i class="fas fa-truck"></i> Gestão de Fornecedores</a>
                 <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
-                <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
+                <a href="Entrada-caixa.html"><i class="fas fa-cash-register"></i> Caixa</a>
                 <a href="Suporte.html"><i class="fas fa-headset"></i> Suporte</a>
                 <a href="Tela de Login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
             </div>
         </header>
-        <h1>ESTOQUE ATUAL</h1>
-        <div id="alerta" class="alerta"></div>
+
+        <h1>GERENCIAR FORNECEDORES</h1>
+       
         <div class="barra-pesquisa">
-            <input type="text" id="busca" placeholder="Pesquisar Produto" onkeyup="filtrar()">
+            <input type="text" id="busca" placeholder="Pesquisar Fornecedor" onkeyup="filtrar()">
             <img src="img/lupa.webp" alt="Lupa" class="icone-lupa">
         </div>
-
-        <table id="tabela" class="cab_tab">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Validade</th>
-                    <th>Quantidade</th>
-                    <th>Fornecedor</th>
-                    <th>Unidade de Medida</th>
-                    <th>Preço</th>
-                </tr>
-            </thead>
-            <tbody id="corpoTabela"></tbody>
-        </table>
-
-
-            
-</body>
+        <table class="tabela-fornecedores">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaFornecedores"></tbody>
+      </table>
+      <a href="gestaodeFornecedor.html" class="voltar">
+        <img class="seta" src="img/btn_voltar.png" title="seta">
+      </a>
+    </body>
 </html>
-
-
-
-
-
-
-
-
-

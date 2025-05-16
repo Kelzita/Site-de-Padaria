@@ -1,0 +1,170 @@
+@charset "UTF-8";
+/*Cabeçalho*/
+header{
+    margin: 0px;
+    height:70px;
+    background-color:#ffffff;
+}
+header img{
+    float:left;
+    height:70px;
+    width:70px;
+    margin:0px auto;
+    padding-left: 60px;
+}
+/*Configuração Geral*/
+html, body {
+    font-family: 'Times New Rome';
+    height: 100%;
+    margin: 0;
+    text-align:center;
+    padding: 0px;
+}
+
+body {
+    background-image: url('../img/fundo_pg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/*Título da Página*/
+h1{
+    margin-bottom: 20px;
+}
+
+
+/*Busca*/
+.barra-pesquisa {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .barra-pesquisa input {
+    padding-right: 35px; /* espaço para a imagem da lupa */
+    height: 40px;       /* ajuste conforme seu input */
+    font-size: 16px;
+  }
+  
+  .icone-lupa {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+    transform: translateY(-50%);
+    pointer-events: none; /* impede o clique na imagem */
+  }
+
+
+  /*Tabela*/
+  table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+  }
+  
+th{
+    background-color: #3D2412;
+    color: white;
+    border: 1px solid #FFDAB9;
+    padding: 10px;
+
+}
+
+td {
+    background-color: white;
+    color:black;
+    border: 1px solid #ccc;
+    padding: 10px;
+
+  }
+  
+
+
+  /*Side Bar*/
+.menu-btn {
+    margin-top: 15px;
+    position: absolute; 
+    left: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color:rgb(99, 179, 168);
+    z-index: 11;
+  }
+  
+  
+  .sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    text-align: justify;
+    top: 0;
+    left: 0;
+    background-color: #89cec6;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 70px; 
+    z-index: 9;
+  }
+  
+  .sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.2s;
+  }
+  
+  .sidebar a:hover {
+    background-color: #6fb7af; 
+  }
+  
+  .suporte-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #89cec6;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .suporte-btn i {
+    margin-right: 5px;
+  }
+  
+  .suporte-btn:hover {
+    background-color: #6fb7af;
+    transform: scale(1.05);
+  } 
+.btn-editar, .btn-salvar, .btn-cancelar, .btn-apagar {
+  margin: 2px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-editar { background-color: #0275d8; color: white; }
+.btn-salvar { background-color: #5cb85c; color: white; }
+.btn-cancelar { background-color: #f0ad4e; color: white; }
+.btn-apagar { background-color: #d9534f; color: white; }
+
+.btn-editar:hover { background-color: #025aa5; }
+.btn-salvar:hover { background-color: #449d44; }
+.btn-cancelar:hover { background-color: #ec971f; }
+.btn-apagar:hover { background-color: #c9302c; }
+
+.seta {
+  width: 35px;
+  height: 25px;
+  margin-top: 180px;
+  margin-left: 20px; 
+  float: left;
+}
