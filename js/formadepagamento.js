@@ -4,17 +4,16 @@ document.addEventListener("DOMContentLoaded", function () {
   botoes.forEach((botao) => {
     botao.addEventListener("click", function (event) {
       event.preventDefault();
-      const textoBotao = botao.textContent.trim().toUpperCase();
+      const textoBotao = botao.innerText.trim().toUpperCase();
 
       if (textoBotao.includes("PIX")) {
-        mostrarQrCode(); // mostra o QR Code se for PIX
+        mostrarQrCode();
       } else {
-        abrirModal(); // senão, abre modal normal
+        abrirModal();
       }
     });
   });
 });
-// ---------------- Funções globais ----------------
 
 function abrirModal() {
   document.getElementById("modal").style.display = "flex";
@@ -22,21 +21,23 @@ function abrirModal() {
 
 function fecharModal() {
   document.getElementById("modal").style.display = "none";
+  
 }
 
 function finalizarVenda() {
   alert("Venda finalizada com sucesso!");
   fecharModal();
+  window.location.href = "caixa.html";
 }
-// Modal QR Code PIX
+
+
 function mostrarQrCode() {
   document.getElementById("modalQrCode").style.display = "flex";
 }
-
+function irParaCaixa() {
+  alert("Pagamento via PIX confirmado!");
+  window.location.href = "caixa.html";
+}
 function fecharQrCode() {
   document.getElementById("modalQrCode").style.display = "none";
 }
-
-
-
-

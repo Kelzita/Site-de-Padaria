@@ -12,46 +12,52 @@
   <header>
     <img src="img/logo_pg.png" title="Logo da Padaria">
   </header>
+
   <div class="retangulo">
     <div class="painel-botoes">
-        <h1 class="titulo">FORMA DE PAGAMENTO <i class="fa-solid fa-cart-shopping"></i></h1>
+      <h1 class="titulo">FORMA DE PAGAMENTO <i class="fa-solid fa-cart-shopping"></i></h1>
 
-        <button class="botao" onclick="mostrarQrCode()">
-          <i class="fas fa-money-bill-wave"> <i class="fa-solid fa-coins"></i></i> DINHEIRO
+      <button class="botao" onclick="abrirModal()">
+        <i class="fas fa-money-bill-wave"> <i class="fa-solid fa-coins"></i></i> DINHEIRO
+      </button>
 
-      <button class="botao" onclick="mostrarQrCode()">
+      <button class="botao" onclick="abrirModal()">
         <i class="fas fa-credit-card"></i> CARTÃO DE CRÉDITO
-      
+      </button>
 
-      <button class="botao" onclick="mostrarQrCode()">
+      <button class="botao" onclick="abrirModal()">
         <i class="fas fa-credit-card"></i> CARTÃO DE DÉBITO
-    
+      </button>
 
-      <button class="botao" onclick="mostrarQrCode()">
+      <button class="botao" onclick="abrirModal()">
         <i class="fas fa-utensils"></i> VALE DE ALIMENTAÇÃO
-      
+      </button>
+
       <button class="botao" onclick="mostrarQrCode()">
         <i class="fas fa-qrcode"></i> PIX
-
-        <div id="modalQrCode" class="modal-qr">
-          <div class="modal-qr-conteudo">
-            <h2>Escaneie o QR Code para pagar</h2>
-            <img src="img/qrcode_fp.png" alt="QR Code PIX" class="qr-img">
-            <button onclick="fecharQrCode()">Finalizar Venda</button>
-          </div>
-          <div id="modal" class="modal">
-            <div class="modal-conteudo">
-              <p>Deseja finalizar a venda?</p>
-              <div class="modal-botoes">
-                <button onclick="finalizarVenda()">Finalizar Venda</button>
-                <button onclick="fecharModal()">Cancelar</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      <script src="js/formadepagamento.js"></script>
-    
+      </button>
+    </div>
   </div>
+  <div id="modal" class="modal">
+    <div class="modal-conteudo">
+      <p>Deseja finalizar a venda?</p>
+      <div class="modal-botoes">
+        <button onclick="finalizarVenda()">Finalizar Venda</button>
+        <button onclick="fecharModal()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  <div id="modalQrCode" class="modal-qr">
+    <div class="modal-qr-conteudo">
+      <h2>Escaneie o QR Code para pagar</h2>
+      <img src="img/qrcode_fp.png" alt="QR Code PIX" class="qr-img">
+      <div class="modal-botoes">
+        <button onclick="irParaCaixa()">Finalizar Venda</button>
+        <button onclick="fecharQrCode()">Cancelar</button> <!-- Este aqui fecha o QR -->
+      </div>
+    </div>
+  </div>
+
+  <script src="js/formadepagamento.js"></script>
 </body>
 </html>
