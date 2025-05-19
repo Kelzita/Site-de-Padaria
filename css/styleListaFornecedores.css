@@ -78,7 +78,76 @@ td {
     padding: 10px;
 
   }
-  
+
+
+    */
+        /* Estilo para o fundo do modal (overlay) */
+    #modalEdicao {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 150px;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); 
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    /* Estilo para o conteúdo do modal */
+    #modalEdicao .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px; /* Bordas arredondadas */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra */
+      width: 100%;
+      max-width: 500px; /* Largura máxima */
+      text-align: center;
+    }
+    
+ /* Botão de fechar */
+ #fecharModal {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: transparent;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #333;
+      transition: color 0.3s;
+  }
+    
+#fecharModal:hover {
+      color: #ff0000; 
+  }
+    
+/* Estilo para os campos do formulário */
+ #formEdicao input {
+      width: 85%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+}
+    
+/* Botão de salvar */
+ #formEdicao button {
+      background-color: #6fb7af;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+}
+    
+#formEdicao button:hover {
+      background-color: #5aa89f;
+      font-size:20px;
+  }
 
 
   /*Side Bar*/
@@ -143,7 +212,7 @@ td {
     background-color: #6fb7af;
     transform: scale(1.05);
   } 
-.btn-editar, .btn-salvar, .btn-cancelar, .btn-apagar {
+.btn-editar, .btn-salvar, .btn-cancelar, .btn-apagar,  .btn-inativar {
   margin: 2px;
   padding: 5px 10px;
   border: none;
@@ -155,16 +224,37 @@ td {
 .btn-salvar { background-color: #5cb85c; color: white; }
 .btn-cancelar { background-color: #f0ad4e; color: white; }
 .btn-apagar { background-color: #d9534f; color: white; }
+.btn-inativar { background-color: #e74c3c; color: white; }
 
 .btn-editar:hover { background-color: #025aa5; }
 .btn-salvar:hover { background-color: #449d44; }
 .btn-cancelar:hover { background-color: #ec971f; }
 .btn-apagar:hover { background-color: #c9302c; }
+.btn-inativar:hover { background-color: #c0392b; }
 
-.seta {
-  width: 35px;
-  height: 25px;
-  margin-top: 180px;
-  margin-left: 20px; 
-  float: left;
-}
+  .btn-excluir {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-excluir:hover {
+    background-color: #c0392b;
+  }
+
+  /*Seta*/
+  .seta {
+    width: 40px ;
+    height: 30px ;
+    margin-top: 120px;
+    margin-left: 0px;
+    left: 5px;
+    position: absolute;
+  }
+  
