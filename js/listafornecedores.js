@@ -1,119 +1,111 @@
-let valoresOriginais = [];  // Para armazenar os valores antes da edição
-
-function carregarFornecedores() {
-  const fornecedores = JSON.parse(localStorage.getItem('fornecedores')) || [];
-
-  // Ordena os fornecedores por ID em ordem crescente
-  fornecedores.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
-
+document.addEventListener('DOMContentLoaded', () => {
   const tabela = document.getElementById('tabelaFornecedores');
-  tabela.innerHTML = '';
+  const modal = document.getElementById('modalEdicao');
+  const fecharModalBtn = document.getElementById('fecharModal');
+  const formEdicao = document.getElementById('formEdicao');
 
-  fornecedores.forEach((fornecedor, index) => {
-    valoresOriginais[index] = { ...fornecedor };  // Guarda os valores originais
-
-    const linha = document.createElement('tr');
-    linha.innerHTML = `
-      <td>
-        <span>${fornecedor.id}</span>
-        <input class="input-gerenciar" type="text" value="${fornecedor.id}" style="display:none" />
-      </td>
-      <td>
-        <span>${fornecedor.nome}</span>
-        <input class="input-gerenciar" type="text" value="${fornecedor.nome}" style="display:none" />
-      </td>
-      <td>
-        <span>${fornecedor.cnpj}</span>
-        <input class="input-gerenciar" type="date" value="${fornecedor.cnpj}" style="display:none" />
-      </td>
-      <td>
-        <span>${fornecedor.email}</span>
-        <input class="input-gerenciar" type="number" value="${fornecedor.email}" style="display:none" />
-      </td>
-      <td>
-        <span>${fornecedor.telefone}</span>
-        <input class="input-gerenciar" type="text" value="${fornecedor.telefone}" style="display:none" />
-      </td>
-      <td>
-   
-      <td class="acoes">
-        <div class="grupo-botoes">
-          <button class="btn-editar" onclick="ativarEdicao(this, ${index})">
-            <i class="fas fa-edit"></i> Editar
-          </button>
-
-          <button class="btn-salvar" style="display:none" onclick="salvarEdicao(this, ${index})">
-            <i class="fas fa-save"></i> Salvar
-          </button>
-
-          <button class="btn-cancelar" style="display:none" onclick="cancelarEdicao(this)">
-            <i class="fas fa-times"></i> Cancelar
-          </button>
-
-          <button class="btn-apagar" onclick="apagarProduto(${index})">
-            <i class="fas fa-trash-alt"></i> Apagar
-          </button>
-        </div>
-      </td>
-    `;
-    tabela.appendChild(linha);
-  });
-}
-
-function ativarEdicao(botaoEditar, index) {
-  const linha = botaoEditar.closest('tr');
-  linha.querySelectorAll('span').forEach(span => span.style.display = 'none');
-  linha.querySelectorAll('.input-gerenciar').forEach(input => input.style.display = 'inline-block');
-  linha.querySelector('.btn-editar').style.display = 'none';
-  linha.querySelector('.btn-salvar').style.display = 'inline-block';
-  linha.querySelector('.btn-cancelar').style.display = 'inline-block';
-}
-
-function cancelarEdicao(botaoCancelar) {
-  const linha = botaoCancelar.closest('tr');
-  const inputs = linha.querySelectorAll('.input-gerenciar');
-
-  // Restaura os valores originais (agora incluindo o id)
-  const fornecedorOriginal = valoresOriginais[linha.rowIndex - 1];
-  inputs[0].value = fornecedorOriginal.id;
-  inputs[1].value = fornecedorOriginal.nome;
-  inputs[2].value = fornecedorOriginal.cnpj;
-  inputs[3].value = fornecedorOriginal.email;
-  inputs[4].value = fornecedorOriginal.telefone;
-
-  linha.querySelectorAll('span').forEach(span => span.style.display = 'inline');
-  linha.querySelectorAll('.input-gerenciar').forEach(input => input.style.display = 'none');
-  linha.querySelector('.btn-editar').style.display = 'inline-block';
-  linha.querySelector('.btn-salvar').style.display = 'none';
-  linha.querySelector('.btn-cancelar').style.display = 'none';
-}
-
-function salvarEdicao(botaoSalvar, index) {
-    const linha = botaoSalvar.closest('tr');
-    const inputs = linha.querySelectorAll('.input-gerenciar');
-  
-    const novoFornecedor = {
-      id: inputs[0].value,
-      nome: inputs[1].value,
-      cnpj: inputs[2].value,
-      email: inputs[3].value,
-      telefone: inputs[4].value,
-    };
-  
+  function carregarFornecedores() {
     const fornecedores = JSON.parse(localStorage.getItem('fornecedores')) || [];
-    fornecedores[index] = novoFornecedor;  // Corrigido aqui
+    tabela.innerHTML = '';
+
+    fornecedores.forEach((func, index) => {
+      const tr = document.createElement('tr');
+      const classeInativo = func.ativo === false ? 'style="background-color: #f8d7da;"' : '';
+
+      tr.innerHTML = `
+        <tr ${classeInativo}>
+          <td>${func.id}</td>
+          <td>${func.nome}</td>
+          <td>${func.cnpj}</td>
+          <td>${func.email}</td>
+          <td>${func.telefone}</td>
+          <td>${func.ativo === false ? 'Inativo' : 'Ativo'}</td>
+          <td>
+            <button class="btn-editar" data-index="${index}">
+              <i class="fas fa-edit"></i> Editar
+            </button>
+            <button class="btn-inativar" data-index="${index}">
+              <i class="fas fa-${func.ativo === false ? 'redo' : 'ban'}"></i>
+              ${func.ativo === false ? 'Reativar' : 'Inativar'}
+            </button>
+          </td>
+        </tr>
+      `;
+
+      tabela.appendChild(tr);
+    });
+
+    // Eventos de edição
+    document.querySelectorAll('.btn-editar').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const idx = e.currentTarget.getAttribute('data-index');
+        abrirModalEdicao(idx);
+      });
+    });
+
+    // Eventos de inativação
+    document.querySelectorAll('.btn-inativar').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const idx = e.currentTarget.getAttribute('data-index');
+        alternarAtivoFornecedor(idx);
+      });
+    });
+  }
+
+  function abrirModalEdicao(index) {
+    const fornecedores = JSON.parse(localStorage.getItem('fornecedores')) || [];
+    const fornecedor = fornecedores[index];
+    if (!fornecedor) return;
+
+    document.getElementById('indiceEdicao').value = index;
+    document.getElementById('nomeEdicao').value = fornecedor.nome;
+    document.getElementById('cnpjEdicao').value = fornecedor.cnpj;
+    document.getElementById('emailEdicao').value = fornecedor.email;
+    document.getElementById('telefoneEdicao').value = fornecedor.telefone;
+    modal.style.display = 'flex';
+  }
+
+  fecharModalBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  formEdicao.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const index = document.getElementById('indiceEdicao').value;
+    const fornecedores = JSON.parse(localStorage.getItem('fornecedores')) || [];
+
+    if (!fornecedores[index]) return;
+
+    fornecedores[index] = {
+      ...fornecedores[index], // mantém o campo "ativo"
+      nome: document.getElementById('nomeEdicao').value,
+      cnpj: document.getElementById('cnpjEdicao').value,
+      email: document.getElementById('emailEdicao').value,
+      telefone: document.getElementById('telefoneEdicao').value,
+    };
+
+    localStorage.setItem('fornecedores', JSON.stringify(fornecedores));
+    modal.style.display = 'none';
+    carregarFornecedores();
+  });
+
+  function alternarAtivoFornecedor(index) {
+    const fornecedores = JSON.parse(localStorage.getItem('fornecedores')) || [];
+    if (!fornecedores[index]) return;
+
+    fornecedores[index].ativo = fornecedores[index].ativo === false ? true : false;
     localStorage.setItem('fornecedores', JSON.stringify(fornecedores));
     carregarFornecedores();
   }
-  
-function apagarFornecedor(index) {
-  const fornecedores = JSON.parse(localStorage.getItem('fornecedores')) || [];
-  if (confirm('Tem certeza que deseja inativar este fornecedor?')) {
-    fornecedores.splice(index, 1);
-    localStorage.setItem('fornecedores', JSON.stringify(fornecedores));
-    carregarFornecedores();
-  }
-}
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  carregarFornecedores();
+});
 
 function filtrar() {
   const filtro = document.getElementById("busca").value.toUpperCase();
@@ -138,6 +130,3 @@ function filtrar() {
     }
   }
 }
-
-
-window.onload = carregarFornecedores;
