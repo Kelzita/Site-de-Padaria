@@ -40,3 +40,27 @@ function verificarLogin() {
     mensagemErro.style.display = "block";
   }
 }
+
+// Adicionando o evento de clique para a senha do login, criptografando e descriptografando! 
+const toggleSenha = document.getElementById('toggleSenha');
+          const senhaInput = document.getElementById('senha');
+
+          toggleSenha.addEventListener('click', () => {
+            if (senhaInput.type === 'password') {
+              senhaInput.type = 'text';
+              toggleSenha.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+            } else {
+              senhaInput.type = 'password';
+              toggleSenha.innerHTML = '<i class="fa-solid fa-eye"></i>';
+            }
+          });
+
+          document.querySelector('form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const senha = senhaInput.value;
+            const encryptedSenha = btoa(senha); // Criptografa a senha em Base64
+            console.log('Senha criptografada:', encryptedSenha);
+
+            const decryptedSenha = atob(encryptedSenha); // Descriptografa a senha
+            console.log('Senha descriptografada:', decryptedSenha);
+          });
