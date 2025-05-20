@@ -3,19 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comanda</title>
+  <title>Padaria Pão Genial</title>
   <link rel="stylesheet" href="css/stylecomanda2.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <div class="comanda">
-    <h1>Comanda Nº 001</h1>
-    <ul id="itens-comanda">
-    </ul>
-    <div class="resumo">
-      <p>Total: <span id="total">R$ 0,00</span></p>
-      <button onclick="irParaCaixa()">Finalizar e ir para o Caixa</button>
+  <header>
+    <img src="img/logo_pg.png" alt="Logo da Padaria">
+  </header>
+
+  <div class="retangulo">
+    <h2 class="titulo">Selecione os Produtos</h2>
+    <div class="campo-comanda">
+      <label for="inputNumeroComanda">Número da Comanda:</label>
+      <input type="text" id="inputNumeroComanda" class="numero-comanda" placeholder="Nro" />
     </div>
+    
+    <div class="lista-produtos">
+
+      <div class="item-produto">
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox-produto" data-produto="Coxinha" data-unidade="un">
+          <span class="checkmark"></span>
+        </label>
+        <span class="nome-produto">Coxinha</span>
+        <input type="number" class="quantidade" min="1" placeholder="Qtd">
+        <span class="unidade">Un</span>
+        <input type="text" class="observacao" placeholder="Observações">
+      </div>
+
+      <div class="item-produto">
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox-produto" data-produto="Pão Francês" data-unidade="kg">
+          <span class="checkmark"></span>
+        </label>
+        <span class="nome-produto">Pão Francês</span>
+        <input type="number" class="quantidade" min="0.01" step="0.01" placeholder="Qtd">
+        <span class="unidade">Kg</span>
+        <input type="text" class="observacao" placeholder="Observações">
+      </div>
+
+    </div>
+
+    <button class="botao-confirmar" onclick="enviarComanda()">Enviar para o Caixa</button>
   </div>
+
   <script src="js/comanda2.js"></script>
 </body>
 </html>
