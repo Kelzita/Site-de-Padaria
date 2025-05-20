@@ -165,3 +165,27 @@ button:hover {
   color: #79a79b;
   text-decoration: underline;
 }
+
+#toggleSenha {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  left: 120px!important;
+  top: 45%;
+  transform: translateY(-50%);
+  color: #ccc;
+  font-size: 16px;
+  padding: 0;
+  z-index: 1; /* Certifique-se de que ele não sobreponha outros elementos */
+}
+
+#toggleSenha:hover {
+  color: #000;
+}
+
+.input-box {
+  position: relative;
+  overflow: hidden; /* Garante que o botão não ultrapasse os limites */
+}
