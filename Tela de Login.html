@@ -8,46 +8,30 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="js/login.js" defer></script>
 </head>
-
-
-
-
 <body>
-  <header>
-    <span class="menu-btn" onclick="toggleMenu()">☰</span>
-    <img src="img/logo.png" title="Logo da Padaria">
-    <div id="sidebar" class="sidebar">
-      <a href="admreserva.html"><i class="fas fa-home"></i> Início</a>
-      <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
-      <a href="GestaodeFuncionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
-      <a href="#"><i class="fas fa-chart-line"></i> Relatórios</a>
-      <a href="#"><i class="fas fa-cash-register"></i> Caixa</a>
-      <a href="Suporte.html"><i class="fas fa-headset"></i> Suporte</a>
-      <a href="Tela de Login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
-        
-    </div>
-  </header>
   <div class="background">
     <div class="login-box">
-      <h2>LOGIN</h2>
-      <form action="verifica_login.php" method="POST">
+
+      <form class="retangulo" method="POST">
+        <h2>LOGIN</h2>
         <label for="usuario">USUÁRIO</label>
         <div class="input-box">
-          <span class="icon">👤</span>
-          <input type="text" id="usuario" name="usuario" required>
+          <span class="icon"><i class="fas fa-user"></i></span>
+          <input class="login" type="text" id="usuario" name="usuario" required placeholder="Digite o nome de usuário">
         </div>
-      
         <label for="senha">SENHA</label>
         <div class="input-box">
-          <span class="icon">🔑</span>
-          <input type="password" id="senha" name="senha" required>
+          <span class="icon"><i class="fas fa-lock"></i></span>
+          <input class="senha" type="password" id="senha" name="senha" required placeholder="Digite a senha">
         </div>
-      
+        <div class="forget-password">
+          <a href="redefinirsenha.html">Esqueci minha senha</a>
+        </div>
         <button type="submit">LOGAR</button>
       </form>
-      
       <img src="img/pao.png" class="character" alt="Personagem">
     </div>
   </div>
+
 </body>
 </html>

@@ -1,37 +1,42 @@
-// js/login.js
+function verificarLogin() {
+  const nomeFuncionario = document.getElementById("nome_funcionario").value.trim();
+  const senhaFuncionario = document.getElementById("senha_funcionario").value.trim();
+  const mensagemErro = document.getElementById("mensagemErro");
 
-function toggleMenu() {
-  const sidebar = document.getElementById("sidebar");
-  sidebar.style.width = (sidebar.style.width === "250px") ? "0" : "250px";
+  if (senhaFuncionario === "" || nomeFuncionario === "") {
+    mensagemErro.style.display = "block";
+    return;
+  }
+
+  const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+  const usuarioValido = usuarios.find(u =>
+    u.nome === nomeFuncionario &&
+    u.senha === senhaFuncionario &&
+    u.status === 'ativo'
+  );
+
+  if (usuarioValido) {
+    localStorage.setItem('usuarioLogado', JSON.stringify(usuarioValido));
+
+    // Redirecionamento baseado no cargo/função
+    switch (usuarioValido.cargo?.toLowerCase()) {
+      case 'administrador':
+        window.location.href = "admreserva.html";
+        break;
+      case 'caixa':
+        window.location.href = "Entrada-caixa.html";
+        break;
+      case 'balconista':
+        window.location.href = "balconista.html";
+        break;
+      case 'gestor de estoque':
+        window.location.href = "gestaoestoque.html";
+        break;
+      default:
+        window.location.href = "home.html"; // fallback
+    }
+  } else {
+    mensagemErro.style.display = "block";
+  }
 }
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("form");
-  const usuarioInput = document.getElementById("usuario");
-  const senhaInput = document.getElementById("senha");
-
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const usuario = usuarioInput.value.trim();
-    const senha = senhaInput.value;
-
-    const credenciaisValidas = {
-      usuario: "admin",
-      senha: "1234"
-    };
-
-    if (!usuario || !senha) {
-      alert("Preencha todos os campos.");
-      return;
-    }
-
-    if (usuario === credenciaisValidas.usuario && senha === credenciaisValidas.senha) {
-      alert("Login bem-sucedido!");
-      window.location.href = "admreserva.html";
-    } else {
-      alert("Usuário ou senha inválidos.");
-    }
-  });
-});
