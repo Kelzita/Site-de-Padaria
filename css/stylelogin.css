@@ -43,32 +43,6 @@ header img {
   z-index: 11;
 }
 
-/* Sidebar */
-.sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #89cec6;
-  overflow-x: hidden;
-  transition: 0.3s;
-  padding-top: 70px;
-  z-index: 9;
-}
-
-.sidebar a {
-  padding: 15px 25px;
-  font-size: 18px;
-  color: white;
-  display: block;
-  text-decoration: none;
-  transition: 0.2s;
-}
-
-.sidebar a:hover {
-  background-color: #6fb7af;
-}
 
 /* Login */
 .background {
@@ -104,7 +78,7 @@ label {
 .input-box {
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
   padding: 8px;
   margin-bottom: 10px;
 }
