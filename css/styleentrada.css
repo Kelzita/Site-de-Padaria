@@ -6,7 +6,7 @@ header {
     display:flex;
 }
 body {
-    background-image: url('../img/fundo_pg.png');
+    background-image: url('../img/fundo1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -27,7 +27,7 @@ html, body {
     height: 100%;
     margin: 0;
     font-family: 'Times New Rome';
-    background-image: url('../img/fundo_pg.png');
+    background-image: url('../img/fundo1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
