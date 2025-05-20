@@ -1,11 +1,11 @@
 html, body {
   height: 100%;
   margin: 0;
-  font-family: 'Times New Roman';
+  font-family: 'arile'
 }
 
 body {
-  background-image: url('../img/fundo_pg.png');
+  background-image: url('../img/fundo1.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -146,7 +146,7 @@ input[type="date"]:focus {
   position: absolute;
   bottom: 20px;
   left: 20px;
-  background-color: #89cec6;
+  background-color: #000000;
   color: white;
   padding: 10px 15px;
   border-radius: 20px;
@@ -184,7 +184,7 @@ input[type="date"]:focus {
   font-size: 14px;
   background-color: #ffffff;
   color: black;
-  border: 1px solid #ccc; 
+  border: 1px solid #000000; 
   cursor: pointer;
   transition: 0.3s ease;
   font-weight: bold;
@@ -197,7 +197,8 @@ input[type="date"]:focus {
 }
 
 .botao:hover {
-  background-color: #b3e7da;
+  background-color: #050706;
+  color: white;
   transform: scale(1.03);
 }
 

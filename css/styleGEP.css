@@ -16,11 +16,11 @@ header img{
 html, body {
     height: 100%;
     margin: 0;
-    font-family: 'Times New Rome';
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background-image: url('../img/fundo_pg.png');
+    background-image: url('../img/fundo1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -28,6 +28,8 @@ body {
 /*Título da Página*/
 h1{
     text-align:center;
+    color: rgb(32, 18, 18);
+  
 }
 
 /*Botões*/
@@ -49,6 +51,7 @@ h1{
   background-color: #ffffff; 
   color: rgb(0, 0, 0); 
   border: none; 
+  border: 1px solid black; 
   border-radius: 8px; 
   padding: 40px 50px; 
   font-size: 16px;
@@ -65,7 +68,8 @@ h1{
 
 .btn1:hover,
 .btn2:hover {
-    background-color: #b3e7da;
+    background-color: #000000;
+    color: white;
     transform: scale(1.05); 
 }
 
@@ -73,12 +77,12 @@ h1{
     margin: 50px auto 0;
     background-color: #ffffff; 
     color: rgb(0, 0, 0); 
-    border: none; 
-    border-radius: 8px; 
+    border: 1px solid black; 
     padding: 40px 50px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     transition: background-color 0.3s, transform 0.2s;
     display: inline-block;
@@ -89,7 +93,8 @@ h1{
 }
 
 .btn3:hover{
-    background-color: #b3e7da;
+    background-color: #010202;
+    color:white;
     transform: scale(1.05); 
 }
 
@@ -139,36 +144,27 @@ h1{
     background-color: #6fb7af; 
   }
   
-  .suporte-btn {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background-color: #89cec6;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: background-color 0.3s, transform 0.2s;
-  }
-  
-  .suporte-btn i {
-    margin-right: 5px;
-  }
-  
-  .suporte-btn:hover {
-    background-color: #6fb7af;
-    transform: scale(1.05);
-  }  
+
   
 /*Seta para voltar*/
   .seta {
     width: 40px ;
     height: 30px ;
-    margin-top: 30px;
-    margin-left: 50px;
+    margin-top: 0px;
+    margin-right: 100px !important;
     left: 5px;
 }
 
+.retangulo {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 1000px;
+  height: 500px;
+  border-radius: 8px;
+  position: absolute;
+  top: 55%;   
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}

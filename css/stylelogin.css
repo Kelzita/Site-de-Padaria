@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'sans-serif';
 }
 
 html, body {
@@ -11,7 +11,7 @@ html, body {
 }
 
 body {
-  background: url('../img/fundo_pg.png') no-repeat center center;
+  background: url('../img/fundo1.jpg') no-repeat center center;
   background-size: cover;
 }
 
@@ -135,14 +135,16 @@ label {
 button {
   width: 100%;
   padding: 10px;
-  background-color: #dbe6e4;
+  background-color: #ffffff;
   border: none;
   cursor: pointer;
+  border: 1px solid black;
   transition: 0.3s;
 }
 
 button:hover {
-  background-color: #b5d0ce;
+  background-color: #000000;
+  color: white;
 }
 
 /* Imagem decorativa */
@@ -151,4 +153,41 @@ button:hover {
   bottom: -20px;
   right: -20px;
   width: 70px;
+}
+.retangulo {
+  background-color: white;
+  padding: 30px;
+  width: 350px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+.retangulo .titulo {
+  font-family: 'Times New Roman', serif;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+  color: black;
+}
+
+.forget-password {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.forget-password a {
+  font-size: 14px;
+  color: black;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.forget-password a:hover {
+  color: #79a79b;
+  text-decoration: underline;
 }
