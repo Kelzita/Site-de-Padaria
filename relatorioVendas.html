@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard de Vendas da Padaria</title>
+
+  <link rel="stylesheet" href="css/styleRV.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/relatorioVendas.js" defer></script>
+</head>
+<body>
+  <div class="dashboard">
+
+    <section class="chart-container">
+      <h2>Receita Mensal</h2>
+      <canvas id="lineChart"></canvas>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <h2>Receita por Categoria</h2>
+        <canvas id="doughnutChart"></canvas>
+      </div>
+
+      <div class="card">
+        <h2>Top 5 Produtos mais Vendidos</h2>
+        <canvas id="barChart"></canvas>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

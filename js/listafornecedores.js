@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function carregarFornecedores() {
     const fornecedores = JSON.parse(localStorage.getItem('fornecedores')) || [];
+    
+     // Ordena os produtos por ID em ordem crescente
+    fornecedores.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
+    
     tabela.innerHTML = '';
 
     fornecedores.forEach((func, index) => {
@@ -114,14 +118,8 @@ function filtrar() {
 
   for (let i = 0; i < linhas.length; i++) {
     const colunas = linhas[i].getElementsByTagName("td");
-
-    const spanId = colunas[0].querySelector("span")?.textContent.toUpperCase() || "";
-    const inputId = colunas[0].querySelector("input")?.value.toUpperCase() || "";
-    const id = spanId || inputId;
-
-    const spanNome = colunas[1].querySelector("span")?.textContent.toUpperCase() || "";
-    const inputNome = colunas[1].querySelector("input")?.value.toUpperCase() || "";
-    const nome = spanNome || inputNome;
+    const id = colunas[0]?.textContent.toUpperCase() || "";
+    const nome = colunas[1]?.textContent.toUpperCase() || "";
 
     if (id.includes(filtro) || nome.includes(filtro)) {
       linhas[i].style.display = "";

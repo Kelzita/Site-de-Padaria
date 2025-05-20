@@ -162,14 +162,16 @@ td {
 .btn-apagar:hover { background-color: #c9302c; }
 .btn-inativar:hover { background-color: #c0392b; }
 
+  /*Seta*/
   .seta {
     width: 40px ;
     height: 30px ;
-    margin-top: 380px;
+    margin-top: 350px;
     margin-left: 0px;
     left: 5px;
     position: absolute;
   }
+
   .btn-excluir {
     background-color: #e74c3c;
     color: white;
