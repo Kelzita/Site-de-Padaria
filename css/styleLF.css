@@ -19,77 +19,138 @@ html, body {
     margin: 0;
     text-align:center;
     padding: 0px;
+    background-color: #f5f5f5; /* Cor suave de fundo opcional */
+   overflow-x: hidden; /* evita scroll lateral */
+   overflow-y: auto; /* Garante apenas um scroll vertical */
+}
+
+/* Se tiver uma div principal, centralize e limite a altura */
+main, .container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding-bottom: 40px; /* evita que grude no final */
+  box-sizing: border-box;
 }
 
 body {
-    background-image: url('../img/fundo1.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
+  min-height: 100vh;
+  background-image: url('../img/fundo1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow-y: scroll; /* força um scroll, mas evita variações */
+ }
+      
+
 /*Título da Página*/
-h1{
-    margin-bottom: 20px;
+h1 {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.4); /* fundo escuro translúcido */
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+  font-size: 2.5rem;
 }
 
 
 /*Busca*/
 .barra-pesquisa {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .barra-pesquisa input {
-    padding-right: 35px; /* espaço para a imagem da lupa */
-    height: 40px;       /* ajuste conforme seu input */
-    font-size: 16px;
-  }
-  
-  .icone-lupa {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    width: 16px;
-    height: 16px;
-    transform: translateY(-50%);
-    pointer-events: none; /* impede o clique na imagem */
-  }
-
-
-  /*Tabela*/
-  table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-  }
-  
-th{
-    background-color: #3D2412;
-    color: white;
-    border: 1px solid #FFDAB9;
-    padding: 10px;
-
+  position: relative;
+  display: inline-block;
+  width: 300px; /* largura fixa para melhor controle */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  border-radius: 25px;
+  overflow: hidden; /* para arredondar a lupa junto */
+  background-color: #fff;
 }
 
-td {
-    background-color: white;
-    color:black;
-    border: 1px solid #ccc;
-    padding: 10px;
+.barra-pesquisa input {
+  width: 100%;
+  padding: 10px 45px 10px 20px; /* espaço para lupa à direita */
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
 
-  }
-  
+.barra-pesquisa input:focus {
+  box-shadow: 0 0 8px 2px #3D2412; /* sombra no foco com a cor do seu tema */
+}
+
+.icone-lupa {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  filter: invert(30%) sepia(70%) saturate(500%) hue-rotate(20deg); /* cor da lupa levemente adaptada */
+  transition: filter 0.3s ease;
+}
+
+.barra-pesquisa input:focus + .icone-lupa {
+  filter: invert(0%) sepia(100%) saturate(600%) hue-rotate(10deg); /* muda a cor da lupa ao focar */
+}
+
+table {
+  width: 100%;
+  max-width: 340px; /* ainda menor */
+  margin: 16px auto;
+  border-collapse: separate;
+  border-spacing: 0 2px; /* mínimo espaço entre linhas */
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  color: #333;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 5px 8px; /* menor ainda */
+  text-align: left;
+  font-size: 12px; /* texto compacto */
+}
+
+th {
+  background-color: #3D2412; /* marrom escuro */
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody tr {
+  background-color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #e6f0f9;
+  cursor: pointer;
+}
+
 
   /*Side Bar*/
-.menu-btn {
-    margin-top: 15px;
-    position: absolute; 
+  .menu-btn {
+    position: fixed;
+    top: 15px;
     left: 15px;
     font-size: 30px;
     cursor: pointer;
-    color:rgb(99, 179, 168);
-    z-index: 11;
+    color: rgb(99, 179, 168);
+    z-index: 9999; /* bem alto pra garantir visibilidade */
   }
+  
   
   
   .sidebar {
@@ -164,14 +225,14 @@ td {
 
   /*Seta*/
   .seta {
-    width: 40px ;
-    height: 30px ;
-    margin-top: 350px;
-    margin-left: 0px;
-    left: 5px;
-    position: absolute;
+    width: 40px;
+    height: 30px;
+    margin: 40px auto 0 auto; /* Centraliza horizontalmente e dá espaço acima */
+    display: block;
   }
-
+  
+  
+  
   .btn-excluir {
     background-color: #e74c3c;
     color: white;
