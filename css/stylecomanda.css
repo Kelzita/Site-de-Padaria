@@ -39,32 +39,47 @@ header img {
   z-index: 11;
 }
 
-.sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #89cec6;
-  overflow-x: hidden;
-  transition: 0.3s;
-  padding-top: 70px;
-  z-index: 9;
-}
-
-.sidebar a {
-  padding: 15px 25px;
-  text-decoration: none;
-  font-size: 18px;
-  color: white;
-  display: block;
-  transition: 0.2s;
-}
-
-.sidebar a:hover {
-  background-color: #6fb7af;
-}
-
+  /* Botão do menu */
+  .menu-icon {
+    position: absolute;
+    left: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #000000;
+    z-index: 11;
+    transition: color 0.3s;
+  }
+  
+  .menu-icon.active {
+    color: white; /* Quando sidebar está aberta */
+  }
+  
+  .sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: justify;
+    background-color: #000000;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 70px;
+    z-index: 9;
+  }
+  
+  .sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.2s;
+  }
+  
+  .sidebar a:hover {
+    background-color: #2c2929;
+  }
 
 
 .retangulo {

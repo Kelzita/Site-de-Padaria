@@ -148,14 +148,19 @@ th{
   }
 
 
-/*Side Bar - MANTIDA ORIGINAL */
-.menu-btn {
-    position: absolute; 
-    left: 30px;
+  /* Botão do menu */
+  .menu-icon {
+    position: absolute;
+    left: 35px;
     font-size: 30px;
     cursor: pointer;
-    color:rgb(99, 179, 168); /* Mantido */
+    color: #000000;
     z-index: 11;
+    transition: color 0.3s;
+  }
+  
+  .menu-icon.active {
+    color: white; /* Quando sidebar está aberta */
   }
   
   .sidebar {
@@ -165,10 +170,10 @@ th{
     top: 0;
     left: 0;
     text-align: justify;
-    background-color: #89cec6; /* Mantido */
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo transparente */
     overflow-x: hidden;
     transition: 0.3s;
-    padding-top: 70px; 
+    padding-top: 70px;
     z-index: 9;
   }
   
@@ -182,9 +187,8 @@ th{
   }
   
   .sidebar a:hover {
-    background-color: #6fb7af; /* Mantido */
+    background-color: rgba(44, 41, 41, 0.8); /* Fundo transparente no hover */
   }
-  
   .suporte-btn {
     position: absolute;
     bottom: 20px;
@@ -208,3 +212,16 @@ th{
     background-color: #6fb7af; /* Mantido */
     transform: scale(1.05);
   }
+
+  .seta {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+

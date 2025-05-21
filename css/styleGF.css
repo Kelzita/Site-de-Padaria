@@ -106,13 +106,19 @@ html, body {
     transform: scale(1.05);
   }
   
-  .menu-btn {
+   /* Botão do menu */
+   .menu-icon {
     position: absolute;
     left: 15px;
     font-size: 30px;
     cursor: pointer;
-    color: rgb(99, 179, 168);
+    color: #000000;
     z-index: 11;
+    transition: color 0.3s;
+  }
+  
+  .menu-icon.active {
+    color: white; /* Quando sidebar está aberta */
   }
   
   .sidebar {
@@ -122,7 +128,7 @@ html, body {
     top: 0;
     left: 0;
     text-align: justify;
-    background-color: #89cec6;
+    background-color: #000000;
     overflow-x: hidden;
     transition: 0.3s;
     padding-top: 70px;
@@ -139,32 +145,9 @@ html, body {
   }
   
   .sidebar a:hover {
-    background-color: #6fb7af;
+    background-color: #2c2929;
   }
   
-  .suporte-btn {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background-color: #89cec6;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.2s;
-  }
-  
-  .suporte-btn i {
-    margin-right: 5px;
-  }
-  
-  .suporte-btn:hover {
-    background-color: #6fb7af;
-    transform: scale(1.05);
-  }
   
   .osmar {
     width: 70px;
