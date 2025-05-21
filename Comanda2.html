@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -14,40 +15,22 @@
 
   <div class="retangulo">
     <h2 class="titulo">Selecione os Produtos</h2>
+    
     <div class="campo-comanda">
       <label for="inputNumeroComanda">Número da Comanda:</label>
-      <input type="text" id="inputNumeroComanda" class="numero-comanda" placeholder="Nro" />
+      <input type="text" id="inputNumeroComanda" class="numero-comanda" placeholder="Digite o número" />
     </div>
+  
+
+    <div class="lista-produtos" id="listaProdutos"></div>
+    <div class="lista-produtos" id="listaProdutos"></div>
     
-    <div class="lista-produtos">
-
-      <div class="item-produto">
-        <label class="checkbox-label">
-          <input type="checkbox" class="checkbox-produto" data-produto="Coxinha" data-unidade="un">
-          <span class="checkmark"></span>
-        </label>
-        <span class="nome-produto">Coxinha</span>
-        <input type="number" class="quantidade" min="1" placeholder="Qtd">
-        <span class="unidade">Un</span>
-        <input type="text" class="observacao" placeholder="Observações">
-      </div>
-
-      <div class="item-produto">
-        <label class="checkbox-label">
-          <input type="checkbox" class="checkbox-produto" data-produto="Pão Francês" data-unidade="kg">
-          <span class="checkmark"></span>
-        </label>
-        <span class="nome-produto">Pão Francês</span>
-        <input type="number" class="quantidade" min="0.01" step="0.01" placeholder="Qtd">
-        <span class="unidade">Kg</span>
-        <input type="text" class="observacao" placeholder="Observações">
-      </div>
-
+    <div class="fixo-botao">
+      <button class="botao-confirmar" onclick="enviarComanda()">Enviar para o Caixa</button>
     </div>
-
-    <button class="botao-confirmar" onclick="enviarComanda()">Enviar para o Caixa</button>
   </div>
-
-  <script src="js/comanda2.js"></script>
+  
+  
+  <script src="js/comanda3.js"></script>
 </body>
 </html>

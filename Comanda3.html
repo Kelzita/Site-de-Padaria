@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Padaria Pão Genial</title>
+  <link rel="stylesheet" href="css/stylecomanda3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header>
+    <img src="img/logo_pg.png" alt="Logo da Padaria">
+  </header>
+
+  <div class="retangulo">
+    <div class="retangulo-conteudo">
+      <h2 class="titulo">Selecione os Produtos</h2>
+      <div class="campo-comanda">
+        <label for="inputNumeroComanda">Número da Comanda:</label>
+        <input type="text" id="inputNumeroComanda" class="numero-comanda" placeholder="Nr" />
+      </div>
+      <div class="campo-pesquisa">
+        <input type="text" id="pesquisaProduto" placeholder="Buscar produto..." />
+      </div>
+      <div class="lista-produtos" id="listaProdutos"></div>
+    </div>
+    <!-- botão fixo dentro do retângulo -->
+    <div class="fixo-botao-interno">
+      <button class="botao-confirmar" onclick="enviarComanda()">Enviar para o Caixa</button>
+    </div>
+  </div>
+  
+  
+  
+  <script src="js/comanda3.js"></script>
+</body>
+</html>
