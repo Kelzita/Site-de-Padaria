@@ -166,5 +166,11 @@ function pesquisarProduto() {
   }
  
   function sair() {
-    window.location.href = 'Entrada-caixa.html';
+    const confsair = confirm("Você tem certeza que deseja sair?");
+    if (confsair) {
+      alert("Saindo...");
+      window.location.href = 'Entrada-caixa.html';
+    } else {
+      alert("Retornando ao caixa...");
+    }
   }
