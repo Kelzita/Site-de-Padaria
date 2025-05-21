@@ -45,7 +45,7 @@ html, body {
     width: 420px;
     height: auto;
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -172,4 +172,11 @@ html, body {
 .qr-img {
   max-width: 300px;
   margin: 20px 0;
+}
+
+.seta {
+  width: 40px ;
+  height: 30px ;
+  margin-left: 0px;
+  left: 5px;
 }
