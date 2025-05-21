@@ -314,29 +314,32 @@ h2,h3 {
     height: 40px;
 }
 
-/*Side Bar*/
-.menu-btn {
-    margin-top: 15px;
-    position: absolute; 
+  /* Botão do menu */
+  .menu-icon {
+    position: absolute;
     left: 15px;
     font-size: 30px;
     cursor: pointer;
-    color:rgb(99, 179, 168);
+    color: #000000;
     z-index: 11;
+    transition: color 0.3s;
   }
   
-/* Sidebar (menu lateral) */
-.sidebar {
+  .menu-icon.active {
+    color: white; /* Quando sidebar está aberta */
+  }
+  
+  .sidebar {
     height: 100%;
     width: 0;
     position: fixed;
     top: 0;
     left: 0;
     text-align: justify;
-    background-color: #89cec6;
+    background-color: #000000;
     overflow-x: hidden;
     transition: 0.3s;
-    padding-top: 70px; /* igual à altura do header */
+    padding-top: 70px;
     z-index: 9;
   }
   
@@ -350,6 +353,5 @@ h2,h3 {
   }
   
   .sidebar a:hover {
-    background-color: #6fb7af; /* tom mais escuro e harmônico */
+    background-color: #2c2929;
   }
-  

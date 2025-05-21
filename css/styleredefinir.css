@@ -31,44 +31,8 @@ html, body {
   header img {
     height: 70px;
     width: 70px;
-  }
-  
- /*Botão de menu*/
-  .menu-btn {
     position: absolute;
-    left: 15px;
-    font-size: 30px;
-    cursor: pointer;
-    color: rgb(99, 179, 168);
-    z-index: 11;
-  }
-  
-  /*sidebar*/
-  .sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    top: 0;
-    text-align: justify;
-    left: 0;
-    background-color: #89cec6;
-    overflow-x: hidden;
-    transition: 0.3s;
-    padding-top: 70px;
-    z-index: 9;
-  }
-  /*animação da sidebar*/
-  .sidebar a {
-    padding: 15px 25px;
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    display: block;
-    transition: 0.2s;
-  }
-  /* hover da sidebar*/
-  .sidebar a:hover {
-    background-color: #6fb7af;
+    left: 10px; /* Ajuste a distância do canto esquerdo conforme necessário */
   }
   /*Retangulo no centro da página*/
   .retangulo {
