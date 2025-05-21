@@ -1,74 +1,69 @@
-// Cria múltiplos usuários padrão se ainda não existirem
-if (!localStorage.getItem('usuarios')) {
-  const usuariosPadrao = [
-    {
-      id: 1,
-      nome: "Genivaldo",
-      senha: "12345",
-      funcao: "administrador",
-      status: "ativo"
-    },
-    {
-      id: 2,
-      nome: "Luciana",
-      senha: "11111",
-      funcao: "caixa",
-      status: "ativo"
-    },
-    {
-      id: 3,
-      nome: "Pedro",
-      senha: "22222",
-      funcao: "balconista",
-      status: "ativo"
-    },
-    {
-      id: 4,
-      nome: "Marta",
-      senha: "33333",
-      funcao: "gestor de estoque",
-      status: "ativo"
-    },
-    {
-      id: 5,
-      nome: "Carlos",
-      senha: "44444",
-      funcao: "administrador",
-      status: "inativo"
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('form');
+  const toggleSenhaBtn = document.getElementById('toggleSenha');
+  const senhaInput = document.getElementById('senha_funcionario');
+  const mensagemErro = document.getElementById('mensagemErro');
+
+  // Toggle mostrar/esconder senha
+  toggleSenhaBtn.addEventListener('click', () => {
+    if (senhaInput.type === 'password') {
+      senhaInput.type = 'text';
+      toggleSenhaBtn.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+    } else {
+      senhaInput.type = 'password';
+      toggleSenhaBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
     }
-  ];
+  });
 
-  localStorage.setItem('usuarios', JSON.stringify(usuariosPadrao));
-  console.log('Usuários padrão criados');
-}
-
-// Função de verificação de login
-function verificarLogin(event) {
-  event.preventDefault(); // Evita envio do formulário
-
-  const nome = document.getElementById("usuario").value.trim();
-  const senha = document.getElementById("senha").value.trim();
-  const mensagemErro = document.getElementById("mensagemErro");
-
-  if (nome === "" || senha === "") {
-    mensagemErro.textContent = "Preencha todos os campos.";
-    mensagemErro.style.display = "block";
-    return;
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      verificarLogin();
+    });
   }
 
-  const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+  function verificarLogin() {
+    mensagemErro.style.display = 'none'; // esconde mensagem no começo
 
-  const usuarioValido = usuarios.find(u =>
-    u.nome === nome &&
-    u.senha === senha &&
-    u.status === "ativo"
-  );
+    const nomeFuncionario = document.getElementById("nome_funcionario").value.trim();
+    const senhaFuncionario = document.getElementById("senha_funcionario").value.trim();
 
-  if (usuarioValido) {
-    localStorage.setItem('usuarioLogado', JSON.stringify(usuarioValido));
+    if (!nomeFuncionario || !senhaFuncionario) {
+      mensagemErro.textContent = "Preencha todos os campos.";
+      mensagemErro.style.display = "block";
+      return;
+    }
 
-    // Redirecionamento baseado na função
-    switch (usuarioValido.funcao.toLowerCase()) {
+    const funcionarios = JSON.parse(localStorage.getItem('funcionarios')) || [];
+
+    const funcionario = funcionarios.find(f =>
+      f.nome.trim().toLowerCase() === nomeFuncionario.toLowerCase()
+    );
+
+    if (!funcionario) {
+      alert("Funcionário não encontrado.");
+      mensagemErro.style.display = "block";
+      return;
+    }
+
+    if (funcionario.ativo !== true && funcionario.ativo !== "true") {
+      alert("Funcionário inativo. Acesso não permitido.");
+      mensagemErro.style.display = "block";
+      return;
+    }
+
+    if (funcionario.senha !== senhaFuncionario) {
+      alert("Usuário ou senha incorreta.");
+      mensagemErro.style.display = "block";
+      return;
+    }
+
+    // Tudo certo: login válido
+    localStorage.setItem('usuarioLogado', JSON.stringify(funcionario));
+
+    const funcao = funcionario.funcao ? funcionario.funcao.trim().toLowerCase() : "";
+
+    switch (funcao) {
       case 'administrador':
         window.location.href = "admreserva.html";
         break;
@@ -83,39 +78,7 @@ function verificarLogin(event) {
         break;
       default:
         window.location.href = "home.html";
+        break;
     }
-  } else {
-    mensagemErro.textContent = "Usuário ou senha inválidos, ou conta inativa.";
-    mensagemErro.style.display = "block";
   }
-}
-
-// Ativa a verificação quando o formulário for enviado
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("form");
-  form.addEventListener("submit", verificarLogin);
 });
-
-// Adicionando o evento de clique para a senha do login, criptografando e descriptografando! 
-const toggleSenha = document.getElementById('toggleSenha');
-          const senhaInput = document.getElementById('senha');
-
-          toggleSenha.addEventListener('click', () => {
-            if (senhaInput.type === 'password') {
-              senhaInput.type = 'text';
-              toggleSenha.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
-            } else {
-              senhaInput.type = 'password';
-              toggleSenha.innerHTML = '<i class="fa-solid fa-eye"></i>';
-            }
-          });
-
-          document.querySelector('form').addEventListener('submit', (event) => {
-            event.preventDefault();
-            const senha = senhaInput.value;
-            const encryptedSenha = btoa(senha); // Criptografa a senha em Base64
-            console.log('Senha criptografada:', encryptedSenha);
-
-            const decryptedSenha = atob(encryptedSenha); // Descriptografa a senha
-            console.log('Senha descriptografada:', decryptedSenha);
-          });
