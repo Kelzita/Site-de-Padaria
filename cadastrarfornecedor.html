@@ -6,15 +6,16 @@
   <title>Cadastrar Funcionário</title>
   <link rel="stylesheet" href="css/stylecadastrofornecedor.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script src="js/sidebar.js"></script>
+  <script src="js/sidebar.js" defer></script>
   <script src="js/cadastrarfornecedor.js" defer></script>
 </head>
 <body>
-
   <header>
-    <span class="menu-btn" onclick="toggleMenu()" role="button" aria-label="Abrir Menu">☰</span>
-    <img src="img/logo.png" alt="Logo da Padaria" title="Logo da Padaria" />
-    <nav id="sidebar" class="sidebar">
+    <span id="menu-btn" class="menu-icon">&#9776;</span>
+    <img src="img/logo.png" title="Logo da Padaria">
+  
+    <!-- Apenas UM ID sidebar -->
+    <div id="sidebar" class="sidebar">
       <a href="Historico de vendas.html"><i class="fas fa-home"></i> Início</a>
       <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
       <a href="GestaodeFuncionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>

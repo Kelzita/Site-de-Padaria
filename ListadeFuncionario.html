@@ -6,15 +6,17 @@
   <link rel="stylesheet" href="css/styleLF.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/modal.css">
-  <script src="js/sidebar.js"></script>
-  <script src="js/listadefuncionarios.js"></script>
+  <script src="js/sidebar.js" defer></script>
+  <script src="js/listadefuncionarios.js" defer></script>
   
 </head>
 <body>
-    <header>
-        <span class="menu-btn" onclick="toggleMenu()">☰</span>
-        <img src="img/logo_pg.png" title="Logo da Padaria">
-        <div id="sidebar" class="sidebar">
+  <header>
+    <span id="menu-btn" class="menu-icon">&#9776;</span>
+    <img src="img/logo.png" title="Logo da Padaria">
+  
+    <!-- Apenas UM ID sidebar -->
+    <div id="sidebar" class="sidebar">
             <a href="admreserva.html"><i class="fas fa-home"></i> Início</a>
             <a href="gestaoestoque.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
             <a href="GestaodeFuncionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
