@@ -7,7 +7,7 @@
   <title>Cadastrar Funcionário</title>
   <link rel="stylesheet" href="css/stylecadfunc.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script src="js/sidebar.js"></script>
+  <script src="js/sidebar.js" defer ></script>
   <script src="js/cadastrarfunc.js" defer></script>
 </head>
 
@@ -30,7 +30,7 @@
 
   <main>
     <div class="retangulo">
-      <form class="formulario-cadastro" id="formCadastro" onsubmit="cadastrar(event)">
+      <form class="formulario-cadastro" id="formCadastro">
         <a href="GestaodeFuncionarios.html" class="voltar">
           <img class="seta" src="img/btn_voltar.png" title="seta"></a>
         <h1 class="titulo">CADASTRAR FUNCIONÁRIO</h1>
@@ -50,7 +50,7 @@
 
           <label for="senha"><i class="fas fa-key"></i> Senha:</label>
           <div class="input-box">
-            <input type="password" id="senha" name="senha" required placeholder="Insira sua senha" minlength="6" />
+            <input type="password" id="senha_funcionario" name="senha" required placeholder="Insira sua senha" minlength="6" />
             <span class="toggle-senha" id="toggleSenha"><i class="fa-solid fa-eye"></i></span>
           </div>
 
@@ -118,16 +118,14 @@
           <label for="admissao"><i class="fas fa-calendar-alt"></i> Data de Admissão:</label>
           <input type="date" id="admissao" name="data_admissao" required max="" />
 
+
           <label for="salario"><i class="fas fa-money-bill-wave"></i> Salário:</label>
           <input type="number" id="salario" name="salario" placeholder="R$" step="0.01" min="0" required />
 
           <button type="submit" class="btn-cadastrar"><i class="fas fa-check-circle"></i> Cadastrar</button>
         </form>
-
-      </form>
     </div>
   </main>
 
 </body>
-
 </html>
