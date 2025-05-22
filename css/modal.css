@@ -76,7 +76,7 @@
 
 /* Focus do input */
 #formEdicao input:focus, #formEdicao select:focus {
-  border-color: #6fb7af;
+  border-color: #000000;
   outline: none;
   background-color: #fff;
 }
@@ -90,10 +90,10 @@
 
 /* Botão Salvar */
 #formEdicao button[type="submit"] {
-  background-color: #6fb7af;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
   padding: 12px;
-  border: none;
+  border: 1px solid black;
   border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
@@ -103,6 +103,7 @@
 }
 
 #formEdicao button[type="submit"]:hover {
-  background-color: #5aa89f;
+  background-color: #000000;
+  color: white;
   font-size: 18px;
 }

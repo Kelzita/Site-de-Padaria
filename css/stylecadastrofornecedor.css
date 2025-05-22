@@ -48,7 +48,6 @@ header img {
   .menu-icon.active {
     color: white; /* Quando sidebar está aberta */
   }
-  
   .sidebar {
     height: 100%;
     width: 0;
@@ -56,7 +55,7 @@ header img {
     top: 0;
     left: 0;
     text-align: justify;
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo transparente */
     overflow-x: hidden;
     transition: 0.3s;
     padding-top: 70px;
@@ -73,8 +72,10 @@ header img {
   }
   
   .sidebar a:hover {
-    background-color: #2c2929;
-  }
+      background-color: rgba(44, 41, 41, 0.8); /* Fundo transparente no hover */
+    }
+  
+  
 
 
 /* Retângulo central com formulário */
@@ -151,9 +152,12 @@ header img {
 }
 
 .btn-cadastrar:hover {
-  background-color: #bbe9dd;
+  background-color: #000000;
+  color:white;
   transform: scale(1.05);
 }
+
+
 
 /* Mascote */
 .osmarzinho, .osmar {

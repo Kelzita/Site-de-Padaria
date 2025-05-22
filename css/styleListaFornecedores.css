@@ -1,203 +1,218 @@
 @charset "UTF-8";
 /*Cabeçalho*/
-header{
-    margin: 0px;
-    height:70px;
-    background-color:#ffffff;
+header {
+  margin: 0px;
+  height: 70px;
+  background-color: #ffffff;
+  overflow: hidden; /* <- Isso impede que margens externas "invadam" o header */
+  box-sizing: border-box;
 }
-header img{
-    float:left;
-    height:70px;
-    width:70px;
-    margin:0px auto;
-    padding-left: 60px;
-}
-/*Configuração Geral*/
-html, body {
-    font-family: 'Times New Rome';
-    height: 100%;
-    margin: 0;
-    text-align:center;
-    padding: 0px;
+header img {
+  float: left;
+  height: 70px;
+  width: 70px;
+  margin: 0px auto;
+  padding-left: 60px;
 }
 
-body {
-  background-image: url('../img/fundo1.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+/*Configuração Geral*/
+html, body {
+  font-family: 'Times New Rome';
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  padding: 0px;
+  background-color: #f5f5f5;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
+
+main, .container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+}
+
+
+body {
+  min-height: 100vh;
+  background-image: url('../img/fundo1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow-y: scroll;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
 /*Título da Página*/
-h1{
-    margin-bottom: 20px;
+h1 {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.4); /* fundo escuro translúcido */
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+  font-size: 2.5rem;
 }
 
 
 /*Busca*/
 .barra-pesquisa {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .barra-pesquisa input {
-    padding-right: 35px; /* espaço para a imagem da lupa */
-    height: 40px;       /* ajuste conforme seu input */
-    font-size: 16px;
-  }
-  
-  .icone-lupa {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    width: 16px;
-    height: 16px;
-    transform: translateY(-50%);
-    pointer-events: none; /* impede o clique na imagem */
-  }
-
-
-  /*Tabela*/
-  table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-  }
-  
-th{
-    background-color: #3D2412;
-    color: white;
-    border: 1px solid #FFDAB9;
-    padding: 10px;
-
+  position: relative;
+  display: inline-block;
+  width: 300px; /* largura fixa para melhor controle */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  border-radius: 25px;
+  overflow: hidden; /* para arredondar a lupa junto */
+  background-color: #fff;
 }
 
-td {
-    background-color: white;
-    color:black;
-    border: 1px solid #ccc;
-    padding: 10px;
-
-  }
-
-
-    */
-        /* Estilo para o fundo do modal (overlay) */
-    #modalEdicao {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 150px;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); 
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    
-    /* Estilo para o conteúdo do modal */
-    #modalEdicao .modal-content {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px; /* Bordas arredondadas */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra */
-      width: 100%;
-      max-width: 500px; /* Largura máxima */
-      text-align: center;
-    }
-    
- /* Botão de fechar */
- #fecharModal {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background-color: transparent;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      color: #333;
-      transition: color 0.3s;
-  }
-    
-#fecharModal:hover {
-      color: #ff0000; 
-  }
-    
-/* Estilo para os campos do formulário */
- #formEdicao input {
-      width: 85%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
+.barra-pesquisa input {
+  width: 100%;
+  padding: 10px 45px 10px 20px; /* espaço para lupa à direita */
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+  box-sizing: border-box;
 }
-    
-/* Botão de salvar */
- #formEdicao button {
-      background-color: #6fb7af;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s;
+
+.barra-pesquisa input:focus {
+  box-shadow: 0 0 8px 2px #3D2412; /* sombra no foco com a cor do seu tema */
 }
-    
-#formEdicao button:hover {
-      background-color: #5aa89f;
-      font-size:20px;
+
+.icone-lupa {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  filter: invert(30%) sepia(70%) saturate(500%) hue-rotate(20deg); /* cor da lupa levemente adaptada */
+  transition: filter 0.3s ease;
+}
+
+.barra-pesquisa input:focus + .icone-lupa {
+  filter: invert(0%) sepia(100%) saturate(600%) hue-rotate(10deg); /* muda a cor da lupa ao focar */
+}
+/*Tabela*/
+table {
+  width: 98%; /* quase largura total */
+  max-width: 1200px; /* aumentei o limite máximo */
+  margin: 24px auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #d0cfcf;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+th, td {
+  padding: 14px 20px; /* aumentei o espaçamento interno */
+  text-align: left;
+  font-size: 16px; /* aumentei o tamanho da fonte */
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  background-color: #3D2412;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #b88c6d;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr {
+  background-color: #fff;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+tbody tr:hover {
+  background-color: #f5f5ff;
+  transform: scale(1.01);
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px #d0d0f0;
+}
+
+td:first-child, th:first-child {
+  border-left: 1px solid #e0e0e0;
+  border-radius: 8px 0 0 8px;
+}
+td:last-child, th:last-child {
+  border-right: 1px solid #e0e0e0;
+  border-radius: 0 8px 8px 0;
+}
+
+
+/* Botão do menu */
+.menu-icon {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #000000;
+  z-index: 11;
+  transition: color 0.3s;
+}
+
+.menu-icon.active {
+  color: white; /* Quando sidebar está aberta */
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: justify;
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo transparente */
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 70px;
+  z-index: 9;
+}
+
+.sidebar a {
+  padding: 15px 25px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+    background-color: rgba(44, 41, 41, 0.8); /* Fundo transparente no hover */
   }
 
 
-  /* Botão do menu */
-  .menu-icon {
-    position: absolute;
-    left: 15px;
-    font-size: 30px;
-    cursor: pointer;
-    color: #000000;
-    z-index: 11;
-    transition: color 0.3s;
-  }
-  
-  .menu-icon.active {
-    color: white; /* Quando sidebar está aberta */
-  }
-  
-  .sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    text-align: justify;
-    background-color: #000000;
-    overflow-x: hidden;
-    transition: 0.3s;
-    padding-top: 70px;
-    z-index: 9;
-  }
-  
-  .sidebar a {
-    padding: 15px 25px;
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    display: block;
-    transition: 0.2s;
-  }
-  
-  .sidebar a:hover {
-    background-color: #2c2929;
-  }
-  
-.btn-editar, .btn-salvar, .btn-cancelar, .btn-apagar,  .btn-inativar {
-  margin: 2px;
+
+.btn-editar, .btn-salvar, .btn-cancelar, .btn-apagar, .btn-inativar {
+  margin: 2px auto;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  display: block;
+  text-align: center;
 }
 
 .btn-editar { background-color: #0275d8; color: white; }
@@ -212,29 +227,39 @@ td {
 .btn-apagar:hover { background-color: #c9302c; }
 .btn-inativar:hover { background-color: #c0392b; }
 
-  .btn-excluir {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 3px;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-excluir:hover {
-    background-color: #c0392b;
-  }
 
-  /*Seta*/
-  .seta {
-    width: 40px ;
-    height: 30px ;
-    margin-top: 120px;
-    margin-left: 0px;
-    left: 5px;
-    position: absolute;
-  }
-  
+.btn-excluir {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+.btn-excluir:hover {
+  background-color: #c0392b;
+}
+
+.voltar {
+  display: inline-block;
+  position: absolute;
+  top: 700px;
+  left: 20px;
+}
+.voltar:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+.voltar:hover .seta {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+.seta {
+  width: 40px;
+  height: 30px;
+  display: block;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+}

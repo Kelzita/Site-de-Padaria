@@ -93,7 +93,7 @@ input[type="date"]:focus {
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(212, 9, 9, 0.1);
   transition: background-color 0.3s, transform 0.2s;
   display: block;
   width: 100px;
@@ -106,6 +106,7 @@ input[type="date"]:focus {
   transform: scale(1.05);
 }
 
+/* Botão do menu */
 .menu-icon {
   position: absolute;
   left: 15px;
@@ -127,7 +128,7 @@ input[type="date"]:focus {
   top: 0;
   left: 0;
   text-align: justify;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo transparente */
   overflow-x: hidden;
   transition: 0.3s;
   padding-top: 70px;
@@ -144,32 +145,9 @@ input[type="date"]:focus {
 }
 
 .sidebar a:hover {
-  background-color: #2c2929;
-}
+    background-color: rgba(44, 41, 41, 0.8); /* Fundo transparente no hover */
+  }
 
-.suporte-btn {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  background-color: #000000;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.suporte-btn i {
-  margin-right: 5px;
-}
-
-.suporte-btn:hover {
-  background-color: #6fb7af;
-  transform: scale(1.05);
-}
 
 .osmar {
   width: 70px;

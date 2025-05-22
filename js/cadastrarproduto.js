@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Adiciona o novo produto ao array
       produtos.push(produto);
   
-      // Salva o array de produtos no localStorage
       localStorage.setItem('produtos', JSON.stringify(produtos));
   
       // Redireciona para a página de gestão de estoque

@@ -68,7 +68,7 @@ html, body {
     font-size: 14px;
     background-color: #ffffff;
     color: black;
-    border: 1px solid #ccc; 
+    border: 1px solid #000000; 
     cursor: pointer;
     transition: 0.3s ease;
     font-weight: bold;
@@ -83,9 +83,12 @@ html, body {
 }
 /*hover do botão de abrir caixa, sendo ele um efeito de transição*/     
 .abrircaixa:hover {
-    background-color: #b3e7da;
-    transform: scale(1.03);
-}
+        background-color: #000000;
+        color:white;
+        transform: scale(1.05);
+      }
+      
+
 
 .gerar, .abrircaixa {
     width: 80%;
@@ -241,10 +244,13 @@ h2,h3 {
 }
   
 .confirmar:hover {
-    background-color: #b3e7da;
-    transform: scale(1.03);
+        background-color: #000000;
+        color:white;
+        transform: scale(1.05);
+      }
+      
 
-}
+
 .button-container {
     text-align: center;
     margin-top: 50px;
@@ -314,8 +320,8 @@ h2,h3 {
     height: 40px;
 }
 
-  /* Botão do menu */
-  .menu-icon {
+ /* Botão do menu */
+ .menu-icon {
     position: absolute;
     left: 15px;
     font-size: 30px;
@@ -336,7 +342,7 @@ h2,h3 {
     top: 0;
     left: 0;
     text-align: justify;
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo transparente */
     overflow-x: hidden;
     transition: 0.3s;
     padding-top: 70px;
@@ -353,5 +359,7 @@ h2,h3 {
   }
   
   .sidebar a:hover {
-    background-color: #2c2929;
-  }
+      background-color: rgba(44, 41, 41, 0.8); /* Fundo transparente no hover */
+    }
+  
+  

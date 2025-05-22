@@ -189,29 +189,7 @@ th{
   .sidebar a:hover {
     background-color: rgba(44, 41, 41, 0.8); /* Fundo transparente no hover */
   }
-  .suporte-btn {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background-color: #89cec6; /* Mantido */
-    color: white;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: background-color 0.3s, transform 0.2s;
-  }
-  
-  .suporte-btn i {
-    margin-right: 5px;
-  }
-  
-  .suporte-btn:hover {
-    background-color: #6fb7af; /* Mantido */
-    transform: scale(1.05);
-  }
+
 
   .seta {
     display: inline-block;

@@ -176,3 +176,18 @@ function filtrar() {
     linha.style.display = encontrado ? "" : "none";
   });
 }
+const toggleSenhaBtn = document.getElementById('toggleSenha');
+const senhaInput = document.getElementById('senhaEdicao');
+const icon = toggleSenhaBtn.querySelector('i');
+
+toggleSenhaBtn.addEventListener('click', () => {
+  if (senhaInput.type === 'password') {
+    senhaInput.type = 'text';
+    icon.classList.remove('fa-eye');
+    icon.classList.add('fa-eye-slash');
+  } else {
+    senhaInput.type = 'password';
+    icon.classList.remove('fa-eye-slash');
+    icon.classList.add('fa-eye');
+  }
+});

@@ -1,32 +1,38 @@
 function cadastrar(event) {
   event.preventDefault(); 
 
-  const id = document.getElementById('idfunc').value.trim();
   const nome = document.getElementById('nomefunc').value.trim();
   const cnpj = document.getElementById('cpf').value.trim();
   const email = document.getElementById('rg').value.trim();
   const telefone = document.getElementById('telefone').value.trim();
 
-  if (!id || !nome || !cnpj || !email || !telefone) {
+  if (!nome || !cnpj || !email || !telefone) {
     alert('Por favor, preencha todos os campos!');
     return;
   }
 
   const fornecedores = JSON.parse(localStorage.getItem('fornecedores')) || [];
 
-  // Verifica se já existe um fornecedor com o mesmo ID
-  if (fornecedores.some(f => f.id === id)) {
-    alert('Já existe um fornecedor com esse ID.');
-    return;
+  // Gerar ID automático (incremental)
+  let novoId = 1;
+  if (fornecedores.length > 0) {
+    const ids = fornecedores.map(f => parseInt(f.id));
+    novoId = Math.max(...ids) + 1;
   }
 
-  // Adiciona o campo 'ativo: true'
-  const novoFornecedor = { id, nome, cnpj, email, telefone, ativo: true };
+  // Cria o novo fornecedor com ID automático e 'ativo: true'
+  const novoFornecedor = { 
+    id: novoId.toString(), 
+    nome, 
+    cnpj, 
+    email, 
+    telefone, 
+    ativo: true 
+  };
+
   fornecedores.push(novoFornecedor);
   localStorage.setItem('fornecedores', JSON.stringify(fornecedores));
 
   alert('Fornecedor cadastrado com sucesso!');
   window.location.href = 'listadeFornecedores.html'; 
 }
-
-  

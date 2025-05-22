@@ -130,6 +130,7 @@ body {
   /* Botão do menu */
   .menu-icon {
     position: absolute;
+    top: 15px;
     left: 15px;
     font-size: 30px;
     cursor: pointer;
@@ -149,7 +150,7 @@ body {
     top: 0;
     left: 0;
     text-align: justify;
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo transparente */
     overflow-x: hidden;
     transition: 0.3s;
     padding-top: 70px;
@@ -166,8 +167,10 @@ body {
   }
   
   .sidebar a:hover {
-    background-color: #2c2929;
-  }
+      background-color: rgba(44, 41, 41, 0.8); /* Fundo transparente no hover */
+    }
+  
+  
 
 /*Seta para voltar*/
 .seta {
