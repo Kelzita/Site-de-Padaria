@@ -5,7 +5,8 @@
         <title>Padaria Pão Genial</title>
         <link rel="stylesheet" type="text/css" href="css/styleListaFornecedores.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-        <script src="js/sidebar.js"></script>
+        <link rel="stylesheet" href="css/modal.css">
+        <script src="js/sidebar.js" defer></script>
         <script src="js/listafornecedores.js" defer></script>
     </head>
     <body>
@@ -27,9 +28,9 @@
         </header>
 
         <h1>GERENCIAR FORNECEDORES</h1>
-       
+        <div id="alerta" class="alerta"></div>
         <div class="barra-pesquisa">
-            <input type="text" id="busca" placeholder="Pesquisar Fornecedor" onkeyup="filtrar()">
+            <input type="text" id="busca" placeholder="Pesquisar Funcionário" onkeyup="filtrar()">
             <img src="img/lupa.webp" alt="Lupa" class="icone-lupa">
         </div>
         <table class="tabela-fornecedores">
