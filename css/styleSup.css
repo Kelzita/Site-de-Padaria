@@ -2,7 +2,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-  font-family: 'Times new Roman';
+  font-family: 'sans-serif';
 
 }
 
@@ -75,8 +75,8 @@ input[type="date"] {
 
 input[type="date"]:focus {
   outline: none;
-  box-shadow: 0 0 5px #89cec6;
-  border-color: #9ddac1;
+  box-shadow: 0 0 5px #282b2a;
+  border-color: #010201;
 }
 
 .final {
@@ -109,9 +109,10 @@ input[type="date"]:focus {
   background-color: #b3e7da;
   transform: scale(1.05);
 }
-  /* Botão do menu */
-  .menu-icon {
+   /* Botão do menu */
+   .menu-icon {
     position: absolute;
+    top: 15px;
     left: 15px;
     font-size: 30px;
     cursor: pointer;
@@ -131,7 +132,7 @@ input[type="date"]:focus {
     top: 0;
     left: 0;
     text-align: justify;
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo transparente */
     overflow-x: hidden;
     transition: 0.3s;
     padding-top: 70px;
@@ -148,33 +149,10 @@ input[type="date"]:focus {
   }
   
   .sidebar a:hover {
-    background-color: #2c2929;
-  }
+      background-color: rgba(44, 41, 41, 0.8); /* Fundo transparente no hover */
+    }
 
-.suporte-btn {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  /* <-- agora no canto inferior esquerdo */
-  background-color: #89cec6;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, transform 0.2s;
-}
 
-.suporte-btn i {
-  margin-right: 5px;
-}
-
-.suporte-btn:hover {
-  background-color: #6fb7af;
-  transform: scale(1.05);
-}
 
 textarea {
   width: 100%;
@@ -190,8 +168,8 @@ textarea {
 
 textarea:focus {
   outline: none;
-  box-shadow: 0 0 5px #89cec6;
-  border-color: #9ddac1;
+  box-shadow: 0 0 5px #0a0c0c;
+  border-color: #3f4442;
 }
 
 h1.titulo {
@@ -258,43 +236,47 @@ button.gerar {
 }
 
 button.gerar:hover {
-  background-color: #6fb7af;
+  background-color: #000000;
+  color: white;
 }
 
-button.gerar:hover {
-  background-color: #6fb7af;
-}
 
 .contato {
   margin-top: 10px;
-  text-align: center;
-  /* Para centralizar os botões */
+  text-align: center; /* Centraliza os botões */
 }
 
 .contato a {
-  display: inline-block;
+  display: inline-flex; /* Para alinhar ícones se houver */
+  align-items: center;
+  justify-content: center;
   margin: 5px;
-  text-decoration: none;
-  color: #fff;
-  padding: 5px 10px;
-  /* Botões menores */
-  border-radius: 3px;
+  padding: 8px 16px;
   font-size: 14px;
-  /* Texto menor */
-  background-color: #65978c;
-  /* Cor do WhatsApp */
-  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.3s ease; /* Suavidade da animação */
+}
 
+.contato a i {
+  margin-right: 10px; /* Se houver ícone */
 }
 
 .contato a.email-btn {
-  background-color: #65978c;
-  /* Cor do E-mail */
+  background-color: #ffffff; /* Cor específica para botão de e-mail, se quiser alterar */
 }
 
 .contato a:hover {
-  opacity: 0.8;
+  background-color: #050706;
+  color: white;
+  transform: scale(1.03);
 }
+
 
 .atencao {
   font-size: 12px;

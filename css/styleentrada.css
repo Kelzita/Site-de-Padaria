@@ -47,15 +47,6 @@ html, body {
     padding: 20px;
     box-sizing: border-box;
   }
-/*titulo de saudação para o caixa*/
-.saudacao {
-    font-size: 20px;
-    color: black;
-    font-family: 'Times New Roman', Times, serif;
-    text-align: center;
-    margin-top: 20px;
-    font-weight: bold;
-}
 
 /*botão de abrir caixa*/
 .abrircaixa {
@@ -323,6 +314,7 @@ h2,h3 {
  /* Botão do menu */
  .menu-icon {
     position: absolute;
+    top: 15px;
     left: 15px;
     font-size: 30px;
     cursor: pointer;
@@ -362,4 +354,11 @@ h2,h3 {
       background-color: rgba(44, 41, 41, 0.8); /* Fundo transparente no hover */
     }
   
-  
+.seta {
+    width: 35px;
+    height: 25px;
+    top: 0; /* Mantém a seta no topo */
+    transform: translateX(-50%); /* Ajusta para centralização exata */
+    position: absolute; /* Certifique-se de que a posição seja absoluta */
+    margin: 0; /* Remove margens adicionais */
+}

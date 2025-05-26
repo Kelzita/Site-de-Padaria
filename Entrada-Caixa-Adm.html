@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada Caixa</title>
+    <link rel="stylesheet" href="css/styleentrada.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="js/entradacaixa.js" defer></script>
+    <script src="js/sidebar.js" defer></script>
+</head>
+<body>
+  <header>
+    <span id="menu-btn" class="menu-icon">&#9776;</span>
+    <img src="img/logo.png" title="Logo da Padaria">
+  
+    <!-- Apenas UM ID sidebar -->
+    <div id="sidebar" class="sidebar">
+          <a href="Suporte caixa.html"><i class="fas fa-headset"></i> Suporte</a>
+          <a href="Tela de Login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            
+        </div>
+      </header>
+      
+
+        </div>
+          <div class="retangulo">
+               <h1 class="titulo">ENTRADA DE CAIXA</h1>
+               <button class="abrircaixa"><i class="fas fa-cash-register"></i> ABRIR CAIXA</button>
+                               <a href="Entrada-caixa.html" class="voltar"> 
+                    <img class="seta" src="img/btn_voltar.png" title="seta"></a>
+                <div class="modal" id="modal">
+                 <div class="modal-content">
+                <span class="close-button" id="closeModal">&times;</span> <!-- Botão de fechar o modal-->
+                <h2> REGISTRE O VALOR INICIAL DO CAIXA:</h1>
+              
+                <form class="Formulario-ValorInicial" id="valorInicialForm">
+                  <label for="valorInicial">Valor Inicial:</label>
+                  <input type="number" id="salario" name="salario" placeholder="R$" step="0.01" min="0" required />
+
+                   <button href="caixa_adm.html" type="submit" class="confirmar">Confirmar</button>
+                   
+               </form>
+               
+            </div>
+        </div>
+        
