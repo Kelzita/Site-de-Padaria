@@ -30,14 +30,14 @@ body {
     width: 550px;
     margin: 50px auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    height: 570px; /* altura fixa */
+    height: 530px; /* altura fixa */
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    top: 60px;;
+    top: 20px;
+    margin-top: 85px;
   }
   
-  
+
   .titulo {
     text-align: center;
     font-size: 22px;
@@ -217,3 +217,12 @@ body {
     opacity: 0.9;
   }
   
+
+  .seta {
+    width: 40px ;
+    height: 30px ;
+    margin-left: 10px;
+    left: 10px;
+    margin-top: 12px;
+    padding: 0px;
+  }
