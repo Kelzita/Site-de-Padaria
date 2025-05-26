@@ -16,7 +16,7 @@ header img{
 html, body {
     height: 100%;
     margin: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'sans-serif';
 }
 
 body {
@@ -171,4 +171,12 @@ h1{
   transform: translate(-50%, -50%);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 5;
+}
+
+.saudacao {
+  font-size: 20px;
+  color: black;
+  text-align: center;
+  margin-top: 0px;
+  font-weight: bold;
 }
