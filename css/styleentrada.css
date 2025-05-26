@@ -365,7 +365,7 @@ h2,h3 {
 .seta {
     width: 35px;
     height: 25px;
-    top: 0; /* Mantém a seta no topo */
+    top: 10px; /* Adiciona uma leve margem no topo */
     transform: translateX(-50%); /* Ajusta para centralização exata */
     position: absolute; /* Certifique-se de que a posição seja absoluta */
     margin: 0; /* Remove margens adicionais */
