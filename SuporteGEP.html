@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suporte - Padaria Pão Genial</title>
+  <link rel="stylesheet" href="css/styleSup.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="js/sidebar.js" defer></script>
+</head>
+<body>
+
+  <header>
+    <span id="menu-btn" class="menu-icon">&#9776;</span>
+    <img src="img/logo.png" title="Logo da Padaria">
+  
+    <!-- Apenas UM ID sidebar -->
+    <div id="sidebar" class="sidebar">
+      <a href="gestaoestoque.html"><i class="fas fa-home"></i> Início</a>
+    <a href="Tela de Login.html" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+    </div>
+  </header>
+
+  <div class="retangulo">
+    <h1 class="titulo">SUPORTE PARA FUNCIONÁRIOS</h1>
+
+    <form id="suporte-form" action="#" method="POST">
+      <label for="nome">Seu nome (funcionário):</label>
+      <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+
+      <label for="email">Seu e-mail (funcionário):</label>
+      <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+
+      <label for="problema">Descreva o problema ou dúvida:</label>
+      <textarea id="problema" name="problema" rows="5" placeholder="Ex: Falta de produtos, problemas com o sistema de caixa..." required></textarea>
+
+      <div class="opcoes-envio">
+        <button type="button" class="gerar" onclick="enviarFormulario(event)">Enviar Solicitação</button>
+      </div>
+    </form>
+
+    <h2>Ou entre em contato diretamente:</h2>
+    <div class="contato">
+      <a href="https://wa.me/559294552420" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i> Suporte via WhatsApp
+      </a>
+      <a href="mailto:mejr.devs@gmail.com" class="email-btn">
+        <i class="fas fa-envelope"></i> Enviar E-mail
+      </a>
+      <p class="atencao">
+        Caso seja um erro do sistema, a equipe técnica será acionada imediatamente.
+      </p>
+    </div>
+  </div>
+
+  <script>
+
+  // Inicializar o EmailJS
+  (function() {
+    emailjs.init("oX0S43x9VLo9LSazU"); // Certifique-se de que é seu PUBLIC KEY (não SECRET KEY)
+  })();
+
+  function enviarFormulario(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const problema = document.getElementById("problema").value.trim();
+
+    if (!nome || !email || !problema) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    const templateParams = {
+      nome: nome,
+      email: email,
+      problema: problema
+    };
+
+    emailjs.send("service_qui0lfq", "template_3rx478n", templateParams)
+      .then(function(response) {
+        console.log("SUCESSO:", response);
+        alert("Solicitação enviada com sucesso!");
+        document.getElementById("suporte-form").reset();
+      }, function(error) {
+        console.error("ERRO:", error);
+        alert("Erro ao enviar a solicitação. Verifique a conexão ou as configurações do EmailJS.");
+      });
+  }
+
+
+  </script>
+
+</body>
+</html>
