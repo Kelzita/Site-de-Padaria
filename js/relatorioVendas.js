@@ -200,7 +200,7 @@ new Chart(document.getElementById('doughnutChart'), {
         },
         font: {
           weight: 'bold',
-          size: 14
+          size: 10
         }
       }
     }
@@ -285,7 +285,7 @@ new Chart(document.getElementById('pagamentoChart'), {
         },
         font: {
           weight: 'bold',
-          size: 14
+          size: 10
         }
       }
     }
