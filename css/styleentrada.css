@@ -26,7 +26,7 @@ body {
 html, body {
     height: 100%;
     margin: 0;
-    font-family: 'Times New Rome';
+    font-family: 'sans-serif ';
     background-image: url('../img/fundo1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
