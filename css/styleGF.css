@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    font-family: 'Times New Roman';
+    font-family: 'sans-serif ';
   }
   
   body {
@@ -170,7 +170,7 @@ html, body {
     top: 90px;
     background-color: #ffffff;
     color: black;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
     cursor: pointer;
     transition: 0.3s ease;
     font-weight: bold;
@@ -183,7 +183,8 @@ html, body {
   }
   
   .botao:hover {
-    background-color: #b3e7da;
+    background-color: #030505;
+    color: white;
     transform: scale(1.03);
   }
   
