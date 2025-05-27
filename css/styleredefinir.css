@@ -2,7 +2,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    font-family: 'Times New Roman', serif;
+    font-family: 'sans-serif ';
     background-image: url('../img/fundo1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -118,10 +118,10 @@ html, body {
     margin-bottom: 10px; /* espaço abaixo do botão */
     background-color: #ffffff; /* cor do fundo do botão */
     text-align: center; /* centraliza o texto que está inserido dentro do botão */
-    color: #000; /* cor do texto dentro do botão */
+    color: #000000; /* cor do texto dentro do botão */
     border: 1px solid #000; /* borda preta do botão, tamanho, cor e estilo */
     padding: 12px; /* espaço interno do botão */
-    font-size: 18px; /* tamanho da fonte */
+    font-size: 15px; /* tamanho da fonte */
     font-weight: bold; /* fonte em negrito */
     cursor: pointer; /* cursor muda para uma mãozinha quando coloca o mouse em cima do botão */
     transition: background-color 0.3s, transform 0.2s; /* animação para a mudança de cor do botão e transformação*/
@@ -129,7 +129,8 @@ html, body {
   }
   /* hover do botão */
   .btn-cadastrar:hover {
-    background-color: #bbe9dd; /* cor de fundo do botão quando passa o mouse em cima */
+    background-color: #000000; /* cor de fundo do botão quando passa o mouse em cima */
+    color: white;
     transform: scale(1.05); /* aumenta o tamanho do botão quando passa o mouse em cima*/
   }
   

@@ -1,7 +1,7 @@
 html, body {
    height:100%;
    margin: 0;
-   font-family: 'Times new Roman';
+   font-family: 'sans-serif ';
   
 }
 
@@ -53,6 +53,10 @@ header {
   font-family: 'Times New Roman';
   color: rgb(0, 0, 0);
 }
+.subtitulo {
+
+  font-size: 20px;
+}
 
 label {
   display: block;
@@ -62,19 +66,23 @@ label {
 }
 
 input[type="date"] {
-  border: 1px solid #7c7c7c;
-  border-radius: 3px;
-  font-size: 16px;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  border: 2px solid #3a3f3e;
+  border-radius: 8px;
+  font-size: 18px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   display: block;
-  margin: 0 auto;
+  margin: 10px auto;
+  background-color: #f9f9f9;
+  transition: box-shadow 0.3s, border-color 0.3s;
 }
 
 input[type="date"]:focus {
   outline: none;
-  box-shadow: 0 0 5px #89cec6;
-  border-color: #9ddac1;
+  box-shadow: 0 0 8px #3a3f3e;
+  border-color: #3a3f3e;
+  background-color: #ffffff;
 }
 
 .final {
@@ -86,25 +94,25 @@ input[type="date"]:focus {
 
 }
 .gerar {
-  margin: 20px auto;
+  margin: 30px auto; 
   background-color: #ffffff; 
   color: rgb(0, 0, 0); 
-  border: none; 
-  border-radius: 8px; 
+  border: 1px solid black; 
   padding: 10px 20px; 
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   transition: background-color 0.3s, transform 0.2s;
   display: block;
-  width: 120px;
+  width: 150px;
   text-align: center;
   text-decoration: none;
 }
 
 .gerar:hover {
-  background-color: #b3e7da;
+  background-color: #000000;
+  color: white;
   transform: scale(1.05); 
 }
   /* Botão do menu */
