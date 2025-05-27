@@ -54,7 +54,7 @@ h1 {
 
 .center {
   text-align: center; /* centraliza inline-blocks filhos */
-  margin-top: 40px;
+
 }
 
 .center h1,
