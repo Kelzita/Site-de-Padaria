@@ -1,22 +1,18 @@
-let valoresOriginais = [];  // Para armazenar os valores antes da edição
+let valoresOriginais = [];
 
 function carregarProdutos() {
-  const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
-
-  // Ordena os produtos por ID em ordem crescente
-  produtos.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
-
   const tabela = document.getElementById('tabelaProdutos');
-  tabela.innerHTML = '';
+  tabela.innerHTML = ''; // limpa antes de carregar
+
+  const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+  valoresOriginais = JSON.parse(JSON.stringify(produtos)); // Clona para restauração
 
   produtos.forEach((produto, index) => {
-    valoresOriginais[index] = { ...produto };  // Guarda os valores originais
-
     const linha = document.createElement('tr');
     linha.innerHTML = `
       <td>
         <span>${produto.id}</span>
-        <input class="input-gerenciar" type="text" value="${produto.id}" style="display:none" />
+        <input class="input-gerenciar" type="text" value="${produto.id}" style="display:none" readonly />
       </td>
       <td>
         <span>${produto.nome}</span>
@@ -50,15 +46,12 @@ function carregarProdutos() {
           <button class="btn-editar" onclick="ativarEdicao(this, ${index})">
             <i class="fas fa-edit"></i> Editar
           </button>
-
           <button class="btn-salvar" style="display:none" onclick="salvarEdicao(this, ${index})">
             <i class="fas fa-save"></i> Salvar
           </button>
-
           <button class="btn-cancelar" style="display:none" onclick="cancelarEdicao(this)">
             <i class="fas fa-times"></i> Cancelar
           </button>
-
           <button class="btn-apagar" onclick="apagarProduto(${index})">
             <i class="fas fa-trash-alt"></i> Apagar
           </button>
@@ -68,6 +61,7 @@ function carregarProdutos() {
     tabela.appendChild(linha);
   });
 }
+
 
 function ativarEdicao(botaoEditar, index) {
   const linha = botaoEditar.closest('tr');
@@ -81,9 +75,11 @@ function ativarEdicao(botaoEditar, index) {
 function cancelarEdicao(botaoCancelar) {
   const linha = botaoCancelar.closest('tr');
   const inputs = linha.querySelectorAll('.input-gerenciar');
+  const spans = linha.querySelectorAll('span');
+  const index = linha.rowIndex - 1; // Ignora o cabeçalho
 
-  // Restaura os valores originais (agora incluindo o id)
-  const produtoOriginal = valoresOriginais[linha.rowIndex - 1];
+  const produtoOriginal = valoresOriginais[index];
+
   inputs[0].value = produtoOriginal.id;
   inputs[1].value = produtoOriginal.nome;
   inputs[2].value = produtoOriginal.validade;
@@ -92,32 +88,21 @@ function cancelarEdicao(botaoCancelar) {
   inputs[5].value = produtoOriginal.unidade;
   inputs[6].value = produtoOriginal.preco;
 
+  spans[0].textContent = produtoOriginal.id;
+  spans[1].textContent = produtoOriginal.nome;
+  spans[2].textContent = produtoOriginal.validade;
+  spans[3].textContent = produtoOriginal.quantidade;
+  spans[4].textContent = produtoOriginal.fornecedor;
+  spans[5].textContent = produtoOriginal.unidade;
+  spans[6].textContent = `R$ ${parseFloat(produtoOriginal.preco).toFixed(2)}`;
+
   linha.querySelectorAll('span').forEach(span => span.style.display = 'inline');
-  linha.querySelectorAll('.input-gerenciar').forEach(input => input.style.display = 'none');
+  inputs.forEach(input => input.style.display = 'none');
   linha.querySelector('.btn-editar').style.display = 'inline-block';
   linha.querySelector('.btn-salvar').style.display = 'none';
   linha.querySelector('.btn-cancelar').style.display = 'none';
 }
 
-function salvarEdicao(botaoSalvar, index) {
-  const linha = botaoSalvar.closest('tr');
-  const inputs = linha.querySelectorAll('.input-gerenciar');
-
-  const novoProduto = {
-    id: inputs[0].value,
-    nome: inputs[1].value,
-    validade: inputs[2].value,
-    quantidade: parseInt(inputs[3].value),
-    fornecedor: inputs[4].value,
-    unidade: inputs[5].value,
-    preco: parseFloat(inputs[6].value).toFixed(2)
-  };
-
-  const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
-  produtos[index] = novoProduto;
-  localStorage.setItem('produtos', JSON.stringify(produtos));
-  carregarProdutos();
-}
 
 function apagarProduto(index) {
   const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
@@ -151,6 +136,27 @@ function filtrar() {
     }
   }
 }
+function salvarEdicao(botaoSalvar, index) {
+  const linha = botaoSalvar.closest('tr');
+  const inputs = linha.querySelectorAll('.input-gerenciar');
+
+  const produtoAtualizado = {
+    id: inputs[0].value.trim(),
+    nome: inputs[1].value.trim(),
+    validade: inputs[2].value,
+    quantidade: parseInt(inputs[3].value),
+    fornecedor: inputs[4].value.trim(),
+    unidade: inputs[5].value,
+    preco: parseFloat(inputs[6].value).toFixed(2),
+  };
+
+  const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+  produtos[index] = produtoAtualizado;
+  localStorage.setItem('produtos', JSON.stringify(produtos));
+  
+  carregarProdutos();
+}
 
 
 window.onload = carregarProdutos;
+
