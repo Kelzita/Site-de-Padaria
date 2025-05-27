@@ -218,36 +218,35 @@ h2,h3 {
 }
     
 .confirmar {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 12px;
-    padding: 8px 16px;
+    padding: 10px 20px;
     font-size: 14px;
     background-color: #ffffff;
     color: black;
-    border: 1px solid #ccc; 
+    border: 1px solid black;
     cursor: pointer;
     transition: 0.3s ease;
     font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     text-decoration: none;
-    margin-left: 10px;
-    margin-top: 0px;
-    margin-bottom: 70px;
-    border-color: black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    margin: 20px auto 0 auto; /* centraliza horizontalmente */
+    width: fit-content; /* tamanho ajustado ao conteúdo */
 }
+
+
 .confirmar i {
     margin-right: 10px;
-
 }
-  
+
 .confirmar:hover {
-        background-color: #000000;
-        color:white;
-        transform: scale(1.05);
-      }
-      
+    background-color: #000000;
+    color: white;
+    transform: scale(1.05);
+}
+
 
 
 .button-container {
