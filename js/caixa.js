@@ -143,7 +143,7 @@ function adicionarProduto(produto, quantidade, salvar = true, codigo = null) {
 function removerProduto(button, valor) {
   const senha = prompt("Digite a senha do administrador para remover o item:");
 
-  if (senha === "genival1020") {
+  if (senha === "******") {
     const row = button.parentElement.parentElement;
     const nomeProduto = row.children[1].textContent;
     const quantidade = parseInt(row.children[2].textContent);
