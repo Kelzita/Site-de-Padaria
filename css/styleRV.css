@@ -36,8 +36,8 @@ body {
 }
 
 .dashboard {
-    position: relative; /* ADICIONADO para posicionamento absoluto interno */
-    padding-top: 20px; /* só um espaçamentozinho extra abaixo do header */
+    position: relative; 
+    padding-top: 20px; 
     max-width: 1100px;
     margin: auto;
 }
@@ -45,17 +45,17 @@ body {
 /* Estilo para o botão voltar */
 .voltar {
     position: absolute;
-    top: 30px;       /* distância do topo do dashboard */
-    left: 10px;     /* distância da direita do dashboard */
+    top: 30px;       
+    left: 10px;     
     display: block;
-    z-index: 10;     /* para ficar acima do conteúdo */
+    z-index: 10;     
 }
 
-/* Ajuste na seta para não interferir no posicionamento absoluto */
+
 .seta {
     width: 40px;
     height: 30px;
-    margin: 0; /* removido margin-right e left */
+    margin: 0; 
 }
 
 /* Gráficos */
