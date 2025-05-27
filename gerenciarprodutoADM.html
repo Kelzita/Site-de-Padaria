@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerenciar Produtos</title>
+  <link rel="stylesheet" href="css/styleEA.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <script src="js/sidebar.js" defer></script>
+  <script src="js/editarproduto.js" defer></script>
+</head>
+<body>
+  <header>
+    <span id="menu-btn" class="menu-icon">&#9776;</span>
+    <img src="img/logo.png" title="Logo da Padaria">
+  
+    <!-- Apenas UM ID sidebar -->
+    <div id="sidebar" class="sidebar">
+      <a href="admreserva.html"><i class="fas fa-home"></i> Início</a>
+      <a href="gestaoestoqueADM.html"><i class="fas fa-boxes-stacked"></i> Gestão de Produtos e Estoque</a>
+      <a href="GestaodeFuncionarios.html"><i class="fas fa-user-tie"></i> Gestão de Funcionários</a>
+      <a href="gestaodeFornecedor.html"><i class="fas fa-truck"></i> Gestão de Fornecedores</a>
+      <a href="relatorioVendas.html"><i class="fas fa-chart-line"></i> Relatórios</a>
+      <a href="Entrada-caixa.html"><i class="fas fa-cash-register"></i> Caixa</a>
+      <a href="Suporte.html"><i class="fas fa-headset"></i> Suporte</a>
+      <a href="Tela de Login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+    </div>
+  </header>
+
+  <h1>GERENCIAR PRODUTOS</h1>
+  <div id="alerta" class="alerta"></div>
+  <div class="barra-pesquisa">
+      <input type="text" id="busca" placeholder="Pesquisar Produto" onkeyup="filtrar()">
+      <img src="img/lupa.webp" alt="Lupa" class="icone-lupa">
+  </div>
+  <table class="tabela-produtos">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Validade</th>
+      <th>Quantidade</th>
+      <th>Fornecedor</th>
+      <th>Unidade</th>
+      <th>Preço</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody id="tabelaProdutos"></tbody>
+</table>
+<div id="modalEdicao" class="modal">
+  <div class="modal-content">
+    <span  id="fecharModal" onclick="fecharModal()">&times;</span>
+    <h2>Editar Produto</h2>
+
+    <form id="formEdicao" onsubmit="event.preventDefault(); salvarEdicaoModal();">
+      <input type="hidden" id="indiceEdicao">
+      <input id="modal-id" type="text" readonly placeholder="ID do Produto"><br>
+      <label>Nome:</label>
+      <input id="modal-nome" type="text" required placeholder="Insira o nome do Produto"><br>
+      <label>Validade:</label>
+      <input id="modal-validade" type="date" required placeholder="Selecione a validade"><br>
+      <label>Quantidade:</label>
+      <input id="modal-quantidade" type="number" required placeholder="Insira a quantidade"><br>
+      <label>Fornecedor:</label>
+      <input id="modal-fornecedor" type="text" required placeholder="Insira o nome do Fornecedor"><br>
+      <label>Unidade:</label>
+      <select id="modal-unidade" required>
+      <option value="" disabled selected>Selecione a unidade</option>
+      <option value="kg">kg</option>
+      <option value="unidade">unidade</option>
+      </select><br>
+      <label>Preço:</label>
+      <input id="modal-preco" type="number" step="0.01" required placeholder="Insira o preço"><br>
+      <button type="submit">Salvar</button>
+    </form>
+
+    </form>
+  </div>
+</div>
+    <a href="gestaoestoqueADM.html" class="voltar"> 
+    <img class="seta" src="img/btn_voltar.png" title="seta"></a>     
+</body>
+</html>
