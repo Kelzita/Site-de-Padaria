@@ -26,12 +26,13 @@
             <a href="Tela de Login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
         </div>
     </header>
-
+<div class="center">
   <h1>GERENCIAR FUNCIONÁRIOS</h1>
   <div id="alerta" class="alerta"></div>
   <div class="barra-pesquisa">
       <input type="text" id="busca" placeholder="Pesquisar Funcionário" onkeyup="filtrar()">
       <img src="img/lupa.webp" alt="Lupa" class="icone-lupa">
+    </div>
   </div>
   <table class="tabela-produtos">
     <thead>
@@ -62,51 +63,48 @@
 
   
 <!-- Modal fora da tabela -->
-<div id="modalEdicao" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
-  background: rgba(0,0,0,0.5); justify-content:center; align-items:center;">
-  <div class="modal-content" style="background:#fff; padding:20px; border-radius:5px; width:400px; position:relative;">
+<div id="modalEdicao" class="modal">
+  <div class="modal-content">
     <span id="fecharModal" aria-label="Fechar Modal" ...>&times;</span>
     <h2>Editar Funcionário</h2>
     <form id="formEdicao">
       <input type="hidden" id="indiceEdicao">
-
       <label for="nomeEdicao">Nome:</label>
-      <input type="text" id="nomeEdicao" required>
+      <input type="text" id="nomeEdicao" required placeholder="Digite o nome completo">
 
       <label for="cpfEdicao">CPF:</label>
       <input type="text" id="cpfEdicao" required pattern="\d{11}" maxlength="11"
-      placeholder="Somente números" title="Digite apenas números">
+      placeholder="Somente números (ex: 12345678901)" title="Digite apenas números">
 
       <label for="rgEdicao">RG:</label>
       <input type="text" id="rgEdicao" required pattern="\d{9}" maxlength="9"
-      placeholder="Somente números" title="Digite apenas números">
+      placeholder="Somente números (ex: 123456789)" title="Digite apenas números">
 
       <label for="senhaEdicao">Senha:</label>
       <div style="display:flex; align-items:center;">
-        <input type="password" id="senhaEdicao" required style="flex:1;">
+        <input type="password" id="senhaEdicao" required style="flex:1;" placeholder="Digite a senha">
         <button type="button" id="toggleSenha" style="margin-left:5px;"><i class="fa-solid fa-eye"></i></button>
       </div>
 
       <label for="emailEdicao">Email:</label>
-      <input type="email" id="emailEdicao" required>
+      <input type="email" id="emailEdicao" required placeholder="Digite o email (ex: exemplo@dominio.com)">
 
       <label for="telefoneEdicao">Telefone:</label>
       <input type="text" id="telefoneEdicao" required pattern="\(\d{2}\) \d{4,5}-\d{4}" maxlength="15"
        placeholder="(00) 00000-0000" title="Formato: (00) 00000-0000"> 
 
       <label for="ruaEdicao">Rua:</label>
-      <input type="text" id="ruaEdicao" required>
+      <input type="text" id="ruaEdicao" required placeholder="Digite o nome da rua">
 
       <label for="numeroEdicao">Número:</label>
-      <input type="text" id="numeroEdicao" required>
+      <input type="text" id="numeroEdicao" required placeholder="Digite o número">
 
       <label for="bairroEdicao">Bairro:</label>
-      <input type="text" id="bairroEdicao" required>
+      <input type="text" id="bairroEdicao" required placeholder="Digite o bairro">
 
       <label for="cidadeEdicao">Cidade:</label>
-      <input type="text" id="cidadeEdicao" required>
+      <input type="text" id="cidadeEdicao" required placeholder="Digite a cidade">
 
-      
       <label>UF:</label>
       <select id="ufEdicao" required>
         <option value="" disabled selected>Selecione a UF</option>
@@ -147,11 +145,12 @@
         <option value="Administrador">Administrador</option>
         <option value="Gestor de Estoque">Gestor de Estoque</option>
       </select>
+      
       <label>Data de Admissão:</label>
-      <input type="date" id="admissaoEdicao" required>
+      <input type="date" id="admissaoEdicao" required placeholder="Selecione a data de admissão">
 
       <label>Salário:</label>
-      <input type="number" id="salarioEdicao" step="0.01" min="0" required>
+      <input type="number" id="salarioEdicao" step="0.01" min="0" required placeholder="Digite o salário (ex: 1500.00)">
 
       <br><br>
       <button type="submit"><i class="fas fa-save"></i>  Salvar</button>

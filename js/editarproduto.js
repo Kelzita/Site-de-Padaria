@@ -1,22 +1,18 @@
-let valoresOriginais = [];  // Para armazenar os valores antes da edição
+let valoresOriginais = [];
 
 function carregarProdutos() {
-  const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
-
-  // Ordena os produtos por ID em ordem crescente
-  produtos.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
-
   const tabela = document.getElementById('tabelaProdutos');
-  tabela.innerHTML = '';
+  tabela.innerHTML = ''; // limpa antes de carregar
+
+  const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+  valoresOriginais = JSON.parse(JSON.stringify(produtos)); // Clona para restauração
 
   produtos.forEach((produto, index) => {
-    valoresOriginais[index] = { ...produto };  // Guarda os valores originais
-
     const linha = document.createElement('tr');
     linha.innerHTML = `
       <td>
         <span>${produto.id}</span>
-        <input class="input-gerenciar" type="text" value="${produto.id}" style="display:none" />
+        <input class="input-gerenciar" type="text" value="${produto.id}" style="display:none" readonly />
       </td>
       <td>
         <span>${produto.nome}</span>
@@ -47,18 +43,9 @@ function carregarProdutos() {
       </td>
       <td class="acoes">
         <div class="grupo-botoes">
-          <button class="btn-editar" onclick="ativarEdicao(this, ${index})">
+          <button class="btn-editar" onclick="abrirModalEdicao(${index})">
             <i class="fas fa-edit"></i> Editar
           </button>
-
-          <button class="btn-salvar" style="display:none" onclick="salvarEdicao(this, ${index})">
-            <i class="fas fa-save"></i> Salvar
-          </button>
-
-          <button class="btn-cancelar" style="display:none" onclick="cancelarEdicao(this)">
-            <i class="fas fa-times"></i> Cancelar
-          </button>
-
           <button class="btn-apagar" onclick="apagarProduto(${index})">
             <i class="fas fa-trash-alt"></i> Apagar
           </button>
@@ -69,54 +56,58 @@ function carregarProdutos() {
   });
 }
 
-function ativarEdicao(botaoEditar, index) {
-  const linha = botaoEditar.closest('tr');
-  linha.querySelectorAll('span').forEach(span => span.style.display = 'none');
-  linha.querySelectorAll('.input-gerenciar').forEach(input => input.style.display = 'inline-block');
-  linha.querySelector('.btn-editar').style.display = 'none';
-  linha.querySelector('.btn-salvar').style.display = 'inline-block';
-  linha.querySelector('.btn-cancelar').style.display = 'inline-block';
+function abrirModalEdicao(index) {
+  const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+  const produto = produtos[index];
+  
+  if (!produto) return;
+
+  // Preencher inputs do modal
+  document.getElementById('modal-id').value = produto.id;
+  document.getElementById('modal-nome').value = produto.nome;
+  document.getElementById('modal-validade').value = produto.validade;
+  document.getElementById('modal-quantidade').value = produto.quantidade;
+  document.getElementById('modal-fornecedor').value = produto.fornecedor;
+  document.getElementById('modal-unidade').value = produto.unidade;
+  document.getElementById('modal-preco').value = produto.preco;
+
+  // Guardar índice para salvar
+  const modal = document.getElementById('modal');
+  modal.dataset.produtoIndex = index;
+
+  // Mostrar modal
+  modal.style.display = 'block';
 }
 
-function cancelarEdicao(botaoCancelar) {
-  const linha = botaoCancelar.closest('tr');
-  const inputs = linha.querySelectorAll('.input-gerenciar');
 
-  // Restaura os valores originais (agora incluindo o id)
-  const produtoOriginal = valoresOriginais[linha.rowIndex - 1];
-  inputs[0].value = produtoOriginal.id;
-  inputs[1].value = produtoOriginal.nome;
-  inputs[2].value = produtoOriginal.validade;
-  inputs[3].value = produtoOriginal.quantidade;
-  inputs[4].value = produtoOriginal.fornecedor;
-  inputs[5].value = produtoOriginal.unidade;
-  inputs[6].value = produtoOriginal.preco;
+function salvarEdicaoModal() {
+  const index = parseInt(document.getElementById('modal').dataset.produtoIndex);
+  const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
 
-  linha.querySelectorAll('span').forEach(span => span.style.display = 'inline');
-  linha.querySelectorAll('.input-gerenciar').forEach(input => input.style.display = 'none');
-  linha.querySelector('.btn-editar').style.display = 'inline-block';
-  linha.querySelector('.btn-salvar').style.display = 'none';
-  linha.querySelector('.btn-cancelar').style.display = 'none';
-}
-
-function salvarEdicao(botaoSalvar, index) {
-  const linha = botaoSalvar.closest('tr');
-  const inputs = linha.querySelectorAll('.input-gerenciar');
-
-  const novoProduto = {
-    id: inputs[0].value,
-    nome: inputs[1].value,
-    validade: inputs[2].value,
-    quantidade: parseInt(inputs[3].value),
-    fornecedor: inputs[4].value,
-    unidade: inputs[5].value,
-    preco: parseFloat(inputs[6].value).toFixed(2)
+  const produtoAtualizado = {
+    id: document.getElementById('modal-id').value.trim(),
+    nome: document.getElementById('modal-nome').value.trim(),
+    validade: document.getElementById('modal-validade').value,
+    quantidade: parseInt(document.getElementById('modal-quantidade').value),
+    fornecedor: document.getElementById('modal-fornecedor').value.trim(),
+    unidade: document.getElementById('modal-unidade').value,
+    preco: parseFloat(document.getElementById('modal-preco').value).toFixed(2),
   };
 
-  const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
-  produtos[index] = novoProduto;
+  if (!produtoAtualizado.nome || isNaN(produtoAtualizado.quantidade) || isNaN(produtoAtualizado.preco)) {
+    alert("Preencha todos os campos corretamente.");
+    return;
+  }
+
+  produtos[index] = produtoAtualizado;
   localStorage.setItem('produtos', JSON.stringify(produtos));
+
+  fecharModal();
   carregarProdutos();
+}
+
+function fecharModal() {
+  document.getElementById('modal').style.display = 'none';
 }
 
 function apagarProduto(index) {
@@ -151,6 +142,5 @@ function filtrar() {
     }
   }
 }
-
 
 window.onload = carregarProdutos;
