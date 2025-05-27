@@ -83,9 +83,11 @@ function carregarComanda() {
   comanda = comandas[numeroComanda] || { itens: [] };
 
   comanda.itens.forEach(item => {
-    adicionarProduto({nome:item.nome,preco:item.preco}, item, item.quantidade, false);
+    const produto = produtos[item.codigo] || { nome: item.nome, preco: item.preco };
+    adicionarProduto(produto, item.quantidade, false, item.codigo);
   });
-
+  
+  
   document.getElementById('subtotal').textContent = subtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 

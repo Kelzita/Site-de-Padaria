@@ -137,7 +137,7 @@ function enviarComanda() {
   alert("Comanda enviada para o caixa!");
   
   // Redireciona para o caixa passando o número da comanda na URL
-  window.location.href = `caixa.html?comanda=${encodeURIComponent(numeroComanda)}`;
+  window.location.href = `caixa_caixa.html?comanda=${encodeURIComponent(numeroComanda)}`;
 }
 
 window.onload = () => {
