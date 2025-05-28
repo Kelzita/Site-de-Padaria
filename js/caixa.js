@@ -112,14 +112,13 @@ function adicionarProduto(produto, quantidade, salvar = true, codigo = null) {
     <td>${quantidade}</td>
     <td>${produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
     <td>${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
-    <td><button onclick="removerProduto(this, ${total})">Remover</button></td>
+    <td><button onclick="removerProduto(this, ${total})" class="remove">Remover</button></td>
   `;
   tabela.appendChild(row);
 
   subtotal += total;
   document.getElementById('subtotal').textContent = subtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  document.getElementById('valorUnit').textContent = produto.preco.toFixed(2);
-  document.getElementById('valorItem').textContent = total.toFixed(2);
+
   contador++;
 
   if (salvar) {
@@ -138,6 +137,23 @@ function adicionarProduto(produto, quantidade, salvar = true, codigo = null) {
     localStorage.setItem('comandas', JSON.stringify(comandas));
   }
 }
+if (salvar && codigo) {
+  numeroComanda = getNumeroComanda();
+  comandas = JSON.parse(localStorage.getItem('comandas')) || {};
+  comanda = comandas[numeroComanda] || { itens: [] };
+
+  // Verifica se item já existe na comanda
+  const itemExistente = comanda.itens.find(item => item.codigo === codigo);
+  if (itemExistente) {
+    itemExistente.quantidade += quantidade;
+  } else {
+    comanda.itens.push({ codigo, nome: produto.nome, preco: produto.preco, quantidade });
+  }
+
+  comandas[numeroComanda] = comanda;
+  localStorage.setItem('comandas', JSON.stringify(comandas));
+}
+
 
 // Função removerProduto atualizada para comanda dinâmica
 function removerProduto(button, valor) {

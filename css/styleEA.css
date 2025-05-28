@@ -149,6 +149,7 @@ td:last-child, th:last-child {
   .alerta {
     color: red;
     font-weight: bold;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* borda na fonte */
   }
 
   /*Side Bar*/
@@ -200,7 +201,16 @@ td:last-child, th:last-child {
   .seta {
     width: 40px ;
     height: 30px ;
-    margin-top: 220px;
+    margin-top: 20px;
+    margin-left: 0px;
+    left: 5px;
+    position: absolute;
+  }
+
+  .seta1 {
+    width: 40px ;
+    height: 30px ;
+    margin-top: 300px ;
     margin-left: 0px;
     left: 5px;
     position: absolute;
@@ -242,3 +252,26 @@ td:last-child, th:last-child {
   transform: scale(1.05); /* aumenta o tamanho do botão quando passa o mouse em cima*/
 }
  
+.engrenagem {
+
+  text-align: center;
+}
+.btn-editar, .btn-salvar, .btn-cancelar, .btn-apagar,  .btn-inativar {
+  margin: 2px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-editar { background-color: #0275d8; color: white; }
+.btn-salvar { background-color: #5cb85c; color: white; }
+.btn-cancelar { background-color: #f0ad4e; color: white; }
+.btn-apagar { background-color: #d9534f; color: white; }
+.btn-inativar { background-color: #e74c3c; color: white; }
+
+.btn-editar:hover { background-color: #025aa5; }
+.btn-salvar:hover { background-color: #449d44; }
+.btn-cancelar:hover { background-color: #ec971f; }
+.btn-apagar:hover { background-color: #c9302c; }
+.btn-inativar:hover { background-color: #c0392b; }

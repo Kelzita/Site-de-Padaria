@@ -57,45 +57,5 @@
       </p>
     </div>
   </div>
-
-  <script>
-
-  // Inicializar o EmailJS
-  (function() {
-    emailjs.init("oX0S43x9VLo9LSazU"); // Certifique-se de que é seu PUBLIC KEY (não SECRET KEY)
-  })();
-
-  function enviarFormulario(event) {
-    event.preventDefault();
-
-    const nome = document.getElementById("nome").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const problema = document.getElementById("problema").value.trim();
-
-    if (!nome || !email || !problema) {
-      alert("Por favor, preencha todos os campos.");
-      return;
-    }
-
-    const templateParams = {
-      nome: nome,
-      email: email,
-      problema: problema
-    };
-
-    emailjs.send("service_qui0lfq", "template_3rx478n", templateParams)
-      .then(function(response) {
-        console.log("SUCESSO:", response);
-        alert("Solicitação enviada com sucesso!");
-        document.getElementById("suporte-form").reset();
-      }, function(error) {
-        console.error("ERRO:", error);
-        alert("Erro ao enviar a solicitação. Verifique a conexão ou as configurações do EmailJS.");
-      });
-  }
-
-
-  </script>
-
 </body>
 </html>

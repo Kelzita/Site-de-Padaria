@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     tabela.innerHTML = '';
       if (!existeGenivaldo) {
         funcionarios.push({
-          nome: "Genivaldo da Silva",
+          nome: "Genivaldo",
           cpf: "12345678900",
           rg: "7859462318",
-          senha: "senha123",
+          senha: "admin123",
           email: "genivaldoSilva@email.com",
           telefone: "(31) 92379-9792",
           rua: "Rua das Flores",

@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Gestão de Produtos/title>
+  <title>Gestão de Produtos</title>
   <link rel="stylesheet" href="css/styleEA.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/modal.css">
@@ -43,7 +43,7 @@
       <th>Fornecedor</th>
       <th>Unidade</th>
       <th>Preço</th>
-      <th>Ações</th>
+      <th class="engrenagem"><i class="fas fa-cog"></i> </th>
     </tr>
   </thead>
   <tbody id="tabelaProdutos"></tbody>
@@ -55,7 +55,7 @@
 
     <form id="formEdicao" onsubmit="event.preventDefault(); salvarEdicaoModal();">
       <input type="hidden" id="indiceEdicao">
-      <input id="modal-id" type="text" readonly placeholder="ID do Produto"><br>
+      <input id="modal-id" type="hidden" >
       <label>Nome:</label>
       <input id="modal-nome" type="text" required placeholder="Insira o nome do Produto"><br>
       <label>Validade:</label>
@@ -79,6 +79,6 @@
   </div>
 </div>
     <a href="gestaoestoqueADM.html" class="voltar"> 
-    <img class="seta" src="img/btn_voltar.png" title="seta"></a>     
+    <img class="seta1" src="img/btn_voltar.png" title="seta"></a>     
 </body>
 </html>

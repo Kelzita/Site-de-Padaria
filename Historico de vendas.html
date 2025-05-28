@@ -38,9 +38,15 @@
     <form action="HistoricoVendas.html" method="get">
       <label for="dataInicial" class="subtitulo">Selecione a data inicial:</label>
       <input type="date" id="dataInicial" name="dataInicial" required>
-    
+        
       <label class="final" for="dataFinal">Selecione a data final:</label>
       <input class="inputfinal" type="date" id="dataFinal" name="dataFinal" required>
+
+      <script>
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('dataInicial').setAttribute('max', today);
+        document.getElementById('dataFinal').setAttribute('max', today);
+      </script>
     
       <button type="submit" class="gerar">Gerar Histórico</button>
     </form>

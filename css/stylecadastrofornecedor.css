@@ -130,8 +130,8 @@ header img {
 .formulario-cadastro input:focus,
 .formulario-cadastro select:focus {
   outline: none;
-  box-shadow: 0 0 5px #89cec6;
-  border-color: #9ddac1;
+  box-shadow: 0 0 5px #333131;
+  border-color: #000000;
 }
 
 /* Botão de cadastro */
@@ -221,7 +221,7 @@ header img {
   width: 100%;
   padding: 10px; /* Ajustado para não ficar excessivo */
   font-size: 16px; /* Consistente com o tamanho das fontes dos outros campos */
-  border: 1px solid #7c7c7c; /* Borda igual aos outros inputs */
+  border: 1px solid #000000; /* Borda igual aos outros inputs */
   box-sizing: border-box; /* Para incluir o padding no tamanho total do input */
 }
 
