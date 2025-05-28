@@ -27,7 +27,7 @@ function fecharModal() {
 function finalizarVenda() {
   alert("Venda finalizada com sucesso!");
   fecharModal();
-  window.location.href = "caixa.html";
+  window.location.href = "caixa_caixa.html";
 }
 
 
@@ -36,7 +36,7 @@ function mostrarQrCode() {
 }
 function irParaCaixa() {
   alert("Pagamento via PIX confirmado!");
-  window.location.href = "caixa.html";
+  window.location.href = "caixa_caixa.html";
 }
 function fecharQrCode() {
   document.getElementById("modalQrCode").style.display = "none";

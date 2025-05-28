@@ -2,7 +2,7 @@ function cadastrar(event) {
   event.preventDefault(); 
 
   const nome = document.getElementById('nomefunc').value.trim();
-  const cnpj = document.getElementById('cpf').value.trim();
+  const cnpj = document.getElementById('cnpj').value.trim();
   const email = document.getElementById('rg').value.trim();
   const telefone = document.getElementById('telefone').value.trim();
 
@@ -34,5 +34,6 @@ function cadastrar(event) {
   localStorage.setItem('fornecedores', JSON.stringify(fornecedores));
 
   alert('Fornecedor cadastrado com sucesso!');
-  window.location.href = 'listadeFornecedores.html'; 
+  console.log('Redirecting to listadeFornecedores.html');
+  window.location.href = './listadeFornecedores.html'; // Ensure the path is correct
 }

@@ -66,16 +66,16 @@ label {
 }
 
 input[type="date"] {
-  border: 2px solid #3a3f3e;
+  border: 1px solid #3a3f3e;
   border-radius: 8px;
-  font-size: 18px;
-  padding: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  padding: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
   display: block;
   margin: 10px auto;
-  background-color: #f9f9f9;
-  transition: box-shadow 0.3s, border-color 0.3s;
+  background-color: #fafafa;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 input[type="date"]:focus {
@@ -83,6 +83,7 @@ input[type="date"]:focus {
   box-shadow: 0 0 8px #3a3f3e;
   border-color: #3a3f3e;
   background-color: #ffffff;
+  transform: scale(1.03);
 }
 
 .final {
