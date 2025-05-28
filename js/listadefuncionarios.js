@@ -6,7 +6,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function carregarFuncionarios() {
     const funcionarios = JSON.parse(localStorage.getItem('funcionarios')) || [];
+    const existeGenivaldo = funcionarios.some(func => func.funcao === 'Administrador'); 
     tabela.innerHTML = '';
+      if (!existeGenivaldo) {
+        funcionarios.push({
+          nome: "Genivaldo da Silva",
+          cpf: "12345678900",
+          rg: "7859462318",
+          senha: "senha123",
+          email: "genivaldoSilva@email.com",
+          telefone: "(31) 92379-9792",
+          rua: "Rua das Flores",
+          numero: "100",
+          bairro: "Centro",
+          cidade: "Belo Horizonte",
+          uf: "SC",
+          funcao: "Administrador",
+          admissao: "2023-01-01",
+          salario: "3500.00",
+          ativo: true
+        });
+    
+        localStorage.setItem('funcionarios', JSON.stringify(funcionarios));
+      }
+    
+    
 
     funcionarios.forEach((func, index) => {
       const tr = document.createElement('tr');
@@ -164,14 +188,17 @@ function filtrar() {
   const linhas = document.querySelectorAll("#tabelaProdutos tr");
 
   linhas.forEach(linha => {
-    const colunas = linha.querySelectorAll("td");
+    const idColuna = linha.querySelector("td:first-child"); // Coluna do ID
+    const nomeColuna = linha.querySelector("td:nth-child(2)"); // Coluna do Nome
     let encontrado = false;
 
-    colunas.forEach(coluna => {
-      if (coluna.textContent.toUpperCase().includes(filtro)) {
-        encontrado = true;
-      }
-    });
+    if (idColuna && idColuna.textContent.toUpperCase().includes(filtro)) {
+      encontrado = true;
+    }
+
+    if (nomeColuna && nomeColuna.textContent.toUpperCase().includes(filtro)) {
+      encontrado = true;
+    }
 
     linha.style.display = encontrado ? "" : "none";
   });

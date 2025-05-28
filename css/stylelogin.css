@@ -29,20 +29,6 @@ header {
   z-index: 10;
 }
 
-header img {
-  height: 70px;
-  width: 70px;
-}
-
-.menu-btn {
-  position: absolute;
-  left: 15px;
-  font-size: 30px;
-  cursor: pointer;
-  color: rgb(99, 179, 168);
-  z-index: 11;
-}
-
 
 /* Login */
 .background {

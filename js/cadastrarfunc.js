@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Adiciona o evento de toggle para exibir/ocultar senha
+  const toggleSenha = document.getElementById('toggleSenha');
+  const senhaInput = document.getElementById('senha_funcionario');
+
+  toggleSenha.addEventListener('click', function () {
+    if (senhaInput.type === 'password') {
+      senhaInput.type = 'text';
+      toggleSenha.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        } else {
+      senhaInput.type = 'password';
+      toggleSenha.innerHTML = '<i class="fas fa-eye"></i>';
+    }
+  });
+
   document.getElementById('formCadastro').addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -6,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
       nome: document.getElementById('nomefunc').value,
       cpf: document.getElementById('cpf').value,
       rg: document.getElementById('rg').value,
-      senha: document.getElementById('senha_funcionario').value,
+      senha: senhaInput.value,
       email: document.getElementById('email').value,
       telefone: document.getElementById('telefone').value,
       rua: document.getElementById('rua').value,
