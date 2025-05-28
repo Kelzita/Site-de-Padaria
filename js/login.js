@@ -71,13 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = "Entrada-caixa.html";
         break;
       case 'balconista':
-        window.location.href = "balconista.html";
+        window.location.href = "entrada_comanda.html";
         break;
       case 'gestor de estoque':
         window.location.href = "gestaoestoque.html";
         break;
       default:
-        window.location.href = "home.html";
+        window.location.href = "Tela de Login.html";
         break;
     }
   }
