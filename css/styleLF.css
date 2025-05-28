@@ -277,4 +277,7 @@ td:last-child, th:last-child {
   .btn-excluir:hover {
     background-color: #c0392b;
   }
-  
+  .engrenagem {
+    text-align: center;
+
+  }
