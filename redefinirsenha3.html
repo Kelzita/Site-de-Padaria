@@ -1,44 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="PT-BR">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redefinição de Senha</title>
-  <link rel="stylesheet" href="css/styleredefinir.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--==== Ícones ====-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+    <!--==== Fontes do Google ====-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap">
+    <!--==== CSS - EXTERNO ====-->
+    <link rel="stylesheet" href="css/stylelogin.css">
+    <style>
+
+  
+    </style>
+    <title>Login</title>
+</head>
 
 <body>
-
-  <header>
-    <img src="img/logo.png" title="Logo da Padaria">
+    <div class="login">
+        <img src="../img/fundo1.jpg" alt="Fundo da página" class="background">
+        <form action="#" method="post" class="formulario-style">
+            <h1 class="titulo-style1">Redefinir Senha</h1>
+            <div class="conteudo">
+                <div class="caixa-style">
+                    <i class="ri-lock-2-line login__icon"></i>
+                    <div class="campo-input">
+                        <input name="email" type="email" class="style-input" id="email" placeholder=" ">
+                        <label for="email" class="style-label">E-mail</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="botao-style-redefinir" onclick="VerificarCampos()">Enviar código para o Email</button>
+        </form>
     </div>
-  </header>
-
-  <div class="retangulo">
-
-    <div class="painel-botoes">
-        <a href="Tela de Login.html" class="voltar"> 
-            <img class="seta" src="img/btn_voltar.png" title="seta"></a>
-        <h1 class="titulo">REDEFINIR SENHA <i class="fas fa-key"></i></h1>
-        <h2 class="subtitulo">Para redefinir a senha é necessário inserir seu email e usuário.<br> Enviaremos um link para a troca de senha!</h2>
-
-    <form class="formulario-cadastro">
-     <label for="usuario"><i class="fas fa-user"></i> Usuário</label>
-     <input type="text" id="usuario" name="user" placeholder="Digite o nome de usuário" required />
-
-     <label for="email"><i class="fas fa-envelope"></i> E-mail:</label>
-     <input type="text" id="email" name="email1" placeholder="Digite o e-mail cadastrado" />
-
-     <button type="submit" class="btn-cadastrar">
-        <i class="fas fa-check-circle"></i> Enviar
-      </button>
-      <img src="img/OSMARZINHO.jpg" alt="Mascote" class="osmar">
-      
-    </form>
-    </div>
-  
-  </button>
-</form>
-
 </body>
-</html>

@@ -1,228 +1,70 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="PT-BR">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
-  <link rel="stylesheet" href="css/stylelogin.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-  <script src="js/login.js" defer></script>
-  <style>
-    /*  ---------------------- Reset e base ---------------------- */
-  /* Reset e base */
-* {
-  margin: 0;  /*Remove as margens de todos os elementos*/
-  padding: 0; /*Remove as margens e o padding de todos os elementos*/
-  box-sizing: border-box; /*Define o box-sizing para border-box, o que significa que o padding e a borda serão incluídos na largura e altura total do elemento*/
-  font-family: "Quicksand", sans-serif; /* Define a fonte padrão para o corpo da página */
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--==== Ícones ====-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+    <!--==== Fontes do Google ====-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap">
+    <!--==== CSS - EXTERNO ====-->
+    <link rel="stylesheet" href="css/stylelogin.css">
 
-/* ---------------------- Estilo do corpo ---------------------- */
-/*Fundo da Página */
-.background {
-  position: fixed; /*Fixa o fundo da pagina */
-  top: 0; /*Alinha o fundo ao topo da página*/
-  left: 0; /*Alinha o fundo à esquerda da página*/
-  right: 0; /*Alinha o fundo à direita da página*/
-  bottom: 0; /*Alinha o fundo à parte inferior da página*/
-  width: 100%; /*Define a largura do fundo como 100% da tela*/
-  height: 100%; /*Define a altura do fundo como 100% da tela*/
-  background-image: url('img/fundo1.jpg'); /*Imagem de fundo da página*/
-  background: cover; /*Cobre toda a área do fundo com a imagem*/ 
-  background-size: cover; /*Cobre toda a área do fundo com a imagem, mantendo a proporção*/
-  background-attachment: fixed; /*Fixa a imagem de fundo, não permitindo que ela se mova com o scroll da página*/
-  background-repeat: no-repeat; /*Não repete a imagem de fundo*/
-  background-position: center; /*Centraliza a imagem de fundo*/;
-  
-}
 
-/* ---------------------- Estilo do formulário de login ---------------------- */
-.login {
-  background-color: white; /*Cor de fundo do formulário de login*/
-  width: 500px; /*Largura do formulário de login*/
-  height: 500px; /*Altura do formulário de login*/
-  position: absolute; /*Posiciona o formulário de login de forma absoluta*/
-  top: 50%; /*Posiciona o formulário de login no meio da tela verticalmente*/
-  left: 50%; /*Posiciona o formulário de login no meio da tela horizontalmente*/
-  transform: translate(-50%, -50%); /*Centraliza o formulário de login na tela*/
-  border-radius: 10px; /*Arredonda os cantos do formulário de login*/
-}
-h1 {
-  text-align: center; /*Alinha o texto do cabeçalho ao centro*/
-  color: #000000; /*Cor do texto do cabeçalho*/
-  margin-top: 20px; /*Margem superior do cabeçalho*/
-}
-input {
-  display: flex;
-  width: 80%; /*Largura dos campos de entrada*/
-  height: 40px; /*Altura dos campos de entrada*/
-  margin: 10px auto; /*Margem automática para centralizar os campos de entrada*/
-  
-}
-
-input:hover {
-  border: 2px solid #000000; /*Borda preta ao passar o mouse sobre os campos de entrada*/
-  transition: 0.3s; /*Transição suave ao passar o mouse*/
-  box-shadow: 0 0 10px rgba(126, 126, 126, 0.4); /*Sombra suave ao passar o mouse*/
-  transform: scale(1.01); /*Aumenta ligeiramente o tamanho dos campos de entrada ao passar o mouse*/
-  
-}
-.titulo {
-  display: block; /* Faz o rótulo ocupar uma linha inteira */
-  color: black; /* Cor do texto do rótulo */
-  font-weight: bold; /* Negrito para o texto do rótulo */
-  font-size: 16px; /* Tamanho da fonte do rótulo */
-  margin-bottom: 5px; /* Espaço entre o rótulo e o campo de entrada */
-  margin-left: 45px; /* Espaço à esquerda do rótulo para alinhamento com o campo de entrada */ 
-  margin-top: 20px; /* Espaço acima do rótulo */
-  text-align: left; /* Alinha o texto à esquerda */
-}
-
-p {
-  text-align: center; /* Alinha o texto do parágrafo ao centro */
-  color: #ff0000; /* Cor do texto do parágrafo */
-  font-size: 14px; /* Tamanho da fonte do parágrafo */
-  margin-top: 20px; /* Margem superior do parágrafo */
-}
-.botao {
-  display: flex; /* Exibe o botão como um elemento flexível */
-  justify-content: center; /* Centraliza o botão horizontalmente */
-  align-items: center; /* Centraliza o botão verticalmente */
-  margin-top: 120px; /* Margem superior do botão */
-  background-color: white;
-  color: rgb(0, 0, 0); /* Cor do texto do botão */
-  box-shadow: 0 0 10px rgba(126, 126, 126, 0.4); /* Sombra suave ao passar o mouse */
-  cursor: pointer; /* Muda o cursor para indicar que o botão é clicável */
-  position: absolute; /* Posiciona o botão de forma absoluta */
-  top: 250px;
-  left: 50%; 
-  margin-bottom: 800px;
-  transform: translateX(-50%); /* Centraliza o botão horizontalmente */
-  width: 150px; /* Largura do botão */
-  height: 40px; /* Altura do botão */
-  border-radius: 5px; /* Arredonda os cantos do botão */
-  font-size: 16px; /* Tamanho da fonte do botão */
-  font-weight: bold; /* Negrito para o texto do botão */
-}
-.botao:hover {
-  color: white; /* Cor do texto do botão ao passar o mouse */
-  background-color: black; /* Cor de fundo do botão ao passar o mouse */
-  transition: 0.3s; /* Transição suave ao passar o mouse */
-  box-shadow: 0 0 15px rgba(126, 126, 126, 0.6); /* Sombra mais intensa ao passar o mouse */
-}
-/* Estilo para o ícone fa fa-user */
-.fa-user {
-  font-size: 20px; /* Define o tamanho do ícone */
-  color: #000000; /* Define a cor do ícone */
-  margin-left: 2px;
-  margin-top: 10px; /* Espaço acima do ícone */
-  vertical-align: middle; /* Alinha o ícone verticalmente ao meio */
-}
-/*Estilo do ícone fa fa-key*/
-.fa-key {
-  font-size: 20px; /* Define o tamanho do ícone */
-  color: #000000; /* Define a cor do ícone */
-  margin-left: 21px;
-  margin-top: 10px; /* Espaço acima do ícone */
-  vertical-align: middle; /* Alinha o ícone verticalmente ao meio */
-}
-.label-icon1 {
-  display: flex;
-  align-items: center;
-  margin-left: 45px;
-  margin-top: 20px;
-  gap: 8px;
-}
-
-.label-icon1 i {
-  font-size: 18px;
-  color: #000;
-}
-
-.label-icon1 .titulo {
-  margin: 0;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.label-icon2 {
-  display: flex;
-  align-items: center;
-  margin-left: 25px;
-  margin-top: 20px;
-  gap: 8px;
-}
-
-.label-icon2 i {
-  font-size: 18px;
-  color: #000;
-}
-
-.label-icon2 .titulo {
-  margin: 0;
-  font-size: 16px;
-  font-weight: bold;
-}
-.esqueceu-senha {
-  font-size: 16px;
-  color: #297bd9; /* Cor do texto do link "Esqueceu a senha?" */
-  margin-left: 50px;
-  
-}
-.avatar {
-  display: block;
-  margin: 0 auto;
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-  </style>
+    <title>Login</title>
 </head>
 
 <body>
-  <div class="background"> <!--Div para o fundo da página-->
-    <div class="login"> <!--Div do Login-->
-      <form action="#" method="post"> <!--Início do Formulário-->
-        <img src="img/avatar.png" alt="Avatar" class="avatar"> <!--Imagem do Avatar-->
-        <h1>LOGIN</h1>
-        <p>* Entre com os seus dados corretamente para ter acesso ao sistema.</p>
-
-        <div class="input-container">
-          <div class="label-icon1">
-            <i class="fa fa-user"></i>
-            <label class="titulo">Usuário:</label>
-          </div>
-          <input type="text" name="usuario" id="usuario" placeholder="Digite seu usuário" required>
+    <body>
+        <div class="login">
+          <img src="../img/fundo1.jpg" alt="Fundo da página" class="background">
+      
+          <form action="#" method="post" class="formulario-style">
+            <h1 class="titulo-style">Login</h1>
+      
+            <div class="conteudo">
+              <div class="caixa-style">
+                <i class="ri-user-3-line login__icon"></i>
+                <div class="campo-input">
+                  <input name="usuario" type="text" class="style-input" id="usuario" placeholder=" ">
+                  <label for="usuario" class="style-label">Usuário</label>
+                </div>
+              </div>
+      
+              <div class="caixa-style">
+                <i class="ri-lock-2-line login__icon"></i>
+                <div class="campo-input">
+                  <input name="senha" type="password" class="style-input" id="senha" placeholder=" ">
+                  <label for="senha" class="style-label">Senha</label>
+                  <i class="ri-eye-off-line login__eye" id="login-eye" onclick="toggleSenha()"></i>
+                </div>
+              </div>
+            </div>
+      
+            <div class="link-auxiliar">
+              <a href="redefinirsenha.html" class="esqueci-senha-style">Esqueceu a senha?</a>
+            </div>
+      
+            <button type="submit" class="botao-style" onclick="VerificarCampos()">Login</button>
+          </form>
         </div>
-
-        <div class="input-container">
-          <div class="label-icon2">
-            <i class="fa fa-key"></i>
-            <label class="titulo">Senha:</label>
-          </div>
-          <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
-        </div>
-        <div>
-          <a name="esqueceu-senha" class="esqueceu-senha" href="#">Esqueceu a senha? Clique aqui!</a>
-        </div>
-
-        <div>
-          <button class="botao" type="submit" id="botao-login" name="botao-login">Entrar</button>
-        </div>
-      </form>
-
-    </div>
-
-  </div>
 </body>
+<script>
+    function toggleSenha() {
+        const inputSenha = document.getElementById("senha");
+        const botao = document.getElementById("login-eye");
+
+        if (inputSenha.type === "password") {
+            inputSenha.type = "text";
+            botao.classList.remove("ri-eye-off-line");
+            botao.classList.add("ri-eye-line");
+        } else {
+            inputSenha.type = "password";
+            botao.classList.remove("ri-eye-line");
+            botao.classList.add("ri-eye-off-line");
+        }
+    }
+</script>
 
 </html>
