@@ -32,20 +32,20 @@
         <h1 class="titulo">CADASTRAR FORNECEDOR</h1>
 
         <label for="nome"><i class="fas fa-user"></i> Nome do Fornecedor:</label>
-        <input type="text" id="nomefunc" name="nome_funcionario" placeholder="Insira o nome" required />
+        <input type="text" id="nomefunc" name="nome_funcionario" placeholder="Insira o nome"  />
 
         <label for="cnpj"><i class="fas fa-address-card"></i> CNPJ:</label>
-        <input type="text" id="cnpj" name="cnpj" maxlength="14" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 14)" pattern="\d{14}" placeholder="Insira o CNPJ (somente números)" required />
+        <input type="text" id="cnpj" name="cnpj" maxlength="14" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 14)" pattern="\d{14}" placeholder="Insira o CNPJ (somente números)"  />
 
         <label for="rg"><i class="fas fa-id-card"></i> Email:</label>
-        <input type="email" id="rg" name="rg"  placeholder="Insira o Email" required />
+        <input type="email" id="rg" name="rg"  placeholder="Insira o Email"  />
 
         <label for="telefone"><i class="fas fa-phone"></i> Telefone:</label>
-        <input type="text" id="telefone" required pattern="\(\d{2}\) \d{4,5}-\d{4}" maxlength="15"
+        <input type="text" id="telefone"  pattern="\(\d{2}\) \d{4,5}-\d{4}" maxlength="15"
         placeholder="(00) 00000-0000" title="Formato: (00) 00000-0000"> 
 
         
-        <button type="submit" class="btn-cadastrar"><i class="fas fa-check-circle"></i> Cadastrar</button>
+        <button type="submit" class="btn-cadastrar"><i class="fas fa-check-circle" onclick="ValidacaoFornecedor()"></i> Cadastrar</button>
       </form>
     </div>
   </main>

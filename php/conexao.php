@@ -2,8 +2,8 @@
 // Configurações do banco de dados
 $host = 'localhost'; // Endereço do servidor MySQL
 $user = 'root'; // Usuário do banco de dados
-$password = 'root'; // Senha do banco de dados
-$database = 'padaria_pão_genial'; // Nome do banco de dados
+$password = ''; // Senha do banco de dados
+$database = 'padaria_pao_genial'; // Nome do banco de dados
 
 // Criando a conexão com o banco de dados
 $conn = new mysqli($host, $user, $password, $database);
