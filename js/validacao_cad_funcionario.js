@@ -12,65 +12,108 @@ let data_admissao = document.getElementById("data_admissao");
 let salario = document.getElementById("salario");
 let id_funcao = document.getElementById("id_funcao");
 
-function ValidacaoFornecedor(event) {
-   
-    //============ Validação para campos vazios ============ 
-    
+// Faz com que a data de admissão seja apenas até o dia atual
+let hoje = new Date().toISOString().split("T")[0];
+data_admissao.max = hoje;
 
+
+function ValidacaoFornecedor(event) {
+
+    // Validação de campos vazios
     if(nome_funcionario.value.trim() === "") {
         alert("Preencha o campo Nome!");
-        razao_social.focus();
+        nome_funcionario.focus();
         return false;
     }
+    if(nome_funcionario.value.trim().length < 3) {
+        alert("O nome deve ter pelo menos 3 caracteres!");
+        nome_funcionario.focus();
+        return false;
+    }
+
     if(cpf_funcionario.value.trim() === "") {
-        alert("Preencha o campo CNPJ!");
-        cnpj_fornecedor.focus();
+        alert("Preencha o campo CPF!");
+        cpf_funcionario.focus();
         return false;
-    };
-    
+    }
+    if(cpf_funcionario.value.trim().length < 11) {
+        alert("O CPF deve ter pelo menos 11 dígitos!");
+        cpf_funcionario.focus();
+        return false;
+    }
+
     if(email_funcionario.value.trim() === "") {
-        alert("Preencha o campo Telefone!");
-        telefone_fornecedor.focus();
-        return false;
-    }
-    
-    if(telefone_funcionario.value.trim() === "") {
         alert("Preencha o campo E-mail!");
-        email_fornecedor.focus();
+        email_funcionario.focus();
         return false;
     }
-    if(cep_fornecedor.value.trim() === "") {
+
+    if(telefone_funcionario.value.trim() === "") {
+        alert("Preencha o campo Telefone!");
+        telefone_funcionario.focus();
+        return false;
+    }
+
+    if(cep_funcionario.value.trim() === "") {
         alert("Preencha o campo CEP!");
-        cep_fornecedor.focus();
+        cep_funcionario.focus();
         return false;
     }
-    if(rua_fornecedor.value.trim() === "") {
+
+    if(rua_funcionario.value.trim() === "") {
         alert("Preencha o campo Rua!");
-        rua_fornecedor.focus();
+        rua_funcionario.focus();
         return false;
     }
-    if(numero_fornecedor.value.trim() === "") {
+
+    if(numero_funcionario.value.trim() === "") {
         alert("Preencha o campo Número!");
-        numero_fornecedor.focus();
+        numero_funcionario.focus();
         return false;
     }
-    if(bairro_fornecedor.value.trim() === ""){
+
+    if(bairro_funcionario.value.trim() === "") {
         alert("Preencha o campo Bairro!");
-        bairro_fornecedor.focus();
+        bairro_funcionario.focus();
         return false;
     }
-    if(cidade_fornecedor.value.trim() === "") {
+
+    if(cidade_funcionario.value.trim() === "") {
         alert("Preencha o campo Cidade!");
-        cidade_fornecedor.focus();
+        cidade_funcionario.focus();
         return false;
     }
-    if(!uf_fornecedor.value) {
+
+    if(!uf_funcionario.value) {
         alert("Selecione o Estado (UF)!");
-        uf_fornecedor.focus();
+        uf_funcionario.focus();
         return false;
     }
 
-    return true;  
+    if(data_admissao.value === "") {
+        alert("Insira uma data de admissão!");
+        data_admissao.focus();
+        return false;
+    }
 
+    if(salario.value.trim() === "") {
+        alert("Insira um salário!");
+        salario.focus();
+        return false;
+    }
+    if(Number(salario.value) <= 0) {
+        alert("O salário deve ser maior que zero!");
+        salario.focus();
+        return false;
+    }
+
+    if(id_funcao.value === "") {
+        alert("Selecione uma função!");
+        id_funcao.focus();
+        return false;
+    }
+
+    return true;
+
+    
 }
-
