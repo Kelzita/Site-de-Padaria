@@ -1,0 +1,98 @@
+/* ------------------- BASE ------------------- */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url('../img/fundo1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; /* faz o fundo ficar estático */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+
+/* ------------------- HEADER ------------------- */
+header {
+  background-color: white;
+  width: 1360px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+header img {
+  height: 70px;
+  width: 70px;
+}
+
+/* ------------------- MENU ------------------- */
+.menu-icon {
+  position: absolute;
+  left: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #000;
+  z-index: 11;
+  transition: color 0.3s;
+}
+
+.menu-icon.active {
+  color: white; /* Quando sidebar está aberta */
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.85);
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 70px; /* abaixo do header */
+  z-index: 9;
+}
+
+.sidebar a {
+  padding: 15px 25px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: rgba(44, 41, 41, 0.8);
+}
+
+/* ------------------- LOGO / MASCOTE ------------------- */
+.osmarzinho, .osmar {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}
+
+/* ------------------- RESPONSIVO ------------------- */
+@media (max-width: 768px) {
+  header {
+    padding-left: 50px;
+  }
+  
+  .sidebar a {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+}

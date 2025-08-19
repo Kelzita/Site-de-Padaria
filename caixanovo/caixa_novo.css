@@ -16,73 +16,65 @@ html, body {
   overflow-x: hidden; /* permite scroll horizontal se necessário */
 }
 
-/* Cabeçalho */
-header {
-  background-color: white;
-  width: 100%;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 60px;
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-}
-
-.header_h2{
-    text-align: center;
-}
-/*css da side bar*/
-.menu-icon {
-  position: absolute;
-  left: 15px;
-  font-size: 30px;
-  cursor: pointer;
-  color: #000000;
-  z-index: 11;
-  transition: color 0.3s;
-}
-  
-.menu-icon.active{
-  color: white; /* Quando sidebar está aberta */
-}
-
-.sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  text-align: justify;
-  background-color: rgba(0, 0, 0, 0.8); /* Fundo transparente */
-  overflow-x: hidden;
-  transition: 0.3s;
-  padding-top: 70px;
-  z-index: 9;
-}
-
-.sidebar a {
-  padding: 15px 25px;
-  text-decoration: none;
-  font-size: 18px;
-  color: white;
-  display: block;
-  transition: 0.2s;
-}
-
-.sidebar a:hover {
-    background-color: rgba(44, 41, 41, 0.8); /* Fundo transparente no hover */
-}
 
 /*estilo da box principal*/
 .box_principal{
   background-color: rgba(0, 0, 0, 0.8);
-  margin-top: 90px;
-  height: 650px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 750px;
   width: 1200px;
   border: 1px solid white;
   border-radius: 10px;
 }
+
+/*estil da box header*/
+.box_header{
+  background-color: white;
+  margin: 10px 10px;
+  height: 55px;
+  border-radius: 10px;
+}
+
+/*estilo do h2 que fica na box header*/
+.box_header h2{
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+
+.box_logo{
+  background-color: white;
+  margin: 20px 10px;
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+  text-align: center; 
+  float: center;
+}
+
+.box_logo img{
+  margin: 20px;
+  width: 150px;
+  height: 150px;
+  float: center;
+}
+
+.box_listaProdutos{
+  background-color: white;
+  margin-top: -220px;
+  margin-left:350px;
+  height: 400px;
+  width: 500px;
+  border-radius: 10px;
+}
+
+.box_listaProdutos p{
+  text-align: left;
+
+}
+
+
+
+
