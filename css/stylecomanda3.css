@@ -28,7 +28,7 @@ body {
   .retangulo {
     background-color: white;
     padding: 0px;
-    width: 550px;
+    width: 1050px;
     margin: 50px auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     height: 530px; /* altura fixa */
@@ -130,7 +130,7 @@ body {
     border: 2px solid red;
   }
   
-  .campo-comanda {
+  .campo-comanda {   
     margin-bottom: 20px;
     text-align: center;
   }
@@ -149,9 +149,11 @@ body {
     color: #333;
   }
   
-  .campo-pesquisa {
-    text-align: center;
+  .campo-pesquisa {        /********                                    ************/
+    text-align: left;
     margin-bottom: 20px;
+    position: fixed; 
+    width: 1042px;
   }
   
   #pesquisaProduto {
@@ -163,7 +165,7 @@ body {
   }
   
   .fixo-botao {
-    position: fixed;
+    position: fixed;       /********                                    ************/
     bottom: 0;
     left: 0;
     right: 0;

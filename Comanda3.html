@@ -16,25 +16,35 @@
   <div class="retangulo">
     <a href="entrada_comanda.html" class="voltar"> 
       <img class="seta" src="img/btn_voltar.png" title="seta"></a>
+      <div class="categoria">
+          <i>
+              <a href="#Salgados">Salgados</a><br>
+              <a href="#Doces">Doces</a><br>
+              <a href="#Pao">Pão</a><br>
+          </i>
+      </p>
+      </div>
     <div class="retangulo-conteudo">
       <h2 class="titulo">Selecione os Produtos</h2>
       <div class="campo-comanda">
         <label for="inputNumeroComanda">Número da Comanda:</label>
         <input type="text" id="inputNumeroComanda" placeholder="Número da comanda">
-      </div>
-      <div class="campo-pesquisa">
+        <label for="campo-pesquisa"></label>
         <input type="text" id="pesquisaProduto" placeholder="Buscar produto..." />
       </div>
+
+    <!--   <div class="campo-pesquisa">
+        <input type="text" id="pesquisaProduto" placeholder="Buscar produto..." />
+      </div>-->
+
       <div class="lista-produtos" id="listaProdutos"></div>
-    </div>
-    <!-- botão fixo dentro do retângulo -->
+      </div>
+
     <div class="fixo-botao-interno">
       <button class="botao-confirmar" onclick="enviarComanda()">Enviar para o Caixa</button>
     </div>
+    
   </div>
-  
-  
-  
   <script src="js/comanda3.js"></script>
 </body>
 </html>
