@@ -1,21 +1,45 @@
 <?php
-// Configurações do banco de dados
-$host = 'localhost'; // Endereço do servidor MySQL
-$user = 'root'; // Usuário do banco de dados
-$password = ''; // Senha do banco de dados
-$database = 'padaria_pao_genial'; // Nome do banco de dados
+//======Variáveis do Banco======
+$host = "localhost"; // Conecta-se ao servidor local ( Ou seja na máquina utilizada )
+$user = "root"; // Usuário, geralmente root
+$pass = ""; // Senha, geralmente vazia
+$banco = "Padaria_pao_Genial"; // Banco de dados que será utilizado
 
-// Criando a conexão com o banco de dados
-$conn = new mysqli($host, $user, $password, $database);
 
-// Verificando se houve erro na conexão
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
+
+
+//======Criando a conexão com o banco em PDO======
+try {
+$dsn = "mysql:host=$host;dbname=$banco;charset=utf8";
+$pdo = new PDO($dsn, $user, $pass);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+echo("Conectado!"); //Se o banco for conectado com sucesso, ele irá exibir uma mensagem, dizendo que o banco está executando corretamente
+
+
+
+
+// Configura o PDO para lançar exceções em caso de erros.
+// PDO::ATTR_ERRMODE: Define o modo de relatório de erros.
+// PDO::ERRMODE_EXCEPTION: Se ocorrer um erro na comunicação com o banco (ex: consulta SQL errada),
+// o PDO lançará uma exceção (um tipo especial de erro que pode ser "capturado" pelo bloco catch).
+// Isso é bom para depuração e para tratar erros de forma mais robusta.]
+
+
+
+
+} catch (PDO_Exception $e ){
+    // Se ocorrer qualquer erro (uma PDOException) durante a tentativa de conexão no bloco 'try',
+    // o código dentro deste bloco 'catch' será executado.
+
+
+
+
+    // $e é um objeto que contém informações sobre o erro que ocorreu.
+    // $e->getMessage() retorna uma mensagem descrevendo o erro.
+    die("<script>alert('Erro ao conectar-se ao banco');</script>" . $e->getMessage()); // Interrompe a execução e exibe uma mensagem de erro!
+
+
+
+
 }
-
-// Exibindo mensagem de sucesso
-echo "Conexão bem-sucedida com o banco de dados!";
-
-// Fechando a conexão (opcional, caso não seja mais necessária)
-// $conn->close();
 ?>

@@ -41,12 +41,15 @@
             <label for="validade_produto"><i class="fas fa-calendar-alt"></i> Validade:</label>
             <input type="date" id="validade_produto" name="validade_produto" >
 
-
+            
             <label for="id_fornecedor"><i class="fas fa-truck"></i> Fornecedor:</label>
             <select name="id_fornecedor" id="id_fornecedor" >
                 <option value="">Selecione o fornecedor</option>
                 <!--Criar php para buscar os fornecedores-->
             </select>
+
+            <label for="imagem_produto"><i class="fa-solid fa-image"></i> Foto do Produto:</label>
+            <input type="file"name="imagem_produto" id="imagem_produto" required></input>
 
             <input type="hidden" name="id_estoque" id="id_estoque" >
 
