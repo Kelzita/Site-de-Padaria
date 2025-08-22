@@ -20,23 +20,23 @@
         <div class="login">
           <img src="../img/fundo1.jpg" alt="Fundo da página" class="background">
       
-          <form action="#" method="post" class="formulario-style">
+          <form action="php/login.php" method="post" class="formulario-style">
             <h1 class="titulo-style">Login</h1>
       
             <div class="conteudo">
               <div class="caixa-style">
                 <i class="ri-user-3-line login__icon"></i>
                 <div class="campo-input">
-                  <input name="usuario" type="text" class="style-input" id="usuario" placeholder=" ">
-                  <label for="usuario" class="style-label">Usuário</label>
+                  <label for="nome_usuario" class="style-label">Usuário</label>
+                  <input name="nome_usuario" type="text" class="style-input" id="nome_usuario" placeholder=" ">
                 </div>
               </div>
       
               <div class="caixa-style">
                 <i class="ri-lock-2-line login__icon"></i>
                 <div class="campo-input">
-                  <input name="senha" type="password" class="style-input" id="senha" placeholder=" ">
                   <label for="senha" class="style-label">Senha</label>
+                  <input name="senha" type="password" class="style-input" id="senha" placeholder=" ">
                   <i class="ri-eye-off-line login__eye" id="login-eye" onclick="toggleSenha()"></i>
                 </div>
               </div>
