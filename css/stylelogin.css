@@ -1,260 +1,278 @@
-        /*==================== RESET E BASE ====================*/
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            transition: all 0.3s ease-in-out;
-        }
-        
-        body, input, button {
-            font-size: 16px;
-            font-family: "Poppins", sans-serif;
-        }
-        
-        body {
-            color: white;
-            background-color: #0f0f0f;
-        }
-        
-        input, button {
-            border: none;
-            outline: none;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        
-        
-        /*==================== ESTRUTURA PRINCIPAL ====================*/
-        .login {
-            position: relative;
-            height: 100vh;
-            display: grid;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .background {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-        
-        
-        /*==================== FORMULÁRIO ====================*/
-        .formulario-style {
-            position: relative;
-            background-color: rgba(26, 26, 26, 0.1);
-            border: 2px solid white;
-            margin-inline: 24px;
-            width: 450px;
-            padding: 40px 24px;
-            border-radius: 1rem;
-            backdrop-filter: blur(5px);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        
-        .formulario-style:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.15);
-        }
-        
-        .titulo-style {
-            text-align: center;
-            font-size: 35px;
-            font-weight: 500;
-            margin-bottom: 32px;
-        }
-        
-        .titulo-style1 {
-            text-align: center;
-            font-size: 25px;
-            font-weight: 500;
-            margin-bottom: 32px;
-        }
-        
-        
-        /*==================== CAMPOS DE ENTRADA ====================*/
-        .conteudo,
-        .caixa-style {
-            display: grid;
-        }
-        
-        .conteudo {
-            row-gap: 28px;
-            margin-bottom: 24px;
-        }
-        
-        .caixa-style {
-            grid-template-columns: max-content 1fr;
-            align-items: center;
-            column-gap: 12px;
-            border-bottom: 2px solid rgb(126, 126, 126);
-            position: relative;
-        }
-        
-        .caixa-style:nth-child(2) input {
-            padding-right: 28.8px; /* espaço para o olhinho */
-        }
-        
-        .campo-input {
-            position: relative;
-            width: 100%;
-        }
-        
-        .style-input {
-            width: 100%;
-            padding-block: 13px;
-            background: none;
-            color: white;
-            border-bottom: 2px solid transparent;
-            position: relative;
-            z-index: 1;
-            transition: all 0.4s ease;
-        }
-        
-        .style-input:focus {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-bottom: 2px solid #cfcfcf;
-        }
-        
-        .style-input:focus + .style-label,
-        .style-input:not(:placeholder-shown) + .style-label {
-            top: -12px;
-            font-size: 13px;
-        }
-        
-        .style-label {
-            position: absolute;
-            left: 0;
-            top: 13px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .login__icon {
-            font-size: 20px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        
-        .caixa-style:focus-within .login__icon {
-            color: #cacaca;
-            transform: scale(1.2);
-        }
-        
-        
-        /*==================== OLHINHO MOSTRAR SENHA ====================*/
-        .login__eye {
-            position: absolute;
-            right: 0px;
-            top: 18px;
-            z-index: 10;
-            cursor: pointer;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-        
-        .login__eye:hover {
-            transform: scale(1.15);
-            color: #cacaca;
-        }
-        
-        
-        /*==================== ESQUECI A SENHA ====================*/
-        .esqueci-senha-style {
-            font-size: 13px;
-            color: white;
-            position: relative;
-            display: inline-block;
-            text-decoration: none;
-            overflow: hidden;
-            transition: color 0.3s ease;
-        }
-        
-        .esqueci-senha-style::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: white;
-            left: -100%;
-            bottom: 0;
-            transition: left 0.4s ease;
-        }
-        
-        .esqueci-senha-style:hover {
-            color: #cacaca;
-        }
-        
-        .esqueci-senha-style:hover::after {
-            left: 0;
-        }
-        
-        
-        /*==================== BOTÃO ====================*/
-        .botao-style {
-            width: 100%;
-            padding: 16px;
-            border-radius: 8px;
-            background-color: white;
-            color: #1A1A1A;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 20px;
-            margin-bottom: 32px;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-        }
-        
-        .botao-style:hover {
-            background-color: #f5f5f5;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
-        }
-        
-        .botao-style:active {
-            transform: scale(0.97);
-            background-color: #e4e4e4;
-        }
-        
-        /*==================== BOTÃO DE REDEFINIR ====================*/
-        .botao-style-redefinir {
-            width: 100%;
-            padding: 16px;
-            border-radius: 8px;
-            background-color: white;
-            color: #1A1A1A;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 20px;
-            margin-bottom: 32px;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-        }
-        
-        .botao-style-redefinir:hover {
-            background-color: #f5f5f5;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
-        }
-        
-        .botao-style-redefinir:active {
-            transform: scale(0.97);
-            background-color: #e4e4e4;
-        }
-        
-        
-        
-        /*==================== RESPONSIVO ====================*/
-        @media screen and (min-width: 576px) {
-            .formulario-style {
-                padding: 64px 48px 56px;
-                border-radius: 24px;
-            }
-        
-            .titulo-style {
-                font-size: 32px;
-            }
-        }
-        
+/*==================== RESET E BASE ====================*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+body, input, button {
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    color: white;
+    background: url("../img/fundo_padaria.png") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Remove estilos padrões */
+input, button {
+    border: none;
+    outline: none;
+    background: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/*==================== ESTRUTURA PRINCIPAL ====================*/
+.login {
+    position: relative;
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/*==================== FORMULÁRIO ====================*/
+.formulario-style {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.6); /* fundo preto transparente */
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    margin-inline: 24px;
+    width: 450px;
+    padding: 40px 24px;
+    border-radius: 1rem;
+    backdrop-filter: blur(8px);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.formulario-style:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.2);
+}
+
+.titulo-style {
+    text-align: center;
+    font-size: 35px;
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+
+.titulo-style1 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+
+
+/*==================== CAMPOS DE ENTRADA ====================*/
+.conteudo,
+.caixa-style {
+    display: grid;
+}
+
+.conteudo {
+    row-gap: 28px;
+    margin-bottom: 24px;
+}
+
+.caixa-style {
+    grid-template-columns: max-content 1fr;
+    align-items: center;
+    column-gap: 12px;
+    border-bottom: 2px solid rgb(126, 126, 126);
+    position: relative;
+}
+
+.caixa-style:nth-child(2) input {
+    padding-right: 28.8px; /* espaço para o olhinho */
+}
+
+.campo-input {
+    position: relative;
+    width: 100%;
+}
+
+.style-input {
+    width: 100%;
+    padding-block: 13px;
+    background: none;
+    color: white;
+    border-bottom: 2px solid transparent;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s ease;
+}
+
+.style-input:focus {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-bottom: 2px solid #cfcfcf;
+}
+
+.style-input:focus + .style-label,
+.style-input:not(:placeholder-shown) + .style-label {
+    top: -12px;
+    font-size: 13px;
+    color: #cfcfcf;
+}
+.style-label {
+    position: absolute;
+    left: 0;
+    top: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: #ffffffcc;
+}
+
+.login__icon {
+    font-size: 20px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.caixa-style:focus-within .login__icon {
+    color: #cacaca;
+    transform: scale(1.2);
+}
+
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: white; 
+    background-color: rgba(255, 255, 255, 0.05) !important; 
+    transition: background-color 5000s ease-in-out 0s; 
+}
+
+
+input:-webkit-autofill + .style-label {
+    top: -12px;
+    font-size: 13px;
+    color: #cfcfcf; 
+    opacity: 0.8; 
+}
+
+
+/*==================== OLHINHO MOSTRAR SENHA ====================*/
+.login__eye {
+    position: absolute;
+    right: 0px;
+    top: 18px;
+    z-index: 10;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.login__eye:hover {
+    transform: scale(1.15);
+    color: #cacaca;
+}
+
+
+/*==================== ESQUECI A SENHA ====================*/
+.esqueci-senha-style {
+    font-size: 13px;
+    color: white;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
+.esqueci-senha-style::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    left: -100%;
+    bottom: 0;
+    transition: left 0.4s ease;
+}
+
+.esqueci-senha-style:hover {
+    color: #cacaca;
+}
+
+.esqueci-senha-style:hover::after {
+    left: 0;
+}
+
+
+/*==================== BOTÃO ====================*/
+.botao-style {
+    width: 100%;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: white;
+    color: #1A1A1A;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 32px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.botao-style:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+.botao-style:active {
+    transform: scale(0.97);
+    background-color: #e4e4e4;
+}
+
+
+/*==================== BOTÃO DE REDEFINIR ====================*/
+.botao-style-redefinir {
+    width: 100%;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: white;
+    color: #1A1A1A;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 32px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.botao-style-redefinir:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+.botao-style-redefinir:active {
+    transform: scale(0.97);
+    background-color: #e4e4e4;
+}
+
+
+/*==================== RESPONSIVO ====================*/
+@media screen and (min-width: 576px) {
+    .formulario-style {
+        padding: 64px 48px 56px;
+        border-radius: 24px;
+    }
+
+    .titulo-style {
+        font-size: 32px;
+    }
+}
