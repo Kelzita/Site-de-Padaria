@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Ago-2025 às 21:47
+-- Tempo de geração: 24/08/2025 às 04:03
 -- Versão do servidor: 10.4.32-MariaDB
--- versão do PHP: 8.2.12
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `caixa`
+-- Estrutura para tabela `caixa`
 --
 
 CREATE TABLE `caixa` (
@@ -41,7 +41,7 @@ CREATE TABLE `caixa` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `comanda`
+-- Estrutura para tabela `comanda`
 --
 
 CREATE TABLE `comanda` (
@@ -56,7 +56,7 @@ CREATE TABLE `comanda` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `estoque`
+-- Estrutura para tabela `estoque`
 --
 
 CREATE TABLE `estoque` (
@@ -69,7 +69,7 @@ CREATE TABLE `estoque` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `forma_pagamento`
+-- Estrutura para tabela `forma_pagamento`
 --
 
 CREATE TABLE `forma_pagamento` (
@@ -78,7 +78,7 @@ CREATE TABLE `forma_pagamento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `forma_pagamento`
+-- Despejando dados para a tabela `forma_pagamento`
 --
 
 INSERT INTO `forma_pagamento` (`id_forma_pag`, `descricao`) VALUES
@@ -92,7 +92,7 @@ INSERT INTO `forma_pagamento` (`id_forma_pag`, `descricao`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `fornecedores`
+-- Estrutura para tabela `fornecedores`
 --
 
 CREATE TABLE `fornecedores` (
@@ -113,7 +113,7 @@ CREATE TABLE `fornecedores` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `funcao`
+-- Estrutura para tabela `funcao`
 --
 
 CREATE TABLE `funcao` (
@@ -122,7 +122,7 @@ CREATE TABLE `funcao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `funcao`
+-- Despejando dados para a tabela `funcao`
 --
 
 INSERT INTO `funcao` (`id_funcao`, `nome_funcao`) VALUES
@@ -134,7 +134,7 @@ INSERT INTO `funcao` (`id_funcao`, `nome_funcao`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `funcionarios`
+-- Estrutura para tabela `funcionarios`
 --
 
 CREATE TABLE `funcionarios` (
@@ -158,7 +158,7 @@ CREATE TABLE `funcionarios` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `itemvenda`
+-- Estrutura para tabela `itemvenda`
 --
 
 CREATE TABLE `itemvenda` (
@@ -172,7 +172,7 @@ CREATE TABLE `itemvenda` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `item_comanda`
+-- Estrutura para tabela `item_comanda`
 --
 
 CREATE TABLE `item_comanda` (
@@ -186,7 +186,7 @@ CREATE TABLE `item_comanda` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produto`
+-- Estrutura para tabela `produto`
 --
 
 CREATE TABLE `produto` (
@@ -204,19 +204,27 @@ CREATE TABLE `produto` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Estrutura para tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nome_usuario` varchar(50) DEFAULT NULL,
-  `senha` varchar(20) DEFAULT NULL
+  `senha` varchar(20) DEFAULT NULL,
+  `id_funcao` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `senha`, `id_funcao`) VALUES
+(1, 'Joaquim', '12345678', 4);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `venda`
+-- Estrutura para tabela `venda`
 --
 
 CREATE TABLE `venda` (
@@ -233,45 +241,45 @@ CREATE TABLE `venda` (
 --
 
 --
--- Índices para tabela `caixa`
+-- Índices de tabela `caixa`
 --
 ALTER TABLE `caixa`
   ADD PRIMARY KEY (`id_caixa`),
   ADD KEY `id_funcionario` (`id_funcionario`);
 
 --
--- Índices para tabela `comanda`
+-- Índices de tabela `comanda`
 --
 ALTER TABLE `comanda`
   ADD PRIMARY KEY (`id_comanda`),
   ADD KEY `id_funcionario` (`id_funcionario`);
 
 --
--- Índices para tabela `estoque`
+-- Índices de tabela `estoque`
 --
 ALTER TABLE `estoque`
   ADD PRIMARY KEY (`id_estoque`);
 
 --
--- Índices para tabela `forma_pagamento`
+-- Índices de tabela `forma_pagamento`
 --
 ALTER TABLE `forma_pagamento`
   ADD PRIMARY KEY (`id_forma_pag`);
 
 --
--- Índices para tabela `fornecedores`
+-- Índices de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
   ADD PRIMARY KEY (`id_fornecedor`);
 
 --
--- Índices para tabela `funcao`
+-- Índices de tabela `funcao`
 --
 ALTER TABLE `funcao`
   ADD PRIMARY KEY (`id_funcao`);
 
 --
--- Índices para tabela `funcionarios`
+-- Índices de tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
   ADD PRIMARY KEY (`id_funcionario`),
@@ -279,7 +287,7 @@ ALTER TABLE `funcionarios`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Índices para tabela `itemvenda`
+-- Índices de tabela `itemvenda`
 --
 ALTER TABLE `itemvenda`
   ADD PRIMARY KEY (`id_item`),
@@ -287,7 +295,7 @@ ALTER TABLE `itemvenda`
   ADD KEY `id_venda` (`id_venda`);
 
 --
--- Índices para tabela `item_comanda`
+-- Índices de tabela `item_comanda`
 --
 ALTER TABLE `item_comanda`
   ADD PRIMARY KEY (`id_item_comanda`),
@@ -295,7 +303,7 @@ ALTER TABLE `item_comanda`
   ADD KEY `id_produto` (`id_produto`);
 
 --
--- Índices para tabela `produto`
+-- Índices de tabela `produto`
 --
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`id_produto`),
@@ -303,13 +311,13 @@ ALTER TABLE `produto`
   ADD KEY `id_estoque` (`id_estoque`);
 
 --
--- Índices para tabela `usuario`
+-- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- Índices para tabela `venda`
+-- Índices de tabela `venda`
 --
 ALTER TABLE `venda`
   ADD PRIMARY KEY (`id_venda`),
@@ -317,7 +325,7 @@ ALTER TABLE `venda`
   ADD KEY `id_forma_pag` (`id_forma_pag`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
@@ -378,7 +386,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `venda`
@@ -387,51 +395,51 @@ ALTER TABLE `venda`
   MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `caixa`
+-- Restrições para tabelas `caixa`
 --
 ALTER TABLE `caixa`
   ADD CONSTRAINT `caixa_ibfk_1` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionarios` (`id_funcionario`);
 
 --
--- Limitadores para a tabela `comanda`
+-- Restrições para tabelas `comanda`
 --
 ALTER TABLE `comanda`
   ADD CONSTRAINT `comanda_ibfk_1` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionarios` (`id_funcionario`);
 
 --
--- Limitadores para a tabela `funcionarios`
+-- Restrições para tabelas `funcionarios`
 --
 ALTER TABLE `funcionarios`
   ADD CONSTRAINT `funcionarios_ibfk_1` FOREIGN KEY (`id_funcao`) REFERENCES `funcao` (`id_funcao`),
   ADD CONSTRAINT `funcionarios_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 
 --
--- Limitadores para a tabela `itemvenda`
+-- Restrições para tabelas `itemvenda`
 --
 ALTER TABLE `itemvenda`
   ADD CONSTRAINT `itemvenda_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`),
   ADD CONSTRAINT `itemvenda_ibfk_2` FOREIGN KEY (`id_venda`) REFERENCES `venda` (`id_venda`);
 
 --
--- Limitadores para a tabela `item_comanda`
+-- Restrições para tabelas `item_comanda`
 --
 ALTER TABLE `item_comanda`
   ADD CONSTRAINT `item_comanda_ibfk_1` FOREIGN KEY (`id_comanda`) REFERENCES `comanda` (`id_comanda`),
   ADD CONSTRAINT `item_comanda_ibfk_2` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`);
 
 --
--- Limitadores para a tabela `produto`
+-- Restrições para tabelas `produto`
 --
 ALTER TABLE `produto`
   ADD CONSTRAINT `produto_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id_fornecedor`),
   ADD CONSTRAINT `produto_ibfk_2` FOREIGN KEY (`id_estoque`) REFERENCES `estoque` (`id_estoque`);
 
 --
--- Limitadores para a tabela `venda`
+-- Restrições para tabelas `venda`
 --
 ALTER TABLE `venda`
   ADD CONSTRAINT `venda_ibfk_1` FOREIGN KEY (`id_caixa`) REFERENCES `caixa` (`id_caixa`),
