@@ -5,18 +5,11 @@ $user = "root"; // Usuário, geralmente root
 $pass = ""; // Senha, geralmente vazia
 $banco = "Padaria_pao_Genial"; // Banco de dados que será utilizado
 
-
-
-
 //======Criando a conexão com o banco em PDO======
 try {
 $dsn = "mysql:host=$host;dbname=$banco;charset=utf8";
 $pdo = new PDO($dsn, $user, $pass);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-echo("Conectado!"); //Se o banco for conectado com sucesso, ele irá exibir uma mensagem, dizendo que o banco está executando corretamente
-
-
-
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Se o banco for conectado com sucesso, ele irá exibir uma mensagem, dizendo que o banco está executando corretamente
 
 // Configura o PDO para lançar exceções em caso de erros.
 // PDO::ATTR_ERRMODE: Define o modo de relatório de erros.
