@@ -5,7 +5,7 @@ html, body {
   height: 100%;
   width: 100%;
   font-family: 'sans-serif ';
-  background-image: url('../img/fundo1.jpg');
+  background-image: url('../img/fundo_padaria.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -75,10 +75,25 @@ html, body {
 
 .box_comanda label{
   text-align: left;
-  font-size: 23px;
+  font-size: 20px;
   font-weight: bold;
   color: #333;  
   margin-left: 30px;
+  padding-top: 15px; 
+  display: block; /* para garantir que o padding-top funcione corretamente */ 
+}
+
+.box_comanda input{
+  display: block;
+  width: 80%; /* largura consistente */
+  margin: 0 auto 15px auto; /* centraliza e espaçamento inferior */
+  padding: 10px;
+  border: 1px solid #7c7c7c;
+  border-radius: 8px;
+  font-size: 15px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box; /* inclui padding e border na largura */
 }
 
 /*Estilo para caixa de lista de produtos*/
