@@ -16,7 +16,7 @@
     </header>
     <div class="container">
         <h1>Cadastrar Funcionário</h1>
-        <form class="formulario-cadastro" method="POST" action="../PHP/funcionario.php" onsubmit="return ValidacaoFornecedor(event)">
+        <form class="formulario-cadastro" method="POST" action="../php/funcionario.php" onsubmit="return ValidacaoFornecedor(event)">
 
             <label for="nome_funcionario"><i class="fas fa-user"></i> Nome:</label>
             <input type="text" id="nome_funcionario" name="nome_funcionario" placeholder="Nome completo" >
@@ -87,11 +87,16 @@
             <label for="id_funcao"><i class="fas fa-user-cog"></i> Função:</label>
             <select id="id_funcao" name="id_funcao" >
                 <option selected disabled>Selecione a Função</option>
-                <!--Criar php para buscar as funções disponíveis-->
+                <option value="<?=htmlspecialchars($funcao['id_funcao']) == 1 ? 'select ' : ''?>">Administrador</option>
+                <option value="<?=htmlspecialchars($funcao['id_funcao']) == 1 ? 'select ' : ''?>">Gestor de Estoque</option>
+                <option value="<?=htmlspecialchars($funcao['id_funcao']) == 1 ? 'select ' : ''?>">Balconista</option>
+                <option value="<?=htmlspecialchars($funcao['id_funcao']) == 1 ? 'select ' : ''?>">Caixa</option>
             </select>
 
             <button type="submit" class="btn-cadastrar"><i class="fas fa-save"></i> Cadastrar</button>
         </form>
+        <form action="../php/cadastro_usuario.php" method="POST">
+            
     </div>
     <script src="../js/validacao_cad_funcionario.js"></script>
 </body>
