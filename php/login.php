@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             //Redireciona para a página principal
-            echo "<script>alert('Usuário logado com sucesso!'); window.location.href='../home.php';</script>";
+            echo "<script>alert('Usuário logado com sucesso!'); window.location.href='../principal.php';</script>";
             exit();
          }
     
