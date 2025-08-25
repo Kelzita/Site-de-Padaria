@@ -152,7 +152,7 @@ body {
   .campo-pesquisa {        /********                                    ************/
     text-align: left;
     margin-bottom: 20px;
-    position: fixed; 
+ 
     width: 1042px;
   }
   
@@ -229,3 +229,7 @@ body {
     margin-top: 12px;
     padding: 0px;
   }
+
+.categoria{
+  
+}

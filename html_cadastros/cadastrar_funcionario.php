@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Funcionário</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/style_cadastro.css" />
@@ -95,9 +96,31 @@
 
             <button type="submit" class="btn-cadastrar"><i class="fas fa-save"></i> Cadastrar</button>
         </form>
-        <form action="../php/cadastro_usuario.php" method="POST">
+        <form class="formulario-cadastro" action="../php/cadastro_usuario.php" method="POST">
+            <label for="nome_usuario">Usuário</label>
+            <input type="text" name="nome_usuario" id="nome_usuario" placeholder="Insira um nome de usuário"/>
+            <label for="senha">Senha</label>
+            <i class="ri-eye-off-line login__eye" id="login-eye" onclick="toggleSenha()"></i>
+            <input type="text" name="senha" id="senha" placeholder="Insira a senha"/>
             
+    </form>
     </div>
     <script src="../js/validacao_cad_funcionario.js"></script>
+    <script> 
+    function toggleSenha() {
+        const inputSenha = document.getElementById("senha");
+        const botao = document.getElementById("login-eye");
+
+        if (inputSenha.type === "password") {
+            inputSenha.type = "text";
+            botao.classList.remove("ri-eye-off-line");
+            botao.classList.add("ri-eye-line");
+        } else {
+            inputSenha.type = "password";
+            botao.classList.remove("ri-eye-line");
+            botao.classList.add("ri-eye-off-line");
+        }
+    }
+    </script>
 </body>
 </html>

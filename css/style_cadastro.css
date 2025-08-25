@@ -41,7 +41,6 @@ h1 {
 }
 
 /* -------- Campos -------- */
-/* -------- Campos -------- */
 .formulario-cadastro label {
     display: block;
     width: 80%; /* menor que 100% */
@@ -92,12 +91,37 @@ h1 {
     font-weight: bold;
     cursor: pointer;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    box-shadow: 0 4px 8px rgba(230, 10, 10, 0.12);
     transition: all 0.3s ease;
 }
 
 .btn-cadastrar:hover {
-    background-color: #000;
+    background-color: #000000;
     color: #fff;
     transform: scale(1.05);
+}
+
+/*========Olhinho=======*/
+
+.formulario-cadastro {
+    position: relative; /* necessário para posicionar o ícone dentro do input */
+}
+
+.login__eye {
+    position: absolute;
+    right: 10px; /* fica do lado direito */
+    top: 50%;
+    transform: translateY(-50%); /* centraliza verticalmente */
+    z-index: 10;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.login__eye:hover {
+    transform: translateY(-50%) scale(1.15); /* mantém centralizado e aumenta */
+    color: #cacaca;
+}
+
+#senha {
+    padding-right: 35px; /* espaço para o ícone */
 }
