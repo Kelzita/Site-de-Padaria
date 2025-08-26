@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comanda</title>
+  <link rel="stylesheet" href="css/stylecomanda3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header>
+    <img src="img/logo_pg.png" alt="Logo da Padaria">
+  </header>
+
+      <div class="retangulo">
+      <a href="entrada_comanda.html" class="voltar"> 
+        <img class="seta" src="img/btn_voltar.png" title="seta"></a>
+      <h1>Comanda</h1>
+      <div class="retangulo-conteudo">
+
+            <form action="buscar_produto.php" method="POST">
+              <label for="inputNumeroComanda">Número da Comanda:</label>
+              <input type="text" id="inputNumeroComanda" placeholder="Número da comanda">
+
+                <label for="busca"></label>
+                <input type="text" id="busca" name="busca" placeholder="Buscar produto...">
+                
+                <button type="submit">Pesquisar</button>
+            </form>
+            <table class="table">
+                <tr>
+                  <th>ID Produto</th>
+                  <th>ID Fornecedor</th>
+                  <th>Categoria</th>
+                  <th>Nome</th>
+                  <th>Quantidade</th>
+                  <th>Validade</th>
+                  <th>Preço</th>
+                  <th>Unidade</th>
+                  <th>Ações</th>
+                </tr>
+          </div>
+  </div>
+</body>
+</html>
