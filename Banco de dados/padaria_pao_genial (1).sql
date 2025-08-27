@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `caixa` (
-  `id_caixa` int(11) NOT NULL,
+  `id_caixa` int(11) NOT NULL AUTO_INCREMENT,
   `id_funcionario` int(11) NOT NULL,
   `data_abertura` date DEFAULT NULL,
   `data_fechamento` date DEFAULT NULL,
@@ -140,7 +140,7 @@ CREATE TABLE `funcionarios` (
   `id_funcionario` int(11) NOT NULL,
   `id_funcao` int(11) NOT NULL,
   `nome_funcionario` varchar(80) DEFAULT NULL,
-  `CPF` varchar(11) DEFAULT NULL,
+  `cpf_funcionario` varchar(11) DEFAULT NULL,
   `email_funcionario` varchar(80) DEFAULT NULL,
   `cep_funcionario` varchar(8) DEFAULT NULL,
   `rua_funcionario` varchar(50) DEFAULT NULL,
