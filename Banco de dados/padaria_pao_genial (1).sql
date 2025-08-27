@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/08/2025 às 04:03
+-- Tempo de geração: 27/08/2025 às 19:18
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -48,9 +48,8 @@ CREATE TABLE `comanda` (
   `id_comanda` int(11) NOT NULL,
   `id_funcionario` int(11) NOT NULL,
   `data_abertura` date DEFAULT NULL,
-  `hora_abetura` time DEFAULT NULL,
-  `status` varchar(10) DEFAULT NULL,
-  `qtd` int(11) DEFAULT NULL
+  `hora_abertura` time DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -61,9 +60,9 @@ CREATE TABLE `comanda` (
 
 CREATE TABLE `estoque` (
   `id_estoque` int(11) NOT NULL,
-  `qtd_atual` int(11) DEFAULT NULL,
-  `qtd_min` int(11) DEFAULT NULL,
-  `qtd_max` int(11) DEFAULT NULL
+  `quantidade_atual` int(11) DEFAULT NULL,
+  `quantidade_min` int(11) DEFAULT NULL,
+  `quantidade_max` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -98,14 +97,14 @@ INSERT INTO `forma_pagamento` (`id_forma_pag`, `descricao`) VALUES
 CREATE TABLE `fornecedores` (
   `id_fornecedor` int(11) NOT NULL,
   `razao_social` varchar(80) DEFAULT NULL,
-  `cnpj_fornecedor` varchar(15) DEFAULT NULL,
+  `cnpj_fornecedor` varchar(14) DEFAULT NULL,
   `email_fornecedor` varchar(80) DEFAULT NULL,
   `telefone_fornecedor` varchar(20) DEFAULT NULL,
-  `cep_fornecedor` varchar(15) DEFAULT NULL,
-  `rua_fornecedor` varchar(30) DEFAULT NULL,
+  `cep_fornecedor` varchar(8) DEFAULT NULL,
+  `rua_fornecedor` varchar(50) DEFAULT NULL,
   `numero_fornecedor` int(11) DEFAULT NULL,
   `bairro_fornecedor` varchar(80) DEFAULT NULL,
-  `cidade_fornecedor` varchar(20) DEFAULT NULL,
+  `cidade_fornecedor` varchar(50) DEFAULT NULL,
   `uf_fornecedor` char(2) DEFAULT NULL,
   `responsavel` varchar(80) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -140,33 +139,18 @@ INSERT INTO `funcao` (`id_funcao`, `nome_funcao`) VALUES
 CREATE TABLE `funcionarios` (
   `id_funcionario` int(11) NOT NULL,
   `id_funcao` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
   `nome_funcionario` varchar(80) DEFAULT NULL,
-  `CPF` varchar(20) DEFAULT NULL,
-  `email` varchar(80) DEFAULT NULL,
-  `cep` varchar(15) DEFAULT NULL,
-  `rua` varchar(30) DEFAULT NULL,
-  `telefone` varchar(20) DEFAULT NULL,
-  `numero` int(11) DEFAULT NULL,
-  `bairro` varchar(80) DEFAULT NULL,
-  `cidade` varchar(20) DEFAULT NULL,
-  `UF` char(2) DEFAULT NULL,
+  `CPF` varchar(11) DEFAULT NULL,
+  `email_funcionario` varchar(80) DEFAULT NULL,
+  `cep_funcionario` varchar(8) DEFAULT NULL,
+  `rua_funcionario` varchar(50) DEFAULT NULL,
+  `telefone_funcionario` varchar(20) DEFAULT NULL,
+  `numero_funcionario` int(11) DEFAULT NULL,
+  `bairro_funcionario` varchar(80) DEFAULT NULL,
+  `cidade_funcionario` varchar(50) DEFAULT NULL,
+  `uf_funcionario` char(2) DEFAULT NULL,
   `data_admissao` date DEFAULT NULL,
   `salario` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `itemvenda`
---
-
-CREATE TABLE `itemvenda` (
-  `id_item` int(11) NOT NULL,
-  `id_produto` int(11) NOT NULL,
-  `id_venda` int(11) NOT NULL,
-  `preco_un` decimal(10,2) DEFAULT NULL,
-  `qtd` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -179,8 +163,22 @@ CREATE TABLE `item_comanda` (
   `id_item_comanda` int(11) NOT NULL,
   `id_comanda` int(11) NOT NULL,
   `id_produto` int(11) NOT NULL,
-  `qtd` int(11) DEFAULT NULL,
+  `quantidade` int(11) DEFAULT NULL,
   `observacao` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `item_venda`
+--
+
+CREATE TABLE `item_venda` (
+  `id_item_venda` int(11) NOT NULL,
+  `id_produto` int(11) NOT NULL,
+  `id_venda` int(11) NOT NULL,
+  `preco_un` decimal(10,2) DEFAULT NULL,
+  `quantidade` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -194,7 +192,7 @@ CREATE TABLE `produto` (
   `id_fornecedor` int(11) NOT NULL,
   `id_estoque` int(11) NOT NULL,
   `nome_produto` varchar(80) DEFAULT NULL,
-  `quantidade` int(11) NOT NULL,
+  `descricao` varchar(150) DEFAULT NULL,
   `preco` decimal(10,2) DEFAULT NULL,
   `unmedida` char(10) DEFAULT NULL,
   `validade` date DEFAULT NULL,
@@ -209,17 +207,11 @@ CREATE TABLE `produto` (
 
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
+  `id_funcionario` int(11) NOT NULL,
+  `id_funcao` int(11) NOT NULL,
   `nome_usuario` varchar(50) DEFAULT NULL,
-  `senha` varchar(20) DEFAULT NULL,
-  `id_funcao` int(11) NOT NULL
+  `senha` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `usuario`
---
-
-INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `senha`, `id_funcao`) VALUES
-(1, 'Joaquim', '12345678', 4);
 
 -- --------------------------------------------------------
 
@@ -283,16 +275,7 @@ ALTER TABLE `funcao`
 --
 ALTER TABLE `funcionarios`
   ADD PRIMARY KEY (`id_funcionario`),
-  ADD KEY `id_funcao` (`id_funcao`),
-  ADD KEY `id_usuario` (`id_usuario`);
-
---
--- Índices de tabela `itemvenda`
---
-ALTER TABLE `itemvenda`
-  ADD PRIMARY KEY (`id_item`),
-  ADD KEY `id_produto` (`id_produto`),
-  ADD KEY `id_venda` (`id_venda`);
+  ADD KEY `id_funcao` (`id_funcao`);
 
 --
 -- Índices de tabela `item_comanda`
@@ -301,6 +284,14 @@ ALTER TABLE `item_comanda`
   ADD PRIMARY KEY (`id_item_comanda`),
   ADD KEY `id_comanda` (`id_comanda`),
   ADD KEY `id_produto` (`id_produto`);
+
+--
+-- Índices de tabela `item_venda`
+--
+ALTER TABLE `item_venda`
+  ADD PRIMARY KEY (`id_item_venda`),
+  ADD KEY `id_produto` (`id_produto`),
+  ADD KEY `id_venda` (`id_venda`);
 
 --
 -- Índices de tabela `produto`
@@ -365,16 +356,16 @@ ALTER TABLE `funcionarios`
   MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `itemvenda`
---
-ALTER TABLE `itemvenda`
-  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de tabela `item_comanda`
 --
 ALTER TABLE `item_comanda`
   MODIFY `id_item_comanda` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `item_venda`
+--
+ALTER TABLE `item_venda`
+  MODIFY `id_item_venda` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `produto`
@@ -386,7 +377,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `venda`
@@ -414,15 +405,7 @@ ALTER TABLE `comanda`
 -- Restrições para tabelas `funcionarios`
 --
 ALTER TABLE `funcionarios`
-  ADD CONSTRAINT `funcionarios_ibfk_1` FOREIGN KEY (`id_funcao`) REFERENCES `funcao` (`id_funcao`),
-  ADD CONSTRAINT `funcionarios_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
-
---
--- Restrições para tabelas `itemvenda`
---
-ALTER TABLE `itemvenda`
-  ADD CONSTRAINT `itemvenda_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`),
-  ADD CONSTRAINT `itemvenda_ibfk_2` FOREIGN KEY (`id_venda`) REFERENCES `venda` (`id_venda`);
+  ADD CONSTRAINT `funcionarios_ibfk_1` FOREIGN KEY (`id_funcao`) REFERENCES `funcao` (`id_funcao`);
 
 --
 -- Restrições para tabelas `item_comanda`
@@ -430,6 +413,13 @@ ALTER TABLE `itemvenda`
 ALTER TABLE `item_comanda`
   ADD CONSTRAINT `item_comanda_ibfk_1` FOREIGN KEY (`id_comanda`) REFERENCES `comanda` (`id_comanda`),
   ADD CONSTRAINT `item_comanda_ibfk_2` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`);
+
+--
+-- Restrições para tabelas `item_venda`
+--
+ALTER TABLE `item_venda`
+  ADD CONSTRAINT `itemvenda_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`),
+  ADD CONSTRAINT `itemvenda_ibfk_2` FOREIGN KEY (`id_venda`) REFERENCES `venda` (`id_venda`);
 
 --
 -- Restrições para tabelas `produto`
