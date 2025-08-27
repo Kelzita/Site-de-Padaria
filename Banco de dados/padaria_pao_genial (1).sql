@@ -130,6 +130,7 @@ INSERT INTO `funcao` (`id_funcao`, `nome_funcao`) VALUES
 (3, 'Balconista'),
 (4, 'Caixa');
 
+
 -- --------------------------------------------------------
 
 --
