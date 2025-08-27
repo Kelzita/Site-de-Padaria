@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Caixa</title>
-        <link rel="stylesheet" href="caixa_novo.css" />
+        <link rel="stylesheet" href="css/styleCaixa.css" />
 </head>
 <body>
     <div class="box_principal">
@@ -14,12 +14,14 @@
         </div>
 
         <div class="box_logo">
-            <img src="../img/logo.png" alt="Logo da Padaria Pão Genial">
+            <img src="img/logo.png" alt="Logo da Padaria Pão Genial">
         </div>
 
         <div class="box_comanda">
             <label for="id_comanda">ID da Comanda:</label>
             <input type="number" id="id_comanda" name="id_comanda" placeholder="Digite o ID da Comanda">
+            <button class="buscarComanda" type="submit">Buscar</button> 
+            <button class="apagarBuscarComanda" type="button">Apagar</button>
         </div>
 
         <div class="box_listaProdutos">
@@ -43,6 +45,21 @@
                     <td></td>
                 </tr>
             </table>
+        </div>
+        <div class="box_codigo_prod">
+            <label for="cod_prod">Código do Produto:</label>
+            <input type="number" id="cod_prod" name="cod_comanda" placeholder="Insira o código...">
+            <button class="buscarCodProd" type="submit">Buscar</button> 
+        </div>
+        <div class="resumo">
+            <div><strong>SUBTOTAL:</strong><span class="destaque" id="subtotal">R$ 0,00</span></div>
+        </div>
+        <div class="comandos">
+            <button>Pesquisar Produto</button>
+            
+            <button>Finalizar Venda</button>
+            
+            <button>Sair</button>
         </div>
     </div>
 </body>

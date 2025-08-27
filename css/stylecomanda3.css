@@ -1,5 +1,5 @@
 body {
-    background-image: url('../img/fundo1.jpg');
+    background-image: url('../img/fundo_padaria.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -29,7 +29,7 @@ body {
     background-color: white;
     padding: 0px;
     width: 1050px;
-    margin: 50px auto;
+    margin: 30px auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     height: 530px; /* altura fixa */
     display: flex;
@@ -152,7 +152,7 @@ body {
   .campo-pesquisa {        /********                                    ************/
     text-align: left;
     margin-bottom: 20px;
-    position: fixed; 
+ 
     width: 1042px;
   }
   
@@ -229,3 +229,58 @@ body {
     margin-top: 12px;
     padding: 0px;
   }
+
+
+
+/***********************************************************/
+h1{
+  text-align: center;
+}
+
+#busca{
+  width: 800px;
+  margin: 10px auto; /* Centraliza na tela */
+  padding: 10px;
+  background-color: #f9f9f9; /* Fundo suave */
+  border-radius: 10px; /* Cantos arredondados */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  flex-direction: column;
+  align-items: center; /* Centraliza os elementos dentro do formulário */
+}
+
+/* Estilo das tabelas buscar*/
+.table {
+  width: 100%;
+  margin: 20px auto; /* Centraliza a tabela */
+  border-collapse: collapse;
+  font-family: 'sans-serif ';
+  font-size: 16px;
+  background-color: #fff;
+  overflow: hidden; /* Para arredondar cantos */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+  background-color: #5a3e00; /* Azul compatível com botões */
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+/* Ajusta os botões */
+button {
+  width: 14%;
+  padding: 10px;
+  background-color: #33aa2f; /* Azul bonito */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #2e8a2b; /* Azul mais escuro ao passar o mouse */
+}
+

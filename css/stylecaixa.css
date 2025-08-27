@@ -1,142 +1,271 @@
-@charset "UTF-8";
-
-*{
-    box-sizing: border-box;
-}
-
+/* Base */
 html, body {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
   font-family: 'Times New Roman';
-  background-image: url('../img/fundo1.jpg');
+  background-image: url('../img/fundo_padaria.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #E8F0EF;
-  color: #333;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden; 
 }
 
-.container {
-  display: grid;
-  grid-template-columns: 1.2fr 2.5fr 1.3fr;
-  grid-template-rows: auto auto 1fr auto;
-  gap: 20px;
-  max-width: 1600px;
-  width: 100%;
-  height: 95vh;
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-  padding: 25px;
+
+/*estilo da box principal*/
+.box_principal{
+  background-color: rgba(0, 0, 0, 0.8);
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 750px;
+  width: 1200px;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+/*estil da box header*/
+.box_header{
+  background-color: white;
+  margin: 30px 10px;
+  height: 55px;
+  border-radius: 10px;
+}
+
+/*estilo do h2 que fica na box header*/
+.box_header h2{
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  color: #333;
+}
+
+/*estilo da caixa da logo*/
+.box_logo{
+  background-color: white;
+  margin: 20px 10px;
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+  text-align: center; 
+  float: center;
+}
+
+/*Estilo para Imagem*/
+.box_logo img{
+  margin: 20px;
+  width: 150px;
+  height: 150px;
+  float: center;
+}
+
+
+/*Estilo para a caixa da comanda*/
+.box_comanda{
+  background-color: white;
+  margin: 20px 10px;
+  width: 300px;
+  height: 190px;
+  border-radius: 10px;
+}
+
+.box_comanda label{
+  text-align: left;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;  
+  margin-left: 30px;
+  padding-top: 15px; 
+  display: block; /* para garantir que o padding-top funcione corretamente */ 
+}
+
+.box_comanda input{
+  display: block;
+  width: 80%; 
+  margin: 8px auto 15px auto; 
+  padding: 10px;
+  border: 1px solid #7c7c7c;
+  border-radius: 8px;
+  font-size: 15px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+  transition: all 0.2s ease-in-out;
   box-sizing: border-box;
 }
 
-header{
-    grid-column: 1 / -1;
-    background-color: #1F3A60; /* Alterado */
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    font-size: 1.8em;
-    border-radius: 10px;
+/* Estilo base dos botões */
+.box_comanda .buscarComanda,
+.box_comanda .apagarBuscarComanda {
+  display: inline-block;
+  width: auto;             
+  min-width: 110px;         
+  margin: 5px;
+  margin-top: 0px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
 }
 
-.barras, .codigo, .resumo, .comandos{
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+.box_comanda .buscarComanda{
+    margin-left: 30px;
 }
 
-.numcomanda{
-  background-color: #fff;
+
+.box_comanda .buscarComanda {
+  background-color: #5d331f;
+  color: #fff;
+}
+
+.box_comanda .buscarComanda:hover {
+  background-color: #7a4226;
+  transform: scale(1.05);
+}
+
+
+.box_comanda .apagarBuscarComanda {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.box_comanda .apagarBuscarComanda:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+
+/*Estilo para caixa de lista de produtos*/
+.box_listaProdutos{
+  background-color: white;
+  margin-top: -430px;
+  margin-left: 327px;
+  height: 410px;
+  width: 550px;
   border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
 }
 
-.barras img{
-  float:center;
-  height:150px;
-  width:150px;
-  margin-top: 0px auto;
-  margin-left: 50px;
+/*Estilo para o h2 da lista de produtos*/
+.box_listaProdutos h2{
+  text-align: left;
+  color: #333;  
+  margin-left: 30px;
+  padding-top: 10px;
 }
 
-.barraslabel, .codigo label, .numcomanda label{
-    font-weight: bold;
-    margin-top: 10px;
-    display: block;
-}
-
-.barras input, .codigo input{
-    width: 100%;
-    padding: 8px;
-    font-size: 1em;
-    margin-top: 5px;
-}
-
-.valores{
-    margin-top: 10px;
-}
-
-.valores div{
-    margin-bottom: 5px;
-}
-
-.produtos{
-    grid-column: 2 / 3;
-    grid-row: 2 / span 2;
-    background: #fff;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    overflow-y: auto; 
-}
-
+/*Estilo para tabela*/
 table{
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td{
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: center;
+  width: 95%;
+  margin: 20px auto;
+  border-collapse: collapse;
 }
 
 th{
-    background-color: #F5B041; /* Alterado */
-    color:#fff;
+  background-color: #3D2412;
+  color: white;
+  border: 1px solid #FFDAB9;
+  padding: 10px;
+
 }
 
-.totais, .codcomanda {
-    grid-column: 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+td {
+  background-color: white;
+  color:black;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.box_codigo_prod{
+    background-color: white; 
+    width: 300px;
+    height: 200px;
+    margin-top: -410px;
+    margin-left: 890px;
+    border-radius: 10px;
+    text-align: center; 
+    float: center;
   }
-  .totais .resumo {
-    margin-bottom: 10px;
+
+  .box_codigo_prod label{
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;  
+    margin-left: 30px;
+    padding-top: 15px; 
+    display: block; 
   }
+
+  .box_codigo_prod input{
+    display: block;
+    width: 80%; 
+    margin: 8px auto 15px auto; 
+    padding: 10px;
+    border: 1px solid #7c7c7c;
+    border-radius: 8px;
+    font-size: 15px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+  }
+
+  .box_codigo_prod .buscarCodProd{
+    display: inline-block;
+    width: auto;             
+    min-width: 110px;         
+    margin: 5px;
+    margin-top: 0px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    background-color: #5d331f;
+    color: #fff;
+  }
+
+  .box_codigo_prod .buscarCodProd:hover {
+    background-color: #7a4226;
+    transform: scale(1.05);
+  }
+
+
+.resumo{
+    background-color: white;
+    margin: 20px 890px;
+    width: 300px;
+    height: 90px;
+    border-radius: 10px;
+  }
+
   .resumo div {
     margin: 5px 0;
     font-size: 1.2em;
+    color: #333;
+    text-align: left;
+    margin-left: 30px;
+    padding-top: 15px; 
+    display: block; 
   }
   .resumo .destaque {
     font-size: 1.6em;
     font-weight: bold;
     color: red;
   }
+
   .comandos {
-    grid-column: 1 / -1;
+    margin: 10px 10px;
+    border-radius: 6px;
+    background-color: white;
+    margin-top: 130px;
+   
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -144,77 +273,21 @@ th{
     padding: 10px;
     align-items: center;
   }
+
   .comandos button {
     flex: 1;
     padding: 15px;
     font-size: 1em;
     border: none;
     border-radius: 10px;
-    background-color: #F5B041; /* Alterado */
+    background-color: #3D2412; /* Alterado */
     cursor: pointer;
     transition: 0.3s;
     color: white;
   }
-  .comandos button:hover {
-    background-color: #D68910; /* Alterado */
+
+  .comandos button:hover{
+    background-color: #7a4226;
     color:#fff;
   }
 
-
-  /* Botão do menu */
-  .menu-icon {
-    position: absolute;
-    left: 60px;
-    font-size: 30px;
-    cursor: pointer;
-    color: #000000;
-    z-index: 11;
-    transition: color 0.3s, top 0.3s, left 0.3s;
-  }
-  
-  .menu-icon.active {
-    color: white; /* Quando sidebar está aberta */
-    top: 20px; /* Move o ícone mais para cima quando ativo */
-    left: 20px; /* Move o ícone mais para a esquerda quando ativo */
-  }
-  .sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    text-align: justify;
-    background-color: rgba(0, 0, 0, 0.8); /* Fundo transparente */
-    overflow-x: hidden;
-    transition: 0.3s;
-    padding-top: 70px;
-    z-index: 9;
-  }
-  
-  .sidebar a {
-    padding: 15px 25px;
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    display: block;
-    transition: 0.2s;
-  }
-  
-  .sidebar a:hover {
-    background-color: rgba(44, 41, 41, 0.8); /* Fundo transparente no hover */
-  }
-
-  .remove {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 3px;
-    font-size: 13px;
-    transition: background-color 0.3s ease;
-  }
-  .remove:hover {
-    background-color: #c0392b;
-  }
