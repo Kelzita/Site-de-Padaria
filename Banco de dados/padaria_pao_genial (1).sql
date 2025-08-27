@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/08/2025 às 19:18
+-- Tempo de geração: 27/08/2025 às 22:02
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -24,23 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `caixa`
---
-
-CREATE TABLE `caixa` (
-  `id_caixa` int(11) NOT NULL AUTO_INCREMENT,
-  `id_funcionario` int(11) NOT NULL,
-  `data_abertura` date DEFAULT NULL,
-  `data_fechamento` date DEFAULT NULL,
-  `hora_abertura` time DEFAULT NULL,
-  `hora_fechamento` time DEFAULT NULL,
-  `valor_inicial` decimal(10,2) DEFAULT NULL,
-  `valor_final` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estrutura para tabela `comanda`
 --
 
@@ -49,7 +32,8 @@ CREATE TABLE `comanda` (
   `id_funcionario` int(11) NOT NULL,
   `data_abertura` date DEFAULT NULL,
   `hora_abertura` time DEFAULT NULL,
-  `status` varchar(10) DEFAULT NULL
+  `status` varchar(10) DEFAULT NULL,
+  `forma_pagamento` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -109,6 +93,13 @@ CREATE TABLE `fornecedores` (
   `responsavel` varchar(80) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `fornecedores`
+--
+
+INSERT INTO `fornecedores` (`id_fornecedor`, `razao_social`, `cnpj_fornecedor`, `email_fornecedor`, `telefone_fornecedor`, `cep_fornecedor`, `rua_fornecedor`, `numero_fornecedor`, `bairro_fornecedor`, `cidade_fornecedor`, `uf_fornecedor`, `responsavel`) VALUES
+(1, 'aaa', '111111', 'email@gmail.com', '(00) 00000-0000', '1111', '', 0, '', '', '', 'aaaa');
+
 -- --------------------------------------------------------
 
 --
@@ -130,7 +121,6 @@ INSERT INTO `funcao` (`id_funcao`, `nome_funcao`) VALUES
 (3, 'Balconista'),
 (4, 'Caixa');
 
-
 -- --------------------------------------------------------
 
 --
@@ -151,8 +141,16 @@ CREATE TABLE `funcionarios` (
   `cidade_funcionario` varchar(50) DEFAULT NULL,
   `uf_funcionario` char(2) DEFAULT NULL,
   `data_admissao` date DEFAULT NULL,
-  `salario` decimal(10,2) DEFAULT NULL
+  `salario` decimal(10,2) DEFAULT NULL,
+  `senha` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `funcionarios`
+--
+
+INSERT INTO `funcionarios` (`id_funcionario`, `id_funcao`, `nome_funcionario`, `cpf_funcionario`, `email_funcionario`, `cep_funcionario`, `rua_funcionario`, `telefone_funcionario`, `numero_funcionario`, `bairro_funcionario`, `cidade_funcionario`, `uf_funcionario`, `data_admissao`, `salario`, `senha`) VALUES
+(1, 1, 'Jamilly Rodrigues Froes', '036.621.212', 'jamillyrodriguesfroes@gmail.com', '89211-63', 'Rua Ilheus', '(92) 99278-8203', 400, 'Floresta', 'Joinville', 'SC', '2025-08-27', 11111.00, '$2y$10$XcewEB1qndvf1nLAbhSAtuvIOlGfJ.4rSHkK7KvI/AQFDLtGdLVNu');
 
 -- --------------------------------------------------------
 
@@ -165,21 +163,8 @@ CREATE TABLE `item_comanda` (
   `id_comanda` int(11) NOT NULL,
   `id_produto` int(11) NOT NULL,
   `quantidade` int(11) DEFAULT NULL,
-  `observacao` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `item_venda`
---
-
-CREATE TABLE `item_venda` (
-  `id_item_venda` int(11) NOT NULL,
-  `id_produto` int(11) NOT NULL,
-  `id_venda` int(11) NOT NULL,
-  `preco_un` decimal(10,2) DEFAULT NULL,
-  `quantidade` int(11) DEFAULT NULL
+  `observacao` varchar(100) DEFAULT NULL,
+  `total` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -197,48 +182,13 @@ CREATE TABLE `produto` (
   `preco` decimal(10,2) DEFAULT NULL,
   `unmedida` char(10) DEFAULT NULL,
   `validade` date DEFAULT NULL,
-  `imagem_produto` longblob DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `usuario`
---
-
-CREATE TABLE `usuario` (
-  `id_usuario` int(11) NOT NULL,
-  `id_funcionario` int(11) NOT NULL,
-  `id_funcao` int(11) NOT NULL,
-  `nome_usuario` varchar(50) DEFAULT NULL,
-  `senha` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `venda`
---
-
-CREATE TABLE `venda` (
-  `id_venda` int(11) NOT NULL,
-  `id_caixa` int(11) NOT NULL,
-  `id_forma_pag` int(11) NOT NULL,
-  `data_dia` date DEFAULT NULL,
-  `hora` time DEFAULT NULL,
-  `total` decimal(10,2) DEFAULT NULL
+  `imagem_produto` longblob DEFAULT NULL,
+  `quantidade_produto` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tabelas despejadas
 --
-
---
--- Índices de tabela `caixa`
---
-ALTER TABLE `caixa`
-  ADD PRIMARY KEY (`id_caixa`),
-  ADD KEY `id_funcionario` (`id_funcionario`);
 
 --
 -- Índices de tabela `comanda`
@@ -287,14 +237,6 @@ ALTER TABLE `item_comanda`
   ADD KEY `id_produto` (`id_produto`);
 
 --
--- Índices de tabela `item_venda`
---
-ALTER TABLE `item_venda`
-  ADD PRIMARY KEY (`id_item_venda`),
-  ADD KEY `id_produto` (`id_produto`),
-  ADD KEY `id_venda` (`id_venda`);
-
---
 -- Índices de tabela `produto`
 --
 ALTER TABLE `produto`
@@ -303,28 +245,8 @@ ALTER TABLE `produto`
   ADD KEY `id_estoque` (`id_estoque`);
 
 --
--- Índices de tabela `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id_usuario`);
-
---
--- Índices de tabela `venda`
---
-ALTER TABLE `venda`
-  ADD PRIMARY KEY (`id_venda`),
-  ADD KEY `id_caixa` (`id_caixa`),
-  ADD KEY `id_forma_pag` (`id_forma_pag`);
-
---
 -- AUTO_INCREMENT para tabelas despejadas
 --
-
---
--- AUTO_INCREMENT de tabela `caixa`
---
-ALTER TABLE `caixa`
-  MODIFY `id_caixa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `comanda`
@@ -348,13 +270,13 @@ ALTER TABLE `forma_pagamento`
 -- AUTO_INCREMENT de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
-  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
-  MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de tabela `item_comanda`
@@ -363,38 +285,14 @@ ALTER TABLE `item_comanda`
   MODIFY `id_item_comanda` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `item_venda`
---
-ALTER TABLE `item_venda`
-  MODIFY `id_item_venda` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
   MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de tabela `venda`
---
-ALTER TABLE `venda`
-  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- Restrições para tabelas despejadas
 --
-
---
--- Restrições para tabelas `caixa`
---
-ALTER TABLE `caixa`
-  ADD CONSTRAINT `caixa_ibfk_1` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionarios` (`id_funcionario`);
 
 --
 -- Restrições para tabelas `comanda`
@@ -416,25 +314,11 @@ ALTER TABLE `item_comanda`
   ADD CONSTRAINT `item_comanda_ibfk_2` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`);
 
 --
--- Restrições para tabelas `item_venda`
---
-ALTER TABLE `item_venda`
-  ADD CONSTRAINT `itemvenda_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`),
-  ADD CONSTRAINT `itemvenda_ibfk_2` FOREIGN KEY (`id_venda`) REFERENCES `venda` (`id_venda`);
-
---
 -- Restrições para tabelas `produto`
 --
 ALTER TABLE `produto`
   ADD CONSTRAINT `produto_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id_fornecedor`),
   ADD CONSTRAINT `produto_ibfk_2` FOREIGN KEY (`id_estoque`) REFERENCES `estoque` (`id_estoque`);
-
---
--- Restrições para tabelas `venda`
---
-ALTER TABLE `venda`
-  ADD CONSTRAINT `venda_ibfk_1` FOREIGN KEY (`id_caixa`) REFERENCES `caixa` (`id_caixa`),
-  ADD CONSTRAINT `venda_ibfk_2` FOREIGN KEY (`id_forma_pag`) REFERENCES `forma_pagamento` (`id_forma_pag`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

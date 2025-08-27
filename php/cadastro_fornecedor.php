@@ -2,9 +2,9 @@
 session_start();
 require_once "conexao.php";
 
-if($_SESSION['id_funcao'] != 1) {
-    echo ("<script>alert('Acesso Negado! Retornando para a página inicial...'); window.location.href='../HTML/principal.php';");
-}
+//if($_SESSION['id_funcao'] != 1) {
+   // echo ("<script>alert('Acesso Negado! Retornando para a página inicial...'); window.location.href='../HTML/principal.php';");
+//}
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $responsavel = $_POST['responsavel'];
@@ -19,9 +19,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $cidade_fornecedor = $_POST['cidade_fornecedor'];
     $uf_fornecedor = $_POST['uf_fornecedor'];
 
-    $sql = "INSERT INTO fornecedores (id_fornecedor, responsavel, razao_social, cnpj_fornecedor, telefone_fornecedor, email_fornecedor, cep_fornecedor, rua_fornecedor, numero_fornecedor, bairro_fornecedor, cidade_fornecedor, uf_fornecedor) VALUES (:id_fornecedor, :responsavel, :razao_social, :cnpj_fornecedor, :telefone_fornecedor, :telefone_fornecedor, :email_fornecedor, :cep_fornecedor, :rua_fornecedor, :numero_fornecedor, :bairro_fornecedor, :cidade_fornecedor, :uf_fornecedor)";
+    $sql = "INSERT INTO fornecedores (responsavel, razao_social, cnpj_fornecedor, telefone_fornecedor, email_fornecedor, cep_fornecedor, rua_fornecedor, numero_fornecedor, bairro_fornecedor, cidade_fornecedor, uf_fornecedor) VALUES (:id_fornecedor, :responsavel, :razao_social, :cnpj_fornecedor, :telefone_fornecedor, :telefone_fornecedor, :email_fornecedor, :cep_fornecedor, :rua_fornecedor, :numero_fornecedor, :bairro_fornecedor, :cidade_fornecedor, :uf_fornecedor)";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':id_fornecedor', $id_fornecedor);
     $stmt->bindParam(':responsavel', $responsavel);
     $stmt->bindParam(':razao_social', $razao_social);
     $stmt->bindParam(':cnpj_fornecedor', $cnpj_fornecedor);

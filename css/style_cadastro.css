@@ -101,27 +101,115 @@ h1 {
     transform: scale(1.05);
 }
 
-/*========Olhinho=======*/
 
-.formulario-cadastro {
+
+
+
+/* ===================== FORMULÁRIO USUÁRIO ===================== */
+.container-usuario {
+    margin-top: 100px;
+    margin-bottom: 30px; /* espaço inferior da página */
+    width: 500px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    padding: 25px 35px;
+    box-sizing: border-box;
+    /* altura automática para ajustar ao conteúdo */
+    display: flex;
+    flex-direction: column;
+}
+
+/* -------- Título -------- */
+.titulo, 
+.formulario-cadastro-usuario h1 {
+    display: block;
+    width: 100%; 
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+    color: #000;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+/* -------- Campos -------- */
+.formulario-cadastro-usuario {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* -------- Campos -------- */
+.formulario-cadastro-usuario label {
+    display: block;
+    width: 80%; /* menor que 100% */
+    margin: 8px auto 5px auto; /* centraliza o label */
+    font-size: 15px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.formulario-cadastro-usuario input,
+.formulario-cadastro-usuario select {
+    display: block;
+    width: 80%; /* largura consistente */
+    margin: 0 auto 15px auto; /* centraliza e espaçamento inferior */
+    padding: 10px;
+    border: 1px solid #7c7c7c;
+    border-radius: 8px;
+    font-size: 15px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box; /* inclui padding e border na largura */
+}
+
+.formulario-cadastro-usuario input:focus {
+    outline: none;
+    box-shadow: 0 0 6px rgba(0,0,0,0.5);
+    border-color: #000;
+}
+
+/* adiciona espaço extra antes do botão */
+.formulario-cadastro-usuario input:last-of-type {
+    margin-bottom: 25px;
+}
+
+/*=====Olhinho=======*/
+
+.formulario-cadastro-usuario {
     position: relative; /* necessário para posicionar o ícone dentro do input */
+}
+
+.input-container-usuario {
+    position: relative;
+    width: 80%;
+    margin: 0 auto 1px auto; /* reduz para 5px entre inputs */
+}
+
+.input-container-usuario input {
+    width: 100%;
+    padding-right: 40px; /* espaço para o olho */
 }
 
 .login__eye {
     position: absolute;
-    right: 10px; /* fica do lado direito */
-    top: 50%;
-    transform: translateY(-50%); /* centraliza verticalmente */
-    z-index: 10;
+    right: 10px; /* distância do lado direito */
+    top: 30%;    /* centraliza verticalmente */
+    transform: translateY(-50%);
     cursor: pointer;
+    color: #7c7c7c;
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .login__eye:hover {
-    transform: translateY(-50%) scale(1.15); /* mantém centralizado e aumenta */
-    color: #cacaca;
-}
-
-#senha {
-    padding-right: 35px; /* espaço para o ícone */
+    transform: translateY(-50%) scale(1.15);
+    color: #000;
 }

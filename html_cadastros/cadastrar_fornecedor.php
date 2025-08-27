@@ -10,14 +10,9 @@
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/style_cadastro.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <script>
-        $(document).ready(function(){
-        $('#telefone_fornecedor').mask('(00) 00000-0000');
-    });
-    </script>
+   
+    <script src="../javascript/inputmask.min.js"></script>
 </head>
-
 <body>
     <header>
         <img src="../img/logo.png" />
@@ -95,7 +90,7 @@
             <button type="submit" class="btn-cadastrar"><i class="fas fa-save"></i> Cadastrar</button>
         </form>
     </div>
-    <script src="../js/validacao_cad_fornecedor.js"></script>
+    <script src="../javascript/funcoes.js"></script>
 </body>
 
 </html>
