@@ -6,12 +6,10 @@ header {
     display:flex;
 }
 body {
-    background-image: url('../img/fundo1.jpg');
+    background-image: url('img/fundo_padaria.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
- 
- 
  }
  
  header img {
@@ -27,7 +25,7 @@ html, body {
     height: 100%;
     margin: 0;
     font-family: 'sans-serif ';
-    background-image: url('../img/fundo1.jpg');
+    background-image: url('../img/fundo_padaria.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -37,13 +35,14 @@ html, body {
     margin-top: 20px;
     padding-top: 10px;
     width: 500px;
-    height: 500px;
+    height: 300px;
     background-color: rgb(255, 255, 255);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 6px;
     padding: 20px;
     box-sizing: border-box;
   }
@@ -123,14 +122,13 @@ html, body {
     padding: 10px 16px; /* levemente mais confortável ao toque */
   }
 .titulo {
+    padding-top: 50px;
     font-size: 24px;
     color: black;
     font-family: 'Times New Roman', Times, serif;
     text-align: center;
     margin-top: 20px;
     font-weight: bold;
-
-
 }
 .modal {
     display: none; 
@@ -140,7 +138,7 @@ html, body {
     top: 0;
     width: 100%; 
     height: 100%; 
-    overflow: auto; 
+    overflow: hidden; 
     background-color: rgba(0, 0, 0, 0.4);
 
 }
@@ -215,6 +213,8 @@ h2,h3 {
     border: 1px solid #ccc;
     font-size: 16px;
     box-sizing: border-box;
+    align-items: center;
+    display: block;
 }
     
 .confirmar {
