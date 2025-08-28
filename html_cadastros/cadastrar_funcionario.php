@@ -108,7 +108,7 @@ require_once '../php/funcoes.php';
                 <option selected disabled>Selecione a Função</option>
                 <?php foreach ($funcoes as $funcao): ?>
                 <option value="<?= htmlspecialchars($funcao['id_funcao']) ?>" <?=$funcao['id_funcao']==$idSelecionado ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($funcao['nome_funcao']) ?>
+                <?= htmlspecialchars($funcao['id_funcao'] . ' - ' . $funcao['nome_funcao']) ?>
                 </option>
                 <?php endforeach; ?>
             </select>
