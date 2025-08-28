@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 
     if($stmt->execute()){
-        echo "<script>alert('Produto cadastrado com Sucesso!'); window.location.href='..php/cadastro_produto.php';</script>";
+        echo "<script>alert('Produto cadastrado com Sucesso!'); window.location.href='../html_cadastros/cadastrar_produto.php';</script>";
     } else {
         echo "<script>alert('Erro: não foi possível cadastrar o produto.');</script>";
     }
