@@ -86,7 +86,7 @@ body {
   .checkbox-label input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    accent-color: #28a745;
+    accent-color: #7a4226;
   }
   
   .nome-produto {
@@ -115,7 +115,7 @@ body {
     padding: 12px;
     font-size: 16px;
     margin-top: 20px;
-    background-color: #28a745;
+    background-color: #7a4226;
     color: white;
     border: none;
     cursor: pointer;
@@ -123,7 +123,7 @@ body {
   }
   
   .botao-confirmar:hover {
-    background-color: #218838;
+    background-color: #7a4226;
   }
   
   .quantidade.erro {
@@ -176,20 +176,6 @@ body {
     justify-content: center;
   }
   
-  .botao-confirmar {
-    background-color: #28a745;
-    color: white;
-    font-size: 16px;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 300px;
-  }
-  
-  .botao-confirmar:hover {
-    opacity: 0.9;
-  }
   .retangulo-conteudo {
     flex: 1;
     overflow-y: auto;
@@ -205,7 +191,7 @@ body {
   }
   
   .botao-confirmar {
-    background-color: #28a745;
+    background-color: #3D2412;
     color: white;
     font-size: 16px;
     padding: 12px 24px;
@@ -271,7 +257,7 @@ h2{
 button {
   width: 14%;
   padding: 10px;
-  background-color: #33aa2f; /* Azul bonito */
+  background-color: #3D2412; /* Azul bonito */
   color: white;
   border: none;
   border-radius: 5px;
@@ -281,6 +267,6 @@ button {
 }
 
 button:hover {
-  background-color: #2e8a2b; /* Azul mais escuro ao passar o mouse */
+  background-color: #7a4226; /* Azul mais escuro ao passar o mouse */
 }
 
