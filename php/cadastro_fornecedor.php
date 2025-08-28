@@ -1,14 +1,13 @@
 <?php 
-session_start();
-require_once "conexao.php";
+require_once 'conexao.php'; 
 
-if($_SESSION['id_funcao'] != 1) {
-    echo ("<script>alert('Acesso Negado! Retornando para a página inicial...'); window.location.href='../HTML/principal.php';");
-}
+#if($_SESSION["id_funcao"] != 1) { 
+    #echo "<script>alert('Acesso negado!'); window.location.href='../principal.php=?id';</script>";
+#}
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $responsavel = $_POST['responsavel'];
     $razao_social = $_POST['razao_social'];
+    $responsavel = $_POST['responsavel'];
     $cnpj_fornecedor = $_POST['cnpj_fornecedor'];
     $telefone_fornecedor = $_POST['telefone_fornecedor'];
     $email_fornecedor = $_POST['email_fornecedor'];
@@ -19,11 +18,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $cidade_fornecedor = $_POST['cidade_fornecedor'];
     $uf_fornecedor = $_POST['uf_fornecedor'];
 
-    $sql = "INSERT INTO fornecedores (id_fornecedor, responsavel, razao_social, cnpj_fornecedor, telefone_fornecedor, email_fornecedor, cep_fornecedor, rua_fornecedor, numero_fornecedor, bairro_fornecedor, cidade_fornecedor, uf_fornecedor) VALUES (:id_fornecedor, :responsavel, :razao_social, :cnpj_fornecedor, :telefone_fornecedor, :telefone_fornecedor, :email_fornecedor, :cep_fornecedor, :rua_fornecedor, :numero_fornecedor, :bairro_fornecedor, :cidade_fornecedor, :uf_fornecedor)";
+    $sql = "INSERT INTO fornecedores ( razao_social, responsavel, cnpj_fornecedor, telefone_fornecedor, email_fornecedor, cep_fornecedor, rua_fornecedor,numero_fornecedor, bairro_fornecedor, cidade_fornecedor, uf_fornecedor ) VALUES ( :razao_social, :responsavel, :cnpj_fornecedor, :telefone_fornecedor, :email_fornecedor, :cep_fornecedor, :rua_fornecedor,:numero_fornecedor, :bairro_fornecedor, :cidade_fornecedor, :uf_fornecedor )";
+
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':id_fornecedor', $id_fornecedor);
-    $stmt->bindParam(':responsavel', $responsavel);
     $stmt->bindParam(':razao_social', $razao_social);
+    $stmt->bindParam(':responsavel', $responsavel);
     $stmt->bindParam(':cnpj_fornecedor', $cnpj_fornecedor);
     $stmt->bindParam(':telefone_fornecedor', $telefone_fornecedor);
     $stmt->bindParam(':email_fornecedor', $email_fornecedor);
@@ -32,13 +31,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':numero_fornecedor', $numero_fornecedor);
     $stmt->bindParam(':bairro_fornecedor', $bairro_fornecedor);
     $stmt->bindParam(':cidade_fornecedor', $cidade_fornecedor);
-    $stmt->bindParam(':uf_fornecedor', $uf_fornecedor);
+    $stmt->bindParam(':uf_fornecedor', $uf_fornecedor); 
 
-    if($stmt->execute()) {
-        echo("<script>alert('Fornecedor cadastrado com sucesso!);</script>");
-    } else {
-        echo("<script>alert('Erro ao cadastrar fornecedor!);</script>");
+    try{
+      $stmt->execute();
+         echo "<script>alert('Fornecedor cadastrado com sucesso!'); window.location.href='../html_cadastros/cadastrar_fornecedor.php';</script>";
+    } catch(PDOException $e) {
+        echo "<script>alert('Erro ao cadastrar Fornecedor: ".$e->getMessage()."');</script>";
     }
 
+
 }
+
 ?>

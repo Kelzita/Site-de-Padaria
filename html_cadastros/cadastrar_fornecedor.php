@@ -4,20 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Fornecedor</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/style_cadastro.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <script>
-        $(document).ready(function(){
-        $('#telefone_fornecedor').mask('(00) 00000-0000');
-    });
-    </script>
-</head>
 
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../javascript/inputmask.min.js"></script>
+</head>
 <body>
     <header>
         <img src="../img/logo.png" />
@@ -25,8 +22,7 @@
     </header>
     <div class="container">
         <h1>Cadastrar Fornecedor</h1>
-        <form class="formulario-cadastro" method="POST" action="../php/cadastro_fornecedor.php"
-            onsubmit="return ValidacaoFornecedor(event)">
+        <form class="formulario-cadastro" method="POST" action="../php/cadastro_fornecedor.php">
 
             <label for="razao_social"><i class="fas fa-building"></i> Razão Social:</label>
             <input type="text" id="razao_social" name="razao_social" placeholder="Insira a razão social" />
@@ -34,8 +30,8 @@
             <label for="responsavel"><i class="fas fa-user-tie"></i> Responsável:</label>
             <input type="text" id="responsavel" name="responsavel" placeholder="Insira o nome do responsável" />
 
-            <label for="cnpj_fornecedor"><i class="fas fa-id-card"></i> CNPJ:</label>
-            <input type="text" id="cnpj_fornecedor" name="cnpj_fornecedor" placeholder="Insira o CNPJ" maxlength="14" />
+            <label for="cnpj_fornecedor">CNPJ:</label>
+<input type="text" id="cnpj_fornecedor" name="cnpj_fornecedor" placeholder=" Insira o CNPJ (ex.99.999.999/9999-99)" maxlength="18" />
 
             <label for="telefone_fornecedor"><i class="fas fa-phone"></i> Telefone:</label>
             <input type="text" id="telefone_fornecedor" name="telefone_fornecedor" pattern="\(\d{2}\) \d{4,5}-\d{4}"
@@ -45,22 +41,25 @@
             <input type="email" id="email_fornecedor" name="email_fornecedor" placeholder="Insira o e-mail" />
 
             <label for="cep_fornecedor"><i class="fas fa-map-pin"></i> CEP:</label>
-            <input type="text" id="cep_fornecedor" name="cep_fornecedor" placeholder="Insira o CEP" maxlength="8" />
+            <div class="input-container-cep">
+                <input type="text" id="cep_fornecedor" name="cep_fornecedor" placeholder="Insira o CEP" maxlength="9" oninput="formatCEP(this)">
+                 <i class="ri-search-line busca_lupa" onclick="buscarCEPFornecedor()"></i>
+            </div>
 
             <label for="rua_fornecedor"><i class="fas fa-road"></i> Rua:</label>
-            <input name="rua" type="text" id="rua_fornecedor" placeholder="Insira a rua">
+            <input name="rua_fornecedor" type="text" id="rua_fornecedor" placeholder="Insira a rua">
 
             <label for="numero_fornecedor"><i class="fas fa-home"></i> Número:</label>
-            <input name="numero" type="text" id="numero_fornecedor" placeholder="Insira o número">
+            <input name="numero_fornecedor" type="text" id="numero_fornecedor" placeholder="Insira o número">
 
             <label for="bairro_fornecedor"><i class="fas fa-city"></i> Bairro:</label>
-            <input name="bairro" type="text" id="bairro_fornecedor" placeholder="Insira o bairro">
+            <input name="bairro_fornecedor" type="text" id="bairro_fornecedor" placeholder="Insira o bairro">
 
             <label for="cidade_fornecedor"><i class="fas fa-building"></i> Cidade:</label>
-            <input name="cidade" type="text" id="cidade_fornecedor" placeholder="Insira a cidade">
+            <input name="cidade_fornecedor" type="text" id="cidade_fornecedor" placeholder="Insira a cidade">
 
             <label for="uf_fornecedor"><i class="fas fa-flag"></i> UF:</label>
-            <select id="uf_fornecedor" name="UF">
+            <select id="uf_fornecedor" name="uf_fornecedor">
                 <option value="" selected disabled>Escolha o Estado</option>
                 <option value="AC">Acre</option>
                 <option value="AL">Alagoas</option>
@@ -95,7 +94,7 @@
             <button type="submit" class="btn-cadastrar"><i class="fas fa-save"></i> Cadastrar</button>
         </form>
     </div>
-    <script src="../js/validacao_cad_fornecedor.js"></script>
+    <script src="../javascript/funcoes.js"></script>
 </body>
 
 </html>

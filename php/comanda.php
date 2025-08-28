@@ -44,6 +44,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <img src="<?= htmlspecialchars($produto['imagem']) ?>" alt="Produto" width="60">
                     <?php else: ?>
                         <span>Sem imagem</span>
+                        dfd
                     <?php endif; ?>
                 </td>
                 <td><?= htmlspecialchars($produto['id_produto']) ?></td>

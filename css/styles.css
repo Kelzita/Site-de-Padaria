@@ -19,7 +19,7 @@ html, body {
 /* ------------------- HEADER ------------------- */
 header {
   background-color: white;
-  width: 1360px;
+  width: 100vw;
   height: 70px;
   display: flex;
   align-items: center;
