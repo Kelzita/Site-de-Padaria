@@ -51,7 +51,7 @@ h1 {
 }
 
 .formulario-cadastro input,
-.formulario-cadastro select {
+.formulario-cadastro select{
     display: block;
     width: 80%; /* largura consistente */
     margin: 0 auto 15px auto; /* centraliza e espaçamento inferior */
@@ -103,9 +103,6 @@ h1 {
 
 
 
-
-
-/* ===================== FORMULÁRIO USUÁRIO ===================== */
 .container-usuario {
     margin-top: 100px;
     margin-bottom: 30px; /* espaço inferior da página */
@@ -212,4 +209,61 @@ h1 {
 .login__eye:hover {
     transform: translateY(-50%) scale(1.15);
     color: #000;
+}
+
+/*=====Olhinho=======*/
+
+.formulario-cadastro-usuario {
+    position: relative; /* necessário para posicionar o ícone dentro do input */
+}
+
+.input-container-cep {
+    position: relative;
+    width: 80%;
+    margin: 0 auto 1px auto; /* reduz para 5px entre inputs */
+}
+
+.input-container-cep input {
+    width: 100%;
+    padding-right: 40px; /* espaço para o olho */
+}
+
+.busca_lupa {
+    position: absolute;
+    right: 10px; /* distância do lado direito */
+    top: 30%;    /* centraliza verticalmente */
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #7c7c7c;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.busca_lupa:hover {
+    transform: translateY(-50%) scale(1.15);
+    color: #000;
+}
+/* -------- Textarea -------- */
+.formulario-cadastro textarea {
+    display: block;
+    width: 80%; /* mesma largura dos inputs e selects */
+    margin: 0 auto 15px auto; /* centralizado e espaçamento inferior */
+    padding: 10px;
+    border: 1px solid #7c7c7c;
+    border-radius: 8px;
+    font-size: 15px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box; /* inclui padding e border na largura */
+    resize: vertical; /* permite apenas redimensionar verticalmente, se quiser */
+}
+
+.formulario-cadastro textarea:focus {
+    outline: none;
+    box-shadow: 0 0 6px rgba(0,0,0,0.5);
+    border-color: #000;
+}
+
+/* Adiciona margem extra se for o último campo */
+.formulario-cadastro textarea:last-of-type {
+    margin-bottom: 25px;
 }

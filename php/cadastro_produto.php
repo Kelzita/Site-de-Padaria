@@ -12,9 +12,10 @@ require_once "conexao.php";
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $nome_produto = $_POST['nome_produto'];
+    $descricao = $_POST['descricao'];
     $preco = $_POST['preco'];
-    $quantidade = $_POST['quantidade']; 
     $unmedida = $_POST['unmedida'];
+    $quantidade = $_POST['quantidade_produto']; 
     $validade = $_POST['validade'];     
     $id_fornecedor = $_POST['id_fornecedor'];
 
@@ -27,17 +28,19 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     }
 
     $sql = "INSERT INTO produto             
-        (nome_produto, preco, quantidade, unmedida, validade, id_fornecedor, imagem_produto) 
-        VALUES (:nome_produto, :preco, :quantidade, :unmedida, :validade, :id_fornecedor, :imagem_produto)";
-    
+    (nome_produto, descricao, preco, quantidade_produto, unmedida, validade, id_fornecedor, imagem_produto) 
+    VALUES (:nome_produto, :descricao, :preco, :quantidade_produto, :unmedida, :validade, :id_fornecedor, :imagem_produto)";
+
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(":nome_produto", $nome_produto);
+    $stmt->bindParam(":descricao", $descricao);
     $stmt->bindParam(":preco", $preco);
-    $stmt->bindParam(":quantidade", $quantidade);
+    $stmt->bindParam(":quantidade_produto", $quantidade); // corresponde ao $_POST
     $stmt->bindParam(":unmedida", $unmedida);
     $stmt->bindParam(":validade", $validade);
     $stmt->bindParam(":id_fornecedor", $id_fornecedor);
-    $stmt->bindParam(":imagem_produto", $imagem_binario, PDO::PARAM_LOB); // imagem como binário
+    $stmt->bindParam(":imagem_produto", $imagem_binario, PDO::PARAM_LOB);
+
 
     if($stmt->execute()){
         echo "<script>alert('Produto cadastrado com Sucesso!'); window.location.href='..php/cadastro_produto.php';</script>";
@@ -47,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 }
 ?>
 
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="PT-BR">
 
 <head>

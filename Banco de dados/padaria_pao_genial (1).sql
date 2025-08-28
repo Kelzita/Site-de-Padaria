@@ -49,28 +49,6 @@ CREATE TABLE `estoque` (
   `quantidade_max` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `forma_pagamento`
---
-
-CREATE TABLE `forma_pagamento` (
-  `id_forma_pag` int(11) NOT NULL,
-  `descricao` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `forma_pagamento`
---
-
-INSERT INTO `forma_pagamento` (`id_forma_pag`, `descricao`) VALUES
-(1, 'Dinheiro'),
-(2, 'Cartão de Crédito'),
-(3, 'Cartão de Débito'),
-(4, 'Pix'),
-(5, 'Boleto'),
-(6, 'Vale Alimentação');
 
 -- --------------------------------------------------------
 

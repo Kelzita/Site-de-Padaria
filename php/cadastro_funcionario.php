@@ -43,9 +43,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':salario', $salario);
     $stmt->bindParam(':id_funcao', $id_funcao);
 
-    if($stmt->execute()) {
+    try { 
+        $stmt->execute();
         echo "<script>alert('Funcionário cadastrado com sucesso!');</script>";
-    } else {
-        echo "<script>alert('Funcionário não foi cadastrado!');</script>";
+    } catch(PDOException $e) {
+        echo "<script>alert('Erro ao cadastrar Funcionário:". $e->getMessage()."');</script>";
     }
 }
+?>

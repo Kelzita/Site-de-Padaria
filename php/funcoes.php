@@ -11,3 +11,14 @@ $funcoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $idSelecionado = isset($funcionario['id_funcao']) ? $funcionario['id_funcao'] : null;
 ?>
 
+<?php 
+require_once 'conexao.php';
+
+$sql = "SELECT * FROM fornecedores";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$fornecedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// se estiver editando, pegue o id do fornecedor do registro
+$idSelecionadoFornecedor = isset($produto['id_fornecedor']) ? $produto['id_fornecedor'] : null;
+?>

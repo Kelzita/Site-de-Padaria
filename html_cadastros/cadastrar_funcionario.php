@@ -1,7 +1,5 @@
 <?php
-
 require_once '../php/funcoes.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -49,10 +47,11 @@ require_once '../php/funcoes.php';
             <input type="tel" id="telefone_funcionario" name="telefone_funcionario" placeholder="(00) 00000-0000"
                 maxlength="15" pattern="\(\d{2}\) \d{4,5}-\d{4}" title="Formato: (00) 00000-0000">
 
-            <label for="cep_funcionario"><i class="fas fa-map-pin"></i> CEP:</label>
-            <input type="text" id="cep_funcionario" name="cep_funcionario" placeholder="Digite o CEP (ex: 00000-000)"
-                maxlength="9" oninput="formatCEP(this)" onblur="buscarCEP(this.value)">
-
+                <label for="cep_funcionario"><i class="fas fa-map-pin"></i> CEP:</label>
+                <div class="input-container-cep">
+                    <input type="text" id="cep_funcionario" name="cep_funcionario" placeholder="Digite o CEP (ex: 00000-000)"  maxlength="9" oninput="formatCEP(this)">
+                    <i class="ri-search-line busca_lupa" onclick="buscarCEPFuncionario()"></i>
+                </div>
 
             <label for="rua_funcionario"><i class="fas fa-road"></i> Rua:</label>
             <input type="text" id="rua_funcionario" name="rua_funcionario" placeholder="Insira a rua">
@@ -66,7 +65,7 @@ require_once '../php/funcoes.php';
             <label for="cidade_funcionario"><i class="fas fa-building"></i> Cidade:</label>
             <input type="text" id="cidade_funcionario" name="cidade_funcionario" placeholder="Insira a cidade">
 
-            <label for="uf"><i class="fas fa-flag"></i> UF:</label>
+            <label for="uf_funcionario"><i class="fas fa-flag"></i> UF:</label>
             <select id="uf_funcionario" name="uf_funcionario">
                 <option value="" selected disabled>Escolha o Estado</option>
                 <option value="AC">Acre</option>
