@@ -3,7 +3,7 @@
 $host = "localhost"; // Conecta-se ao servidor local ( Ou seja na máquina utilizada )
 $user = "root"; // Usuário, geralmente root
 $pass = ""; // Senha, geralmente vazia
-$banco = "padaria_pao_genial"; // Banco de dados que será utilizado
+$banco = "Padaria_pao_Genial"; // Banco de dados que será utilizado
 
 //======Criando a conexão com o banco em PDO======
 try {

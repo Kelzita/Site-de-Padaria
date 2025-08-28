@@ -53,13 +53,12 @@ require_once '../php/funcoes.php';
 
             
             <label for="id_fornecedor"><i class="fas fa-truck"></i> Fornecedor:</label>
-            <select name="id_fornecedor" id="id_fornecedor" >
-                <option value="">Selecione o fornecedor</option>
+            <select name="id_fornecedor" id="id_fornecedor">
+                 <option value="">Selecione o fornecedor</option>
                 <?php foreach ($fornecedores as $fornecedor): ?>
-                    <option value="<?= htmlspecialchars($fornecedor['id_fornecedor']) ?>" 
-                    <?= $fornecedor['id_fornecedor'] == $idSelecionadoFornecedor ? 'selected' : '' ?>>
-                 <?= htmlspecialchars($fornecedor['razao_social']) ?>
-            </option>
+               <option value="<?= htmlspecialchars($fornecedor['id_fornecedor']) ?>">
+              <?= htmlspecialchars($fornecedor['id_fornecedor'] . ' - ' . $fornecedor['razao_social']) ?>
+                </option>
             <?php endforeach; ?>
             </select>
 
