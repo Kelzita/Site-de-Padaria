@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try { 
         $stmt->execute();
-        echo "<script>alert('Funcionário cadastrado com sucesso!');</script>";
+        echo "<script>alert('Funcionário cadastrado com sucesso!'); window.location.href='../html_cadastros/cadastrar_funcionario.php';</script>";
     } catch(PDOException $e) {
         echo "<script>alert('Erro ao cadastrar Funcionário:". $e->getMessage()."');</script>";
     }
