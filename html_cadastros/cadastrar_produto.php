@@ -30,7 +30,7 @@ require_once '../php/funcoes.php';
     </header>
     <div class="container">
         <h1>Cadastrar Produto</h1>
-        <form class="formulario-cadastro" method="POST" action="../php/cadastro_produto.php" onsubmit="return validacaoProduto(event)">
+        <form class="formulario-cadastro" method="POST" action="../php/cadastro_produto.php" onsubmit="return validacaoProduto(event)" enctype="multipart/form-data">
 
             <label for="nome_produto"><i class="fas fa-barcode"></i> Nome do Produto:</label>
             <input type="text" id="nome_produto" name="nome_produto" placeholder="Insira o nome do produto" >
@@ -62,6 +62,7 @@ require_once '../php/funcoes.php';
             </option>
             <?php endforeach; ?>
             </select>
+
             <label for="imagem_produto"><i class="fa-solid fa-image"></i> Foto do Produto:</label>
             <input type="file"name="imagem_produto" id="imagem_produto" required></input>
 
