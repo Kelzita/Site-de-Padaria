@@ -37,14 +37,23 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         exit;
     }
 
-    // Tratar upload da imagem
+    // Tratar upload da imagem - parte corrigida
     $imagem_nome = null;
     if (isset($_FILES['imagem_produto']) && $_FILES['imagem_produto']['error'] === 0) {
+        // Defina o diretório de destino com caminho absoluto
+        $upload_dir = __DIR__ . '/../uploads/';
+
+        // Verificar se a pasta existe, se não, criar
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0755, true);
+        }
+
         $extensao = pathinfo($_FILES['imagem_produto']['name'], PATHINFO_EXTENSION);
         $imagem_nome = uniqid() . '.' . $extensao;
-        $destino = '../uploads/' . $imagem_nome;
+        $destino = $upload_dir . $imagem_nome;
+
         if (!move_uploaded_file($_FILES['imagem_produto']['tmp_name'], $destino)) {
-            echo "<script>alert('Erro ao mover o arquivo da imagem.');</script>";
+            echo "<script>alert('Erro ao mover o arquivo da imagem. Verifique permissões da pasta uploads.');</script>";
             exit;
         }
     } else {
