@@ -21,10 +21,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $unmedida = trim($_POST['unmedida'] ?? '');
     $validade = $_POST['validade'] ?? null;
     $id_fornecedor = $_POST['id_fornecedor'] ?? null;
+    $quantidade_produto = $_POST['quantidade_produto'] ?? null; // NOVO CAMPO
 
     // Validação básica (pode melhorar)
-    if (!$nome_produto || !$id_fornecedor || !$preco) {
-        echo "<script>alert('Por favor, preencha os campos obrigatórios (nome, fornecedor, preço).');</script>";
+    if (!$nome_produto || !$id_fornecedor || !$preco || !$quantidade_produto) { // incluí quantidade_produto aqui
+        echo "<script>alert('Por favor, preencha os campos obrigatórios (nome, fornecedor, preço, quantidade).');</script>";
         exit;
     }
 
@@ -62,8 +63,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     }
 
     try {
-        $sql = "INSERT INTO produto(nome_produto, descricao, preco, unmedida, validade, imagem_produto, id_fornecedor) 
-                VALUES (:nome_produto, :descricao, :preco, :unmedida, :validade, :imagem_produto, :id_fornecedor)";
+        // ALTEREI aqui para incluir quantidade_produto no INSERT
+        $sql = "INSERT INTO produto(nome_produto, descricao, preco, unmedida, validade, imagem_produto, id_fornecedor, quantidade_produto) 
+                VALUES (:nome_produto, :descricao, :preco, :unmedida, :validade, :imagem_produto, :id_fornecedor, :quantidade_produto)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":nome_produto", $nome_produto);
         $stmt->bindParam(":descricao", $descricao);
@@ -72,6 +74,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $stmt->bindParam(":validade", $validade);
         $stmt->bindParam(":imagem_produto", $imagem_nome);
         $stmt->bindParam(":id_fornecedor", $id_fornecedor);
+        $stmt->bindParam(":quantidade_produto", $quantidade_produto); // Novo bindParam
 
         if ($stmt->execute()) {
             echo "<script>alert('Produto cadastrado com sucesso!'); window.location.href = '../php/cadastro_produto.php';</script>";
@@ -132,6 +135,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 </option>
             <?php endforeach; ?>
         </select>
+
+        <!-- Campo quantidade_produto adicionado -->
+        <label for="quantidade_produto"><i class="fas fa-boxes"></i> Quantidade:</label>
+        <input type="number" id="quantidade_produto" name="quantidade_produto" min="1" placeholder="Quantidade do produto" required>
 
         <label for="imagem_produto"><i class="fa-solid fa-image"></i> Foto do Produto:</label>
         <input type="file" name="imagem_produto" id="imagem_produto" required>
