@@ -11,9 +11,8 @@
 <body>
     <body>
         <div class="login">
-          <form action="php/login.php" method="post" class="formulario-style">
+          <form action="php/login.php" method="POST" class="formulario-style">
             <h1 class="titulo-style">Login</h1>
-      
             <div class="conteudo">
               <div class="caixa-style">
                 <i class="ri-user-3-line login__icon"></i>
@@ -36,11 +35,10 @@
             <div class="link-auxiliar">
               <a href="redefinirsenha.html" class="esqueci-senha-style">Esqueceu a senha?</a>
             </div>
-      
-            <button type="submit" class="botao-style" onclick="VerificarCampos()">Login</button>
+            <button type="submit" class="botao-style">Login</button>
           </form>
         </div>
 </body>
-<script src="js/togglesenha.js"></script>
+<!--<script src="js/togglesenha.js"></script>-->
 
 </html>

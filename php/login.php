@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['id_funcao'] = $funcionario['id_funcao'];
 
         // Redireciona para página principal
-        header("Location: ../principal.php");
+        echo "<script>alert('Login efetuado com sucesso'); window.location.href='../inicio/home.php';</script>";
         exit();
     } else {
         // Login inválido

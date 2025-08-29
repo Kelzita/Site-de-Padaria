@@ -2,6 +2,11 @@
 session_start();
 require_once "conexao.php";
 
+
+if($_SESSION['id_funcao'] != 1) {
+    echo ("<script>alert('Acesso Negado! Retornando para a página inicial...'); window.location.href='../HTML/principal.php';");
+}
+
 // Habilitar exibição de erros PDO para facilitar debug
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -9,9 +14,6 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $stmt_fornecedores = $pdo->query("SELECT id_fornecedor FROM fornecedores ORDER BY id_fornecedor");
 $fornecedores = $stmt_fornecedores->fetchAll(PDO::FETCH_ASSOC);
 
-//if($_SESSION['id_funcao'] != 1) {
-//    echo ("<script>alert('Acesso Negado! Retornando para a página inicial...'); window.location.href='../HTML/principal.php';");
-//}
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     // Pegando e sanitizando (pode melhorar com filtro depois)
