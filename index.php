@@ -18,8 +18,8 @@
               <div class="caixa-style">
                 <i class="ri-user-3-line login__icon"></i>
                 <div class="campo-input">
-                  <input name="nome_usuario" type="text" class="style-input" id="nome_usuario" placeholder=" ">
-                  <label for="nome_usuario" class="style-label">Usuário</label>
+                  <input name="email_funcionario" type="text" class="style-input" id="email_funcionario" placeholder=" ">
+                  <label for="email_funcionario" class="style-label">Email:</label>
                 </div>
               </div>
       

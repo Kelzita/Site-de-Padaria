@@ -53,9 +53,7 @@ include '../php/buscar_fornecedor.php'
             </td>
         </tr>
         <?php endforeach;?>
-    </table>
-    
-    
+    </table> 
 <div>
     <?php else: ?>
         <p style="color:white;">Nenhum fornecedor cadastrado.</p>
