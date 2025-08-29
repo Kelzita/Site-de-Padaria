@@ -140,7 +140,6 @@ CREATE TABLE `item_comanda` (
 CREATE TABLE `produto` (
   `id_produto` int(11) NOT NULL,
   `id_fornecedor` int(11) NOT NULL,
-  `id_estoque` int(11) NOT NULL,
   `nome_produto` varchar(80) DEFAULT NULL,
   `descricao` varchar(150) DEFAULT NULL,
   `preco` decimal(10,2) DEFAULT NULL,

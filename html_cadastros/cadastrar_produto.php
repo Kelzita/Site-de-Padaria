@@ -36,7 +36,7 @@ require_once '../php/funcoes.php';
             <input type="text" id="nome_produto" name="nome_produto" placeholder="Insira o nome do produto" >
 
             <label for="descricao"><i class="ri-file-text-line"></i> Descrição:</label>
-            <textarea id="descricao" name="descricao" placeholder="Insira o nome do produto" ></textarea>
+            <textarea id="descricao" name="descricao" placeholder="Insira uma descrição (Opcional)" ></textarea>
 
             <label for="preco"><i class="fas fa-dollar-sign"></i> Preço:</label>
             <input type="number" step="0.01" id="preco" name="preco" placeholder="R$ 0,00" >
@@ -58,7 +58,7 @@ require_once '../php/funcoes.php';
                 <?php foreach ($fornecedores as $fornecedor): ?>
                     <option value="<?= htmlspecialchars($fornecedor['id_fornecedor']) ?>" 
                     <?= $fornecedor['id_fornecedor'] == $idSelecionadoFornecedor ? 'selected' : '' ?>>
-                 <?= htmlspecialchars($fornecedor['razao_social']) ?>
+                 <?= htmlspecialchars($fornecedor['id_fornecedor']), ' - ' ,htmlspecialchars($fornecedor['razao_social']) ?>
             </option>
             <?php endforeach; ?>
             </select>

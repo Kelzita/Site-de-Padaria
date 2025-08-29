@@ -77,7 +77,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $stmt->bindParam(":quantidade_produto", $quantidade_produto); // Novo bindParam
 
         if ($stmt->execute()) {
-            echo "<script>alert('Produto cadastrado com sucesso!'); window.location.href = '../php/cadastro_produto.php';</script>";
+            echo "<script>alert('Produto cadastrado com sucesso!'); window.location.href = '../html_cadastros/cadastrar_produto.php';</script>";
         } else {
             $errorInfo = $stmt->errorInfo();
             echo "<script>alert('Erro ao cadastrar produto: {$errorInfo[2]}');</script>";
@@ -87,67 +87,3 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-    <title>Cadastrar Produto</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <!-- jQuery primeiro -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- JS do Select2 depois -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/style_cadastro.css" />
-</head>
-<body>
-<header>
-    <img src="../img/logo.png" alt="Logo" >
-    <!--Menu-->
-</header>
-<div class="container">
-    <h1>Cadastrar Produto</h1>
-    <form class="formulario-cadastro" method="POST" action="../php/cadastro_produto.php" enctype="multipart/form-data" onsubmit="return validacaoProduto(event)">
-
-        <label for="nome_produto"><i class="fas fa-barcode"></i> Nome do Produto:</label>
-        <input type="text" id="nome_produto" name="nome_produto" placeholder="Insira o nome do produto" required>
-
-        <label for="descricao"><i class="fas fa-barcode"></i> Descrição:</label>
-        <input type="text" id="descricao" name="descricao" placeholder="Digite uma descrição">
-
-        <label for="preco"><i class="fas fa-dollar-sign"></i> Preço:</label>
-        <input type="number" step="0.01" id="preco" name="preco" placeholder="R$ 0,00" required>
-
-        <label for="unmedida"><i class="fas fa-cube"></i> Unidade de Medida:</label>
-        <input type="text" id="unmedida" name="unmedida" placeholder="Ex: Kg, un, L">
-
-        <label for="validade"><i class="fas fa-calendar-alt"></i> Validade:</label>
-        <input type="date" id="validade" name="validade">
-
-        <label for="id_fornecedor"><i class="fas fa-truck"></i> Fornecedor:</label>
-        <select name="id_fornecedor" id="id_fornecedor" required>
-            <option value="">Selecione o fornecedor</option>
-            <?php foreach ($fornecedores as $fornecedor): ?>
-                <option value="<?= htmlspecialchars($fornecedor['id_fornecedor']) ?>">
-                    <?= htmlspecialchars($fornecedor['id_fornecedor']) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-
-        <!-- Campo quantidade_produto adicionado -->
-        <label for="quantidade_produto"><i class="fas fa-boxes"></i> Quantidade:</label>
-        <input type="number" id="quantidade_produto" name="quantidade_produto" min="1" placeholder="Quantidade do produto" required>
-
-        <label for="imagem_produto"><i class="fa-solid fa-image"></i> Foto do Produto:</label>
-        <input type="file" name="imagem_produto" id="imagem_produto" required>
-
-        <input type="hidden" name="id_estoque" id="id_estoque">
-
-        <button type="submit" class="btn-cadastrar"><i class="fas fa-save"></i> Cadastrar</button>
-    </form>
-</div>
-<script src="../js/validacao_cad_produto.js"></script>
-</body>
-</html>
