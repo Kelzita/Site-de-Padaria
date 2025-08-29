@@ -1,17 +1,22 @@
 <?php
-session_start();
-require_once 'conexao.php';
+require_once "conexao.php";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['id_comanda'])) {
-    $id_comanda = $_POST['id_comanda'];
+$id = $_GET['id'] ?? null;
 
-    // Atualiza a comanda para finalizada
-    $sql = "UPDATE comanda SET status = 'finalizada' = NOW() WHERE id_comanda = :id_comanda";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':id_comanda', $id_comanda, PDO::PARAM_INT);
-    $stmt->execute();
-
-    header("Location: caixa.php");
+if (!$id) {
+    echo "ID da comanda inválido!";
     exit;
 }
+
+// Marca como FECHADA
+$stmt = $pdo->prepare("UPDATE comanda SET status = 'FECHADA' WHERE id_comanda = :id");
+$stmt->execute(['id' => $id]);
+
+// Zera itens da comanda (opcional)
+$stmtDelete = $pdo->prepare("DELETE FROM item_comanda WHERE id_comanda = :id");
+$stmtDelete->execute(['id' => $id]);
+
+echo "Venda finalizada com sucesso!";
 ?>
+
+
