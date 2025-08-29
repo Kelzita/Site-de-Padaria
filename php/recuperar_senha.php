@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $senha_hash = password_hash($senha_temporaria, PASSWORD_DEFAULT);
 
         //ATUALIZA A SENHA DO USUARIO NO BANCO
-        $sql = "UPDATE usuario SET senha = :senha, senha_temporaria = TRUE WHERE email = :email";
+        $sql = "UPDATE usua SET senha = :senha, senha_temporaria = TRUE WHERE email = :email";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':senha', $senha_hash);
         $stmt->bindParam(':email', $email);
