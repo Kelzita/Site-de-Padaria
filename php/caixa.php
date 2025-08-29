@@ -77,14 +77,34 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="comandos">
         <button>Pesquisar Produto</button>
-        <button onclick="finalizarVenda()">Finalizar Venda</button>
+        <button onclick="abrirModalFinalizar()">Finalizar Venda</button>
         <button onclick="apagarComanda()">Sair</button>
     </div>
 </div>
 
+<!-- MODAL FINALIZAR VENDA -->
+<div id="modalFinalizar" class="modal" style="display:none;">
+    <div class="modal_content">
+        <h2>Finalizar Venda</h2>
+        <p><strong>Total:</strong> <span id="modal_total">R$ 0,00</span></p>
+
+        <label for="forma_pagamento">Forma de Pagamento:</label>
+        <select id="forma_pagamento">
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Pix">Pix</option>
+            <option value="Vale Alimentação">Vale Alimentação</option>
+            <option value="Cartão de Débito">Cartão de Débito</option>
+            <option value="Cartão de Crédito">Cartão de Crédito</option>
+        </select>
+
+        <div class="botoes_modal">
+            <button onclick="confirmarVenda()">Confirmar</button>
+            <button onclick="fecharModal()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
 <script>
-
-
 // Buscar comanda existente
 function buscarComanda() {
     let id = document.getElementById("id_comanda").value;
@@ -109,6 +129,11 @@ function atualizarTabela(data) {
     tbody.innerHTML = "";
     let subtotal = 0;
 
+    if (data.erro) {
+        alert(data.erro); 
+        return;
+    }
+
     data.forEach((item, i) => {
         subtotal += parseFloat(item.total);
 
@@ -119,7 +144,7 @@ function atualizarTabela(data) {
             <td>${item.quantidade}</td>
             <td>R$ ${parseFloat(item.valor_unit).toFixed(2)}</td>
             <td>R$ ${parseFloat(item.total).toFixed(2)}</td>
-            <td><button style="background-color: #e74c3c; color: white" onclick="removerItem(${item.id_item}, ${item.id_comanda})">Remover</button></td>
+            <td><button class="btn_remover" onclick="removerItem(${item.id_item}, ${item.id_comanda})">Remover</button></td>
         </tr>`;
     });
 
@@ -133,17 +158,45 @@ function removerItem(id_item, id_comanda) {
     .then(data => atualizarTabela(data));
 }
 
-// Finalizar venda
-function finalizarVenda() {
+// --------------------------------------
+// NOVO FLUXO DE FINALIZAR VENDA COM MODAL
+// --------------------------------------
+
+// Abre o modal mostrando o total
+function abrirModalFinalizar() {
+    let subtotal = document.getElementById("subtotal").innerText;
+    document.getElementById("modal_total").innerText = subtotal;
+    document.getElementById("modalFinalizar").style.display = "block";
+}
+
+// Fecha o modal
+function fecharModal() {
+    document.getElementById("modalFinalizar").style.display = "none";
+}
+
+// Confirmar venda
+function confirmarVenda() {
     let id = document.getElementById("id_comanda").value;
-    fetch("finalizar_venda.php?id=" + id)
+    let forma = document.getElementById("forma_pagamento").value;
+
+    fetch("finalizar_venda.php?id=" + id + "&forma=" + encodeURIComponent(forma))
     .then(res => res.text())
     .then(msg => {
-        alert(msg);
+        alert(msg); // Mostra mensagem de sucesso
+
+        // Abrir nota fiscal em nova aba
+        window.open("nota_fiscal.php?id=" + id, "_blank");
+
+        // Limpar caixa
+        fecharModal();
         document.querySelector("#tabela_produtos tbody").innerHTML = "";
         document.getElementById("subtotal").innerText = "R$ 0,00";
+        document.getElementById("id_comanda").value = "";
     });
 }
+
+
+
 
 // Apagar comanda da tela
 function apagarComanda() {
@@ -152,5 +205,6 @@ function apagarComanda() {
     document.getElementById("id_comanda").value = "";
 }
 </script>
+
 </body>
 </html>
