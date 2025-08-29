@@ -1,9 +1,9 @@
 <?php 
 require_once 'conexao.php';
 
-//if($_SESSION['id_funcao'] != 1) {
-   // echo "<script>alert('Acesso negado!'); window.location.href='../principal.php=?id';</script>";
-//}
+if($_SESSION['id_funcao'] != 1) {
+    echo "<script>alert('Acesso negado!'); window.location.href='../principal.php=?id';</script>";
+}
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome_funcionario  = $_POST['nome_funcionario'];
