@@ -27,15 +27,15 @@ body {
   
   .retangulo {
     background-color: white;
-    padding: 0px;
-    width: 1050px;
-    margin: 30px auto;
+    padding: 10px;
+    width: 1150px;
+    margin: 10px auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    height: 530px; /* altura fixa */
+    height: 630px; /* altura fixa */
     display: flex;
     flex-direction: column;
     top: 20px;
-    margin-top: 85px;
+    margin-top: 190px;
   }
   
 
@@ -253,6 +253,15 @@ h2{
   text-align: left;
 }
 
+
+.table th,
+.table td {
+  text-align: center;   /* Centraliza conteúdo */
+  vertical-align: middle; /* Alinha verticalmente */
+  padding: 10px;
+}
+
+
 /* Ajusta os botões */
 button {
   width: 14%;
@@ -270,3 +279,50 @@ button:hover {
   background-color: #7a4226; /* Azul mais escuro ao passar o mouse */
 }
 
+
+
+
+
+.input-quantidade {
+  width: 70px;
+  text-align: left;
+}
+
+.btn-adicionar {
+  background-color: #7a4226;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-adicionar:hover {
+  background-color: #218838;
+}
+
+
+
+
+.botao_enviar {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.finalizar_venda {
+  background-color: #3D2412;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+  width: 350px;
+}
+
+.finalizar_venda:hover {
+  background-color: #7a4226;
+}
