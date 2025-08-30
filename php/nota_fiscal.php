@@ -42,10 +42,33 @@ foreach ($itens as $item) {
  <style>
 /* Base */
 body {
-    font-family: 'Times New Roman';
-    margin: 20px;
-    background-color: #f5f1eb;
-    color: #333;
+  font-family: 'Times New Roman';
+  margin: 20px;
+  background-color: #f5f1eb;  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Times New Roman';
+  background-image: url('../img/fundo_padaria.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden; 
+  color: #333;
+}
+
+.box_nf{
+  background-color: white;
+  margin: 20px 10px;
+  width: 700px;
+  height: 600px;
+  border-radius: 10px;
+  text-align: center; 
+  float: center;
 }
 
 /* Título */
@@ -58,14 +81,16 @@ h2 {
 /* Informações da comanda */
 p {
     font-size: 16px;
-    margin: 5px 0;
+    margin: 5px;
+    margin-right:5px;
 }
 
 /* Tabela */
 table {
-    width: 100%;
+    width: 80%;
+    text-align: center;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin: 20px auto; /* centraliza a tabela horizontalmente */
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     border-radius: 8px;
     overflow: hidden;
@@ -139,6 +164,8 @@ button:hover {
 </head>
 <body>
 
+<div class="box_nf">
+
 <h2>Nota Fiscal - Comanda <?= htmlspecialchars($id_comanda) ?></h2>
 
 <p><strong>Forma de Pagamento:</strong> <?= htmlspecialchars($comanda['forma_pagamento']) ?></p>
@@ -172,8 +199,10 @@ button:hover {
 <div class="footer">
     <p>Obrigado pela preferência! 🍞</p>
     <button onclick="window.print()">Imprimir Nota</button>
+    <button onclick="window.close()">Voltar ao Caixa</button>
 </div>
 
+</div>
 </body>
 </html>
 

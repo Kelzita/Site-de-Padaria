@@ -321,7 +321,7 @@ td {
 .modal_content {
     background-color: white;
     padding: 30px 20px;
-    margin-left: 200px;
+    margin-left: 500px;
     margin-top: 150px;
     border-radius: 10px;
     width: 350px;
@@ -390,45 +390,4 @@ td {
 
 .botoes_modal button:last-child:hover {
     background-color: #c0392b;
-}
-
-/* Nota Fiscal */
-.nota-fiscal {
-    font-family: 'Times New Roman';
-    padding: 20px;
-}
-.nota-fiscal h2 {
-    text-align: center;
-    color: #3D2412;
-}
-.nota-fiscal table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-.nota-fiscal th, .nota-fiscal td {
-    border: 1px solid #333;
-    padding: 8px;
-}
-.nota-fiscal th {
-    background-color: #3D2412;
-    color: white;
-    text-align: left;
-}
-.nota-fiscal td {
-    background-color: #fff;
-    color: #000;
-}
-.nota-fiscal td.right {
-    text-align: right;
-}
-.nota-fiscal .total {
-    font-weight: bold;
-    font-size: 1.2em;
-    text-align: right;
-    margin-top: 15px;
-}
-.nota-fiscal .footer {
-    text-align: center;
-    margin-top: 20px;
 }
