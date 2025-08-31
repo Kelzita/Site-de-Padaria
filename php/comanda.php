@@ -72,13 +72,13 @@ if (empty($produtos)) {
 
     <h2>Comanda Nº <?= htmlspecialchars($id_comanda) ?></h2>
 
-    <div class="retangulo-conteudo">
+    
         <!-- Formulário de busca -->
         <form action="comanda.php" method="POST">
             <input type="text" id="busca" name="busca" placeholder="Buscar produto...">
             <button type="submit">Pesquisar</button>
         </form>
-
+    <div class="retangulo-conteudo">
         <?php if (!empty($produtos)): ?>
         <table class="table">
             <thead>
@@ -113,7 +113,7 @@ if (empty($produtos)) {
                     <td><?= htmlspecialchars($produto['unmedida']) ?></td>
                     <td><?= htmlspecialchars($produto['validade']) ?></td>
                     <td>
-                        <form method="POST" action="processa_comanda.php" class="form-adicionar">
+                        <form method="POST" action="processa_comanda.php">
                             <input type="hidden" name="id_comanda" value="<?= $id_comanda ?>">
                             <input type="hidden" name="id_produto" value="<?= $produto['id_produto'] ?>">
                             <input type="number" name="quantidade" value="1" min="1" class="input-quantidade">
@@ -126,7 +126,7 @@ if (empty($produtos)) {
                 <?php endforeach; ?>
             </tbody>
         </table>
-
+    </div>
         <form method="POST" action="processa_comanda.php">
             <input type="hidden" name="finalizar_venda" value="1">
             <button type="submit" class="finalizar_venda">Finalizar Venda</button>
@@ -135,7 +135,7 @@ if (empty($produtos)) {
         <?php else: ?>
             <p>Nenhum produto encontrado.</p>
         <?php endif; ?>
-    </div>
+    
 </div>
 </body>
 </html>

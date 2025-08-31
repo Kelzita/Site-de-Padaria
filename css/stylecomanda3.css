@@ -28,14 +28,14 @@ body {
   .retangulo {
     background-color: white;
     padding: 10px;
-    width: 1150px;
+    width: 1190px;
     margin: 10px auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    height: 630px; /* altura fixa */
+    height: 730px; /* altura fixa */
     display: flex;
     flex-direction: column;
     top: 20px;
-    margin-top: 190px;
+    margin-top: 150px;
   }
   
 
@@ -179,7 +179,7 @@ body {
   .retangulo-conteudo {
     flex: 1;
     overflow-y: auto;
-    padding: 40px;
+    padding: 20px;
   }
   
   .fixo-botao-interno {
@@ -188,22 +188,6 @@ body {
     background-color: white;
     display: flex;
     justify-content: center;
-  }
-  
-  .botao-confirmar {
-    background-color: #3D2412;
-    color: white;
-    font-size: 16px;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 100%;
-    max-width: 300px;
-  }
-  
-  .botao-confirmar:hover {
-    opacity: 0.9;
   }
   
 
@@ -232,6 +216,7 @@ h2{
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
   flex-direction: column;
   align-items: center; /* Centraliza os elementos dentro do formulário */
+  margin-left: 80px;
 }
 
 /* Estilo das tabelas buscar*/
@@ -247,7 +232,7 @@ h2{
 }
 
 .table th {
-  background-color: #5a3e00; /* Azul compatível com botões */
+  background-color: #5a3e00; /* Marrom compatível com botões */
   color: white;
   padding: 12px;
   text-align: left;
@@ -266,7 +251,7 @@ h2{
 button {
   width: 14%;
   padding: 10px;
-  background-color: #3D2412; /* Azul bonito */
+  background-color: #3D2412; /* Marrom bonito */
   color: white;
   border: none;
   border-radius: 5px;
@@ -276,11 +261,8 @@ button {
 }
 
 button:hover {
-  background-color: #7a4226; /* Azul mais escuro ao passar o mouse */
+  background-color: #7a4226; /* Marrom mais escuro ao passar o mouse */
 }
-
-
-
 
 
 .input-quantidade {
@@ -305,7 +287,7 @@ button:hover {
 
 
 
-.botao_enviar {
+.finalizar_venda {
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -314,13 +296,15 @@ button:hover {
 .finalizar_venda {
   background-color: #3D2412;
   color: white;
-  padding: 12px 24px;
+  padding: 12px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
   transition: 0.3s;
-  width: 350px;
+  width: 250px;
+  margin-left: 430px;
+
 }
 
 .finalizar_venda:hover {
