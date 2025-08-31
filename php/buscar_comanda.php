@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 require_once "conexao.php";
 
 $id = $_GET['id'] ?? null;
@@ -8,7 +9,7 @@ if (!$id) {
     exit;
 }
 
-//checa se a comanda existe e se está aberta
+// checa se a comanda existe e se está aberta
 $sql = "SELECT status FROM comanda WHERE id_comanda = :id";
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['id' => $id]);
@@ -24,7 +25,9 @@ if (strtolower($comanda['status']) !== 'aberta') {
     exit;
 }
 
-//pega os itens normalmente
+$_SESSION['id_comanda'] = $id; // salva na sessão
+
+// pega os itens da comanda
 $sql = "SELECT i.id_item_comanda AS id_item, i.id_comanda, 
                p.nome_produto, i.quantidade, 
                p.preco AS valor_unit, 
@@ -37,6 +40,6 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute(['id' => $id]);
 $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// **Retorna somente o array de itens**
 echo json_encode($dados);
 ?>
-

@@ -194,7 +194,7 @@ button:hover {
     </tbody>
 </table>
 
-<p class="total">Subtotal: R$ <?= number_format($subtotal, 2, ',', '.') ?></p>
+<p class="total">Total: R$ <?= number_format($subtotal, 2, ',', '.') ?></p>
 
 <div class="footer">
     <p>Obrigado pela preferência! 🍞</p>

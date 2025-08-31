@@ -76,9 +76,9 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <div class="comandos">
-        <button>Pesquisar Produto</button>
+        <button onclick="pesquisarProduto()">Pesquisar Produto</button>
         <button onclick="abrirModalFinalizar()">Finalizar Venda</button>
-        <button onclick="apagarComanda()">Sair</button>
+        <button>Sair</button>
     </div>
 </div>
 
@@ -105,6 +105,47 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <script>
+    
+function pesquisarProduto() {
+    let tipo = prompt("Você quer buscar pelo ID ou pelo Nome? (digite 'id' ou 'nome')");
+    if (!tipo) return;
+    tipo = tipo.toLowerCase();
+
+    if (tipo !== "id" && tipo !== "nome") {
+        alert("Opção inválida! Digite 'id' ou 'nome'.");
+        return;
+    }
+
+    let valor = prompt(`Digite o ${tipo === "id" ? "ID" : "Nome"} do produto:`);
+    if (!valor) return;
+
+    let id_comanda = document.getElementById("id_comanda").value;
+    if (!id_comanda) {
+        alert("Digite o ID da comanda primeiro!");
+        return;
+    }
+
+    fetch(`buscar_produto_nome_id.php?tipo=${tipo}&valor=${encodeURIComponent(valor)}`)
+    .then(res => res.json())
+    .then(data => {
+        if (data.erro) {
+            alert("Produto não cadastrado!");
+            return;
+        }
+
+        let qtd = prompt("Digite a quantidade:");
+        if (!qtd || isNaN(qtd) || qtd <= 0) {
+            alert("Quantidade inválida!");
+            return;
+        }
+
+        fetch(`adicionar_produto.php?id_comanda=${id_comanda}&id_produto=${data.id_produto}&quantidade=${qtd}`)
+        .then(res => res.json())
+        .then(listaAtualizada => atualizarTabela(listaAtualizada));
+    })
+    .catch(err => console.error("Erro:", err));
+}
+
 // Buscar comanda existente
 function buscarComanda() {
     let id = document.getElementById("id_comanda").value;
@@ -153,13 +194,18 @@ function atualizarTabela(data) {
 
 // Remover item da comanda
 function removerItem(id_item, id_comanda) {
+    // Pergunta se o usuário tem certeza
+    if (!confirm("Tem certeza que deseja remover este item?")) {
+        return; // Se clicar em "Cancelar", não faz nada
+    }
+
     fetch("remover_item.php?id_item=" + id_item + "&id=" + id_comanda)
     .then(res => res.json())
     .then(data => atualizarTabela(data));
 }
 
 // --------------------------------------
-// NOVO FLUXO DE FINALIZAR VENDA COM MODAL
+//  FLUXO DE FINALIZAR VENDA COM MODAL
 // --------------------------------------
 
 // Abre o modal mostrando o total
@@ -195,15 +241,6 @@ function confirmarVenda() {
     });
 }
 
-
-
-
-// Apagar comanda da tela
-function apagarComanda() {
-    document.querySelector("#tabela_produtos tbody").innerHTML = "";
-    document.getElementById("subtotal").innerText = "R$ 0,00";
-    document.getElementById("id_comanda").value = "";
-}
 </script>
 
 </body>
