@@ -41,7 +41,7 @@ form input[type="text"]:focus {
 /* Input */
 .input-container input {
     width: 100%;
-    padding: 10px 40px 10px 15px; /* espaço à direita para o botão */
+    padding: 10px 50px 10px 15px; /* <-- ALTERADO AQUI */
     border: 2px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
@@ -58,7 +58,7 @@ form input[type="text"]:focus {
 .input-container button {
     position: absolute;
     top: 50%;
-    right: 2px;
+    right: 0;
     transform: translateY(-50%);
     border: none;
     background-color: #3D2412;
@@ -72,6 +72,7 @@ form input[type="text"]:focus {
     justify-content: center;
     transition: all 0.3s ease;
 }
+
 
 .input-container button:hover {
     background-color: #5b311f;
