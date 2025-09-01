@@ -1,48 +1,55 @@
-body {
-    background-image: url('../img/fundo_padaria.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    font-family: 'sans-serif ';
-  }
-  
-  header {
-    background-color: white;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    padding-left: 60px;
-    box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-  }
-  
-  header img {
-    height: 70px;
-    width: 70px;
-  }
-  
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-image: url('../img/fundo_padaria.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed; /* faz o fundo ficar estático */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ------------------- HEADER ------------------- */
+header {
+  background-color: white;
+  width: 100vw;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+header img {
+  height: 70px;
+  width: 70px;
+}
   .retangulo {
     background-color: white;
     padding: 10px;
-    width: 1190px;
+    width: 1100px;
     margin: 10px auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    height: 730px; /* altura fixa */
+    height: 630px; /* altura fixa */
     display: flex;
     flex-direction: column;
-    top: 20px;
-    margin-top: 150px;
+    /*top: 10px;*/
+    margin-top: 40px;
   }
   
 
   .titulo {
     text-align: center;
     font-size: 22px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   
   .lista-produtos {
@@ -195,12 +202,18 @@ body {
     width: 40px ;
     height: 30px ;
     margin-left: 10px;
-    left: 10px;
+    /*left: 10px; */
     margin-top: 12px;
     padding: 0px;
   }
 
-
+  .carrinho{
+    width: 40px ;
+    height: 40px ;
+    margin-left: 500px;
+    margin-top: 0px;
+    padding: 0px;
+  }
 
 /***********************************************************/
 h2{
@@ -224,6 +237,7 @@ h2{
   width: 100%;
   margin: 20px auto; /* Centraliza a tabela */
   border-collapse: collapse;
+  border-radius: 10px;
   font-family: 'sans-serif ';
   font-size: 16px;
   background-color: #fff;
@@ -281,11 +295,8 @@ button:hover {
 }
 
 .btn-adicionar:hover {
-  background-color: #218838;
+  background-color: #5a3e00;
 }
-
-
-
 
 .finalizar_venda {
   display: flex;
@@ -304,7 +315,6 @@ button:hover {
   transition: 0.3s;
   width: 250px;
   margin-left: 430px;
-
 }
 
 .finalizar_venda:hover {
