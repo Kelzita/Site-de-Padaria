@@ -82,7 +82,7 @@ h2 {
 p {
     font-size: 16px;
     margin: 5px;
-    margin-right:5px;
+    margin-right:20px;
 }
 
 /* Tabela */
@@ -169,7 +169,20 @@ button:hover {
 <h2>Nota Fiscal - Comanda <?= htmlspecialchars($id_comanda) ?></h2>
 
 <p><strong>Forma de Pagamento:</strong> <?= htmlspecialchars($comanda['forma_pagamento']) ?></p>
+
 <p><strong>Status:</strong> <?= htmlspecialchars($comanda['status']) ?></p>
+
+<p><strong>Data de Fechamento:</strong> 
+   <?= $comanda['data_fechamento'] 
+        ? date('d/m/Y', strtotime($comanda['data_fechamento'])) 
+        : '---' ?>
+</p>
+
+<p><strong>Hora de Fechamento:</strong> 
+   <?= $comanda['hora_fechamento'] 
+        ? date('H:i', strtotime($comanda['hora_fechamento'])) 
+        : '---' ?>
+</p>
 
 <table>
     <thead>
@@ -200,8 +213,6 @@ button:hover {
     <p>Obrigado pela preferência! 🍞</p>
     <button onclick="window.print()">Imprimir Nota</button>
     <button onclick="window.close()">Voltar ao Caixa</button>
-</div>
-
 </div>
 </body>
 </html>
