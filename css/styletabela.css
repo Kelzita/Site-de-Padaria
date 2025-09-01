@@ -4,7 +4,7 @@
 h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #3D2412;
+    color: #f3f3f3;
     font-size: 1.8rem;
     letter-spacing: 1px;
 }
@@ -41,7 +41,7 @@ form input[type="text"]:focus {
 /* Input */
 .input-container input {
     width: 100%;
-    padding: 10px 40px 10px 15px; /* espaço à direita para o botão */
+    padding: 10px 50px 10px 15px; /* <-- ALTERADO AQUI */
     border: 2px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
@@ -58,7 +58,7 @@ form input[type="text"]:focus {
 .input-container button {
     position: absolute;
     top: 50%;
-    right: 2px;
+    right: 0;
     transform: translateY(-50%);
     border: none;
     background-color: #3D2412;
@@ -73,6 +73,7 @@ form input[type="text"]:focus {
     transition: all 0.3s ease;
 }
 
+
 .input-container button:hover {
     background-color: #5b311f;
     transform: translateY(-50%) scale(1.05);
@@ -81,7 +82,8 @@ form input[type="text"]:focus {
 
 /* ========= CONTAINER============ */
 .container {
-    background-color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid white;
     width: 70%;
     min-height: 50%;
     margin: 30px auto;
@@ -92,7 +94,7 @@ form input[type="text"]:focus {
 
 /* ============TÍTULOS========= */
 h1 {
-    color: #333333;
+    color: #ffffff;
     font-size: 2.5rem;
     text-align: center;
     margin-bottom: 25px;
@@ -244,3 +246,4 @@ td:last-child, th:last-child {
 .engrenagem {
     text-align: center;
 }
+
