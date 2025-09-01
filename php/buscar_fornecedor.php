@@ -12,14 +12,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['busca'])) {
     $busca = trim($_POST['busca']);
 
     if(is_numeric($busca)) {
-        $sql = "SELECT id_fornecedor, razao_social, responsavel, email_fornecedor, telefone_fornecedor, cep_fornecedor
+        $sql = "SELECT *
                 FROM fornecedores
                 WHERE id_fornecedor = :busca
                 ORDER BY razao_social ASC";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':busca', $busca, PDO::PARAM_INT);
     } else {
-        $sql = "SELECT id_fornecedor, razao_social, responsavel, email_fornecedor, telefone_fornecedor, cep_fornecedor
+        $sql = "SELECT *
                 FROM fornecedores
                 WHERE razao_social LIKE :busca_nome
                 ORDER BY razao_social ASC";
@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['busca'])) {
         $stmt->bindParam(':busca_nome', $busca_nome, PDO::PARAM_STR);
     }
 } else {
-    $sql = "SELECT id_fornecedor, razao_social, responsavel, email_fornecedor, telefone_fornecedor, cep_fornecedor
+    $sql = "SELECT *
             FROM fornecedores
             ORDER BY razao_social ASC";
     $stmt = $pdo->prepare($sql);

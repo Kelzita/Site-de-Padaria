@@ -32,7 +32,7 @@ CREATE TABLE `comanda` (
   `id_funcionario` int(11) NOT NULL,
   `data_abertura` date DEFAULT NULL,
   `hora_abertura` time DEFAULT NULL,
-  `data_fechamento` time DEFAULT NULL,
+  `data_fechamento` date DEFAULT NULL,
   `hora_fechamento` time DEFAULT NULL,
   `status` varchar(10) DEFAULT NULL,
   `forma_pagamento` varchar(50) DEFAULT NULL
