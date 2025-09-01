@@ -26,42 +26,21 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
         }
         #modalEditar .container {
             background: #fff;
-            width: 900px; /* maior para layout horizontal */
+            width: 600px; /* maior para layout horizontal */
             margin: 60px auto;
             padding: 30px 40px;
-            border-radius: 0;
+            border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
             position: relative;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-            display: flex;            /* Flex container */
-            flex-direction: row;      /* Layout horizontal */
-            gap: 20px;                /* Espaço entre colunas */
-            flex-wrap: wrap;          /* Quebra linha se necessário */
-        }
-        /* Área lateral para imagem ou informação extra (opcional) */
-        #modalEditar .imagem-preview {
-            flex: 0 0 20; /* 35% da largura */
-            background: #f5f5f5;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        #modalEditar .imagem-preview img {
-            max-width: 100%;
-            max-height: 300px;
-            display: none; /* Esconde imagem até carregar */
-            border-radius: 4px;
+            display: flex;            
+            flex-direction: row;     
+            gap: 20px;               
+            flex-wrap: wrap;         
         }
 
-        /* Formulário ocupa 60% da largura do container */
         #modalEditar form {
-            flex: 0 0 60%;
+            flex: 1;
             display: flex;
             flex-direction: column;
         }
@@ -122,7 +101,7 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
         }
         #modalEditar form button.btn-salvar {
             width: 100%;
-            background-color: #f26322;
+            background-color:rgb(0, 0, 0);
             color: white;
             padding: 12px 0;
             border: none;
@@ -133,7 +112,7 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
             transition: background-color 0.3s ease;
         }
         #modalEditar form button.btn-salvar:hover {
-            background-color: #d1520f;
+            background-color:rgb(0, 0, 0);
         }
     </style>
 </head>
@@ -193,7 +172,6 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
         <h2>Alterar Produto</h2>
 
         <div class="imagem-preview">
-            <p>Pré-visualização da Imagem</p>
             <img id="previewFoto" src="#" alt="Prévia da Foto" />
         </div>
 
