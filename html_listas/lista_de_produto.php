@@ -10,11 +10,12 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/modal.css" />
     <link rel="stylesheet" href="../css/styletabela.css" />
     <title>Lista de Produto</title>
 
     <style>
-        /* Estilos básicos para o modal corrigidos - layout vertical e reto */
+        /* Estilos básicos para o modal corrigidos - layout horizontal */
         #modalEditar {
             display: none;
             position: fixed;
@@ -25,13 +26,44 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
         }
         #modalEditar .container {
             background: #fff;
-            width: 480px;
+            width: 900px; /* maior para layout horizontal */
             margin: 60px auto;
             padding: 30px 40px;
             border-radius: 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
             position: relative;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            display: flex;            /* Flex container */
+            flex-direction: row;      /* Layout horizontal */
+            gap: 20px;                /* Espaço entre colunas */
+            flex-wrap: wrap;          /* Quebra linha se necessário */
+        }
+        /* Área lateral para imagem ou informação extra (opcional) */
+        #modalEditar .imagem-preview {
+            flex: 0 0 20; /* 35% da largura */
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #modalEditar .imagem-preview img {
+            max-width: 100%;
+            max-height: 300px;
+            display: none; /* Esconde imagem até carregar */
+            border-radius: 4px;
+        }
+
+        /* Formulário ocupa 60% da largura do container */
+        #modalEditar form {
+            flex: 0 0 60%;
+            display: flex;
+            flex-direction: column;
         }
         #modalEditar h2 {
             margin-top: 0;
@@ -41,6 +73,7 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
             font-size: 24px;
             border-bottom: 1px solid #ddd;
             padding-bottom: 10px;
+            flex-basis: 100%;
         }
         #modalEditar #fecharModal {
             position: absolute;
@@ -140,7 +173,9 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
                 <td>
                     <a href="#">Visualizar</a>
                     <a href="#" onclick="return confirmarDelete(<?= $produto['id_produto']; ?>, this)">Deletar</a>
-                    <a href="#" onclick='abrirModalEditar(<?= json_encode($produto, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>); return false;'>Alterar</a>
+                    <!-- Usando data-produto com JSON seguro -->
+                    <a href="#" class="btn-alterar" 
+                       data-produto='<?= htmlspecialchars(json_encode($produto), ENT_QUOTES, 'UTF-8'); ?>'>Alterar</a>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -156,8 +191,17 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
     <div class="container">
         <span id="fecharModal">&times;</span>
         <h2>Alterar Produto</h2>
+
+        <div class="imagem-preview">
+            <p>Pré-visualização da Imagem</p>
+            <img id="previewFoto" src="#" alt="Prévia da Foto" />
+        </div>
+
         <form id="formEditarProduto" enctype="multipart/form-data">
             <input type="hidden" name="id_produto" id="id_produto" />
+
+            <label for="foto_produto">Foto do Produto:</label>
+            <input type="file" id="foto_produto" name="foto_produto" accept="image/*" />
 
             <label for="nome_produto">Nome do Produto:</label>
             <input type="text" id="nome_produto" name="nome_produto" placeholder="Insira o nome do produto" required />
@@ -185,8 +229,7 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
                 <?php endforeach; ?>
             </select>
 
-            <label for="foto_produto">Foto do Produto:</label>
-            <input type="file" id="foto_produto" name="foto_produto" accept="image/*" />
+
 
             <button type="submit" class="btn-salvar">Salvar Alteração</button>
         </form>
@@ -206,21 +249,41 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
         document.getElementById('quantidade_produto').value = produto.quantidade_produto || '';
         document.getElementById('validade').value = produto.validade || '';
         document.getElementById('fornecedor').value = produto.fornecedor_id || '';
+
+        // Mostrar pré-visualização da imagem (se tiver)
+        const preview = document.getElementById('previewFoto');
+        if (produto.foto_produto) {
+            preview.src = produto.foto_produto; // Ajuste o caminho conforme seu dado
+            preview.style.display = 'block';
+        } else {
+            preview.src = '#';
+            preview.style.display = 'none';
+        }
     }
+
+    // Associa os botões Alterar para abrir modal via data-produto
+    document.querySelectorAll('.btn-alterar').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const produto = JSON.parse(this.dataset.produto);
+            abrirModalEditar(produto);
+        });
+    });
 
     // Fechar modal
     document.getElementById('fecharModal').onclick = function() {
         document.getElementById('modalEditar').style.display = 'none';
     }
 
-    // Fechar modal ao clicar fora
+    // Fechar modal ao clicar fora da área do container
     window.onclick = function(event) {
-        if (event.target == document.getElementById('modalEditar')) {
-            document.getElementById('modalEditar').style.display = 'none';
+        const modal = document.getElementById('modalEditar');
+        if (event.target == modal) {
+            modal.style.display = 'none';
         }
     }
 
-    // Enviar formulário para alterar produto
+    // Enviar formulário para alterar produto via fetch
     document.getElementById('formEditarProduto').addEventListener('submit', async function(e) {
         e.preventDefault();
 
@@ -238,47 +301,12 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
                 alert(data.message);
                 location.reload(); // Atualiza a página para refletir as mudanças
             } else {
-                alert('Erro: ' + data.message);
+                alert('Erro: ' + (data.message || 'Não foi possível salvar as alterações.'));
             }
         } catch (error) {
-            alert('Erro na conexão com o servidor.');
-            console.error(error);
+            alert('Erro na requisição: ' + error.message);
         }
     });
-
-    // Função para deletar produto com confirmação (mantida do seu código)
-    async function confirmarDelete(id, element) {
-        event.preventDefault();
-
-        if (!confirm('Tem certeza que deseja deletar este produto?')) {
-            return false;
-        }
-
-        try {
-            const response = await fetch('deletar_produto.php', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({id: id})
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-                alert(data.message);
-                // Remove linha da tabela
-                const tr = element.closest('tr');
-                if (tr) tr.remove();
-            } else {
-                alert('Erro: ' + data.message);
-            }
-        } catch (error) {
-            alert('Erro ao conectar com o servidor.');
-            console.error(error);
-        }
-
-        return false;
-    }
 </script>
-
 </body>
 </html>
