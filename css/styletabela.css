@@ -4,7 +4,7 @@
 h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #3D2412;
+    color: #f3f3f3;
     font-size: 1.8rem;
     letter-spacing: 1px;
 }
@@ -81,7 +81,8 @@ form input[type="text"]:focus {
 
 /* ========= CONTAINER============ */
 .container {
-    background-color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid white;
     width: 70%;
     min-height: 50%;
     margin: 30px auto;
@@ -92,7 +93,7 @@ form input[type="text"]:focus {
 
 /* ============TÍTULOS========= */
 h1 {
-    color: #333333;
+    color: #ffffff;
     font-size: 2.5rem;
     text-align: center;
     margin-bottom: 25px;
@@ -244,3 +245,4 @@ td:last-child, th:last-child {
 .engrenagem {
     text-align: center;
 }
+
