@@ -2,6 +2,10 @@
 session_start();
 require_once "conexao.php";
 
+//if($_SESSION['id_funcao']!==1 && $_SESSION['id_funcao']!==4 ){
+    //echo "<script>alert('Acesso Negado!')</script>";
+//}
+
 // ID da comanda atual
 $id_comanda = $_SESSION['id_comanda'] ?? null;
 
@@ -65,9 +69,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- BUSCAR PRODUTO -->
     <div class="box_codigo_prod">
-        <label>Código do Produto:</label>
-        <input type="text" id="codigo_produto" placeholder="Insira o código...">
-        <button onclick="buscarProduto()" class="buscarCodProd">Buscar</button>
+    <p>Funcionário: <?php echo $_SESSION['nome_funcionario']; ?></p>
     </div>
 
     <!-- SUBTOTAL -->
