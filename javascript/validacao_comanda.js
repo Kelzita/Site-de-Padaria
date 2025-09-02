@@ -1,7 +1,5 @@
-// validacao_comanda.js
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Confirmação de remoção de itens
     document.body.addEventListener("click", (e) => {
         if (e.target.classList.contains("btn-remover-item")) {
             if (!confirm("Tem certeza que deseja remover este produto do carrinho?")) {
