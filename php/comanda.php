@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once 'conexao.php';
+require_once "conexao.php";
 
-// Cria nova comanda
+// 1️⃣ Cria nova comanda se não existir
 if (!isset($_SESSION['id_comanda'])) {
-    date_default_timezone_set('America/Sao_Paulo'); //Fuso horario
+    date_default_timezone_set('America/Sao_Paulo');
     $status = 'Aberta';
     $data_abertura = date('Y-m-d');
     $hora_abertura = date('H:i:s');
@@ -25,7 +25,37 @@ if (!isset($_SESSION['id_comanda'])) {
 
 $id_comanda = $_SESSION['id_comanda'];
 
-// Busca produtos
+// 2️⃣ Adiciona item à comanda
+if (isset($_POST['adicionar_item'])) {
+    $id_produto = $_POST['id_produto'];
+    $quantidade = $_POST['quantidade'];
+    $observacao = $_POST['observacoes'] ?? '';
+
+    if ($id_comanda) {
+        $sql = "SELECT preco FROM produto WHERE id_produto = :id_produto";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':id_produto' => $id_produto]);
+        $produto = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $total = $produto['preco'] * $quantidade;
+
+        $sql = "INSERT INTO item_comanda (id_comanda, id_produto, quantidade, observacao, total) 
+                VALUES (:id_comanda, :id_produto, :quantidade, :observacao, :total)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':id_comanda' => $id_comanda,
+            ':id_produto' => $id_produto,
+            ':quantidade' => $quantidade,
+            ':observacao' => $observacao,
+            ':total' => $total
+        ]);
+    }
+
+    header("Location: comanda.php");
+    exit;
+}
+
+// 3️⃣ Busca produtos (se houver pesquisa)
 $produtos = [];
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['busca'])) {
     $busca = trim($_POST['busca']);
@@ -43,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['busca'])) {
 
         if(!$produtos){
             echo "<script>alert('Produto não encontrado!');window.location.href='comanda.php';</script>";
-    }
+        }
     }
 }
 
@@ -54,40 +84,8 @@ if (empty($produtos)) {
     $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Adiciona item
-if (isset($_POST['adicionar_item'])) {
-    $id_comanda = $_SESSION['id_comanda'] ?? null;
-    $id_produto = $_POST['id_produto'];
-    $quantidade = $_POST['quantidade'];
-
-    if ($id_comanda) {
-        $sql = "SELECT preco FROM produto WHERE id_produto = :id_produto";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([':id_produto' => $id_produto]);
-        $produto = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $total = $produto['preco'] * $quantidade;
-
-        $sql = "INSERT INTO item_comanda (id_comanda, id_produto, quantidade, observacao, total) 
-        VALUES (:id_comanda, :id_produto, :quantidade, :observacao, :total)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ':id_comanda' => $id_comanda,
-            ':id_produto' => $id_produto,
-            ':quantidade' => $quantidade,
-            ':observacao' => $observacao,
-            ':total' => $total
-        ]);
-
-    }
-
-    header("Location: comanda.php");
-    exit;
-}
-
-// Enviar para o caixa
+// 4️⃣ Enviar para o caixa / finalizar venda
 if (isset($_POST['finalizar_venda'])) {
-    $id_comanda = $_SESSION['id_comanda'] ?? null;
     $forma_pagamento = $_POST['forma_pagamento'] ?? 'Não especificado';
 
     if ($id_comanda) {
@@ -104,11 +102,12 @@ if (isset($_POST['finalizar_venda'])) {
         unset($_SESSION['id_comanda']);
     }
 
-    header("Location: comanda.php");
+    // Redireciona para o caixa
+    header("Location: caixa.php");
     exit;
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -124,21 +123,22 @@ if (isset($_POST['finalizar_venda'])) {
     <img src="../img/logo_pg.png" alt="Logo da Padaria">
 </header>
 
-<div class="retangulo">---------------------------------
+<div class="retangulo">
+  <div class="topo-retangulo">
     <a href="../entrada_comanda.html" class="voltar"> 
-        <img class="seta" src="../img/btn_voltar.png" title="seta">
+      <img class="seta" src="../img/btn_voltar.png" title="seta">
     </a>
-    <div class="carrinho">
     <a href="produtos_adicionados.php" class="produtos_adicionados">
-        <img class="carrinho" src="../img/carrinho.png" title="carrinho">
+      <img class="carrinho" src="../img/carrinho.png" title="carrinho">
     </a>
-    </div>
+  </div>
+
     <h2>Comanda Nº <?= htmlspecialchars($id_comanda) ?></h2>
         <form action="comanda.php" method="POST">
             <input type="text" id="busca" name="busca" placeholder="Buscar produto...">
             <button type="submit">Pesquisar</button>
         </form>
-    <div class="retangulo-conteudo">------------------------------
+    <div class="retangulo-conteudo">
         <?php if (!empty($produtos)): ?>
         <table class="table">
             <thead>
@@ -189,10 +189,11 @@ if (isset($_POST['finalizar_venda'])) {
             </tbody>
         </table>
     </div>
-        <form method="POST" action="comanda.php">
-            <input type="hidden" name="finalizar_venda" value="1">
+        <form method="GET" action="caixa.php">
+            <input type="hidden" name="id_comanda" value="<?= $id_comanda ?>">
             <button type="submit" class="finalizar_venda">Enviar para o caixa</button>
         </form>
+
         <?php else: ?>
             <p>Nenhum produto encontrado.</p>
         <?php endif; ?>
