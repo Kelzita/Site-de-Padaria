@@ -1,7 +1,7 @@
 .retangulo{
 background-color: white;
 border-radius: 10px;
-margin-top: 50px;
+margin-top: 80px;
 height: 480px;
 width: 600px;
 }
@@ -83,5 +83,110 @@ width: 50px ;
 height: 40px ;
 margin-top: 20px;
 margin-left: 10px;
+left: 5px;
+}
+
+table {
+  width: 100%;
+  max-width: 1000px; /* Majestosa e espaçosa */
+  margin: 16px auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #d0cfcf;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+th, td {
+  padding: 10px 18px; /* Conforto real para os olhos */
+  text-align: left;
+  font-size: 14px; /* Clareza na leitura */
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  background-color: #3D2412;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #b88c6d;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr {
+  background-color: #fff;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+tbody tr:hover {
+  background-color: #f5f5ff;
+  transform: scale(1.01);
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px #d0d0f0;
+}
+
+td:first-child, th:first-child {
+  border-left: 1px solid #e0e0e0;
+  border-radius: 8px 0 0 8px;
+}
+
+td:last-child, th:last-child {
+  border-right: 1px solid #e0e0e0;
+  border-radius: 0 8px 8px 0;
+}
+
+.titulos {
+    background-color: rgba(255, 255, 255, 0.85); /* Fundo branco semitransparente */
+    color: #000000; /* Texto preto */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+    margin: 20px auto;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.total-geral{
+    background-color: white;
+    color:#000000;
+    border-radius: 10px;
+    height: 60px;
+    width: 150px;
+    margin-top: 20px;
+    margin-left: 850px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.valorTG{
+    color: red;
+}
+
+.semVenda{
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+
+}
+
+.seta1 {
+width: 50px ;
+height: 40px ;
+margin-top: 20px;
+margin-left: -650px;
 left: 5px;
 }
