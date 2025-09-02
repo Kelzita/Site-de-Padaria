@@ -43,6 +43,7 @@ header img {
     flex-direction: column;
     /*top: 10px;*/
     margin-top: 40px;
+        border-radius: 8px; 
   }
   
 
@@ -106,10 +107,14 @@ header img {
     padding: 5px;
   }
   
-  .observacao {
-    flex: 1.5;
-    padding: 5px;
-  }
+.observacoes {
+  flex: 0 0 auto; /* Não cresce, não encolhe */
+  width: 250px;
+  height: 20px; 
+  padding: 5px;
+  resize: none;   /* remove a possibilidade do usuário redimensionar */
+}
+
   
   .unidade {
     min-width: 24px;
@@ -186,7 +191,7 @@ header img {
   .retangulo-conteudo {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
+    padding: 15px;
   }
   
   .fixo-botao-interno {
@@ -284,19 +289,78 @@ button:hover {
   text-align: left;
 }
 
+/* Estilo geral para todos os botões de ação */
+.btn-remover,
+.btn-adicionar,
+.btn-apagar {
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50%; /* botões redondos */
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo geral para todos os botões de ação */
+.btn-remover,
+.btn-adicionar,
+.btn-apagar {
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50%; /* botões redondos */
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0px;
+}
+
+/* Botão de diminuir (-) - bege/creme */
+.btn-remover {
+    background-color: #d9c9b8; 
+    color: #5a3e00; /* marrom escuro para o símbolo */
+}
+
+.btn-remover:hover {
+    background-color: #cbbca5; 
+}
+
+/* Botão de aumentar (+) - laranja queimado / caramelo */
 .btn-adicionar {
-  background-color: #7a4226;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 10px;
-  cursor: pointer;
-  font-size: 14px;
+    background-color: #d17842; 
 }
 
 .btn-adicionar:hover {
-  background-color: #5a3e00;
+    background-color: #b45d2e; 
 }
+
+/* Botão de apagar - marrom escuro */
+.btn-apagar {
+    background-color: #5a3e00; 
+    font-size: 20px;
+}
+
+.btn-apagar:hover {
+    background-color: #3d2700; 
+}
+
+/* Espaçamento entre os botões */
+.btn-remover + .btn-adicionar,
+.btn-adicionar + .btn-apagar {
+    margin-left: 10px;
+}
+
 
 .finalizar_venda {
   display: flex;
@@ -319,4 +383,31 @@ button:hover {
 
 .finalizar_venda:hover {
   background-color: #7a4226;
+}
+
+
+.retangulo a {
+    display: inline-block;
+    margin-right: 10px; /* espaço entre elas */
+}
+
+.voltar{
+  text-align: center;
+  margin:7px 0;
+}
+.voltar a {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #7a4226;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px; 
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.voltar a:hover {
+    background-color: #5a3e00;
+    color: #fff;
+    transform: scale(1.05);
 }
