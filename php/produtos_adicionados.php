@@ -67,23 +67,20 @@ $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td>
                             <button type="submit" name="acao" value="diminuir" class="btn-remover">-</button>
                             <button type="submit" name="acao" value="aumentar" class="btn-adicionar">+</button>
-                            <button type="submit" name="acao" value="apagar" class="btn-apagar">x</button>
+                            <button type="submit" name="acao" value="apagar" class="btn-apagar">🗑️</button>
                         </form>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <div class="voltar">
-            <a class="voltar" href="comanda.php">Voltar</a>
-        </div>
-        <?php else: ?>
-            <p>Nenhum item adicionado.</p>
+    </div>
             <div class="voltar">
                 <a class="voltar" href="comanda.php">Voltar</a>
             </div>
+        <?php else: ?>
+            <p>Nenhum item adicionado.</p>
         <?php endif; ?>
-    </div>
 </div>
 </body>
 </html>
