@@ -71,4 +71,3 @@ async function buscarCEPFuncionario(){
     let data = await buscarCEP(cep);
     if(data){ preencherEndereco('funcionario', data); }
 }
-

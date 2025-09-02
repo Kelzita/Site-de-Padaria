@@ -10,6 +10,8 @@ include '../php/modals.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/jquery.inputmask.min.js"></script>
     <link rel="stylesheet" href="../css/styles.css"/>
     <link rel="stylesheet" href="../css/styletabela.css"/>
     <title>Lista de Fornecedor</title>
@@ -49,19 +51,18 @@ include '../php/modals.php';
             <td><?=htmlspecialchars($fornecedor['cep_fornecedor']); ?></td>
             <td>
                 <a href="#" class="visualizar" data-id="<?=htmlspecialchars($fornecedor['id_fornecedor']); ?>"
-                            data-razao_social="<?= $fornecedor['razao_social'] ?>"
-                            data-responsavel="<?= $fornecedor['responsavel'] ?>"
-                            data-cnpj_fornecedor="<?= $fornecedor['cnpj_fornecedor'] ?>"
-                            data-email_fornecedor="<?= $fornecedor['email_fornecedor'] ?>"
-                            data-telefone_fornecedor="<?= $fornecedor['telefone_fornecedor'] ?>"
-                            data-cep_fornecedor="<?= $fornecedor['cep_fornecedor'] ?>"
-                            data-rua_fornecedor="<?= $fornecedor['rua_fornecedor'] ?>"
-                            data-numero_fornecedor="<?= $fornecedor['numero_fornecedor'] ?>"
-                            data-bairro_fornecedor="<?= $fornecedor['bairro_fornecedor'] ?>"
-                            data-cidade_fornecedor="<?= $fornecedor['cidade_fornecedor'] ?>"
-                            data-uf_fornecedor="<?= $fornecedor['uf_fornecedor'] ?>"
+                    data-razao_social="<?= $fornecedor['razao_social'] ?>"
+                    data-responsavel="<?= $fornecedor['responsavel'] ?>"
+                    data-cnpj_fornecedor="<?= $fornecedor['cnpj_fornecedor'] ?>"
+                    data-email_fornecedor="<?= $fornecedor['email_fornecedor'] ?>"
+                    data-telefone_fornecedor="<?= $fornecedor['telefone_fornecedor'] ?>"
+                    data-cep_fornecedor="<?= $fornecedor['cep_fornecedor'] ?>"
+                    data-rua_fornecedor="<?= $fornecedor['rua_fornecedor'] ?>"
+                    data-numero_fornecedor="<?= $fornecedor['numero_fornecedor'] ?>"
+                    data-bairro_fornecedor="<?= $fornecedor['bairro_fornecedor'] ?>"
+                    data-cidade_fornecedor="<?= $fornecedor['cidade_fornecedor'] ?>"
+                    data-uf_fornecedor="<?= $fornecedor['uf_fornecedor'] ?>"
                 >Visualizar</a>
-                <a>Deletar</a>
                 <a href="#" class="alterar" 
                     data-id="<?= htmlspecialchars($fornecedor['id_fornecedor']); ?>"
                     data-razao_social="<?= $fornecedor['razao_social'] ?>"
@@ -76,6 +77,7 @@ include '../php/modals.php';
                     data-cidade_fornecedor="<?= $fornecedor['cidade_fornecedor'] ?>"
                     data-uf_fornecedor="<?= $fornecedor['uf_fornecedor'] ?>"
                 >Alterar</a>
+                <a>Deletar</a>
             </td>
         </tr>
         <?php endforeach;?>

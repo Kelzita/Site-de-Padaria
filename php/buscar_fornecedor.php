@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['busca'])) {
 } else {
     $sql = "SELECT *
             FROM fornecedores
-            ORDER BY razao_social ASC";
+            ORDER BY id_fornecedor ASC";
     $stmt = $pdo->prepare($sql);
 }
 

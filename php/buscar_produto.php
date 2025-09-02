@@ -26,3 +26,5 @@ if ($produto) {
 } else {
     echo json_encode(["erro" => "Produto não encontrado"]);
 }
+
+?>

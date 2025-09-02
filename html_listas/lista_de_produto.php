@@ -6,7 +6,6 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/styles.css" />
@@ -16,6 +15,7 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
 
     <style>
         /* Estilos básicos para o modal corrigidos - layout horizontal */
+        
         #modalEditar {
             display: none;
             position: fixed;
