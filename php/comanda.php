@@ -68,15 +68,17 @@ if (isset($_POST['adicionar_item'])) {
 
         $total = $produto['preco'] * $quantidade;
 
-        $sql = "INSERT INTO item_comanda (id_comanda, id_produto, quantidade, total) 
-                VALUES (:id_comanda, :id_produto, :quantidade, :total)";
+        $sql = "INSERT INTO item_comanda (id_comanda, id_produto, quantidade, observacao, total) 
+        VALUES (:id_comanda, :id_produto, :quantidade, :observacao, :total)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':id_comanda' => $id_comanda,
             ':id_produto' => $id_produto,
             ':quantidade' => $quantidade,
+            ':observacao' => $observacao,
             ':total' => $total
         ]);
+
     }
 
     header("Location: comanda.php");
@@ -122,7 +124,7 @@ if (isset($_POST['finalizar_venda'])) {
     <img src="../img/logo_pg.png" alt="Logo da Padaria">
 </header>
 
-<div class="retangulo">
+<div class="retangulo">---------------------------------
     <a href="../entrada_comanda.html" class="voltar"> 
         <img class="seta" src="../img/btn_voltar.png" title="seta">
     </a>
@@ -136,7 +138,7 @@ if (isset($_POST['finalizar_venda'])) {
             <input type="text" id="busca" name="busca" placeholder="Buscar produto...">
             <button type="submit">Pesquisar</button>
         </form>
-    <div class="retangulo-conteudo">
+    <div class="retangulo-conteudo">------------------------------
         <?php if (!empty($produtos)): ?>
         <table class="table">
             <thead>
@@ -176,7 +178,7 @@ if (isset($_POST['finalizar_venda'])) {
                             <input type="number" name="quantidade" value="1" min="1" class="input-quantidade">
                     </td>
                     <td>
-                        <textarea class="observacoes" rows="1" cols="20" placeholder="Observações"></textarea>
+                        <textarea name="observacoes" class="observacoes" rows="1" cols="20" placeholder="Observações"></textarea>
                     </td>
                     <td>
                         <button type="submit" name="adicionar_item" class="btn-adicionar">+</button>

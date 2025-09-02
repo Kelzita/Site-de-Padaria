@@ -2,93 +2,27 @@
 session_start();
 require_once 'conexao.php';
 
-// Cria nova comanda
-if (!isset($_SESSION['id_comanda'])) {
-    date_default_timezone_set('America/Sao_Paulo'); //Fuso horario
-    $status = 'Aberta';
-    $data_abertura = date('Y-m-d');
-    $hora_abertura = date('H:i:s');
-    $id_funcionario = $_SESSION['id_funcionario'] ?? 1;
-
-    $sql = "INSERT INTO comanda (id_funcionario, data_abertura, hora_abertura, status)
-            VALUES (:id_funcionario, :data_abertura, :hora_abertura, :status)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        ':id_funcionario' => $id_funcionario,
-        ':data_abertura'  => $data_abertura,
-        ':hora_abertura'  => $hora_abertura,
-        ':status'         => $status
-    ]);
-
-    $_SESSION['id_comanda'] = $pdo->lastInsertId();
+$id_comanda = $_SESSION['id_comanda'] ?? null;
+if (!$id_comanda) {
+    die("Nenhuma comanda ativa encontrada.");
 }
 
-$id_comanda = $_SESSION['id_comanda'];
+// Busca itens da comanda
+$sql = "SELECT 
+            ic.id_item_comanda,
+            ic.id_produto,
+            ic.quantidade,
+            ic.observacao,
+            ic.total,
+            p.nome_produto,
+            p.preco
+        FROM item_comanda ic
+        INNER JOIN produto p ON ic.id_produto = p.id_produto
+        WHERE ic.id_comanda = :id_comanda";
 
-// Busca lista de produtos
-if (empty($comanda)) {
-    $sql = "SELECT * FROM item_comanda ORDER BY id_produto ASC";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-// Adiciona item
-if (isset($_POST['adicionar_item'])) {
-    $id_produto = $_POST['id_produto'];
-    $quantidade = $_POST['quantidade'];
-    $observacao = $_POST['observacao'] ?? null;
-
-    $sql = "SELECT preco FROM produto WHERE id_produto = :id_produto";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([':id_produto' => $id_produto]);
-    $produto = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($produto) {
-        $total = $produto['preco'] * $quantidade;
-
-        $sql = "INSERT INTO item_comanda (id_comanda, id_produto, quantidade, observacao, total) 
-                VALUES (:id_comanda, :id_produto, :quantidade, :observacao, :total)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ':id_comanda' => $id_comanda,
-            ':id_produto' => $id_produto,
-            ':quantidade' => $quantidade,
-            ':observacao' => $observacao,
-            ':total'      => $total
-        ]);
-    }
-
-    header("Location: comanda.php");
-    exit;
-}
-
-// Remover item
-if (isset($_POST['remover'])) {
-    $id_produto = $_POST['id_produto'];
-
-    $sql = "DELETE FROM item_comanda 
-            WHERE id_comanda = :id_comanda AND id_produto = :id_produto 
-            LIMIT 1";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        ':id_comanda' => $id_comanda,
-        ':id_produto' => $id_produto
-    ]);
-
-    header("Location: comanda.php");
-    exit;
-}
-
-
-// Buscar itens já adicionados na comanda
-$sql = "SELECT i.*, p.nome_produto, p.preco 
-        FROM item_comanda i
-        JOIN produto p ON i.id_produto = p.id_produto
-        WHERE i.id_comanda = :id_comanda";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':id_comanda' => $id_comanda]);
-$itens_comanda = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -104,39 +38,50 @@ $itens_comanda = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <img src="../img/logo_pg.png" alt="Logo da Padaria">
 </header>
 <div class="retangulo">
-    <a href="../php/comanda.php" class="voltar"> 
-        <img class="seta" src="../img/btn_voltar.png" title="Voltar">
-    </a>
+    <h2>Itens da Comanda Nº<?= htmlspecialchars($id_comanda) ?></h2>
     <div class="retangulo-conteudo">
-
-        <?php if (!empty($itens_comanda)): ?>
-        <h2>Itens da Comanda</h2>
+        <?php if ($itens): ?>
         <table class="table">
             <thead>
                 <tr>
                     <th>Produto</th>
                     <th>Quantidade</th>
-               <!-- <th>Observação</th> -->
+                    <th>Preço Unitário</th>
                     <th>Total</th>
-                    <th>Ações</th>
+                    <th>Observações</th>
+                    <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($itens_comanda as $item): ?>
+                <?php foreach ($itens as $item): ?>
                 <tr>
                     <td><?= htmlspecialchars($item['nome_produto']) ?></td>
-                    <td><?= htmlspecialchars($item['quantidade']) ?></td>
-             <!-- <td><?= htmlspecialchars($item['observacao']) ?></td> -->
-                    <td>R$ <?= number_format($item['total'], 2, ',', '.') ?></td>
-
+                    <td><?= $item['quantidade'] ?></td>
+                    <td>R$ <?= number_format($item['preco'],2,',','.') ?></td>
+                    <td>R$ <?= number_format($item['total'],2,',','.') ?></td>
                     <td>
-                        <button type="submit" name="adicionar_item" class="btn-adicionar">+</button>
-                        <button type="submit" name="remover_item" class="btn-remover">-</button>
+                        <form method="POST" action="atualizar_item.php" class="form-quantidade">
+                            <input type="hidden" name="id_item_comanda" value="<?= $item['id_item_comanda'] ?>">
+                            <textarea name="observacao" class="observacoes"><?= htmlspecialchars($item['observacao']) ?></textarea>
+                    </td>
+                    <td>
+                            <button type="submit" name="acao" value="diminuir" class="btn-remover">-</button>
+                            <button type="submit" name="acao" value="aumentar" class="btn-adicionar">+</button>
+                            <button type="submit" name="acao" value="apagar" class="btn-apagar">x</button>
+                        </form>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <div class="voltar">
+            <a class="voltar" href="comanda.php">Voltar</a>
+        </div>
+        <?php else: ?>
+            <p>Nenhum item adicionado.</p>
+            <div class="voltar">
+                <a class="voltar" href="comanda.php">Voltar</a>
+            </div>
         <?php endif; ?>
     </div>
 </div>
