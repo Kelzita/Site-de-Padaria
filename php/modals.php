@@ -117,7 +117,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <input type="text" name="telefone_fornecedor" id="alterar-telefone-fornecedor" maxlength="15">
 
             <label>CEP:</label>
-            <input type="text" name="cep_fornecedor" id="alterar-cep_fornecedor" maxlength="9">
+            <div class="input-container-cep">
+             <input type="text" name="cep_fornecedor" id="alterar-cep_fornecedor" maxlength="9" placeholder="Digite o CEP (ex: 00000-000)">
+            <i class="ri-search-line busca_lupa" onclick="buscarCEPFornecedor()"></i>
+            </div>
 
             <label>Rua:</label>
             <input type="text" name="rua_fornecedor" id="alterar-rua_fornecedor">
@@ -207,6 +210,49 @@ function aplicarMascaraCEP(cep) {
     return cep.substring(0, 9);
 }
 
+// Função para buscar CEP
+function buscarCEPFornecedor() {
+    const cepInput = document.getElementById("alterar-cep_fornecedor");
+    const cep = cepInput.value.replace(/\D/g, '');
+    
+    if (cep.length !== 8) {
+        alert("Por favor, digite um CEP válido com 8 dígitos.");
+        return;
+    }
+    
+    // Exibir indicador de carregamento
+    const lupaIcon = document.querySelector(".busca_lupa");
+    const originalClass = lupaIcon.className;
+    lupaIcon.className = "ri-loader-4-line busca_lupa animar";
+    
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.erro) {
+                alert("CEP não encontrado. Por favor, verifique o número digitado.");
+            } else {
+                // Preencher os campos com os dados do CEP
+                document.getElementById("alterar-rua_fornecedor").value = data.logradouro || '';
+                document.getElementById("alterar-bairro_fornecedor").value = data.bairro || '';
+                document.getElementById("alterar-cidade_fornecedor").value = data.localidade || '';
+                document.getElementById("alterar-uf_fornecedor").value = data.uf || '';
+                
+                // Dar foco no campo número após preencher os dados
+                document.getElementById("alterar-numero_fornecedor").focus();
+            }
+            
+            // Restaurar ícone original
+            lupaIcon.className = originalClass;
+        })
+        .catch(error => {
+            console.error("Erro ao buscar CEP:", error);
+            alert("Erro ao buscar CEP. Por favor, tente novamente.");
+            
+            // Restaurar ícone original
+            lupaIcon.className = originalClass;
+        });
+}
+
 // Aplicar máscaras quando o modal for aberto
 document.addEventListener("DOMContentLoaded", () => {
     const modalAlterar = document.getElementById("modalEditar");
@@ -228,6 +274,14 @@ document.addEventListener("DOMContentLoaded", () => {
     
     cepInput.addEventListener("input", function() {
         this.value = aplicarMascaraCEP(this.value);
+    });
+    
+    // Permitir busca de CEP ao pressionar Enter
+    cepInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            buscarCEPFornecedor();
+        }
     });
     
     // Aplicar máscaras quando o campo perde o foco (caso o usuário cole um valor)
@@ -279,3 +333,171 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
+
+<script>
+// Funções para aplicar máscaras
+function aplicarMascaraCNPJ(cnpj) {
+    cnpj = cnpj.replace(/\D/g, '');
+    cnpj = cnpj.replace(/^(\d{2})(\d)/, '$1.$2');
+    cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+    cnpj = cnpj.replace(/\.(\d{3})(\d)/, '.$1/$2');
+    cnpj = cnpj.replace(/(\d{4})(\d)/, '$1-$2');
+    return cnpj.substring(0, 18);
+}
+
+function aplicarMascaraTelefone(telefone) {
+    telefone = telefone.replace(/\D/g, '');
+    
+    // Verifica se é celular (com 9º dígito) ou telefone fixo
+    if (telefone.length === 11) {
+        telefone = telefone.replace(/^(\d{2})(\d)/, '($1) $2');
+        telefone = telefone.replace(/(\d{5})(\d{4})/, '$1-$2');
+    } else if (telefone.length === 10) {
+        telefone = telefone.replace(/^(\d{2})(\d)/, '($1) $2');
+        telefone = telefone.replace(/(\d{4})(\d{4})/, '$1-$2');
+    } else if (telefone.length > 0) {
+        telefone = telefone.replace(/^(\d{0,2})/, '($1');
+        telefone = telefone.replace(/^\((\d{2})(\d)/, '($1) $2');
+        if (telefone.length > 10) {
+            telefone = telefone.replace(/(\d{4})(\d)/, '$1-$2');
+        } else {
+            telefone = telefone.replace(/(\d{4})(\d)/, '$1-$2');
+        }
+    }
+    
+    return telefone.substring(0, 15);
+}
+
+function aplicarMascaraCEP(cep) {
+    cep = cep.replace(/\D/g, '');
+    cep = cep.replace(/^(\d{5})(\d)/, '$1-$2');
+    return cep.substring(0, 9);
+}
+
+// Função para buscar CEP
+function buscarCEPFornecedor() {
+    const cepInput = document.getElementById("alterar-cep_fornecedor");
+    const cep = cepInput.value.replace(/\D/g, '');
+    
+    if (cep.length !== 8) {
+        alert("Por favor, digite um CEP válido com 8 dígitos.");
+        return;
+    }
+    
+    // Exibir indicador de carregamento
+    const lupaIcon = document.querySelector(".busca_lupa");
+    const originalClass = lupaIcon.className;
+    lupaIcon.className = "ri-loader-4-line busca_lupa animar";
+    
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.erro) {
+                alert("CEP não encontrado. Por favor, verifique o número digitado.");
+            } else {
+                // Preencher os campos com os dados do CEP
+                document.getElementById("alterar-rua_fornecedor").value = data.logradouro || '';
+                document.getElementById("alterar-bairro_fornecedor").value = data.bairro || '';
+                document.getElementById("alterar-cidade_fornecedor").value = data.localidade || '';
+                document.getElementById("alterar-uf_fornecedor").value = data.uf || '';
+                
+                // Dar foco no campo número após preencher os dados
+                document.getElementById("alterar-numero_fornecedor").focus();
+            }
+            
+            // Restaurar ícone original
+            lupaIcon.className = originalClass;
+        })
+        .catch(error => {
+            console.error("Erro ao buscar CEP:", error);
+            alert("Erro ao buscar CEP. Por favor, tente novamente.");
+            
+            // Restaurar ícone original
+            lupaIcon.className = originalClass;
+        });
+}
+
+// Aplicar máscaras quando o modal for aberto
+document.addEventListener("DOMContentLoaded", () => {
+    const modalAlterar = document.getElementById("modalEditar");
+    const fecharAlterar = document.getElementById("fecharModal");
+    
+    // Elementos que receberão máscaras
+    const cnpjInput = document.getElementById("alterar-cnpj_fornecedor");
+    const telefoneInput = document.getElementById("alterar-telefone-fornecedor");
+    const cepInput = document.getElementById("alterar-cep_fornecedor");
+    
+    // Aplicar máscaras na digitação
+    cnpjInput.addEventListener("input", function() {
+        this.value = aplicarMascaraCNPJ(this.value);
+    });
+    
+    telefoneInput.addEventListener("input", function() {
+        this.value = aplicarMascaraTelefone(this.value);
+    });
+    
+    cepInput.addEventListener("input", function() {
+        this.value = aplicarMascaraCEP(this.value);
+    });
+    
+    // Permitir busca de CEP ao pressionar Enter
+    cepInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            buscarCEPFornecedor();
+        }
+    });
+    
+    // Aplicar máscaras quando o campo perde o foco (caso o usuário cole um valor)
+    cnpjInput.addEventListener("blur", function() {
+        this.value = aplicarMascaraCNPJ(this.value);
+    });
+    
+    telefoneInput.addEventListener("blur", function() {
+        this.value = aplicarMascaraTelefone(this.value);
+    });
+    
+    cepInput.addEventListener("blur", function() {
+        this.value = aplicarMascaraCEP(this.value);
+    });
+
+    document.querySelectorAll(".alterar").forEach(botao => {
+        botao.addEventListener("click", e => {
+            e.preventDefault();
+
+            // Preenche modal de alteração
+            document.getElementById("alterar-id").value = botao.dataset.id;
+            document.getElementById("alterar-razao_social").value = botao.dataset.razao_social;
+            document.getElementById("alterar-responsavel").value = botao.dataset.responsavel;
+            
+            // Aplica máscaras aos valores ao preencher o modal
+            cnpjInput.value = aplicarMascaraCNPJ(botao.dataset.cnpj_fornecedor || '');
+            document.getElementById("alterar-email_fornecedor").value = botao.dataset.email_fornecedor;
+            telefoneInput.value = aplicarMascaraTelefone(botao.dataset.telefone_fornecedor || '');
+            cepInput.value = aplicarMascaraCEP(botao.dataset.cep_fornecedor || '');
+            
+            document.getElementById("alterar-rua_fornecedor").value = botao.dataset.rua_fornecedor;
+            document.getElementById("alterar-numero_fornecedor").value = botao.dataset.numero_fornecedor;
+            document.getElementById("alterar-bairro_fornecedor").value = botao.dataset.bairro_fornecedor;
+            document.getElementById("alterar-cidade_fornecedor").value = botao.dataset.cidade_fornecedor;
+            document.getElementById("alterar-uf_fornecedor").value = botao.dataset.uf_fornecedor;
+
+            // Abre modal
+            modalAlterar.style.display = "flex";
+        });
+    });
+
+    // Fechar modal
+    fecharAlterar.addEventListener("click", () => {
+        modalAlterar.style.display = "none";
+    });
+
+    window.addEventListener("click", e => {
+        if (e.target === modalAlterar) modalAlterar.style.display = "none";
+    });
+});
+</script>
+
+
+
+

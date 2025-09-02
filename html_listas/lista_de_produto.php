@@ -1,5 +1,6 @@
 <?php 
 include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e $fornecedores
+require_once '../php/funcoes.php';
 ?>
 <!DOCTYPE html>
 <html lang="PT-BR">
@@ -12,109 +13,6 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
     <link rel="stylesheet" href="../css/modal.css" />
     <link rel="stylesheet" href="../css/styletabela.css" />
     <title>Lista de Produto</title>
-
-    <style>
-        /* Estilos básicos para o modal corrigidos - layout horizontal */
-        
-        #modalEditar {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0; top: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-            overflow: auto;
-        }
-        #modalEditar .container {
-            background: #fff;
-            width: 600px; /* maior para layout horizontal */
-            margin: 60px auto;
-            padding: 30px 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            position: relative;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;            
-            flex-direction: row;     
-            gap: 20px;               
-            flex-wrap: wrap;         
-        }
-
-        #modalEditar form {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        #modalEditar h2 {
-            margin-top: 0;
-            margin-bottom: 25px;
-            font-weight: 700;
-            color: #333;
-            font-size: 24px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-            flex-basis: 100%;
-        }
-        #modalEditar #fecharModal {
-            position: absolute;
-            top: 10px; right: 15px;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #333;
-        }
-        #modalEditar form label {
-            font-weight: 600;
-            margin-bottom: 6px;
-            display: block;
-            color: #444;
-        }
-        #modalEditar form input[type="text"],
-        #modalEditar form input[type="number"],
-        #modalEditar form input[type="date"],
-        #modalEditar form textarea,
-        #modalEditar form select,
-        #modalEditar form input[type="file"] {
-            width: 100%;
-            padding: 8px 10px;
-            margin-bottom: 18px;
-            border: 1px solid #ccc;
-            font-size: 15px;
-            font-weight: 400;
-            color: #333;
-            box-sizing: border-box;
-            border-radius: 0;
-            transition: border-color 0.3s ease;
-            display: block;
-        }
-        #modalEditar form input[type="text"]:focus,
-        #modalEditar form input[type="number"]:focus,
-        #modalEditar form input[type="date"]:focus,
-        #modalEditar form textarea:focus,
-        #modalEditar form select:focus,
-        #modalEditar form input[type="file"]:focus {
-            outline: none;
-            border-color: #f26322;
-        }
-        #modalEditar form textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        #modalEditar form button.btn-salvar {
-            width: 100%;
-            background-color: rgb(0, 0, 0);
-            color: white;
-            padding: 12px 0;
-            border: none;
-            font-weight: 700;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 0;
-            transition: background-color 0.3s ease;
-        }
-        #modalEditar form button.btn-salvar:hover {
-            background-color: rgb(0, 0, 0);
-        }
-    </style>
 </head>
 <body>
 <header>
@@ -201,12 +99,14 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
 
             <label for="fornecedor">Fornecedor:</label>
             <select id="fornecedor" name="fornecedor" required>
-                <option value="">Selecione o fornecedor</option>
-                <?php foreach ($fornecedores as $forn) : ?>
-                    <option value="<?= htmlspecialchars($forn['id_fornecedor']); ?>"><?= htmlspecialchars($forn['nome_fornecedor']); ?></option>
-                <?php endforeach; ?>
+            <option value="">Selecione o fornecedor</option>
+                <?php foreach ($fornecedores as $fornecedor): ?>
+                    <option value="<?= htmlspecialchars($fornecedor['id_fornecedor']) ?>" 
+                    <?= $fornecedor['id_fornecedor'] == $idSelecionadoFornecedor ? 'selected' : '' ?>>
+                 <?= htmlspecialchars($fornecedor['id_fornecedor']), ' - ' ,htmlspecialchars($fornecedor['razao_social']) ?>
+            </option>
+            <?php endforeach; ?>
             </select>
-
             <button type="submit" class="btn-salvar">Salvar Alteração</button>
         </form>
     </div>

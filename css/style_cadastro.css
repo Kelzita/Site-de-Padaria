@@ -211,7 +211,7 @@ h1 {
     color: #000;
 }
 
-/*=====Olhinho=======*/
+/*=====buscar=======*/
 
 .formulario-cadastro-usuario {
     position: relative; /* necessário para posicionar o ícone dentro do input */
@@ -267,3 +267,4 @@ h1 {
 .formulario-cadastro textarea:last-of-type {
     margin-bottom: 25px;
 }
+
