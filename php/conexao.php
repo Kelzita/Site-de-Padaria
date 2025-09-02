@@ -20,7 +20,7 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Se o banco for 
 
 
 
-} catch (PDO_Exception $e ){
+} catch (PDOException $e ){
     // Se ocorrer qualquer erro (uma PDOException) durante a tentativa de conexão no bloco 'try',
     // o código dentro deste bloco 'catch' será executado.
 

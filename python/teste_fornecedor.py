@@ -7,7 +7,7 @@ import time
 
 driver = webdriver.Chrome()
 
-driver.get("file:///C:/Users/raquel_f_brito/Documents/Site-de-Padaria/cadastrarfornecedor.html") # Trocar de acordo com o diretório! - 8080 ou 80 ( padão )
+driver.get("file:///C:/xampp/htdocs/Site-de-Padaria/html_cadastros/cadastrar_fornecedor.php") # Trocar de acordo com o diretório! - 8080 ou 80 ( padão )
 # Preenchimento do Nome do Fornecedor
 
 nome_fornecedor_input = driver.find_element(By.ID, "nome_fornecedor")

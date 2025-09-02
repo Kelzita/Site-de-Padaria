@@ -7,13 +7,13 @@ if (session_status() == PHP_SESSION_NONE) {
 require_once 'conexao.php';
 
 // Verifica se usuário está logado
-if (!isset($_SESSION['usuario'])) {
+if (!isset($_SESSION['id_funcionario'])) {
     header("Location: ../index.php");
     exit();
 }
 
 //========== Obtem o nome do perfil e do usuário logado ==========
-$id_funcao = $_SESSION['funcao'] ?? null;
+$id_funcao = $_SESSION['id_funcao'] ?? null;
 
 $sqlFuncao = "SELECT nome_funcao FROM funcao WHERE id_funcao = :id_funcao";
 $stmtFuncao = $pdo->prepare($sqlFuncao);
@@ -22,7 +22,7 @@ $stmtFuncao->execute();
 
 $funcao = $stmtFuncao->fetch(PDO::FETCH_ASSOC);
 if (!$funcao) {
-    die("Função do usuário não encontrada!");
+    die("Função do funcionário não encontrada!");
 }
 
 $nome_funcao = $funcao['nome_funcao'];
@@ -32,17 +32,17 @@ $permissoes = [
     1 => [
         "Historico de Vendas" => ["../html_relatorios/historico_de_vendas.php"],
         "Gestão de Produtos e Estoque" => [
-            "html_cadastros/cadastrar_produto.php",
-            "html_listas/estoque_atual.php",
-            "html_gerenciamento/gerenciar_produtos.php"
+            "../html_cadastros/cadastrar_produto.php",
+            "../html_listas/estoque_atual.php",
+            "../html_gerenciamento/gerenciar_produtos.php"
         ],
         "Gestão de Funcionarios" => [
-            "html_cadastros/cadastrar_funcionario.php",
-            "html_listas/Lista_de_funcionarios.php"
+            "../html_cadastros/cadastrar_funcionario.php",
+            "../html_listas/Lista_de_funcionarios.php"
         ],
         "Gestão de Fornecedores" => [
-            "html_cadastros/cadastrar_fornecedor.php",
-            "html_listas/lista_de_fornecedores.php"
+            "../html_cadastros/cadastrar_fornecedor.php",
+            "../html_listas/lista_de_fornecedores.php"
         ],
         "Relatórios" => ["../html_relatorios/relatorios.php"],
         "Caixa" => ["../caixanovo/caixa.html"],

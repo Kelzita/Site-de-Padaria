@@ -1,38 +1,66 @@
-<?php 
-require_once '../php/funcoes.php';
+<?php
+session_start();
+require_once("conexao.php");
+
+
+//inicializa variaveis
+$produto = null;
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(!empty($_POST['busca_produto'])){
+        $busca = trim($_POST['busca_produto']);
+
+        //verifica se a busca e um numero (id) ou um nome
+        if(is_numeric($busca)){
+            $sql = "SELECT * FROM produto WHERE id_produto = :busca";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':busca',$busca,PDO::PARAM_INT);
+        }else{
+            $sql = "SELECT * FROM produto WHERE nome_produto LIKE :busca_nome";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(':busca_nome',"$busca%",PDO::PARAM_STR);
+        }
+
+        $stmt->execute();
+        $produto = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Se o produto nao for encontrado, exibe um alerta
+        if(!$produto){
+            echo "<script>alert('Produto nao encontrado');</script>";
+        }
+    }
+}
+
 ?>
-
-
 <!DOCTYPE html>
-<html lang="PT-BR">
-
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Produto</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <!-- jQuery primeiro -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- JS do Select2 depois -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/style_cadastro.css" />
-    
-
+    <title>Alterar Produto</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- certifique-se que o javascript esta sendo carregado corretamente -->
+    <script src="scripts.js"></script>
 </head>
-
 <body>
-    <header>
-        <img src="../img/logo.png" alt="Logo">
-        <!--Menu-->
-    </header>
-    <div class="container">
-        <h1>Cadastrar Produto</h1>
-        <form class="formulario-cadastro" method="POST" action="../php/cadastro_produto.php" onsubmit="return validacaoProduto(event)" enctype="multipart/form-data">
 
-            <label for="nome_produto"><i class="fas fa-barcode"></i> Nome do Produto:</label>
+    <h2>Alterar Produto</h2>
+
+    <form action="alterar_produto.php" method="POST">
+        <label for="busca_produto">Digite o nome do produto</label>
+        <input type="text" id="busca_produto" name="busca_produto" required onkeyup="buscarSugestoes()">
+        
+        <!-- div para exibir sugestoes de usuarios -->
+        <div id="sugestoes"></div>
+        <button type="submit">Buscar</button>
+</form>
+
+<?php if($produto):?>
+    <!-- formulario para alterar produto -->
+    <form action="processa_alteracao_produto.php" method="POST">
+        <input type="hidden" name="id_produto" value="<?=htmlspecialchars($produto['id_produto'])?>">
+
+        <label for="nome_produto"><i class="fas fa-barcode"></i> Nome do Produto:</label>
             <input type="text" id="nome_produto" name="nome_produto" placeholder="Insira o nome do produto" >
 
             <label for="descricao"><i class="ri-file-text-line"></i> Descrição:</label>
@@ -53,8 +81,8 @@ require_once '../php/funcoes.php';
 
             
             <label for="id_fornecedor"><i class="fas fa-truck"></i> Fornecedor:</label>
-            <select name="id_fornecedor" id="id_fornecedor">
-                 <option value="">Selecione o fornecedor</option>
+            <select name="id_fornecedor" id="id_fornecedor" >
+                <option value="">Selecione o fornecedor</option>
                 <?php foreach ($fornecedores as $fornecedor): ?>
                     <option value="<?= htmlspecialchars($fornecedor['id_fornecedor']) ?>" 
                     <?= $fornecedor['id_fornecedor'] == $idSelecionadoFornecedor ? 'selected' : '' ?>>
@@ -74,7 +102,12 @@ require_once '../php/funcoes.php';
     </div>
     <script src="../js/validacao_cad_produto.js"></script>
   
-
+       
+        
+        <button type="submit">Alterar</button>
+        <button type="reset">Cancelar</button>
+    </form>
+    <?php endif; ?>
+    <a href="principal.php">Voltar</a>
 </body>
-
 </html>

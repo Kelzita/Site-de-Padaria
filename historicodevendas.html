@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Histórico de Vendas</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../Site-de-Padaria/css/stylesHV.css"/>
+</head>
+<body>
+  <header>
+    <img src="img/logo.png" title="Logo da Padaria">
+  </header>
+
+  <div class="retangulo">
+
+    <h1 class="titulo">HISTÓRICO DE VENDAS  <i class="fas fa-history"></i></h1>
+
+  <form action="../Site-de-Padaria/php/HistoricoVendas.php" method="get">
+    <label for="dataInicial" class="subtitulo">Selecione a data inicial:</label>
+    <input type="date" id="dataInicial" name="dataInicial" >
+    
+    <label class="final" for="dataFinal">Selecione a data final:</label>
+    <input class="inputfinal" type="date" id="dataFinal" name="dataFinal">
+
+    <script>
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('dataInicial').setAttribute('max', today);
+      document.getElementById('dataFinal').setAttribute('max', today);
+    </script>
+
+    <button type="submit" class="gerar">Gerar Histórico</button>
+  </form>
+
+    <a href="#" class="voltar"> 
+        <img class="seta" src="img/btn_voltar.png" title="seta">
+    </a>
+
+   </div>
+   <script>
+  const form = document.querySelector("form");
+
+  form.addEventListener("submit", function(event) {
+    const dataInicial = document.getElementById("dataInicial").value;
+    const dataFinal = document.getElementById("dataFinal").value;
+
+    if (!dataInicial || !dataFinal) {
+      alert("Por favor, preencha tanto a data inicial quanto a data final!");
+      event.preventDefault(); // impede o envio do form
+    } else if (dataFinal < dataInicial) {
+      alert("A data final não pode ser menor que a data inicial!");
+      event.preventDefault();
+    }
+  });
+</script>
+</body>
+</html>

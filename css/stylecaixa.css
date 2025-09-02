@@ -151,7 +151,7 @@ html, body {
 }
 
 /*Estilo para o h2 da lista de produtos*/
-.box_listaProdutos h2{
+.box_listaProdutos h3{
   text-align: left;
   color: #333;  
   margin-left: 30px;
@@ -291,3 +291,103 @@ td {
     color:#fff;
   }
 
+  .btn_remover {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.btn_remover:hover {
+    background-color: #c0392b; /* um vermelho mais escuro ao passar o mouse */
+}
+
+/* MODAL FINALIZAR VENDA */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); /* Fundo semitransparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal_content {
+    background-color: white;
+    padding: 30px 20px;
+    margin-left: 500px;
+    margin-top: 150px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    font-family: 'Times New Roman';
+}
+
+.modal_content h2 {
+    margin-bottom: 20px;
+    color: #3D2412;
+}
+
+.modal_content p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.modal_content label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: left;
+}
+
+.modal_content select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #7c7c7c;
+    margin-bottom: 20px;
+    font-size: 16px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+}
+
+.botoes_modal {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.botoes_modal button {
+    flex: 1;
+    padding: 12px;
+    font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+}
+
+.botoes_modal button:first-child {
+    background-color: #3D2412; /* Confirmar */
+}
+
+.botoes_modal button:first-child:hover {
+    background-color: #7a4226;
+}
+
+.botoes_modal button:last-child {
+    background-color: #e74c3c; /* Cancelar */
+}
+
+.botoes_modal button:last-child:hover {
+    background-color: #c0392b;
+}
