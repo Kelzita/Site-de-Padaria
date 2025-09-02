@@ -67,7 +67,7 @@ $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td>
                             <button type="submit" name="acao" value="diminuir" class="btn-remover">-</button>
                             <button type="submit" name="acao" value="aumentar" class="btn-adicionar">+</button>
-                            <button type="submit" name="acao" value="apagar" class="btn-apagar">🗑️</button>
+                            <button type="submit" name="acao" value="apagar" class="btn-apagar btn-remover-item">🗑️</button>
                         </form>
                     </td>
                 </tr>
@@ -82,5 +82,7 @@ $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p>Nenhum item adicionado.</p>
         <?php endif; ?>
 </div>
+<script src="../javascript/validacao_comanda.js"></script>
+
 </body>
 </html>

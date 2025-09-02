@@ -175,7 +175,7 @@ if (isset($_POST['finalizar_venda'])) {
                         <form method="POST" action="comanda.php">
                             <input type="hidden" name="id_comanda" value="<?= $id_comanda ?>">
                             <input type="hidden" name="id_produto" value="<?= $produto['id_produto'] ?>">
-                            <input type="number" name="quantidade" value="1" min="1" class="input-quantidade">
+                            <input type="number" name="quantidade" min="1" class="input-quantidade">
                     </td>
                     <td>
                         <textarea name="observacoes" class="observacoes" rows="1" cols="20" placeholder="Observações"></textarea>
@@ -198,5 +198,6 @@ if (isset($_POST['finalizar_venda'])) {
             <p>Nenhum produto encontrado.</p>
         <?php endif; ?>
 </div>
+<script src="../javascript/validacao_comanda.js"></script>
 </body>
 </html>
