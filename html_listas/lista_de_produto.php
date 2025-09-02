@@ -101,7 +101,7 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
         }
         #modalEditar form button.btn-salvar {
             width: 100%;
-            background-color:rgb(0, 0, 0);
+            background-color: rgb(0, 0, 0);
             color: white;
             padding: 12px 0;
             border: none;
@@ -112,7 +112,7 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
             transition: background-color 0.3s ease;
         }
         #modalEditar form button.btn-salvar:hover {
-            background-color:rgb(0, 0, 0);
+            background-color: rgb(0, 0, 0);
         }
     </style>
 </head>
@@ -207,8 +207,6 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
                 <?php endforeach; ?>
             </select>
 
-
-
             <button type="submit" class="btn-salvar">Salvar Alteração</button>
         </form>
     </div>
@@ -226,7 +224,12 @@ include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e 
         document.getElementById('unidade_medida').value = produto.unidade_medida || '';
         document.getElementById('quantidade_produto').value = produto.quantidade_produto || '';
         document.getElementById('validade').value = produto.validade || '';
-        document.getElementById('fornecedor').value = produto.fornecedor_id || '';
+
+        // Corrija aqui o nome da chave do fornecedor que vem no JSON.
+        // Supondo que no objeto produto a chave do fornecedor seja 'id_fornecedor':
+        let fornecedorId = produto.id_fornecedor || produto.fornecedor_id || '';
+
+        document.getElementById('fornecedor').value = fornecedorId;
 
         // Mostrar pré-visualização da imagem (se tiver)
         const preview = document.getElementById('previewFoto');
