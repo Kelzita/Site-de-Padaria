@@ -133,8 +133,8 @@ require_once '../php/funcoes.php';
 
       <!-- Fornecedor -->
       <div class="form-group">
-        <label for="editar-fornecedor">Fornecedor:</label>
-        <select id="editar-fornecedor" name="id_fornecedor" required>
+        <label for="editar-id_fornecedor">Fornecedor:</label>
+        <select id="editar-id_fornecedor" name="id_fornecedor" required>
           <!-- opções preenchidas dinamicamente -->
         </select>
       </div>
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("modal-unidade_medida").textContent = produto.unidade_medida;
         document.getElementById("modal-quantidade_produto").textContent = produto.quantidade_produto;
         document.getElementById("modal-validade").textContent = produto.validade;
-        document.getElementById("modal-fornecedor").textContent = produto.fornecedor_nome || '';
+        document.getElementById("modal-id_fornecedor").textContent = produto.fornecedor_nome || '';
 
         const img = document.getElementById("modal-imagem");
         if (produto.foto_produto) {
@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("editar-unidade_medida").value = produto.unidade_medida;
         document.getElementById("editar-quantidade_produto").value = produto.quantidade_produto;
         document.getElementById("editar-validade").value = produto.validade;
-        document.getElementById("editar-fornecedor").value = produto.id_fornecedor || '';
+        document.getElementById("editar-id_fornecedor").value = produto.id_fornecedor || '';
 
         const preview = document.getElementById("previewFotoEditar");
         if (produto.foto_produto) {
