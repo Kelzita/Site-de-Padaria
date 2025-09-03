@@ -55,6 +55,7 @@ body {
     font-size: 1.8rem;
     cursor: pointer;
     transition: color 0.2s ease;
+    
 }
 
 .modal-editar__fechar:hover {
@@ -62,7 +63,7 @@ body {
 }
 
 /* ====== FORMULÁRIO ====== */
-.formulario-funcionario {
+.formulario {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem 1.5rem;

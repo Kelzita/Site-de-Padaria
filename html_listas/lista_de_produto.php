@@ -58,7 +58,7 @@ require_once '../php/funcoes.php';
     </a>
 
     <!-- Botão Alterar -->
-    <a href='alterar_produto.php' class="btn-alterar" data-produto='<?= htmlspecialchars(json_encode($produto), ENT_QUOTES, 'UTF-8'); ?>' title="Alterar">
+    <a href="../alteracoes/Alterar_Produto.php?id=<?= $produto['id_produto'] ?>"" class="btn-alterar" data-produto='<?= htmlspecialchars(json_encode($produto), ENT_QUOTES, 'UTF-8'); ?>' title="Alterar">
         <i class="ri-pencil-line" style="font-size:1.2rem; color:#3D2412;"></i>
     </a>
 
@@ -78,84 +78,6 @@ require_once '../php/funcoes.php';
 </body>
 </html>
 
-
-<!-- ===================== MODAL EDITAR PRODUTO ===================== -->
-<div id="modalEditarProduto" class="modalEditar">
-  <div class="modalEditar-content">
-    
-    <!-- Cabeçalho -->
-    <span id="fecharModalEditar" class="fechar">&times;</span>
-    <h2>Alterar Produto</h2>
-
-    <!-- Formulário -->
-    <form id="formEditarProduto" method="POST" enctype="multipart/form-data">
-      <input type="hidden" id="editar-id_produto" name="id_produto">
-
-      <!-- Nome do produto -->
-      <div class="form-group">
-        <label for="editar-nome_produto">Nome do Produto:</label>
-        <input type="text" id="editar-nome_produto" name="nome_produto" required>
-      </div>
-
-      <!-- Descrição -->
-      <div class="form-group">
-        <label for="editar-descricao">Descrição:</label>
-        <textarea id="editar-descricao" name="descricao"></textarea>
-      </div>
-
-      <!-- Preço -->
-      <div class="form-group">
-        <label for="editar-preco">Preço:</label>
-        <input type="number" step="0.01" id="editar-preco" name="preco" required>
-      </div>
-
-      <!-- Unidade de medida -->
-      <div class="form-group">
-        <label for="editar-unidade_medida">Unidade de Medida:</label>
-        <select id="editar-unidade_medida" name="unidade_medida" required>
-          <option value="Un">Unidade</option>
-          <option value="Kg">Kg</option>
-          <option value="L">Litro</option>
-        </select>
-      </div>
-
-      <!-- Quantidade -->
-      <div class="form-group">
-        <label for="editar-quantidade_produto">Quantidade:</label>
-        <input type="number" id="editar-quantidade_produto" name="quantidade_produto" required>
-      </div>
-
-      <!-- Validade -->
-      <div class="form-group">
-        <label for="editar-validade">Validade:</label>
-        <input type="date" id="editar-validade" name="validade">
-      </div>
-
-      <!-- Fornecedor -->
-      <div class="form-group">
-        <label for="editar-id_fornecedor">Fornecedor:</label>
-        <select id="editar-id_fornecedor" name="id_fornecedor" required>
-          <!-- opções preenchidas dinamicamente -->
-        </select>
-      </div>
-
-      <!-- Upload de Foto -->
-      <div class="foto-container">
-        <img id="previewFotoEditar" src="" alt="Foto do Produto" style="display:none;">
-        
-        <input type="file" id="editar-foto_produto" name="foto_produto" accept="image/*" hidden>
-        <label for="editar-foto_produto">
-          <i class="ri-camera-line"></i>
-        </label>
-        
-        <small>Selecione uma imagem para o produto</small>
-      </div>
-
-      <!-- Botão Salvar -->
-      <button type="submit" class="btn-salvar">Salvar Alterações</button>
-    </form>
-  </div>
-</div>
 
 
 <script>

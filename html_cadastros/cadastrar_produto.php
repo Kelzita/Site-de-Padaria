@@ -42,9 +42,14 @@ require_once '../php/funcoes.php';
             <input type="number" step="0.01" id="preco" name="preco" placeholder="R$ 0,00" >
 
             <label for="unmedida"><i class="fas fa-cube"></i> Unidade de Medida:</label>
-            <input type="text" id="unmedida" name="unmedida" placeholder="Ex: Kg, un, L" >
-            <div class="input-group">
-            
+                <select id="unmedida" name="unmedida" class="entrada-formulario" required>
+                    <option value="" disabled selected>Selecione...</option>
+                     <option value="un">Unidade (un)</option>
+                     <option value="kg">Quilo (kg)</option>
+                     <option value="g">Grama (g)</option>
+                    <option value="l">Litro (L)</option>
+                </select>
+
             <label for="quantidade"><i class="fas fa-boxes"></i> Quantidade do Produto:</label>
             <input type="number" id="quantidade_produto"  name="quantidade_produto"  placeholder="Digite a quantidade disponível" min="1" >
             

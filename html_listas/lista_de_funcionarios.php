@@ -1,8 +1,5 @@
 <?php 
 require_once '../php/buscar_funcionario.php';
-require_once '../php/modals_funcionarios.php';
-
-
 
 ?>
 <!DOCTYPE html>
@@ -74,25 +71,7 @@ require_once '../php/modals_funcionarios.php';
                     data-salario="<?=htmlspecialchars($funcionario['salario']); ?>"
                     data-id_funcao="<?=htmlspecialchars($funcionario['id_funcao']) . ' - ' . htmlspecialchars($funcionario['nome_funcao']); ?>">Visualizar</a>
 
-                    <a href="../alteracoes/Alterar_Funcionario.php" class="alterarfuncionario" 
-                        data-foto="<?=htmlspecialchars($funcionario['imagem_funcionario']);?>"
-                        data-id_funcionario="<?=htmlspecialchars($funcionario['id_funcionario']); ?>"
-                        data-nome_funcionario="<?=htmlspecialchars($funcionario['nome_funcionario']); ?>"
-                        data-cpf_funcionario="<?=htmlspecialchars($funcionario['cpf_funcionario']); ?>"
-                        data-email_funcionario="<?=htmlspecialchars($funcionario['email_funcionario']); ?>"
-                        data-senha="<?=htmlspecialchars($funcionario['senha']); ?>"
-                        data-telefone_funcionario="<?=htmlspecialchars($funcionario['telefone_funcionario']); ?>"
-                        data-cep_funcionario="<?=htmlspecialchars($funcionario['cep_funcionario']); ?>"
-                        data-rua_funcionario="<?=htmlspecialchars($funcionario['rua_funcionario']); ?>"
-                        data-numero_funcionario="<?=htmlspecialchars($funcionario['numero_funcionario']); ?>"
-                        data-bairro_funcionario="<?=htmlspecialchars($funcionario['bairro_funcionario']); ?>"
-                        data-cidade_funcionario="<?=htmlspecialchars($funcionario['cidade_funcionario']); ?>"
-                        data-uf_funcionario="<?=htmlspecialchars($funcionario['uf_funcionario']); ?>"
-                        data-data_admissao="<?=htmlspecialchars($funcionario['data_admissao']); ?>"
-                        data-salario="<?=htmlspecialchars($funcionario['salario']); ?>"
-                        data-id_funcao="<?=htmlspecialchars($funcionario['id_funcao']); ?>"
-                        data-nome_funcao="<?=htmlspecialchars($funcionario['nome_funcao']); ?>">Alterar</a>
-        
+                    <a href="../alteracoes/Alterar_Funcionario.php?id=<?= $funcionario['id_funcionario'] ?>" class="alterarfuncionario">Alterar</a>
                     <a>Inativar</a>
                     
         

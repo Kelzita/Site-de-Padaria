@@ -1,6 +1,7 @@
 <?php 
 session_start();
-require_once 'conexao.php';
+require_once '../php/conexao.php';
+require_once '../php/funcoes.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_funcionario = $_POST['id_funcionario'];
@@ -18,9 +19,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bairro_funcionario = $_POST['bairro_funcionario'];
     $cidade_funcionario = $_POST['cidade_funcionario'];
     $uf_funcionario = $_POST['uf_funcionario'];
-    $foto_atual = $_POST['foto_atual'];
+    
+    // Tratamento da imagem
+    $imagem_funcionario = null;
+    if (!empty($_FILES['foto_funcionario']['name'])) {
+        
+        // Processar novo upload de imagem
+        $imagem_temp = $_FILES['foto_funcionario']['tmp_name'];
+        $imagem_funcionario = file_get_contents($imagem_temp);
+    } elseif (!empty($_POST['foto_atual'])) {
 
-    // Atualiza os dados do funcionário
+        $imagem_funcionario = base64_decode($_POST['foto_atual']);
+    }
+
+    // Construir a query SQL
     $sql = "UPDATE funcionarios SET 
             nome_funcionario = :nome_funcionario, 
             cpf_funcionario = :cpf_funcionario, 
@@ -34,10 +46,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             numero_funcionario = :numero_funcionario, 
             bairro_funcionario = :bairro_funcionario, 
             cidade_funcionario = :cidade_funcionario, 
-            uf_funcionario = :uf_funcionario 
-            WHERE id_funcionario = :id_funcionario";
+            uf_funcionario = :uf_funcionario";
+    
+    // Adicionar campo de senha se foi fornecida
+    if (!empty($senha)) {
+        $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+        $sql .= ", senha = :senha";
+    }
+    
+    // Adicionar campo de imagem se foi fornecida
+    if ($imagem_funcionario !== null) {
+        $sql .= ", imagem_funcionario = :imagem_funcionario";
+    }
+    
+    $sql .= " WHERE id_funcionario = :id_funcionario";
 
     $stmt = $pdo->prepare($sql);
+    
+    // Bind dos parâmetros
     $stmt->bindParam(':id_funcionario', $id_funcionario);
     $stmt->bindParam(':nome_funcionario', $nome_funcionario);
     $stmt->bindParam(':cpf_funcionario', $cpf_funcionario);
@@ -52,6 +78,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':bairro_funcionario', $bairro_funcionario);
     $stmt->bindParam(':cidade_funcionario', $cidade_funcionario);
     $stmt->bindParam(':uf_funcionario', $uf_funcionario);
+    
+    if (!empty($senha)) {
+        $stmt->bindParam(':senha', $senha_hash);
+    }
+    
+    if ($imagem_funcionario !== null) {
+        $stmt->bindParam(':imagem_funcionario', $imagem_funcionario, PDO::PARAM_LOB);
+    }
 
     if($stmt->execute()) {
         echo "<script>
@@ -59,32 +93,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             window.location.href='../html_listas/lista_de_funcionarios.php';
         </script>"; 
     } else {
-        // Caso dê erro, abre o modal preenchendo os campos
         echo "<script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var modal = document.getElementById('modalEditarFuncionario');
-                if (modal) {
-                    modal.style.display = 'flex';
-
-                    document.getElementById('alterar-id_funcionario').value = ".json_encode($id_funcionario).";
-                    document.getElementById('alterar-nome_funcionario').value = ".json_encode($nome_funcionario).";
-                    document.getElementById('alterar-cpf_funcionario').value = ".json_encode($cpf_funcionario).";
-                    document.getElementById('alterar-email_funcionario').value = ".json_encode($email_funcionario).";
-                    document.getElementById('alterar-telefone_funcionario').value = ".json_encode($telefone_funcionario).";
-                    document.getElementById('alterar-data_admissao').value = ".json_encode($data_admissao).";
-                    document.getElementById('alterar-salario').value = ".json_encode($salario).";
-                    document.getElementById('alterar-id_funcao').value = ".json_encode($id_funcao).";
-                    document.getElementById('alterar-cep_funcionario').value = ".json_encode($cep_funcionario).";
-                    document.getElementById('alterar-rua_funcionario').value = ".json_encode($rua_funcionario).";
-                    document.getElementById('alterar-numero_funcionario').value = ".json_encode($numero_funcionario).";
-                    document.getElementById('alterar-bairro_funcionario').value = ".json_encode($bairro_funcionario).";
-                    document.getElementById('alterar-cidade_funcionario').value = ".json_encode($cidade_funcionario).";
-                    document.getElementById('alterar-uf_funcionario').value = ".json_encode($uf_funcionario).";
-                    document.getElementById('foto_atual').value = ".json_encode($foto_atual).";
-
-                    alert('Erro ao atualizar o funcionário!');
-                }
-            });
+            alert('Erro ao atualizar o funcionário!');
+            window.history.back();
         </script>";
     }
 }
