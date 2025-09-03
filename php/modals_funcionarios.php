@@ -36,7 +36,7 @@
 <!-- MODAL ALTERAR FUNCIONÁRIO -->
 <div id="modalEditarFuncionario" class="modalEditar" style="display: none;">
     <div class="container">
-        <span class="fechar">&times;</span>
+         <span id="fecharModal">&times;</span>
         <h2>Alterar Funcionário</h2>
         <form id="form-alterar-funcionario" action="../php/alterar_funcionario.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id_funcionario" id="alterar-id_funcionario">

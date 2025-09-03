@@ -1,8 +1,8 @@
-
+<?php require_once '../php/funcoes.php'; ?>
 <!-- MODAL DE VISUALIZAR PRODUTO -->
 <div id="modalVisualizarProduto" class="modal">
     <div class="modal-content">
-          <span id="fecharModal">&times;</span>
+        <span id="fecharModal">&times;</span>
         <h3>Detalhes do Produto</h3>
         <div class="modal-body">
             <div class="imagem-preview">
@@ -15,7 +15,7 @@
             <p><b>Unidade de Medida: </b> <span id="modal-unidade_medida"></span></p>
             <p><b>Quantidade: </b> <span id="modal-quantidade_produto"></span></p>
             <p><b>Validade: </b> <span id="modal-validade"></span></p>
-            <p><b>Fornecedor: </b> <span id="modal-fornecedor"></span></p>
+            <p><b>Fornecedor: </b> <span id="modal-id_fornecedor"></span></p>
         </div>
         <div class="modal-footer">
             <a id="btnAlterarProduto" href="#" class="btn-alterar">Alterar</a>
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("modal-unidade_medida").textContent = produto.unidade_medida;
         document.getElementById("modal-quantidade_produto").textContent = produto.quantidade_produto;
         document.getElementById("modal-validade").textContent = produto.validade;
-        document.getElementById("modal-fornecedor").textContent = produto.fornecedor_nome || '';
+        document.getElementById("modal-id_fornecedor").textContent = produto.id_fornecedor || '';
 
         const img = document.getElementById("modal-imagem");
         if (produto.foto_produto) {
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("editar-unidade_medida").value = produto.unidade_medida;
         document.getElementById("editar-quantidade_produto").value = produto.quantidade_produto;
         document.getElementById("editar-validade").value = produto.validade;
-        document.getElementById("editar-fornecedor").value = produto.id_fornecedor || '';
+        document.getElementById("editar-id_fornecedor").value = produto.id_fornecedor || '';
 
         const preview = document.getElementById("previewFotoEditar");
         if (produto.foto_produto) {
