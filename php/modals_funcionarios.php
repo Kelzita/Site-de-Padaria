@@ -2,9 +2,9 @@
 
 
 <!-- ===========MODAL VISUALIZAR============== --> 
-<div id="modalFuncionario" class="modal" style="display: none;">
+<div id="modal" class="modal" style="display: none;">
     <div class="modal-content">
-        <span id="fecharModal">&times;</span>
+        <span class="fecharModal" id="fecharModal">&times;</span>
         <h3>Detalhes do Funcionário</h3>
         <div class="modal-body">
             <p>
@@ -36,7 +36,7 @@
 <!-- MODAL ALTERAR FUNCIONÁRIO -->
 <div id="modalEditarFuncionario" class="modalEditar" style="display: none;">
     <div class="container">
-         <span id="fecharModal">&times;</span>
+         <span class="fecharModal" id="fecharModal">&times;</span>
         <h2>Alterar Funcionário</h2>
         <form id="form-alterar-funcionario" action="../php/alterar_funcionario.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id_funcionario" id="alterar-id_funcionario">

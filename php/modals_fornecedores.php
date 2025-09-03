@@ -1,15 +1,12 @@
 <?php 
 require_once 'funcoes.php';
 require_once 'buscar_funcionario.php';
-
 ?>
 
-
 <!-- MODAL DE VISUALIZAR FORNECEDOR -->
- 
 <div id="modal" class="modal">
     <div class="modal-content">
-         <span id="fecharModal">&times;</span>
+        <span class="fecharModal">&times;</span>
         <h3>Detalhes do Fornecedor</h3>
         <div class="modal-body">
             <p><b>ID: </b> <span id="modal-id"></span></p>
@@ -30,80 +27,11 @@ require_once 'buscar_funcionario.php';
         </div>
     </div>
 </div>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("modal");
-    const fecharBtns = modal.querySelectorAll(".fechar, .btn-fechar");
-    const btnAlterar = document.getElementById("btn-alterar");
-
-    document.querySelectorAll(".visualizar").forEach(botao => {
-        botao.addEventListener("click", e => {
-            e.preventDefault();
-
-            // Preenche dados
-            document.getElementById("modal-id").textContent = botao.dataset.id;
-            document.getElementById("modal-razao_social").textContent = botao.dataset.razao_social;
-            document.getElementById("modal-responsavel").textContent = botao.dataset.responsavel;
-            document.getElementById("modal-cnpj_fornecedor").textContent = botao.dataset.cnpj_fornecedor;
-            document.getElementById("modal-email_fornecedor").textContent = botao.dataset.email_fornecedor;
-            document.getElementById("modal-telefone_fornecedor").textContent = botao.dataset.telefone_fornecedor;
-            document.getElementById("modal-cep_fornecedor").textContent = botao.dataset.cep_fornecedor;
-            document.getElementById("modal-rua_fornecedor").textContent = botao.dataset.rua_fornecedor;
-            document.getElementById("modal-numero_fornecedor").textContent = botao.dataset.numero_fornecedor;
-            document.getElementById("modal-bairro_fornecedor").textContent = botao.dataset.bairro_fornecedor;
-            document.getElementById("modal-cidade_fornecedor").textContent = botao.dataset.cidade_fornecedor;
-            document.getElementById("modal-uf_fornecedor").textContent = botao.dataset.uf_fornecedor;
-
-            btnAlterar.addEventListener("click", () => {
-            const modalAlterar = document.getElementById("modalEditar");
-
-            // Preenche modal de alteração com os dados do modal de visualização
-            document.getElementById("alterar-id").value = document.getElementById("modal-id").textContent;
-            document.getElementById("alterar-razao_social").value = document.getElementById("modal-razao_social").textContent;
-            document.getElementById("alterar-responsavel").value = document.getElementById("modal-responsavel").textContent;
-            document.getElementById("alterar-cnpj_fornecedor").value = document.getElementById("modal-cnpj_fornecedor").textContent;
-            document.getElementById("alterar-email_fornecedor").value = document.getElementById("modal-email_fornecedor").textContent;
-            document.getElementById("alterar-telefone-fornecedor").value = document.getElementById("modal-telefone_fornecedor").textContent;
-            document.getElementById("alterar-cep_fornecedor").value = document.getElementById("modal-cep_fornecedor").textContent;
-            document.getElementById("alterar-rua_fornecedor").value = document.getElementById("modal-rua_fornecedor").textContent;
-            document.getElementById("alterar-numero_fornecedor").value = document.getElementById("modal-numero_fornecedor").textContent;
-            document.getElementById("alterar-bairro_fornecedor").value = document.getElementById("modal-bairro_fornecedor").textContent;
-            document.getElementById("alterar-cidade_fornecedor").value = document.getElementById("modal-cidade_fornecedor").textContent;
-             document.getElementById("alterar-uf_fornecedor").value = document.getElementById("modal-uf_fornecedor").textContent;
-
-             // Fecha modal de visualização
-             modal.style.display = "none";
-
-            // Abre modal de alteração
-            modalAlterar.style.display = "flex";
-});
-            modal.style.display = "flex";
-        });
-    });
-
-    // Fechar modal
-    fecharBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            modal.style.display = "none";
-        });
-    });
-
-    window.addEventListener("click", e => {
-        if (e.target === modal) modal.style.display = "none";
-    });
-});
-</script>
-
-
-
-<!-- =======================================================================================================================================-->
-
-
 
 <!-- MODAL ALTERAR -->
 <div id="modalEditar" class="modalEditar">
     <div class="container">
-          <span id="fecharModal">&times;</span>
+        <span class="fecharModal">&times;</span>
         <h2>Alterar Fornecedor</h2>
         <form id="form-alterar" action="../php/alterar_fornecedor.php" method="POST">
             <input type="hidden" name="id_fornecedor" id="alterar-id">
@@ -125,8 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <label>CEP:</label>
             <div class="input-container-cep">
-             <input type="text" name="cep_fornecedor" id="alterar-cep_fornecedor" maxlength="9" placeholder="Digite o CEP (ex: 00000-000)">
-            <i class="ri-search-line busca_lupa" onclick="buscarCEPFornecedor()"></i>
+                <input type="text" name="cep_fornecedor" id="alterar-cep_fornecedor" maxlength="9" placeholder="Digite o CEP (ex: 00000-000)">
+                <i class="ri-search-line busca_lupa" onclick="buscarCEPFornecedor()"></i>
             </div>
 
             <label>Rua:</label>
@@ -177,45 +105,178 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
 </div>
 
-<script>
-// Funções para aplicar máscaras
-function aplicarMascaraCNPJ(cnpj) {
-    cnpj = cnpj.replace(/\D/g, '');
-    cnpj = cnpj.replace(/^(\d{2})(\d)/, '$1.$2');
-    cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
-    cnpj = cnpj.replace(/\.(\d{3})(\d)/, '.$1/$2');
-    cnpj = cnpj.replace(/(\d{4})(\d)/, '$1-$2');
-    return cnpj.substring(0, 18);
-}
 
-function aplicarMascaraTelefone(telefone) {
-    telefone = telefone.replace(/\D/g, '');
-    
-    // Verifica se é celular (com 9º dígito) ou telefone fixo
-    if (telefone.length === 11) {
-        telefone = telefone.replace(/^(\d{2})(\d)/, '($1) $2');
-        telefone = telefone.replace(/(\d{5})(\d{4})/, '$1-$2');
-    } else if (telefone.length === 10) {
-        telefone = telefone.replace(/^(\d{2})(\d)/, '($1) $2');
-        telefone = telefone.replace(/(\d{4})(\d{4})/, '$1-$2');
-    } else if (telefone.length > 0) {
-        telefone = telefone.replace(/^(\d{0,2})/, '($1');
-        telefone = telefone.replace(/^\((\d{2})(\d)/, '($1) $2');
-        if (telefone.length > 10) {
-            telefone = telefone.replace(/(\d{4})(\d)/, '$1-$2');
-        } else {
-            telefone = telefone.replace(/(\d{4})(\d)/, '$1-$2');
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("modal");
+    const modalAlterar = document.getElementById("modalEditar");
+    const fecharBtns = document.querySelectorAll(".fechar");
+    const btnAlterar = document.getElementById("btn-alterar");
+
+    // Função para abrir modal de visualização
+    document.querySelectorAll(".visualizar").forEach(botao => {
+        botao.addEventListener("click", e => {
+            e.preventDefault();
+
+            // Preenche dados
+            document.getElementById("modal-id").textContent = botao.dataset.id;
+            document.getElementById("modal-razao_social").textContent = botao.dataset.razao_social;
+            document.getElementById("modal-responsavel").textContent = botao.dataset.responsavel;
+            document.getElementById("modal-cnpj_fornecedor").textContent = botao.dataset.cnpj_fornecedor;
+            document.getElementById("modal-email_fornecedor").textContent = botao.dataset.email_fornecedor;
+            document.getElementById("modal-telefone_fornecedor").textContent = botao.dataset.telefone_fornecedor;
+            document.getElementById("modal-cep_fornecedor").textContent = botao.dataset.cep_fornecedor;
+            document.getElementById("modal-rua_fornecedor").textContent = botao.dataset.rua_fornecedor;
+            document.getElementById("modal-numero_fornecedor").textContent = botao.dataset.numero_fornecedor;
+            document.getElementById("modal-bairro_fornecedor").textContent = botao.dataset.bairro_fornecedor;
+            document.getElementById("modal-cidade_fornecedor").textContent = botao.dataset.cidade_fornecedor;
+            document.getElementById("modal-uf_fornecedor").textContent = botao.dataset.uf_fornecedor;
+
+            modal.style.display = "flex";
+        });
+    });
+
+    // Configurar botão de alterar dentro do modal de visualização
+    btnAlterar.addEventListener("click", (e) => {
+        e.preventDefault();
+        
+        // Preenche modal de alteração com os dados do modal de visualização
+        document.getElementById("alterar-id").value = document.getElementById("modal-id").textContent;
+        document.getElementById("alterar-razao_social").value = document.getElementById("modal-razao_social").textContent;
+        document.getElementById("alterar-responsavel").value = document.getElementById("modal-responsavel").textContent;
+        document.getElementById("alterar-cnpj_fornecedor").value = document.getElementById("modal-cnpj_fornecedor").textContent;
+        document.getElementById("alterar-email_fornecedor").value = document.getElementById("modal-email_fornecedor").textContent;
+        document.getElementById("alterar-telefone-fornecedor").value = document.getElementById("modal-telefone_fornecedor").textContent;
+        document.getElementById("alterar-cep_fornecedor").value = document.getElementById("modal-cep_fornecedor").textContent;
+        document.getElementById("alterar-rua_fornecedor").value = document.getElementById("modal-rua_fornecedor").textContent;
+        document.getElementById("alterar-numero_fornecedor").value = document.getElementById("modal-numero_fornecedor").textContent;
+        document.getElementById("alterar-bairro_fornecedor").value = document.getElementById("modal-bairro_fornecedor").textContent;
+        document.getElementById("alterar-cidade_fornecedor").value = document.getElementById("modal-cidade_fornecedor").textContent;
+        document.getElementById("alterar-uf_fornecedor").value = document.getElementById("modal-uf_fornecedor").textContent;
+
+        // Fecha modal de visualização
+        modal.style.display = "none";
+
+        // Abre modal de alteração
+        modalAlterar.style.display = "flex";
+    });
+
+    // Função para abrir modal de alteração diretamente
+    document.querySelectorAll(".alterar").forEach(botao => {
+        botao.addEventListener("click", e => {
+            e.preventDefault();
+
+            // Preenche modal de alteração
+            document.getElementById("alterar-id").value = botao.dataset.id;
+            document.getElementById("alterar-razao_social").value = botao.dataset.razao_social;
+            document.getElementById("alterar-responsavel").value = botao.dataset.responsavel;
+            
+            // Aplica máscaras aos valores ao preencher o modal
+            cnpjInput.value = aplicarMascaraCNPJ(botao.dataset.cnpj_fornecedor || '');
+            document.getElementById("alterar-email_fornecedor").value = botao.dataset.email_fornecedor;
+            telefoneInput.value = aplicarMascaraTelefone(botao.dataset.telefone_fornecedor || '');
+            cepInput.value = aplicarMascaraCEP(botao.dataset.cep_fornecedor || '');
+            
+            document.getElementById("alterar-rua_fornecedor").value = botao.dataset.rua_fornecedor;
+            document.getElementById("alterar-numero_fornecedor").value = botao.dataset.numero_fornecedor;
+            document.getElementById("alterar-bairro_fornecedor").value = botao.dataset.bairro_fornecedor;
+            document.getElementById("alterar-cidade_fornecedor").value = botao.dataset.cidade_fornecedor;
+            document.getElementById("alterar-uf_fornecedor").value = botao.dataset.uf_fornecedor;
+
+            // Abre modal
+            modalAlterar.style.display = "flex";
+        });
+    });
+
+    // Fechar modais
+    fecharBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            modal.style.display = "none";
+            modalAlterar.style.display = "none";
+        });
+    });
+
+    window.addEventListener("click", e => {
+        if (e.target === modal) modal.style.display = "none";
+        if (e.target === modalAlterar) modalAlterar.style.display = "none";
+    });
+
+    // Funções para aplicar máscaras
+    function aplicarMascaraCNPJ(cnpj) {
+        cnpj = cnpj.replace(/\D/g, '');
+        cnpj = cnpj.replace(/^(\d{2})(\d)/, '$1.$2');
+        cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+        cnpj = cnpj.replace(/\.(\d{3})(\d)/, '.$1/$2');
+        cnpj = cnpj.replace(/(\d{4})(\d)/, '$1-$2');
+        return cnpj.substring(0, 18);
+    }
+
+    function aplicarMascaraTelefone(telefone) {
+        telefone = telefone.replace(/\D/g, '');
+        
+        // Verifica se é celular (com 9º dígito) ou telefone fixo
+        if (telefone.length === 11) {
+            telefone = telefone.replace(/^(\d{2})(\d)/, '($1) $2');
+            telefone = telefone.replace(/(\d{5})(\d{4})/, '$1-$2');
+        } else if (telefone.length === 10) {
+            telefone = telefone.replace(/^(\d{2})(\d)/, '($1) $2');
+            telefone = telefone.replace(/(\d{4})(\d{4})/, '$1-$2');
+        } else if (telefone.length > 0) {
+            telefone = telefone.replace(/^(\d{0,2})/, '($1');
+            telefone = telefone.replace(/^\((\d{2})(\d)/, '($1) $2');
+            if (telefone.length > 10) {
+                telefone = telefone.replace(/(\d{4})(\d)/, '$1-$2');
+            } else {
+                telefone = telefone.replace(/(\d{4})(\d)/, '$1-$2');
+            }
         }
+        
+        return telefone.substring(0, 15);
+    }
+
+    function aplicarMascaraCEP(cep) {
+        cep = cep.replace(/\D/g, '');
+        cep = cep.replace(/^(\d{5})(\d)/, '$1-$2');
+        return cep.substring(0, 9);
+    }
+
+    // Elementos que receberão máscaras
+    const cnpjInput = document.getElementById("alterar-cnpj_fornecedor");
+    const telefoneInput = document.getElementById("alterar-telefone-fornecedor");
+    const cepInput = document.getElementById("alterar-cep_fornecedor");
+    
+    // Aplicar máscaras na digitação
+    if (cnpjInput) {
+        cnpjInput.addEventListener("input", function() {
+            this.value = aplicarMascaraCNPJ(this.value);
+        });
+        
+        cnpjInput.addEventListener("blur", function() {
+            this.value = aplicarMascaraCNPJ(this.value);
+        });
     }
     
-    return telefone.substring(0, 15);
-}
-
-function aplicarMascaraCEP(cep) {
-    cep = cep.replace(/\D/g, '');
-    cep = cep.replace(/^(\d{5})(\d)/, '$1-$2');
-    return cep.substring(0, 9);
-}
+    if (telefoneInput) {
+        telefoneInput.addEventListener("input", function() {
+            this.value = aplicarMascaraTelefone(this.value);
+        });
+        
+        telefoneInput.addEventListener("blur", function() {
+            this.value = aplicarMascaraTelefone(this.value);
+        });
+    }
+    
+    if (cepInput) {
+        cepInput.addEventListener("input", function() {
+            this.value = aplicarMascaraCEP(this.value);
+        });
+        
+        cepInput.addEventListener("blur", function() {
+            this.value = aplicarMascaraCEP(this.value);
+        });
+    }
+});
 
 // Função para buscar CEP
 function buscarCEPFornecedor() {
@@ -260,248 +321,95 @@ function buscarCEPFornecedor() {
         });
 }
 
-// Aplicar máscaras quando o modal for aberto
-document.addEventListener("DOMContentLoaded", () => {
-    const modalAlterar = document.getElementById("modalEditar");
-    const fecharAlterar = document.getElementById("fecharModal");
-    
-    // Elementos que receberão máscaras
-    const cnpjInput = document.getElementById("alterar-cnpj_fornecedor");
-    const telefoneInput = document.getElementById("alterar-telefone-fornecedor");
-    const cepInput = document.getElementById("alterar-cep_fornecedor");
-    
-    // Aplicar máscaras na digitação
-    cnpjInput.addEventListener("input", function() {
-        this.value = aplicarMascaraCNPJ(this.value);
-    });
-    
-    telefoneInput.addEventListener("input", function() {
-        this.value = aplicarMascaraTelefone(this.value);
-    });
-    
-    cepInput.addEventListener("input", function() {
-        this.value = aplicarMascaraCEP(this.value);
-    });
-    
-    // Permitir busca de CEP ao pressionar Enter
-    cepInput.addEventListener("keypress", function(e) {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            buscarCEPFornecedor();
-        }
-    });
-    
-    // Aplicar máscaras quando o campo perde o foco (caso o usuário cole um valor)
-    cnpjInput.addEventListener("blur", function() {
-        this.value = aplicarMascaraCNPJ(this.value);
-    });
-    
-    telefoneInput.addEventListener("blur", function() {
-        this.value = aplicarMascaraTelefone(this.value);
-    });
-    
-    cepInput.addEventListener("blur", function() {
-        this.value = aplicarMascaraCEP(this.value);
-    });
-
-    document.querySelectorAll(".alterar").forEach(botao => {
-        botao.addEventListener("click", e => {
-            e.preventDefault();
-
-            // Preenche modal de alteração
-            document.getElementById("alterar-id").value = botao.dataset.id;
-            document.getElementById("alterar-razao_social").value = botao.dataset.razao_social;
-            document.getElementById("alterar-responsavel").value = botao.dataset.responsavel;
-            
-            // Aplica máscaras aos valores ao preencher o modal
-            cnpjInput.value = aplicarMascaraCNPJ(botao.dataset.cnpj_fornecedor || '');
-            document.getElementById("alterar-email_fornecedor").value = botao.dataset.email_fornecedor;
-            telefoneInput.value = aplicarMascaraTelefone(botao.dataset.telefone_fornecedor || '');
-            cepInput.value = aplicarMascaraCEP(botao.dataset.cep_fornecedor || '');
-            
-            document.getElementById("alterar-rua_fornecedor").value = botao.dataset.rua_fornecedor;
-            document.getElementById("alterar-numero_fornecedor").value = botao.dataset.numero_fornecedor;
-            document.getElementById("alterar-bairro_fornecedor").value = botao.dataset.bairro_fornecedor;
-            document.getElementById("alterar-cidade_fornecedor").value = botao.dataset.cidade_fornecedor;
-            document.getElementById("alterar-uf_fornecedor").value = botao.dataset.uf_fornecedor;
-
-            // Abre modal
-            modalAlterar.style.display = "flex";
-        });
-    });
-
-    // Fechar modal
-    fecharAlterar.addEventListener("click", () => {
-        modalAlterar.style.display = "none";
-    });
-
-    window.addEventListener("click", e => {
-        if (e.target === modalAlterar) modalAlterar.style.display = "none";
-    });
+// Permitir busca de CEP ao pressionar Enter
+document.getElementById("alterar-cep_fornecedor").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        buscarCEPFornecedor();
+    }
 });
 </script>
 
-<script>
-// Funções para aplicar máscaras
-function aplicarMascaraCNPJ(cnpj) {
-    cnpj = cnpj.replace(/\D/g, '');
-    cnpj = cnpj.replace(/^(\d{2})(\d)/, '$1.$2');
-    cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
-    cnpj = cnpj.replace(/\.(\d{3})(\d)/, '.$1/$2');
-    cnpj = cnpj.replace(/(\d{4})(\d)/, '$1-$2');
-    return cnpj.substring(0, 18);
+<style>
+/* Estilos para os modais */
+.modal, .modalEditar {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
 }
 
-function aplicarMascaraTelefone(telefone) {
-    telefone = telefone.replace(/\D/g, '');
-    
-    // Verifica se é celular (com 9º dígito) ou telefone fixo
-    if (telefone.length === 11) {
-        telefone = telefone.replace(/^(\d{2})(\d)/, '($1) $2');
-        telefone = telefone.replace(/(\d{5})(\d{4})/, '$1-$2');
-    } else if (telefone.length === 10) {
-        telefone = telefone.replace(/^(\d{2})(\d)/, '($1) $2');
-        telefone = telefone.replace(/(\d{4})(\d{4})/, '$1-$2');
-    } else if (telefone.length > 0) {
-        telefone = telefone.replace(/^(\d{0,2})/, '($1');
-        telefone = telefone.replace(/^\((\d{2})(\d)/, '($1) $2');
-        if (telefone.length > 10) {
-            telefone = telefone.replace(/(\d{4})(\d)/, '$1-$2');
-        } else {
-            telefone = telefone.replace(/(\d{4})(\d)/, '$1-$2');
-        }
-    }
-    
-    return telefone.substring(0, 15);
+.modal-content, .modalEditar .container {
+    background-color: #fefefe;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
 }
 
-function aplicarMascaraCEP(cep) {
-    cep = cep.replace(/\D/g, '');
-    cep = cep.replace(/^(\d{5})(\d)/, '$1-$2');
-    return cep.substring(0, 9);
+.fechar {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 10px;
 }
 
-// Função para buscar CEP
-function buscarCEPFornecedor() {
-    const cepInput = document.getElementById("alterar-cep_fornecedor");
-    const cep = cepInput.value.replace(/\D/g, '');
-    
-    if (cep.length !== 8) {
-        alert("Por favor, digite um CEP válido com 8 dígitos.");
-        return;
-    }
-    
-    // Exibir indicador de carregamento
-    const lupaIcon = document.querySelector(".busca_lupa");
-    const originalClass = lupaIcon.className;
-    lupaIcon.className = "ri-loader-4-line busca_lupa animar";
-    
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.erro) {
-                alert("CEP não encontrado. Por favor, verifique o número digitado.");
-            } else {
-                // Preencher os campos com os dados do CEP
-                document.getElementById("alterar-rua_fornecedor").value = data.logradouro || '';
-                document.getElementById("alterar-bairro_fornecedor").value = data.bairro || '';
-                document.getElementById("alterar-cidade_fornecedor").value = data.localidade || '';
-                document.getElementById("alterar-uf_fornecedor").value = data.uf || '';
-                
-                // Dar foco no campo número após preencher os dados
-                document.getElementById("alterar-numero_fornecedor").focus();
-            }
-            
-            // Restaurar ícone original
-            lupaIcon.className = originalClass;
-        })
-        .catch(error => {
-            console.error("Erro ao buscar CEP:", error);
-            alert("Erro ao buscar CEP. Por favor, tente novamente.");
-            
-            // Restaurar ícone original
-            lupaIcon.className = originalClass;
-        });
+.fechar:hover,
+.fechar:focus {
+    color: black;
+    text-decoration: none;
 }
 
-// Aplicar máscaras quando o modal for aberto
-document.addEventListener("DOMContentLoaded", () => {
-    const modalAlterar = document.getElementById("modalEditar");
-    const fecharAlterar = document.getElementById("fecharModal");
-    
-    // Elementos que receberão máscaras
-    const cnpjInput = document.getElementById("alterar-cnpj_fornecedor");
-    const telefoneInput = document.getElementById("alterar-telefone-fornecedor");
-    const cepInput = document.getElementById("alterar-cep_fornecedor");
-    
-    // Aplicar máscaras na digitação
-    cnpjInput.addEventListener("input", function() {
-        this.value = aplicarMascaraCNPJ(this.value);
-    });
-    
-    telefoneInput.addEventListener("input", function() {
-        this.value = aplicarMascaraTelefone(this.value);
-    });
-    
-    cepInput.addEventListener("input", function() {
-        this.value = aplicarMascaraCEP(this.value);
-    });
-    
-    // Permitir busca de CEP ao pressionar Enter
-    cepInput.addEventListener("keypress", function(e) {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            buscarCEPFornecedor();
-        }
-    });
-    
-    // Aplicar máscaras quando o campo perde o foco (caso o usuário cole um valor)
-    cnpjInput.addEventListener("blur", function() {
-        this.value = aplicarMascaraCNPJ(this.value);
-    });
-    
-    telefoneInput.addEventListener("blur", function() {
-        this.value = aplicarMascaraTelefone(this.value);
-    });
-    
-    cepInput.addEventListener("blur", function() {
-        this.value = aplicarMascaraCEP(this.value);
-    });
+.modal-body p {
+    margin: 10px 0;
+}
 
-    document.querySelectorAll(".alterar").forEach(botao => {
-        botao.addEventListener("click", e => {
-            e.preventDefault();
 
-            // Preenche modal de alteração
-            document.getElementById("alterar-id").value = botao.dataset.id;
-            document.getElementById("alterar-razao_social").value = botao.dataset.razao_social;
-            document.getElementById("alterar-responsavel").value = botao.dataset.responsavel;
-            
-            // Aplica máscaras aos valores ao preencher o modal
-            cnpjInput.value = aplicarMascaraCNPJ(botao.dataset.cnpj_fornecedor || '');
-            document.getElementById("alterar-email_fornecedor").value = botao.dataset.email_fornecedor;
-            telefoneInput.value = aplicarMascaraTelefone(botao.dataset.telefone_fornecedor || '');
-            cepInput.value = aplicarMascaraCEP(botao.dataset.cep_fornecedor || '');
-            
-            document.getElementById("alterar-rua_fornecedor").value = botao.dataset.rua_fornecedor;
-            document.getElementById("alterar-numero_fornecedor").value = botao.dataset.numero_fornecedor;
-            document.getElementById("alterar-bairro_fornecedor").value = botao.dataset.bairro_fornecedor;
-            document.getElementById("alterar-cidade_fornecedor").value = botao.dataset.cidade_fornecedor;
-            document.getElementById("alterar-uf_fornecedor").value = botao.dataset.uf_fornecedor;
 
-            // Abre modal
-            modalAlterar.style.display = "flex";
-        });
-    });
+.input-container-cep {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
 
-    // Fechar modal
-    fecharAlterar.addEventListener("click", () => {
-        modalAlterar.style.display = "none";
-    });
+.busca_lupa {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
 
-    window.addEventListener("click", e => {
-        if (e.target === modalAlterar) modalAlterar.style.display = "none";
-    });
-});
-</script>
+.animar {
+    animation: spin 1s linear infinite;
+}
 
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.btn-salvar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.btn-salvar:hover {
+    background-color: #45a049;
+}
+</style>
