@@ -1,7 +1,9 @@
 <?php 
 include '../php/buscar_produto.php'; // Preenche $produtos
 include '../php/modals_produtos.php'; // Modals
+include '../php/excluir_produto.php';
 require_once '../php/funcoes.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="PT-BR">
@@ -63,7 +65,7 @@ require_once '../php/funcoes.php';
     <!-- Botão Inativar/Desativar -->
     <a href="#" onclick="return confirmarInativar(<?= $produto['id_produto']; ?>)" title="Inativar">
         <i class="ri-delete-bin-line" style="font-size:1.2rem; color:#b30000;"></i>
-    </a>
+    </a>  
 </td>
             </tr>
         <?php endforeach; ?>
@@ -242,3 +244,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
+<script>
+function confirmarExcluirProduto(idProduto, elemento) {
+    if (confirm('Tem certeza que deseja excluir este produto?')) {
+        fetch('../php/excluir_produto.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `id_produto=${idProduto}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Remove a linha da tabela
+                const row = elemento.closest('tr');
+                row.parentNode.removeChild(row);
+            } else {
+                alert('Erro ao excluir: ' + (data.error || 'erro desconhecido'));
+            }
+        })
+        .catch(err => {
+            alert('Erro na requisição: ' + err);
+        });
+    }
+}
+</script>
+

@@ -1,7 +1,8 @@
+
 <!-- MODAL DE VISUALIZAR PRODUTO -->
 <div id="modalVisualizarProduto" class="modal">
     <div class="modal-content">
-        <span class="fechar">&times;</span>
+          <span id="fecharModal">&times;</span>
         <h3>Detalhes do Produto</h3>
         <div class="modal-body">
             <div class="imagem-preview">
@@ -22,40 +23,49 @@
     </div>
 </div>
 
-<!-- MODAL DE EDITAR PRODUTO -->
-<div id="modalEditarProduto" class="modal">
+<!-- MODAL ALTERAR PRODUTO -->
+<div id="modalEditarProduto" class="modalEditar" style="display: none;">
     <div class="container">
-        <span id="fecharModalEditar">&times;</span>
+        <span id="fecharModal">&times;</span>
         <h2>Alterar Produto</h2>
-        <form id="formEditarProduto" enctype="multipart/form-data">
-            <input type="hidden" name="id_produto" id="editar-id_produto">
+        <form id="form-alterar-produto" action="../php/alterar_produto.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id_produto" id="alterar-id_produto">
 
-            <label for="editar-foto_produto">Foto do Produto:</label>
-            <input type="file" id="editar-foto_produto" name="foto_produto" accept="image/*" />
-            <div class="imagem-preview">
-                <img id="previewFotoEditar" src="#" alt="Prévia da Foto" />
+            <label>Foto do Produto:</label>
+            <div class="foto-container">
+                <img id="alterar-foto-preview-produto" src="../img/produtos/default_produto.png" alt="Preview da Foto do Produto">
+    
+                <input type="file" name="foto_produto" id="alterar-foto_produto" accept="image/*">
+    
+                <label for="alterar-foto_produto">
+                    <i class="ri-camera-line"></i> Clique para alterar
+                </label>
+    
+                <div class="foto-instructions">Formatos: JPG, PNG • Máx: 2MB</div>
+    
+                <input type="hidden" name="foto_atual" id="foto_atual_produto">
             </div>
 
-            <label for="editar-nome_produto">Nome:</label>
-            <input type="text" id="editar-nome_produto" name="nome_produto" required />
+            <label>Nome:</label>
+            <input type="text" name="nome_produto" id="alterar-nome_produto" required>
 
-            <label for="editar-descricao">Descrição:</label>
-            <textarea id="editar-descricao" name="descricao"></textarea>
+            <label>Descrição:</label>
+            <textarea name="descricao" id="alterar-descricao"></textarea>
 
-            <label for="editar-preco">Preço:</label>
-            <input type="text" id="editar-preco" name="preco" required />
+            <label>Preço:</label>
+            <input type="number" name="preco" id="alterar-preco" step="0.01" min="0" required>
 
-            <label for="editar-unidade_medida">Unidade de Medida:</label>
-            <input type="text" id="editar-unidade_medida" name="unidade_medida" required />
+            <label>Unidade de Medida:</label>
+            <input type="text" name="unidade_medida" id="alterar-unidade_medida" required>
 
-            <label for="editar-quantidade_produto">Quantidade:</label>
-            <input type="number" id="editar-quantidade_produto" name="quantidade_produto" required />
+            <label>Quantidade:</label>
+            <input type="number" name="quantidade_produto" id="alterar-quantidade_produto" min="0" required>
 
-            <label for="editar-validade">Validade:</label>
-            <input type="date" id="editar-validade" name="validade" required />
+            <label>Validade:</label>
+            <input type="date" name="validade" id="alterar-validade" required>
 
-            <label for="editar-fornecedor">Fornecedor:</label>
-            <select id="editar-fornecedor" name="fornecedor" required>
+            <label>Fornecedor:</label>
+            <select name="id_fornecedor" id="alterar-fornecedor" required>
                 <option value="">Selecione o fornecedor</option>
                 <?php foreach ($fornecedores as $fornecedor): ?>
                     <option value="<?= htmlspecialchars($fornecedor['id_fornecedor']); ?>">
