@@ -2,7 +2,7 @@
 <!-- MODAL DE VISUALIZAR PRODUTO -->
 <div id="modalVisualizarProduto" class="modal">
     <div class="modal-content">
-          <span id="fecharModal">&times;</span>
+        <span id="fecharModal">&times;</span>
         <h3>Detalhes do Produto</h3>
         <div class="modal-body">
             <div class="imagem-preview">

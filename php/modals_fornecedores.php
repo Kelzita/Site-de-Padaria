@@ -9,7 +9,7 @@ require_once 'buscar_funcionario.php';
  
 <div id="modal" class="modal">
     <div class="modal-content">
-        <span class="fechar">&times;</span>
+         <span id="fecharModal">&times;</span>
         <h3>Detalhes do Fornecedor</h3>
         <div class="modal-body">
             <p><b>ID: </b> <span id="modal-id"></span></p>
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <!-- MODAL ALTERAR -->
 <div id="modalEditar" class="modalEditar">
     <div class="container">
-        <span id="fecharModal">&times;</span>
+          <span id="fecharModal">&times;</span>
         <h2>Alterar Fornecedor</h2>
         <form id="form-alterar" action="../php/alterar_fornecedor.php" method="POST">
             <input type="hidden" name="id_fornecedor" id="alterar-id">
