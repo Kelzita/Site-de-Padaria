@@ -277,7 +277,7 @@ td:last-child, th:last-child {
     gap: 10px; 
 }
 /* ====== BOTÃO ALTERAR ====== */
-.btn-alterar {
+/*.btn-alterar {
     height: 36px; 
     width: 36px;
     background: black;
@@ -292,7 +292,7 @@ td:last-child, th:last-child {
     box-shadow: 0 4px 10px rgba(0,0,0,0.25);
     border: none;
     cursor: pointer;
-}
+}*/
 
 .btn-alterar:hover {
     box-shadow: 0 6px 14px rgba(0,0,0,0.35);

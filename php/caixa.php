@@ -44,7 +44,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <label>ID da Comanda:</label>
         <input type="text" id="id_comanda" placeholder="Digite o ID da Comanda" value="<?= htmlspecialchars($id_comanda) ?>">
         <button onclick="buscarComanda()" class="buscarComanda">Buscar</button>
-        <button onclick="apagarComanda()" class="apagarBuscarComanda">Apagar</button>
+        <button onclick="limparTela()" class="apagarBuscarComanda">Limpar</button>
     </div>
 
     <!-- LISTA DE PRODUTOS -->
@@ -69,7 +69,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- BUSCAR PRODUTO -->
     <div class="box_codigo_prod">
-    <p>Funcionário: <?php echo $_SESSION['nome_funcionario']; ?></p>
+    <p>Funcionário(a): <?php echo $_SESSION['nome_funcionario']; ?></p>
     </div>
 
     <!-- SUBTOTAL -->
@@ -156,14 +156,15 @@ function buscarComanda() {
     .then(data => atualizarTabela(data));
 }
 
-// Buscar produto pelo código
-function buscarProduto() {
-    let id = document.getElementById("id_comanda").value;
-    let cod = document.getElementById("codigo_produto").value;
+function limparTela() {
+    // limpa campo de ID da comanda
+    document.getElementById("id_comanda").value = "";
 
-    fetch("buscar_produto.php?id=" + id + "&codigo=" + cod)
-    .then(res => res.json())
-    .then(data => atualizarTabela(data));
+    // limpa tabela de produtos
+    document.querySelector("#tabela_produtos tbody").innerHTML = "";
+
+    // reseta subtotal
+    document.getElementById("subtotal").innerText = "R$ 0,00";
 }
 
 // Atualiza tabela de produtos
@@ -222,7 +223,7 @@ function fecharModal() {
     document.getElementById("modalFinalizar").style.display = "none";
 }
 
-// Confirmar venda
+// Confirmar venda 
 function confirmarVenda() {
     let id = document.getElementById("id_comanda").value;
     let forma = document.getElementById("forma_pagamento").value;
@@ -230,16 +231,22 @@ function confirmarVenda() {
     fetch("finalizar_venda.php?id=" + id + "&forma=" + encodeURIComponent(forma))
     .then(res => res.text())
     .then(msg => {
-        alert(msg); // Mostra mensagem de sucesso
+        alert(msg);
 
-        // Abrir nota fiscal em nova aba
-        window.open("nota_fiscal.php?id=" + id, "_blank");
+        // Só abre a nota fiscal se deu sucesso
+        if (msg.includes("✅")) {
+            window.open("nota_fiscal.php?id=" + id, "_blank");
 
-        // Limpar caixa
-        fecharModal();
-        document.querySelector("#tabela_produtos tbody").innerHTML = "";
-        document.getElementById("subtotal").innerText = "R$ 0,00";
-        document.getElementById("id_comanda").value = "";
+            // Limpar caixa
+            fecharModal();
+            document.querySelector("#tabela_produtos tbody").innerHTML = "";
+            document.getElementById("subtotal").innerText = "R$ 0,00";
+            document.getElementById("id_comanda").value = "";
+        }
+    })
+    .catch(err => {
+        alert("❌ Erro de comunicação com o servidor.");
+        console.error(err);
     });
 }
 

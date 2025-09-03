@@ -1,5 +1,6 @@
 <?php 
-include '../php/buscar_produto.php'; // Este arquivo deve preencher $produtos e $fornecedores
+include '../php/buscar_produto.php'; // Preenche $produtos
+include '../php/modals_produtos.php'; // Modals
 require_once '../php/funcoes.php';
 ?>
 <!DOCTYPE html>
@@ -7,12 +8,12 @@ require_once '../php/funcoes.php';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/modal.css" />
     <link rel="stylesheet" href="../css/styletabela.css" />
-    <title>Lista de Produto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <title>Lista de Produtos</title>
 </head>
 <body>
 <header>
@@ -21,11 +22,11 @@ require_once '../php/funcoes.php';
 
 <div class="container">
     <h1>Lista de Produtos</h1>
-    <h2>Buscar Produtos</h2>
+
     <form action="lista_de_produto.php" method="POST" class="search-form">
         <div class="input-container">
-            <input type="text" id="busca" name="busca" placeholder="Insira a Busca por ID ou nome" />
-            <button type="submit"><i class="ri-search-line"></i></button>
+            <input type="text" id="busca" name="busca" placeholder="Insira a Busca (por ID ou nome)" />
+            <button type="submit"><i class="fa fa-search"></i></button>
         </div>
     </form>
 
@@ -48,20 +49,34 @@ require_once '../php/funcoes.php';
                 <td><?= htmlspecialchars($produto['validade']); ?></td>
                 <td><?= htmlspecialchars($produto['quantidade_produto']); ?></td>
                 <td>
-                    <a href="#">Visualizar</a>
-                    <a href="#" onclick="return confirmarDelete(<?= $produto['id_produto']; ?>, this)">Deletar</a>
-                    <!-- Usando data-produto com JSON seguro -->
-                    <a href="#" class="btn-alterar" 
-                       data-produto='<?= htmlspecialchars(json_encode($produto), ENT_QUOTES, 'UTF-8'); ?>'>Alterar</a>
+                    <!-- Botão Visualizar -->
+                    <a href="#" onclick='visualizarProduto(<?= json_encode($produto, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT); ?>)' title="Visualizar">
+                        <i class="ri-eye-line" style="font-size:1.2rem; color:#007bff;"></i>
+                    </a>
+
+                    <!-- Botão Alterar -->
+                    <a href="#" class="btn-alterar" data-produto='<?= htmlspecialchars(json_encode($produto), ENT_QUOTES, 'UTF-8'); ?>' title="Alterar">
+                        <i class="ri-pencil-line" style="font-size:1.2rem; color:#3D2412;"></i>
+                    </a>
+
+                    <!-- Botão Inativar/Desativar -->
+                    <a href="#" onclick="return confirmarInativar(<?= $produto['id_produto']; ?>)" title="Inativar">
+                        <i class="ri-delete-bin-line" style="font-size:1.2rem; color:#b30000;"></i>
+                    </a>
                 </td>
+
             </tr>
         <?php endforeach; ?>
         </tbody>
-    </table> 
+    </table>
     <?php else: ?>
         <p style="color:white;">Nenhum produto cadastrado.</p>
     <?php endif; ?>
 </div>
+</body>
+</html>
+
+
 
 <!-- Modal para Alterar Produto -->
 <div id="modalEditar">

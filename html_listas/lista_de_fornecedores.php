@@ -25,7 +25,7 @@ include '../php/modals.php';
     <h2>Buscar Fornecedores</h2>
     <form action="lista_de_fornecedores.php" method="POST" class="search-form">
         <div class="input-container">
-        <input type="text" id="busca" name="busca" placeholder="Insira a Busca ( por ID ou nome )"/>
+        <input type="text" id="busca" name="busca" placeholder="Insira a Busca (por ID ou nome)"/>
         <button type="submit"><i class="ri-search-line"></i></button>
     </div>
     </form>
