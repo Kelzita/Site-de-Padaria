@@ -63,7 +63,7 @@ require_once '../php/funcoes.php';
     <!-- Botão Inativar/Desativar -->
     <a href="#" onclick="return confirmarInativar(<?= $produto['id_produto']; ?>)" title="Inativar">
         <i class="ri-delete-bin-line" style="font-size:1.2rem; color:#b30000;"></i>
-    </a>
+    </a>  
 </td>
             </tr>
         <?php endforeach; ?>

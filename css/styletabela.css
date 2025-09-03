@@ -259,6 +259,8 @@ td:last-child, th:last-child {
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     position: relative;
     transition: all 0.3s ease;
+    max-height: 90vh;      /* 🔥 limita altura em 90% da tela */
+    overflow-y: auto;      /* 🔥 ativa scroll só dentro do modal */
 }
 
 /* Título */
@@ -371,7 +373,7 @@ td:last-child, th:last-child {
 .animar form input[type="text"],
 .modalEditar input,
 .modalEditar select,
-.modalEditar textarea 
+.modalEditar textarea, 
 .modalEditar [type="file"] {
     width: 80%;
     padding: 8px 10px;

@@ -93,6 +93,7 @@ require_once '../php/modals_funcionarios.php';
                         data-nome_funcao="<?=htmlspecialchars($funcionario['nome_funcao']); ?>">Alterar</a>
         
                     <a>Inativar</a>
+                    
         
                 </td>
             </tr>
