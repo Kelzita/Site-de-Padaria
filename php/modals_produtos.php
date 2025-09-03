@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-
-=======
 <?php require_once '../php/funcoes.php'; ?>
->>>>>>> Stashed changes
 <!-- MODAL DE VISUALIZAR PRODUTO -->
 <div id="modalVisualizarProduto" class="modal">
     <div class="modal-content">
