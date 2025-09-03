@@ -2,6 +2,11 @@
 session_start();
 require_once("conexao.php");
 
+//Verifica se o usuario tem permissao de adm
+//if($_SESSION['id_funcao'] != 1) {
+    //echo ("<script>alert('Acesso Negado! Retornando para a página inicial...'); window.location.href='../HTML/principal.php';");
+//}
+
 
 //inicializa variaveis
 $produto = null;
@@ -60,50 +65,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <form action="processa_alteracao_produto.php" method="POST">
         <input type="hidden" name="id_produto" value="<?=htmlspecialchars($produto['id_produto'])?>">
 
-        <label for="nome_produto"><i class="fas fa-barcode"></i> Nome do Produto:</label>
-            <input type="text" id="nome_produto" name="nome_produto" placeholder="Insira o nome do produto" >
+        <label for="nome_produto">Nome Produto:</label>
+        <input type="text"  id="nome_produto"name="nome_produto" value="<?=htmlspecialchars($produto['nome_produto'])?>"required>
 
-            <label for="descricao"><i class="ri-file-text-line"></i> Descrição:</label>
-            <textarea id="descricao" name="descricao" placeholder="Insira uma descrição (Opcional)" ></textarea>
+        <label for="descricao">Descrição:</label>
+        <input type="text"  id="descricao" name="descricao" value="<?=htmlspecialchars($produto['descricao'])?>"required>
 
-            <label for="preco"><i class="fas fa-dollar-sign"></i> Preço:</label>
-            <input type="number" step="0.01" id="preco" name="preco" placeholder="R$ 0,00" >
+        <label for="preco">Valor_Unitario:</label>
+        <input type="number"  id="preco" name="preco" value="<?=htmlspecialchars($produto['preco'])?>"required>
 
-            <label for="unmedida"><i class="fas fa-cube"></i> Unidade de Medida:</label>
-            <input type="text" id="unmedida" name="unmedida" placeholder="Ex: Kg, un, L" >
-            <div class="input-group">
-            
-            <label for="quantidade"><i class="fas fa-boxes"></i> Quantidade do Produto:</label>
-            <input type="number" id="quantidade_produto"  name="quantidade_produto"  placeholder="Digite a quantidade disponível" min="1" >
-            
-            <label for="validade"><i class="fas fa-calendar-alt"></i> Validade:</label>
-            <input type="date" id="validade" name="validade" >
-
-            
-            <label for="id_fornecedor"><i class="fas fa-truck"></i> Fornecedor:</label>
-            <select name="id_fornecedor" id="id_fornecedor" >
-                <option value="">Selecione o fornecedor</option>
-                <?php foreach ($fornecedores as $fornecedor): ?>
-                    <option value="<?= htmlspecialchars($fornecedor['id_fornecedor']) ?>" 
-                    <?= $fornecedor['id_fornecedor'] == $idSelecionadoFornecedor ? 'selected' : '' ?>>
-                 <?= htmlspecialchars($fornecedor['id_fornecedor']), ' - ' ,htmlspecialchars($fornecedor['razao_social']) ?>
-            </option>
-            <?php endforeach; ?>
-            </select>
-
-            <label for="imagem_produto"><i class="fa-solid fa-image"></i> Foto do Produto:</label>
-            <input type="file"name="imagem_produto" id="imagem_produto" required></input>
-
-            <input type="hidden" name="id_estoque" id="id_estoque" >
-
-
-            <button type="submit" class="btn-cadastrar"><i class="fas fa-save"></i> Cadastrar</button>
-        </form>
-    </div>
-    <script src="../js/validacao_cad_produto.js"></script>
-  
+        <label for="quantidade_produto">Quantidade:</label>
+        <input type="number"  id="quantidade_produto" name="quantidade_produto" value="<?=htmlspecialchars($produto['quantidade_produto'])?>"required>
        
-        
+        <label for="validade">Validade:</label>
+        <input type="number"  id="validade" name="validade" value="<?=htmlspecialchars($produto['validade'])?>"required> 
+
         <button type="submit">Alterar</button>
         <button type="reset">Cancelar</button>
     </form>

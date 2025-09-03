@@ -80,7 +80,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="comandos">
         <button onclick="pesquisarProduto()">Pesquisar Produto</button>
         <button onclick="abrirModalFinalizar()">Finalizar Venda</button>
-        <button>Sair</button>
+        <button onclick="sairCaixa()">Sair</button>
     </div>
 </div>
 
@@ -250,6 +250,13 @@ function confirmarVenda() {
     });
 }
 
+function sairCaixa() {
+    const resposta = confirm("Você tem certeza que deseja sair do caixa?");
+    if (resposta) {
+        // Se clicou em OK, redireciona
+        window.location.href = "../inicio/home.php"; 
+    } 
+}
 </script>
 
 </body>

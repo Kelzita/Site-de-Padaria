@@ -1,5 +1,5 @@
 <?php 
-include '../php/buscar_estoque.php'; // este arquivo preenche $produtosEstoque
+include '../php/buscar_estoque.php';
 require_once '../php/funcoes.php';
 ?>
 <!DOCTYPE html>
@@ -71,6 +71,8 @@ td:last-child {
         <p style="color:white;">Nenhum produto encontrado no estoque.</p>
     <?php endif; ?>
 </div>
-
+<a href="../inicio/home.php" class="voltar"> 
+        <img class="seta" src="../img/btn_voltar.png" title="seta">
+</a>
 </body>
 </html>
