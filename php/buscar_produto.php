@@ -48,5 +48,3 @@ try {
     echo "Erro ao buscar produtos: " . $e->getMessage();
 }
 ?>
-
-
