@@ -21,7 +21,7 @@ if (!isset($_SESSION['id_funcionario'])) {
 
         .campo-input input {
             width: 100%;
-            padding-right: 40px; /* espaço para o olho */
+            padding-right: 40px; 
         }
 
         .toggle-olho {
@@ -32,7 +32,7 @@ if (!isset($_SESSION['id_funcionario'])) {
             cursor: pointer;
             font-size: 20px;
             color: #555;
-            z-index: 10; /* garante que o clique funcione */
+            z-index: 10; 
         }
 
         .toggle-olho:hover {

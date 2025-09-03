@@ -183,7 +183,7 @@ input:-webkit-autofill + .style-label {
 
 
 /*==================== ESQUECI A SENHA ====================*/
-.esqueci-senha-style {
+.esqueci-senha-style, .botao-voltar {
     font-size: 13px;
     color: white;
     position: relative;
@@ -193,7 +193,7 @@ input:-webkit-autofill + .style-label {
     transition: color 0.3s ease;
 }
 
-.esqueci-senha-style::after {
+.esqueci-senha-style::after, .botao-voltar::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -204,11 +204,11 @@ input:-webkit-autofill + .style-label {
     transition: left 0.4s ease;
 }
 
-.esqueci-senha-style:hover {
+.esqueci-senha-style:hover , .botao-voltar:hover {
     color: #cacaca;
 }
 
-.esqueci-senha-style:hover::after {
+.esqueci-senha-style:hover::after, .botao-voltar:hover::after {
     left: 0;
 }
 
