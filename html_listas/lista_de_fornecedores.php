@@ -1,5 +1,6 @@
 <?php 
-include '../php/buscar_fornecedor.php';
+require_once '../php/buscar_fornecedor.php';
+require_once '../php/modals_fornecedores.php';
 
 
 ?>
@@ -86,6 +87,5 @@ include '../php/buscar_fornecedor.php';
         <p>Nenhum fornecedor cadastrado.</p>
     <?php endif; ?>
 
-    <?php include '../php/modals.php';?>
 </body>
 </html>

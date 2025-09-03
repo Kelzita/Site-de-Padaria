@@ -11,6 +11,8 @@ $funcoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $idSelecionado = isset($funcionario['id_funcao']) ? $funcionario['id_funcao'] : null;
 ?>
 
+
+<!-- SELECT DOS FORNECEDORES -->
 <?php 
 require_once 'conexao.php';
 

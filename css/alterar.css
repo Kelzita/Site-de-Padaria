@@ -1,0 +1,270 @@
+
+/* ====== ESTILOS GERAIS ====== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ====== MODAL DE EDIÇÃO ====== */
+.modal-editar {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    overflow-y: auto;
+    padding: 2rem 0;
+}
+
+.modal-editar__container {
+    background: #fff;
+    width: 90%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.modal-editar__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.modal-editar__titulo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.modal-editar__fechar {
+    color: #888;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-editar__fechar:hover {
+    color: #1a1a1a;
+}
+
+/* ====== FORMULÁRIO ====== */
+.formulario-funcionario {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 1.5rem;
+}
+
+.grupo-formulario {
+    margin-bottom: 0.75rem;
+}
+
+.grupo-formulario--completo {
+    grid-column: 1 / -1;
+}
+
+.rotulo-formulario {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.entrada-formulario, .selecao-formulario {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d1d1;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.entrada-formulario:focus, .selecao-formulario:focus {
+    outline: none;
+    border-color: #030405;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.entrada-formulario--cep {
+    padding-right: 2.5rem;
+}
+
+/* Container para CEP com ícone */
+.entrada-com-icone {
+    position: relative;
+}
+
+.icone-entrada {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.icone-entrada:hover {
+    color: #000;
+}
+
+/* ====== FOTO DO FUNCIONÁRIO ====== */
+.container-foto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border: 2px dashed #d1d1d1;
+    border-radius: 10px;
+    background: #fafafa;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.container-foto:hover {
+    border-color: #000;
+    background: #f5f5f5;
+}
+
+.previsualizacao-foto {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.previsualizacao-foto:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.entrada-foto {
+    display: none;
+}
+
+.rotulo-foto {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: #000;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.rotulo-foto:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+.instrucoes-foto {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 0.5rem;
+}
+
+/* ====== BOTÕES ====== */
+.acoes-formulario {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eaeaea;
+}
+
+.botao {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.botao--primario {
+    background: #1a1a1a;
+    color: white;
+}
+
+.botao--primario:hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.botao--secundario {
+    background: #f2f2f2;
+    color: #555;
+}
+
+.botao--secundario:hover {
+    background: #e5e5e5;
+}
+
+/* ====== RESPONSIVIDADE ====== */
+@media (max-width: 768px) {
+    .formulario-funcionario {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-editar__container {
+        width: 95%;
+        padding: 1.5rem;
+    }
+    
+    .previsualizacao-foto {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Animações */
+@keyframes girar {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+.girando {
+    animation: girar 1s linear infinite;
+}
+
+.carregando {
+    display: none;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #000;
+    border-radius: 50%;
+}

@@ -1,7 +1,9 @@
 <?php 
 include '../php/buscar_produto.php'; // Preenche $produtos
 include '../php/modals_produtos.php'; // Modals
+include '../php/excluir_produto.php';
 require_once '../php/funcoes.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="PT-BR">
@@ -56,14 +58,14 @@ require_once '../php/funcoes.php';
     </a>
 
     <!-- Botão Alterar -->
-    <a href="#" class="btn-alterar" data-produto='<?= htmlspecialchars(json_encode($produto), ENT_QUOTES, 'UTF-8'); ?>' title="Alterar">
+    <a href='alterar_produto.php' class="btn-alterar" data-produto='<?= htmlspecialchars(json_encode($produto), ENT_QUOTES, 'UTF-8'); ?>' title="Alterar">
         <i class="ri-pencil-line" style="font-size:1.2rem; color:#3D2412;"></i>
     </a>
 
     <!-- Botão Inativar/Desativar -->
     <a href="#" onclick="return confirmarInativar(<?= $produto['id_produto']; ?>)" title="Inativar">
         <i class="ri-delete-bin-line" style="font-size:1.2rem; color:#b30000;"></i>
-    </a>
+    </a>  
 </td>
             </tr>
         <?php endforeach; ?>
@@ -131,8 +133,8 @@ require_once '../php/funcoes.php';
 
       <!-- Fornecedor -->
       <div class="form-group">
-        <label for="editar-fornecedor">Fornecedor:</label>
-        <select id="editar-fornecedor" name="id_fornecedor" required>
+        <label for="editar-id_fornecedor">Fornecedor:</label>
+        <select id="editar-id_fornecedor" name="id_fornecedor" required>
           <!-- opções preenchidas dinamicamente -->
         </select>
       </div>
@@ -175,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("modal-unidade_medida").textContent = produto.unidade_medida;
         document.getElementById("modal-quantidade_produto").textContent = produto.quantidade_produto;
         document.getElementById("modal-validade").textContent = produto.validade;
-        document.getElementById("modal-fornecedor").textContent = produto.fornecedor_nome || '';
+        document.getElementById("modal-id_fornecedor").textContent = produto.fornecedor_nome || '';
 
         const img = document.getElementById("modal-imagem");
         if (produto.foto_produto) {
@@ -213,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("editar-unidade_medida").value = produto.unidade_medida;
         document.getElementById("editar-quantidade_produto").value = produto.quantidade_produto;
         document.getElementById("editar-validade").value = produto.validade;
-        document.getElementById("editar-fornecedor").value = produto.id_fornecedor || '';
+        document.getElementById("editar-id_fornecedor").value = produto.id_fornecedor || '';
 
         const preview = document.getElementById("previewFotoEditar");
         if (produto.foto_produto) {
@@ -242,3 +244,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
+<script>
+function confirmarExcluirProduto(idProduto, elemento) {
+    if (confirm('Tem certeza que deseja excluir este produto?')) {
+        fetch('../php/excluir_produto.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `id_produto=${idProduto}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Remove a linha da tabela
+                const row = elemento.closest('tr');
+                row.parentNode.removeChild(row);
+            } else {
+                alert('Erro ao excluir: ' + (data.error || 'erro desconhecido'));
+            }
+        })
+        .catch(err => {
+            alert('Erro na requisição: ' + err);
+        });
+    }
+}
+</script>
+

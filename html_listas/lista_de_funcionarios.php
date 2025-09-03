@@ -3,6 +3,7 @@ require_once '../php/buscar_funcionario.php';
 require_once '../php/modals_funcionarios.php';
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="PT-BR">
@@ -56,7 +57,7 @@ require_once '../php/modals_funcionarios.php';
                 <td> 
                     
                 <a href="#" class="visualizarfuncionario" 
-                    data-foto="<?= htmlspecialchars($caminho_foto) ?>"
+                    data-foto="<?= htmlspecialchars($funcionario['imagem_funcionario']) ?>"
                     data-id_funcionario="<?=htmlspecialchars($funcionario['id_funcionario']); ?>"
                     data-nome_funcionario="<?=htmlspecialchars($funcionario['nome_funcionario']); ?>"
                     data-cpf_funcionario="<?=htmlspecialchars($funcionario['cpf_funcionario']); ?>"
@@ -73,7 +74,7 @@ require_once '../php/modals_funcionarios.php';
                     data-salario="<?=htmlspecialchars($funcionario['salario']); ?>"
                     data-id_funcao="<?=htmlspecialchars($funcionario['id_funcao']) . ' - ' . htmlspecialchars($funcionario['nome_funcao']); ?>">Visualizar</a>
 
-                    <a href="#" class="alterarfuncionario" 
+                    <a href="../alteracoes/Alterar_Funcionario.php" class="alterarfuncionario" 
                         data-foto="<?=htmlspecialchars($funcionario['imagem_funcionario']);?>"
                         data-id_funcionario="<?=htmlspecialchars($funcionario['id_funcionario']); ?>"
                         data-nome_funcionario="<?=htmlspecialchars($funcionario['nome_funcionario']); ?>"
@@ -93,6 +94,7 @@ require_once '../php/modals_funcionarios.php';
                         data-nome_funcao="<?=htmlspecialchars($funcionario['nome_funcao']); ?>">Alterar</a>
         
                     <a>Inativar</a>
+                    
         
                 </td>
             </tr>
@@ -100,10 +102,6 @@ require_once '../php/modals_funcionarios.php';
          </table>
          <?php else: ?>
         <p>Nenhum funcionário cadastrado.</p>
-         <?php endif; ?> 
-
-<script src="../javascript/modals_funcoes.js"></script>
-        
-         
+         <?php endif; ?>   
 </body>
 </html>

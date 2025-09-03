@@ -1,3 +1,4 @@
+// FUNÇÕES PARA O FUNCIONARIOS
 // Funções para aplicar máscaras
 function aplicarMascaraCPF(cpf) {
     cpf = cpf.replace(/\D/g, '');
@@ -220,3 +221,7 @@ function preencherModalEditarFuncionario(dados) {
     // Campo de senha (deixa em branco por segurança)
     document.getElementById("alterar-senha").value = '';
 }
+
+
+//FUNCOES PARA OS FORNECEDORES
+
