@@ -1,8 +1,10 @@
-         
+<?php require_once '../php/funcoes.php'; ?>      
+
+
 <!-- ===========MODAL VISUALIZAR============== --> 
 <div id="modalFuncionario" class="modal" style="display: none;">
     <div class="modal-content">
-        <span class="fechar">&times;</span>
+        <span id="fecharModal">&times;</span>
         <h3>Detalhes do Funcionário</h3>
         <div class="modal-body">
             <p>
@@ -140,3 +142,4 @@
         </form>
     </div>
 </div>
+<script src="../javascript/modals_funcoes.js"></script>

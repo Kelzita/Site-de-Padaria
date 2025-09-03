@@ -1,7 +1,8 @@
+
 <!-- MODAL DE VISUALIZAR PRODUTO -->
 <div id="modalVisualizarProduto" class="modal">
     <div class="modal-content">
-        <span class="fechar">&times;</span>
+          <span id="fecharModal">&times;</span>
         <h3>Detalhes do Produto</h3>
         <div class="modal-body">
             <div class="imagem-preview">
@@ -22,11 +23,10 @@
     </div>
 </div>
 
-<!-- MODAL DE EDITAR PRODUTO -->
 <!-- MODAL ALTERAR PRODUTO -->
 <div id="modalEditarProduto" class="modalEditar" style="display: none;">
     <div class="container">
-        <span class="fechar">&times;</span>
+        <span id="fecharModal">&times;</span>
         <h2>Alterar Produto</h2>
         <form id="form-alterar-produto" action="../php/alterar_produto.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id_produto" id="alterar-id_produto">
