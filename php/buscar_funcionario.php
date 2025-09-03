@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 } else {
     $sql = "SELECT f.*, func.nome_funcao 
             FROM funcionarios f
-            LEFT JOIN funcao func ON f.id_funcao = func.id_funcao
+            LEFT JOIN funcao func ON f.id_funcao = func.id_funcao WHERE ativo = 1
             ORDER BY f.id_funcionario ASC";
     $stmt = $pdo->prepare($sql);
 }

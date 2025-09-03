@@ -41,6 +41,7 @@ include '../php/buscar_funcionario.php';
                 <th>CPF</th>
                 <th>Função</th>
                 <th>Senha</th>
+                <th>Status</th>
                 <th>Ações</th>
             </tr>
             <?php foreach($funcionarios as $funcionario) :?>
@@ -51,6 +52,7 @@ include '../php/buscar_funcionario.php';
                 <td><?=htmlspecialchars($funcionario['cpf_funcionario']); ?></td>
                 <td><?=htmlspecialchars($funcionario['nome_funcao']); ?></td>
                 <td><?= substr($funcionario['senha'], 0, 4) . '…' ?></td>
+                <td><?=htmlspecialchars($funcionario['ativo']); ?></td>
 
                 <td> 
                     
@@ -90,7 +92,9 @@ include '../php/buscar_funcionario.php';
                         data-salario="<?=htmlspecialchars($funcionario['salario']); ?>"
                         data-id_funcao="<?=htmlspecialchars($funcionario['id_funcao']); ?>"
                         data-nome_funcao="<?=htmlspecialchars($funcionario['nome_funcao']); ?>">Alterar</a>
+        
                     <a>Inativar</a>
+        
                 </td>
             </tr>
             <?php endforeach; ?>
