@@ -1,30 +1,61 @@
 <?php
 session_start();
-require_once('conexao.php');
+require_once('conexao.php'); // Conexão PDO
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email_funcionario = $_POST['email_funcionario'];
-    $senha = $_POST['senha'];
 
-    $sql = "SELECT * FROM funcionarios WHERE email_funcionario = :email_funcionario";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(":email_funcionario", $email_funcionario);
-    $stmt->execute();
-    $funcionario = $stmt->fetch(PDO::FETCH_ASSOC);
+    $email_funcionario = $_POST['email_funcionario'] ?? '';
+    $senha = $_POST['senha'] ?? '';
 
-    if ($funcionario && password_verify($senha, $funcionario['senha'])) {
-        // Login bem-sucedido - define variáveis de sessão
-        $_SESSION['nome_funcionario'] = $funcionario['nome_funcionario'];
-        $_SESSION['id_funcionario'] = $funcionario['id_funcionario'];
-        $_SESSION['id_funcao'] = $funcionario['id_funcao'];
+    if ($email_funcionario && $senha) {
 
-        // Redireciona para página principal
-        echo "<script>alert('Login efetuado com sucesso'); window.location.href='../inicio/home.php';</script>";
-        exit();
+        // Busca funcionário pelo e-mail
+        $sql = "SELECT * FROM funcionarios WHERE email_funcionario = :email_funcionario";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":email_funcionario", $email_funcionario);
+        $stmt->execute();
+        $funcionario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($funcionario && password_verify($senha, $funcionario['senha'])) {
+
+            // Busca a função do funcionário na tabela funcao
+            $sqlFuncao = "SELECT nome_funcao FROM funcao WHERE id_funcao = :id_funcao";
+            $stmtFuncao = $pdo->prepare($sqlFuncao);
+            $stmtFuncao->bindParam(":id_funcao", $funcionario['id_funcao']);
+            $stmtFuncao->execute();
+            $funcao = $stmtFuncao->fetch(PDO::FETCH_ASSOC);
+
+            if (!$funcao) {
+                echo "<script>alert('Função do funcionário não encontrada!'); window.location='../index.php';</script>";
+                exit;
+            }
+
+            // Armazena informações na sessão
+            $_SESSION['id_funcionario'] = $funcionario['id_funcionario'];
+            $_SESSION['nome_funcionario'] = $funcionario['nome_funcionario'];
+            $_SESSION['id_funcao'] = $funcionario['id_funcao'];
+            $_SESSION['nome_funcao'] = $funcao['nome_funcao'];
+
+            // Redireciona dependendo da senha temporária
+            if ($funcionario['senha_temporaria'] == 1) {
+                header("Location: ../nova_senha.php");
+                exit;
+            }
+
+            // Login normal
+            header("Location: ../inicio/home.php");
+            exit;
+
+        } else {
+            echo "<script>alert('E-mail ou senha incorretos'); window.location='../index.php';</script>";
+        }
+
     } else {
-        // Login inválido
-        echo "<script>alert('E-mail ou senha incorretos');window.location.href='../index.php';</script>";
+        echo "<script>alert('Preencha todos os campos!'); window.location='../index.php';</script>";
     }
+} else {
+    // Requisição não POST
+    header("Location: ../index.php");
+    exit;
 }
 ?>
-

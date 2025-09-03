@@ -1,37 +1,28 @@
 <!DOCTYPE html>
-<html lang="PT-BR">
-
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--==== Ícones ====-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
-    <!--==== Fontes do Google ====-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap">
-    <!--==== CSS - EXTERNO ====-->
-    <link rel="stylesheet" href="css/stylelogin.css">
-    <style>
-
-  
-    </style>
-    <title>Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/stylelogin.css">
+  <title>Redefinir Senha</title>
 </head>
-
 <body>
-    <div class="login">
-        <img src="../img/fundo1.jpg" alt="Fundo da página" class="background">
-        <form action="#" method="post" class="formulario-style">
-            <h1 class="titulo-style1">Redefinir Senha</h1>
-            <div class="conteudo">
-                <div class="caixa-style">
-                    <i class="ri-lock-2-line login__icon"></i>
-                    <div class="campo-input">
-                        <input name="email" type="email" class="style-input" id="email" placeholder=" ">
-                        <label for="email" class="style-label">E-mail</label>
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="botao-style-redefinir" onclick="VerificarCampos()">Enviar código para o Email</button>
-        </form>
-    </div>
-  </body>
+  <div class="login">
+    <form action="../Site-de-Padaria/php/enviar_codigo.php" method="POST" class="formulario-style">
+      <h1 class="titulo-style1">Redefinir Senha</h1>
+      <div class="conteudo">
+        <div class="caixa-style">
+          <i class="ri-lock-2-line login__icon"></i>
+          <div class="campo-input">
+            <input name="email" type="email" class="style-input" placeholder=" " required>
+            <label class="style-label">E-mail</label>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="botao-style-redefinir">Enviar código para o Email</button>
+    </form>
+  </div>
+</body>
+</html>
