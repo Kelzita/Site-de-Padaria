@@ -14,11 +14,12 @@ if($_SERVER["REQUEST_METHOD"] =="POST"){
     $preco = $_POST['preco'];
     $quantidade_produto= $_POST['quantidade_produto'];
     $validade = $_POST['validade'];
+    $unmedida = $_POST['unmedida'];
 
     //atualiza os dados do usuario
     
     
-        $sql = "UPDATE produto SET nome_produto = :nome_produto,descricao = :descricao,quantidade_produto=:quantidade_produto , preco = :preco , validade = :validade WHERE id_produto = :id_produto";
+        $sql = "UPDATE produto SET nome_produto = :nome_produto,descricao = :descricao,quantidade_produto=:quantidade_produto , preco = :preco , validade = :validade , unmedida = :unmedida WHERE id_produto = :id_produto";
         $stmt = $pdo->prepare($sql);
     
     $stmt->bindParam(':nome_produto',$nome_produto);
@@ -27,6 +28,7 @@ if($_SERVER["REQUEST_METHOD"] =="POST"){
     $stmt->bindParam(':preco',$preco);
     $stmt->bindParam(':validade',$validade);
     $stmt->bindParam(':id_produto',$id_produto);
+    $stmt->bindParam(':unmedida',$unmedida);
     
     if($stmt->execute()){
         echo "<script>alert('Produto atualizado co sucesso!');window.location.href='html_listas/lista_de_produto.php';</script>";

@@ -58,7 +58,7 @@ require_once '../php/funcoes.php';
     </a>
 
     <!-- Botão Alterar -->
-    <a href="#" class="btn-alterar" data-produto='<?= htmlspecialchars(json_encode($produto), ENT_QUOTES, 'UTF-8'); ?>' title="Alterar">
+    <a href='alterar_produto.php' class="btn-alterar" data-produto='<?= htmlspecialchars(json_encode($produto), ENT_QUOTES, 'UTF-8'); ?>' title="Alterar">
         <i class="ri-pencil-line" style="font-size:1.2rem; color:#3D2412;"></i>
     </a>
 
