@@ -1,23 +1,30 @@
 <?php
 // Inicia sessão se ainda não estiver ativa
-if (session_status() == PHP_SESSION_NONE) {
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 require_once 'conexao.php';
 
-// Verifica se usuário está logado
+// ====== VERIFICA LOGIN ======
 if (!isset($_SESSION['id_funcionario'])) {
     header("Location: ../index.php");
     exit();
 }
 
-//========== Obtem o nome do perfil e do usuário logado ==========
+// ====== DADOS DO FUNCIONÁRIO ======
 $id_funcao = $_SESSION['id_funcao'] ?? null;
+$imagem_funcionario = $_SESSION['imagem_funcionario'] ?? '../img/default_avatar.png';
 
+// Caso a imagem salva não exista fisicamente, usa a padrão
+if (!file_exists($imagem_funcionario)) {
+    $imagem_funcionario = '../img/default_avatar.png';
+}
+
+// ====== BUSCA O NOME DA FUNÇÃO ======
 $sqlFuncao = "SELECT nome_funcao FROM funcao WHERE id_funcao = :id_funcao";
 $stmtFuncao = $pdo->prepare($sqlFuncao);
-$stmtFuncao->bindParam(':id_funcao', $id_funcao);
+$stmtFuncao->bindParam(':id_funcao', $id_funcao, PDO::PARAM_INT);
 $stmtFuncao->execute();
 
 $funcao = $stmtFuncao->fetch(PDO::FETCH_ASSOC);
@@ -27,43 +34,44 @@ if (!$funcao) {
 
 $nome_funcao = $funcao['nome_funcao'];
 
-// Permissões por perfil
+// ========== PERMISSÕES DE MENU ==========
 $permissoes = [
     1 => [
-        "Historico de Vendas" => ["../html_relatorios/historico_de_vendas.php"],
+        "Histórico de Vendas" => ["../php/HistoricoVendas.php" => "Histórico de Vendas"],
         "Gestão de Produtos e Estoque" => [
-            "../html_cadastros/cadastrar_produto.php",
-            "../html_listas/estoque_atual.php",
-            "../html_gerenciamento/gerenciar_produtos.php"
+            "../html_cadastros/cadastrar_produto.php" => "Cadastrar Produto",
+            "../html_listas/estoque_atual.php" => "Estoque Atual",
+            "../php/alterar_produtos.php" => "Alterar Produtos",
         ],
-        "Gestão de Funcionarios" => [
-            "../html_cadastros/cadastrar_funcionario.php",
-            "../html_listas/Lista_de_funcionarios.php"
+        "Gestão de Funcionários" => [
+            "../html_cadastros/cadastrar_funcionario.php" => "Cadastrar Funcionário",
+            "../html_listas/Lista_de_funcionarios.php" => "Lista de Funcionários"
         ],
         "Gestão de Fornecedores" => [
-            "../html_cadastros/cadastrar_fornecedor.php",
-            "../html_listas/lista_de_fornecedores.php"
+            "../html_cadastros/cadastrar_fornecedor.php" => "Cadastrar Fornecedor",
+            "../html_listas/lista_de_fornecedores.php" => "Lista de Fornecedores"
         ],
-        "Relatórios" => ["../html_relatorios/relatorios.php"],
-        "Caixa" => ["../caixanovo/caixa.html"],
-        "Comanda" => ["../html/comanda.php"]
+        "Relatórios" => ["../php/relatorio_vendas.php" => "Relatório de Vendas"],
+        "Caixa" => ["../php/caixa.php" => "Acessar Caixa"],
+        "Comanda" => ["../php/comanda.php" => "Abrir Comanda"],
+        "Perfil" => ["../php/perfil.php" => "Meu Perfil"],
     ],
     2 => [
-        "Historico de Vendas" => ["../html_relatorios/historico_de_vendas.php"],
         "Gestão de Produtos e Estoque" => [
-            "../html_cadastros/cadastrar_produto.php",
-            "../html_listas/estoque_atual.php",
-            "../html_gerenciamento/gerenciar_produtos.php"
+            "../html_cadastros/cadastrar_produto.php" => "Cadastrar Produto",
+            "../html_listas/estoque_atual.php" => "Estoque Atual",
+            "../html_gerenciamento/gerenciar_produtos.php" => "Gerenciar Produtos"
         ],
-        "Relatórios" => ["../html_relatorios/relatorios.php"]
+        "Relatórios" => ["../php/relatorio_vendas.php" => "Relatório de Vendas"],
+        "Perfil" => ["../php/perfil.php" => "Meu Perfil"],
     ],
     3 => [
-        "Historico de Vendas" => ["../html_relatorios/historico_de_vendas.php"],
-        "Comanda" => ["../html/comanda.php"]
+        "Comanda" => ["../php/comanda.php" => "Abrir Comanda"],
+        "Perfil" => ["../php/perfil.php" => "Meu Perfil"],
     ],
     4 => [
-        "Historico de Vendas" => ["../html_relatorios/historico_de_vendas.php"],
-        "Caixa" => ["../caixanovo/caixa.html"]
+        "Caixa" => ["../php/caixa.php" => "Acessar Caixa"],
+        "Perfil" => ["../php/perfil.php" => "Meu Perfil"],
     ]
 ];
 
@@ -75,8 +83,14 @@ if (!isset($permissoes[$id_funcao])) {
 $opcoes_menu = $permissoes[$id_funcao];
 ?>
 
+<!-- =================== ESTILOS DO MENU =================== -->
+
 <style>
-/* =================== RESET =================== */
+/* RESET */
+html, body {
+    margin: 0;
+    padding: 0;
+}
 * {
     box-sizing: border-box;
     margin: 0;
@@ -85,15 +99,16 @@ $opcoes_menu = $permissoes[$id_funcao];
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #f4ece6;
+    color: #3d2b1f;
 }
 
-/* =================== MENU =================== */
+/* MENU PRINCIPAL */
 nav {
-    background-color: #2c3e50;
+    background: linear-gradient(90deg, #8b5e3c, #6b4226);
     padding: 0 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    width: 100%;
 }
 
 nav ul.menu {
@@ -107,27 +122,38 @@ nav ul.menu > li {
 }
 
 nav ul.menu > li > a {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     padding: 15px 20px;
-    color: #ecf0f1;
+    color: #f4ede6;
     text-decoration: none;
     font-weight: 500;
     transition: background 0.3s, color 0.3s;
-}
-
-nav ul.menu > li > a:hover {
-    background-color: #34495e;
-    color: #fff;
     border-radius: 5px;
 }
 
-/* =================== DROPDOWN =================== */
+nav ul.menu > li > a:hover {
+    background: linear-gradient(90deg, #5c3d25, #3e2617);
+    color: #fff;
+}
+
+/* FOTO DE PERFIL AO LADO DA OPÇÃO PERFIL */
+.perfil-menu-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f4ede6;
+}
+
+/* SUBMENU */
 .dropdown-menu {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 0px;
     list-style: none;
-    background-color: #34495e;
+    background: linear-gradient(180deg, #6b4226, #5c3d25);
     padding: 10px 0;
     min-width: 180px;
     opacity: 0;
@@ -135,6 +161,7 @@ nav ul.menu > li > a:hover {
     transform: translateY(10px);
     transition: all 0.3s ease-in-out;
     border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     z-index: 10;
 }
 
@@ -147,34 +174,50 @@ nav ul.menu > li > a:hover {
 .dropdown-menu li a {
     display: block;
     padding: 10px 20px;
-    color: #ecf0f1;
+    color: #f4ede6;
     text-decoration: none;
     transition: background 0.3s;
+    border-radius: 5px;
 }
 
 .dropdown-menu li a:hover {
-    background-color: #1abc9c;
+    background: linear-gradient(90deg, #8b5e3c, #6b4226);
     color: #fff;
-    border-radius: 5px;
 }
+
+
+
 </style>
 
+<!-- =================== MENU HTML =================== -->
 <nav>
     <ul class="menu">
-        <?php foreach($opcoes_menu as $menu => $telas) : ?>
+        <!-- LOGO DO SITE -->
+        <li class="logo">
+            <a href="../index.php">
+                <img src="../img/logo.png" alt="Logo do Site" class="menu-logo">
+            </a>
+        </li>
+
+        <?php foreach($opcoes_menu as $menu => $telas): ?>
             <li class="dropdown">
-                <a href="#"><?= htmlspecialchars($menu) ?></a>
+                <a href="#">
+                    <!-- Exibe a foto apenas na opção Perfil -->
+                    <?php if ($menu === "Perfil"): ?>
+                        <img src="<?= htmlspecialchars($imagem_funcionario) ?>" alt="Foto de Perfil" class="perfil-menu-img">
+                    <?php endif; ?>
+                    <?= htmlspecialchars($menu) ?>
+                </a>
                 <ul class="dropdown-menu">
-                    <?php foreach($telas as $tela) : ?>
+                    <?php foreach($telas as $link => $nomeTela): ?>
                         <li>
-                            <a href="<?= htmlspecialchars($tela) ?>">
-                                <?= ucfirst(str_replace("_", " ", basename($tela, ".php"))) ?>
+                            <a href="<?= htmlspecialchars($link) ?>">
+                                <?= htmlspecialchars($nomeTela) ?>
                             </a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
             </li>
         <?php endforeach; ?>
-       
     </ul>
 </nav>
