@@ -3,9 +3,9 @@ session_start();
 require_once "conexao.php";
 
 
-if($_SESSION['id_funcao'] != 1) {
-    echo ("<script>alert('Acesso Negado! Retornando para a página inicial...'); window.location.href='../HTML/principal.php';");
-}
+//if($_SESSION['id_funcao'] != 1) {
+    //echo ("<script>alert('Acesso Negado! Retornando para a página inicial...'); window.location.href='../HTML/principal.php';");
+//}
 
 // Habilitar exibição de erros PDO para facilitar debug
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

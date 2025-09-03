@@ -1,6 +1,7 @@
 <?php 
-include '../php/buscar_funcionario.php';
- include '../php/modals.php';
+require_once '../php/buscar_funcionario.php';
+require_once '../php/modals_funcionarios.php';
+
 
 ?>
 <!DOCTYPE html>
@@ -29,8 +30,6 @@ include '../php/buscar_funcionario.php';
         <button type="submit"><i class="ri-search-line"></i></button>
     </div>
     </form>
-
-
 
     <?php if(!empty($funcionarios)) : ?>
         <table>
@@ -61,8 +60,8 @@ include '../php/buscar_funcionario.php';
                     data-id_funcionario="<?=htmlspecialchars($funcionario['id_funcionario']); ?>"
                     data-nome_funcionario="<?=htmlspecialchars($funcionario['nome_funcionario']); ?>"
                     data-cpf_funcionario="<?=htmlspecialchars($funcionario['cpf_funcionario']); ?>"
-                     data-email_funcionario="<?=htmlspecialchars($funcionario['email_funcionario']); ?>"
-                     data-senha="<?=substr($funcionario['senha'], 0, 10) . '…' ; ?>"
+                    data-email_funcionario="<?=htmlspecialchars($funcionario['email_funcionario']); ?>"
+                    data-senha="<?=substr($funcionario['senha'], 0, 10) . '…' ; ?>"
                     data-telefone_funcionario="<?=htmlspecialchars($funcionario['telefone_funcionario']); ?>"
                     data-cep_funcionario="<?=htmlspecialchars($funcionario['cep_funcionario']); ?>"
                     data-rua_funcionario="<?=htmlspecialchars($funcionario['rua_funcionario']); ?>"
@@ -101,7 +100,9 @@ include '../php/buscar_funcionario.php';
          </table>
          <?php else: ?>
         <p>Nenhum funcionário cadastrado.</p>
-         <?php endif; ?>  
+         <?php endif; ?> 
+
+<script src="../javascript/modals_funcoes.js"></script>
         
          
 </body>
