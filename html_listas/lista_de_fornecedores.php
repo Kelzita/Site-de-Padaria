@@ -1,6 +1,6 @@
 <?php 
 include '../php/buscar_fornecedor.php';
-include '../php/modals.php';
+
 
 ?>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ include '../php/modals.php';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/jquery.inputmask.min.js"></script>
     <link rel="stylesheet" href="../css/styles.css"/>
     <link rel="stylesheet" href="../css/styletabela.css"/>
-    <title>Lista de Fornecedor</title>
+    <title>Lista de Fornecedores</title>
 </head>
 <body>
     <header>
@@ -25,7 +25,7 @@ include '../php/modals.php';
     <h2>Buscar Fornecedores</h2>
     <form action="lista_de_fornecedores.php" method="POST" class="search-form">
         <div class="input-container">
-        <input type="text" id="busca" name="busca" placeholder="Insira a Busca ( por ID ou nome )"/>
+        <input type="text" id="busca" name="busca" placeholder="Insira a Busca (por ID ou nome)"/>
         <button type="submit"><i class="ri-search-line"></i></button>
     </div>
     </form>
@@ -85,5 +85,7 @@ include '../php/modals.php';
     <?php else: ?>
         <p>Nenhum fornecedor cadastrado.</p>
     <?php endif; ?>
+
+    <?php include '../php/modals.php';?>
 </body>
 </html>
