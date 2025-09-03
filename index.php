@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="link-auxiliar">
-                <a href="redefinirsenha.html" class="esqueci-senha-style">Esqueceu a senha?</a>
+                <a href="redefinirsenha.html" class="link-animado">Esqueceu a senha?</a>
             </div>
             <button type="submit" class="botao-style">Login</button>
         </form>

@@ -182,8 +182,8 @@ input:-webkit-autofill + .style-label {
 }
 
 
-/*==================== ESQUECI A SENHA ====================*/
-.esqueci-senha-style, .botao-voltar {
+/*==================== ESQUECI A SENHA E VOLTAR ====================*/
+.link-animado {
     font-size: 13px;
     color: white;
     position: relative;
@@ -191,25 +191,28 @@ input:-webkit-autofill + .style-label {
     text-decoration: none;
     overflow: hidden;
     transition: color 0.3s ease;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.2; /* garante espaço vertical */
 }
 
-.esqueci-senha-style::after, .botao-voltar::after {
+.link-animado::after {
     content: '';
     position: absolute;
     width: 100%;
     height: 2px;
     background-color: white;
-    left: -100%;
-    bottom: 0;
+    left: -100%;    /* começa fora */
+    bottom: 0;      /* fica alinhado com a base do texto */
     transition: left 0.4s ease;
 }
 
-.esqueci-senha-style:hover , .botao-voltar:hover {
+.link-animado:hover {
     color: #cacaca;
 }
 
-.esqueci-senha-style:hover::after, .botao-voltar:hover::after {
-    left: 0;
+.link-animado:hover::after {
+    left: 0;  /* faz a linha deslizar para dentro */
 }
 
 
