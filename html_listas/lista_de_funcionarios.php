@@ -74,7 +74,7 @@ require_once '../php/modals_funcionarios.php';
                     data-salario="<?=htmlspecialchars($funcionario['salario']); ?>"
                     data-id_funcao="<?=htmlspecialchars($funcionario['id_funcao']) . ' - ' . htmlspecialchars($funcionario['nome_funcao']); ?>">Visualizar</a>
 
-                    <a href="#" class="alterarfuncionario" 
+                    <a href="../alteracoes/Alterar_Funcionario.php" class="alterarfuncionario" 
                         data-foto="<?=htmlspecialchars($funcionario['imagem_funcionario']);?>"
                         data-id_funcionario="<?=htmlspecialchars($funcionario['id_funcionario']); ?>"
                         data-nome_funcionario="<?=htmlspecialchars($funcionario['nome_funcionario']); ?>"
