@@ -114,7 +114,7 @@ if (isset($_POST['finalizar_venda'])) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Comanda</title>
-  <link rel="stylesheet" href="../css/stylecomanda.css">
+  <link rel="stylesheet" href="../css/stylecomanda3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
@@ -124,7 +124,7 @@ if (isset($_POST['finalizar_venda'])) {
 
 <div class="retangulo">
   <div class="topo-retangulo">
-    <a href="entrada_comanda.html" class="voltar"> 
+    <a href="../inicio/home.php" class="voltar"> 
       <img class="seta" src="../img/btn_voltar.png" title="seta">
     </a>
     <a href="produtos_adicionados.php" class="produtos_adicionados">

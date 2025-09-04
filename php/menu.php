@@ -41,7 +41,7 @@ $permissoes = [
         "Gestão de Produtos e Estoque" => [
             "../html_cadastros/cadastrar_produto.php" => "Cadastrar Produto",
             "../html_listas/estoque_atual.php" => "Estoque Atual",
-            "../php/alterar_produtos.php" => "Alterar Produtos",
+            "../html_listas/lista_de_produto.php" => "Alterar Produtos",
         ],
         "Gestão de Funcionários" => [
             "../html_cadastros/cadastrar_funcionario.php" => "Cadastrar Funcionário",
@@ -83,8 +83,6 @@ if (!isset($permissoes[$id_funcao])) {
 $opcoes_menu = $permissoes[$id_funcao];
 ?>
 
-<!-- =================== ESTILOS DO MENU =================== -->
-
 <style>
 /* RESET */
 html, body {
@@ -98,35 +96,46 @@ html, body {
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4ece6;
-    color: #3d2b1f;
+    font-family: sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    font-weight: bold;
 }
 
 /* MENU PRINCIPAL */
 nav {
-    background: linear-gradient(90deg, #8b5e3c, #6b4226);
+    background: #ffffff;
     padding: 0 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
+    
 }
 
 nav ul.menu {
     list-style: none;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-start; /* Alinha itens à esquerda */
+    align-items: center;
+    width: 100%;
+    gap: 20px; /* Espaçamento fixo */
 }
 
-nav ul.menu > li {
+nav ul.menu > li.logo {
+    margin-right: auto; /* Empurra os outros itens para a direita */
+}
+
+nav ul.menu > li.dropdown {
+    min-width: 120px; /* Garante largura mínima */
+    text-align: center;
     position: relative;
 }
 
 nav ul.menu > li > a {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     padding: 15px 20px;
-    color: #f4ede6;
+    color: #555;
     text-decoration: none;
     font-weight: 500;
     transition: background 0.3s, color 0.3s;
@@ -134,26 +143,26 @@ nav ul.menu > li > a {
 }
 
 nav ul.menu > li > a:hover {
-    background: linear-gradient(90deg, #5c3d25, #3e2617);
-    color: #fff;
+    background: #f2f2f2;
+    color: #000;
 }
 
-/* FOTO DE PERFIL AO LADO DA OPÇÃO PERFIL */
+/* FOTO DE PERFIL */
 .perfil-menu-img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #f4ede6;
+    border: 2px solid #ffffff;
 }
 
 /* SUBMENU */
 .dropdown-menu {
     position: absolute;
     top: 100%;
-    left: 0px;
+    left: 0;
     list-style: none;
-    background: linear-gradient(180deg, #6b4226, #5c3d25);
+    background: #ffffff;
     padding: 10px 0;
     min-width: 180px;
     opacity: 0;
@@ -161,7 +170,7 @@ nav ul.menu > li > a:hover {
     transform: translateY(10px);
     transition: all 0.3s ease-in-out;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     z-index: 10;
 }
 
@@ -174,27 +183,23 @@ nav ul.menu > li > a:hover {
 .dropdown-menu li a {
     display: block;
     padding: 10px 20px;
-    color: #f4ede6;
+    color: #555;
     text-decoration: none;
-    transition: background 0.3s;
+    transition: background 0.3s, color 0.3s;
     border-radius: 5px;
 }
 
 .dropdown-menu li a:hover {
-    background: linear-gradient(90deg, #8b5e3c, #6b4226);
-    color: #fff;
+    background: #f2f2f2;
+    color: #000;
 }
-
-
-
 </style>
 
-<!-- =================== MENU HTML =================== -->
 <nav>
     <ul class="menu">
-        <!-- LOGO DO SITE -->
+        <!-- LOGO -->
         <li class="logo">
-            <a href="../index.php">
+            <a href="../inicio/home.php">
                 <img src="../img/logo.png" alt="Logo do Site" class="menu-logo">
             </a>
         </li>
@@ -202,7 +207,6 @@ nav ul.menu > li > a:hover {
         <?php foreach($opcoes_menu as $menu => $telas): ?>
             <li class="dropdown">
                 <a href="#">
-                    <!-- Exibe a foto apenas na opção Perfil -->
                     <?php if ($menu === "Perfil"): ?>
                         <img src="<?= htmlspecialchars($imagem_funcionario) ?>" alt="Foto de Perfil" class="perfil-menu-img">
                     <?php endif; ?>
