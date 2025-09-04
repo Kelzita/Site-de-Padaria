@@ -83,6 +83,8 @@ try {
         <label for="data_admissao"><i class="fas fa-calendar-alt"></i> Data de Admissão:</label>
         <input type="date" id="data_admissao" name="data_admissao" required>
 
+    
+
         <label for="salario"><i class="fas fa-money-bill-wave"></i> Salário:</label>
         <input type="number" step="0.01" id="salario" name="salario" placeholder="R$ 0,00" required>
 
@@ -97,6 +99,10 @@ try {
         <button type="submit" class="btn-cadastrar"><i class="fas fa-save"></i> Cadastrar</button>
     </form>
 </div>
+
+<a href='../inicio/home.php' class="voltar"> 
+    <img class="seta1" src="../img/btn_voltar.png" title="seta">
+    </a>
 
 <script src="../javascript/funcoes.js"></script>
 <script>

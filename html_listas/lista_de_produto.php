@@ -14,6 +14,11 @@ require_once '../php/buscar_produto.php';
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 <body>
+
+    <a href="../inicio/home.php" class="voltar"> 
+        <img class="seta1" src="../img/btn_voltar.png" title="seta" />
+    </a>
+
 <header>
     <img src="../img/logo.png" alt="Logo" />
 </header>
