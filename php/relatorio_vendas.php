@@ -116,7 +116,9 @@ body {
     flex-direction:column;
     align-items:center;
 }
-.dashboard{ max-width:1100px; width:100%; margin-top:80px;}
+.dashboard{ max-width:1100px; 
+width:100%; 
+margin-top:80px;}
 .chart-container, .card{
     background-color:rgba(255,255,255,0.85);
     border-radius:10px;
@@ -125,16 +127,38 @@ body {
     text-align:center;
     box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
-.cards{ display:flex; flex-wrap:wrap; gap:20px; justify-content:center;}
-.chart-container h2, .card h2{ color:#3D2412; margin-bottom:20px; text-transform:uppercase; }
-img{ max-height:320px; display:block; margin:0 auto;}
-.voltar{ display:block; text-decoration:none; color:#3D2412; font-weight:bold; margin-bottom:20px;}
+.cards{ 
+display:flex; 
+flex-wrap:wrap; gap:20px; 
+justify-content:center;
+}
+.chart-container h2, .card h2{ 
+color:#3D2412; margin-bottom:20px; 
+text-transform:uppercase; 
+}
+img{ 
+max-height:320px; 
+display:block; 
+margin:0 auto;
+}
+.voltar{ 
+display:block; 
+text-decoration:none; 
+color:#3D2412; 
+font-weight:bold; 
+margin-bottom:20px;
+}
+.seta{
+width: 50px ;
+height: 40px ;
+margin-top: 20px;
+margin-left: -650px;
+left: 5px;
+}
 </style>
 </head>
 <body>
 <div class="dashboard">
-<a href="#" class="voltar">&#8592; Voltar</a>
-
 <div class="chart-container">
   <h2>RECEITA MENSAL</h2>
   <img src="<?= quickchartUrl('line',$labelsM,$valuesM,'Receita R$',['#3D2412']); ?>" alt="Receita Mensal">
@@ -147,9 +171,12 @@ img{ max-height:320px; display:block; margin:0 auto;}
   </div>
   <div class="card">
     <h2>TOP 5 PRODUTOS MAIS VENDIDOS</h2>
-    <img src="<?= quickchartUrl('bar',$labelsT,$valuesT,'Quantidade Vendida',$coresTop); ?>" alt="Top Produtos">
+    <img src="<?= quickchartUrl('bar',$labelsT,$valuesT,'',$coresTop); ?>" alt="Top Produtos">
   </div>
 </div>
 </div>
+  <a href="../inicio/home.php" class="voltar"> 
+        <img class="seta" src="../img/btn_voltar.png" title="seta">
+  </a>
 </body>
 </html>

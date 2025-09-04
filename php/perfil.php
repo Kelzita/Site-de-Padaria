@@ -109,6 +109,8 @@ if (isset($_POST['alterar'])) {
     <meta charset="UTF-8">
     <title>Perfil do Funcionário</title>
     <link rel="stylesheet" href="../css/styleperfilfunc.css">
+    <!-- CDN do Remix Icon para o ícone do olho -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -123,7 +125,7 @@ if (isset($_POST['alterar'])) {
 
     <?= $mensagem ?>
 
-    <form action="" method="post" enctype="multipart/form-data">
+    <form id="form-perfil" action="" method="post" enctype="multipart/form-data">
         <!-- Upload de Imagem -->
         <div class="imagem-upload-wrapper">
             <label for="imagem_funcionario" class="custom-file-label" id="preview-container" title="Clique para mudar a foto">
@@ -139,24 +141,67 @@ if (isset($_POST['alterar'])) {
 
         <!-- Senha -->
         <label for="senha_funcionario">Nova Senha:</label>
-        <input type="password" name="senha_funcionario" placeholder="Digite a nova senha">
+        <div class="campo-senha">
+            <input type="password" name="senha_funcionario" id="senha_funcionario" placeholder="Digite a nova senha" maxlength="20">
+            <i class="ri-eye-off-line toggle-olho" onclick="toggleSenha()"></i>
+        </div>
+        <small id="erro-senha" style="color:red; display:none;"></small>
 
         <button type="submit" name="alterar">Alterar</button>
     </form>
 </div>
 
 <script>
-    // Preview da imagem antes do upload
-    document.getElementById('imagem_funcionario').addEventListener('change', function(e) {
-        const file = e.target.files[0];
+    const form = document.getElementById('form-perfil');
+    const erroSenha = document.getElementById('erro-senha');
+
+    form.addEventListener('submit', function(event) {
+        const senha = document.getElementById('senha_funcionario').value.trim();
+
+        if (senha !== "") {
+            const regex = /^(?=.*[A-Z])(?=.*\d).{6,20}$/;
+            if (!regex.test(senha)) {
+                erroSenha.style.display = "block";
+                erroSenha.textContent = "Senha deve ter 6-20 caracteres, pelo menos uma letra maiúscula e um número.";
+                event.preventDefault();
+                return false;
+            } else {
+                erroSenha.style.display = "none";
+            }
+        }
+    });
+
+    // Função para mostrar/ocultar a senha
+    function toggleSenha() {
+        const input = document.getElementById('senha_funcionario');
+        const icone = document.querySelector('.toggle-olho');
+
+        if (input.type === "password") {
+            input.type = "text";
+            icone.classList.remove("ri-eye-off-line");
+            icone.classList.add("ri-eye-line");
+        } else {
+            input.type = "password";
+            icone.classList.remove("ri-eye-line");
+            icone.classList.add("ri-eye-off-line");
+        }
+    }
+
+    // Preview da imagem escolhida
+    const inputImagem = document.getElementById("imagem_funcionario");
+    const previewImg = document.getElementById("preview-img");
+
+    inputImagem.addEventListener("change", function () {
+        const file = this.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = function(event) {
-                document.getElementById('preview-img').src = event.target.result;
+            reader.onload = function (e) {
+                previewImg.src = e.target.result; // troca na hora
             };
             reader.readAsDataURL(file);
         }
     });
 </script>
+
 </body>
 </html>

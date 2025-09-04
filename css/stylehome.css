@@ -19,7 +19,7 @@ html, body {
     background-color: white;
     width: 100vw;
     height: 70px;
-    display: flex;
+    display: block;
     align-items: center;
     padding-left: 60px;
     box-sizing: border-box;
@@ -63,7 +63,7 @@ html, body {
         font-weight: bold;
         cursor: pointer;
         transition: background 0.3s;
-        margin-top: 150px;
+        margin-top: 10px;
     }
     form button:hover {
         background-color: #7a432c;
@@ -71,7 +71,7 @@ html, body {
 
   /* LOGO NO MENU */
 .menu-logo {
-    height: 50px; /* ajuste conforme necessário */
+    height: 60px; /* ajuste conforme necessário */
     display: block;
 }
 
@@ -83,5 +83,201 @@ nav ul.menu > li.logo {
 
 h1{
   font-size: 20px;
+  margin-top: 100px;
   
 }
+
+
+
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url('../img/fundo_padaria.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  /* ------------------- HEADER ------------------- */
+  header {
+    background-color: white;
+    width: 100vw;
+    height: 70px;
+    display: block;
+    align-items: center;
+    padding-left: 60px;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+  
+  header img {
+    height: 70px;
+    width: 70px;
+  }
+  
+  h2{
+    text-align: center;
+  }
+  
+  /* ------------------- RETÂNGULO PRINCIPAL ------------------- */
+  .retangulo {
+    background-color: white;
+    padding: 10px;
+    width: 600px;
+    margin: 40px auto 10px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px; 
+    align-items: center;
+  }
+  
+  /* ------------------- BOTÕES TABELA ------------------- */
+    /* Estilo só para o botão Logout */
+    form button {
+        background-color: #5a3220;
+        color: #fff;
+        padding: 10px 18px;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-top: 10px;
+    }
+    form button:hover {
+        background-color: #7a432c;
+    }
+
+  /* LOGO NO MENU */
+.menu-logo {
+    height: 60px; /* ajuste conforme necessário */
+    display: block;
+}
+
+nav ul.menu > li.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* espaço entre a logo e os itens do menu */
+}
+
+h1{
+  font-size: 20px;
+  margin-top: 100px;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url('../img/fundo_padaria.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  /* ------------------- HEADER ------------------- */
+  header {
+    background-color: white;
+    width: 100vw;
+    height: 70px;
+    display: block;
+    align-items: center;
+    padding-left: 60px;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+  
+  header img {
+    height: 70px;
+    width: 70px;
+  }
+  
+  h2{
+    text-align: center;
+  }
+  
+  /* ------------------- RETÂNGULO PRINCIPAL ------------------- */
+  .retangulo {
+    background-color: white;
+    padding: 10px;
+    width: 600px;
+    margin: 40px auto 10px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px; 
+    align-items: center;
+  }
+  
+  /* ------------------- BOTÕES TABELA ------------------- */
+    /* Estilo só para o botão Logout */
+    form button {
+        background-color: #5a3220;
+        color: #fff;
+        padding: 10px 18px;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-top: 10px;
+    }
+    form button:hover {
+        background-color: #7a432c;
+    }
+
+  /* LOGO NO MENU */
+.menu-logo {
+    height: 60px; /* ajuste conforme necessário */
+    display: block;
+}
+
+nav ul.menu > li.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* espaço entre a logo e os itens do menu */
+}
+
+h1{
+  font-size: 20px;
+  margin-top: 100px;
+  
+}
+

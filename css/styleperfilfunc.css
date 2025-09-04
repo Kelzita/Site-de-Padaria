@@ -152,3 +152,34 @@ html, body {
     display: block;
   }
   
+
+
+  /* Estilização do campo de senha com ícone */
+.campo-senha {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.campo-senha input {
+  width: 100%;
+  padding-right: 40px; /* Espaço para o ícone */
+  box-sizing: border-box;
+}
+
+.toggle-olho {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  color: #777;
+  transition: 0.3s;
+}
+
+.toggle-olho:hover {
+  color: #333;
+  transform: translateY(-50%) scale(1.15);
+}
