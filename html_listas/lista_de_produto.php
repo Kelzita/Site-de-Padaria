@@ -19,6 +19,11 @@ require_once '../php/buscar_produto.php';
     <title>Lista de Produtos</title>
 </head>
 <body>
+
+    <a href="../inicio/home.php" class="voltar"> 
+        <img class="seta1" src="../img/btn_voltar.png" title="seta" />
+    </a>
+
 <header>
     <img src="../img/logo.png" alt="Logo" />
 </header>
@@ -67,6 +72,8 @@ require_once '../php/buscar_produto.php';
                             <a href="#" class="acao" onclick="deletarProduto(<?= $produto['id_produto'] ?>)">
                             <i class="ri-delete-bin-2-line"></i> 
                             </a>
+
+                            
 
                         </td>
                     </tr>
@@ -128,6 +135,8 @@ function deletarProduto(id_produto) {
     form.submit();
 }
 </script>
+
+
 
 </body>
 </html>

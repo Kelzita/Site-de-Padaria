@@ -79,7 +79,10 @@ require_once '../php/funcoes.php';
         </form>
     </div>
    <script src="../javascript/produto.js"></script>
-  
+   
+   <a href='../inicio/home.php' class="voltar"> 
+        <img class="seta1" src="../img/btn_voltar.png" title="seta">
+    </a>
 
 </body>
 

@@ -95,6 +95,9 @@
         </form>
     </div>
     <script src="../javascript/funcoes.js"></script>
+    <a href='../inicio/home.php' class="voltar"> 
+    <img class="seta1" src="../img/btn_voltar.png" title="seta">
+    </a>
 </body>
 
 </html>

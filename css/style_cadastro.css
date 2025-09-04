@@ -268,3 +268,32 @@ h1 {
     margin-bottom: 25px;
 }
 
+.voltar {
+    width: 50px ;
+    height: 40px ;
+    margin-top: 20px;
+    margin-left: 10px;
+    left: 5px;
+  }
+
+  .seta1 {
+    width: 50px ;
+    height: 40px ;
+    margin-top: 20px;
+    margin-left: -650px;
+    left: 5px;
+  }
+  
+  /* Estilo básico para o botão */
+  button.botao {
+    background-color: #000;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
