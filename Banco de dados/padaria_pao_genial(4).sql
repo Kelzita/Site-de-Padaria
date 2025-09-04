@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `padaria_pao_genial`
 --
+CREATE DATABASE padaria_pao_genial;
+USE padaria_pao_genial;
 
 -- --------------------------------------------------------
 

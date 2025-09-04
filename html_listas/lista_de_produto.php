@@ -1,6 +1,7 @@
 <?php 
 require_once '../php/conexao.php'; 
 require_once '../php/buscar_produto.php'; 
+require_once '../php/menu.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -9,6 +10,7 @@ require_once '../php/buscar_produto.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Produtos</title>
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/stylehome.css">
     <link rel="stylesheet" href="../css/styletabela.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
@@ -18,10 +20,6 @@ require_once '../php/buscar_produto.php';
     <a href="../inicio/home.php" class="voltar"> 
         <img class="seta1" src="../img/btn_voltar.png" title="seta" />
     </a>
-
-<header>
-    <img src="../img/logo.png" alt="Logo" />
-</header>
 
 <div class="container">
     <h1>Lista de Produtos</h1>

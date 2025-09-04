@@ -1,5 +1,6 @@
 <?php 
 require_once '../php/buscar_fornecedor.php'; 
+require_once '../php/menu.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -9,9 +10,9 @@ require_once '../php/buscar_fornecedor.php';
     
     <!-- CSS -->
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/stylehome.css">
     <link rel="stylesheet" href="../css/modal.css" />
     <link rel="stylesheet" href="../css/styletabela.css" />
-    
     <!-- Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
@@ -19,9 +20,6 @@ require_once '../php/buscar_fornecedor.php';
     <title>Lista de Fornecedores</title>
 </head>
 <body>
-<header>
-    <img src="../img/logo.png" alt="Logo" />
-</header>
 
 <div class="container">
     <h1>Lista de Fornecedores</h1>

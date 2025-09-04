@@ -1,5 +1,6 @@
 <?php 
 require_once '../php/buscar_funcionario.php'; 
+require_once '../php/menu.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -7,6 +8,7 @@ require_once '../php/buscar_funcionario.php';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/stylehome.css">
     <link rel="stylesheet" href="../css/modal.css" />
     <link rel="stylesheet" href="../css/styletabela.css" />
     
@@ -17,9 +19,6 @@ require_once '../php/buscar_funcionario.php';
     <title>Lista de Funcionários</title>
 </head>
 <body>
-<header>
-    <img src="../img/logo.png" alt="Logo" />
-</header>
 
 <div class="container">
     <h1>Lista de Funcionários</h1>

@@ -41,7 +41,7 @@ $permissoes = [
         "Gestão de Produtos e Estoque" => [
             "../html_cadastros/cadastrar_produto.php" => "Cadastrar Produto",
             "../html_listas/estoque_atual.php" => "Estoque Atual",
-            "../html_listas/lista_de_produto.php" => "Alterar Produtos",
+            "../html_listas/lista_de_produto.php" => "Lista de Produtos",
         ],
         "Gestão de Funcionários" => [
             "../html_cadastros/cadastrar_funcionario.php" => "Cadastrar Funcionário",

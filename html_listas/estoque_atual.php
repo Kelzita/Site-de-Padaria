@@ -1,6 +1,7 @@
 <?php 
 include '../php/buscar_estoque.php';
 require_once '../php/funcoes.php';
+require_once '../php/menu.php';
 ?>
 <!DOCTYPE html>
 <html lang="PT-BR">
@@ -9,7 +10,7 @@ require_once '../php/funcoes.php';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/stylehome.css">
     <link rel="stylesheet" href="../css/styletabela.css" />
     <title>Estoque Atual</title>
     <style>
@@ -34,9 +35,6 @@ td:last-child {
     </style>
 </head>
 <body>
-<header>
-    <img src="../img/logo.png" alt="logo" />
-</header>
 
 <div class="container">
     <h1>📦 Estoque Atual</h1>

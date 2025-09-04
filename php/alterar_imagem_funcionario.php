@@ -18,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_FILES['imagem_funcionario']
         $stmt->bindParam(':id', $id_funcionario, PDO::PARAM_INT);
         $stmt->execute();
 
-        echo "<script>alert('Imagem atualizada com sucesso!'); window.location.href='../html_listas/lista_de_funcionarios.php';</script>";
+        echo "<script>alert('Imagem atualizada com sucesso!'); window.location.href='../inicio/home.php';</script>";
         exit;
     } catch (PDOException $e) {
         echo "Erro ao atualizar imagem: " . $e->getMessage();
         exit;
     }
 } else {
-    echo "<script>alert('Nenhuma imagem selecionada ou houve um erro.'); window.location.href='../html_listas/perfil.php';</script>";
+    echo "<script>alert('Nenhuma imagem selecionada ou houve um erro.'); window.location.href='../inicio/perfil.php';</script>";
 }
