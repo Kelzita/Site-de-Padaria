@@ -6,8 +6,6 @@ require_once '../php/buscar_funcionario.php';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <!-- CSS -->
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/modal.css" />
     <link rel="stylesheet" href="../css/styletabela.css" />
@@ -25,58 +23,62 @@ require_once '../php/buscar_funcionario.php';
 
 <div class="container">
     <h1>Lista de Funcionários</h1>
-    <h2>Buscar Funcionário</h2>
-    
-    <!-- Formulário de busca -->
+
+    <!-- Formulário de busca + filtro -->
     <form action="lista_de_funcionarios.php" method="POST" class="search-form">
         <div class="input-container">
-            <input type="text" id="busca" name="busca" placeholder="Insira a Busca (por ID ou nome)" />
+            <input type="text" id="busca" name="busca" placeholder="Insira a Busca (ID ou nome)" />
             <button type="submit"><i class="fa fa-search"></i></button>
         </div>
     </form>
+    <div class="select">
+    <select id="filtro-status" name="status">
+                <option value="">Todos</option>
+                <option value="1">Ativos</option>
+                <option value="0">Inativos</option>
+            </select>
+    </div>
 
-    <?php if (!empty($funcionarios)) : ?>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Telefone</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($funcionarios as $funcionario) : ?>
-                    <tr>
-                        <td><?= htmlspecialchars($funcionario['id_funcionario']); ?></td>
-                        <td><?= htmlspecialchars($funcionario['nome_funcionario']); ?></td>
-                        <td><?= htmlspecialchars($funcionario['email_funcionario']); ?></td>
-                        <td><?= htmlspecialchars($funcionario['telefone_funcionario']); ?></td>
-                        <td class="acoes">
-                            <!-- Visualizar -->
-                            <a href="#" onclick="abrirModalFuncionario(<?= $funcionario['id_funcionario']; ?>)" class="acao" title="Visualizar">
-                                <i class="ri-eye-line"></i>
-                            </a>
-                            <!-- Alterar -->
-                            <a href="../alteracoes/Alterar_Funcionario.php?id=<?= $funcionario['id_funcionario']; ?>" class="acao" title="Alterar">
-                                <i class="ri-edit-line"></i>
-                            </a>
-                            <!-- Inativar -->
-                            <a href="#" class="acao" onclick="inativarFuncionario(<?= $funcionario['id_funcionario'] ?>)">
-                                <i class="ri-delete-bin-2-line"></i>
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php else: ?>
-        <p style="color:white;">Nenhum funcionário cadastrado.</p>
-    <?php endif; ?>
+    <table id="tabela-funcionarios">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($funcionarios as $funcionario): ?>
+            <tr data-status="<?= $funcionario['ativo'] ?>">
+                <td><?= $funcionario['id_funcionario'] ?></td>
+                <td><?= htmlspecialchars($funcionario['nome_funcionario']) ?></td>
+                <td><?= htmlspecialchars($funcionario['email_funcionario']) ?></td>
+                <td><?= htmlspecialchars($funcionario['telefone_funcionario']) ?></td>
+                <td class="status">
+                    <?= $funcionario['ativo'] ? 'Ativo' : 'Inativo' ?>
+                </td>
+                <td class="acoes">
+                    <a href="#" onclick="abrirModalFuncionario(<?= $funcionario['id_funcionario'] ?>)" class="acao" title="Visualizar">
+                        <i class="ri-eye-line"></i>
+                    </a>
+                    <a href="../alteracoes/Alterar_Funcionario.php?id=<?= $funcionario['id_funcionario'] ?>" class="acao" title="Alterar">
+                        <i class="ri-edit-line"></i>
+                    </a>
+                    <a href="#" class="acao btn-inativar" onclick="toggleAtivo(this, <?= $funcionario['id_funcionario'] ?>)">
+                        <i class="<?= $funcionario['ativo'] ? 'ri-user-unfollow-line' : 'ri-user-follow-line' ?>"></i>
+                    </a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </div>
 
 <script>
+// ====== Modal Visualizar ======
 function abrirModalFuncionario(id){
     fetch(`../php/modals/modal_funcionario.php?id=${id}`)
     .then(res => res.text())
@@ -92,32 +94,54 @@ document.addEventListener('click', function(e){
     const modal = e.target.closest('.modal-editar');
     if(!modal) return;
 
-    if(!e.target.closest('.modal-editar__container')) {
-        modal.remove();
-    }
-    if(e.target.classList.contains('modal-editar__fechar')){
+    if(!e.target.closest('.modal-editar__container') || e.target.classList.contains('modal-editar__fechar')){
         modal.remove();
     }
 });
 
-function inativarFuncionario(id) {
-    if (!confirm('Tem certeza que deseja inativar este funcionário?')) return;
+// ====== Toggle Ativo/Inativo ======
+function toggleAtivo(element, id) {
+    if (!confirm('Deseja alterar o status deste funcionário?')) return;
 
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = '../php/inativar_funcionario.php';
+    fetch('../php/inativar_funcionario.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `id_funcionario=${id}`
+    }).then(res => res.json())
+    .then(data => {
+        if(data.sucesso) {
+            const tr = element.closest('tr');
+            const statusCell = tr.querySelector('.status');
+            const icone = element.querySelector('i');
 
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'id_funcionario';
-    input.value = id;
-
-    form.appendChild(input);
-    document.body.appendChild(form);
-
-    form.submit();
+            if (data.ativo) {
+                statusCell.textContent = 'Ativo';
+                icone.classList.remove('ri-user-follow-line');
+                icone.classList.add('ri-user-unfollow-line');
+                tr.setAttribute('data-status', 1);
+            } else {
+                statusCell.textContent = 'Inativo';
+                icone.classList.remove('ri-user-unfollow-line');
+                icone.classList.add('ri-user-follow-line');
+                tr.setAttribute('data-status', 0);
+            }
+        } else {
+            alert('Erro ao alterar status!');
+        }
+    }).catch(err => console.error(err));
 }
-</script>
 
+// ====== Filtro Ativos/Inativos via select ======
+document.getElementById('filtro-status').addEventListener('change', function(){
+    const status = this.value;
+    document.querySelectorAll('#tabela-funcionarios tbody tr').forEach(tr => {
+        if(status === '') {
+            tr.style.display = '';
+        } else {
+            tr.style.display = tr.dataset.status === status ? '' : 'none';
+        }
+    });
+});
+</script>
 </body>
 </html>

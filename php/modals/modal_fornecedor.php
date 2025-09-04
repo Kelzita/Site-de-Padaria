@@ -1,104 +1,82 @@
-<?php
-require_once '../php/funcoes.php';
+<?php 
+require_once __DIR__ . '/../funcoes.php';
 
-// Obter o ID do fornecedor da URL
 $id_fornecedor = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-// Buscar os dados do fornecedor
 $fornecedor = null;
-if ($id_fornecedor > 0) {
-    $fornecedor = buscarFornecedorPorId($id_fornecedor);
-}
 
-// Se não encontrar, exibir mensagem de erro simples
-if (!$fornecedor) {
-    echo '<p>Fornecedor não encontrado.</p>';
-    exit;
+if($id_fornecedor > 0){
+    $fornecedor = buscarFornecedorPorId($id_fornecedor);
 }
 ?>
 
+<?php if($fornecedor): ?>
 <div class="modal-editar">
-    <div class="modal-editar__container">
+    <div class="modal-editar__container" style="background:#fff; color:#000;">
         <div class="modal-editar__header">
             <h2 class="modal-editar__titulo">Detalhes do Fornecedor</h2>
             <span class="modal-editar__fechar">&times;</span>
         </div>
 
-        <form class="formulario">
-            <div class="grupo-formulario grupo-formulario--completo container-foto">
-                <?php if (!empty($fornecedor['imagem_fornecedor'])): ?>
-                    <img src="data:image/jpeg;base64,<?= base64_encode($fornecedor['imagem_fornecedor']) ?>" alt="Foto do fornecedor" class="previsualizacao-foto">
+        <div class="formulario">
+            <div class="container-foto">
+                <?php if(!empty($fornecedor['foto_fornecedor'])): ?>
+                    <img src="data:image/jpeg;base64,<?= base64_encode($fornecedor['foto_fornecedor']) ?>"  
+                         alt="<?= htmlspecialchars($fornecedor['razao_social']); ?>" 
+                         class="previsualizacao-foto">
                 <?php else: ?>
-                    <img src="../img/placeholder.png" alt="Preview" class="previsualizacao-foto">
+                    <img src="../img/imagem_padrao.png" alt="Imagem padrão" class="previsualizacao-foto">
                 <?php endif; ?>
             </div>
 
-            <div class="grupo-formulario">
-                <label class="rotulo-formulario">ID:</label>
+            <div class="grupo-formulario"><label><b>ID:</b></label>
                 <p><?= htmlspecialchars($fornecedor['id_fornecedor']); ?></p>
             </div>
-
-            <div class="grupo-formulario">
-                <label class="rotulo-formulario">Razão Social:</label>
+            <div class="grupo-formulario"><label><b>Razão Social:</b></label>
                 <p><?= htmlspecialchars($fornecedor['razao_social']); ?></p>
             </div>
 
-            <div class="grupo-formulario">
-                <label class="rotulo-formulario">Responsável:</label>
+            <div class="grupo-formulario"><label><b>Responsável:</b></label>
                 <p><?= htmlspecialchars($fornecedor['responsavel']); ?></p>
             </div>
-
-            <div class="grupo-formulario">
-                <label class="rotulo-formulario">CNPJ:</label>
+            <div class="grupo-formulario"><label><b>CNPJ:</b></label>
                 <p><?= htmlspecialchars($fornecedor['cnpj_fornecedor']); ?></p>
             </div>
-
-            <div class="grupo-formulario">
-                <label class="rotulo-formulario">E-mail:</label>
+            <div class="grupo-formulario"><label><b>Email:</b></label>
                 <p><?= htmlspecialchars($fornecedor['email_fornecedor']); ?></p>
             </div>
-
-            <div class="grupo-formulario">
-                <label class="rotulo-formulario">Telefone:</label>
+            <div class="grupo-formulario"><label><b>Telefone:</b></label>
                 <p><?= htmlspecialchars($fornecedor['telefone_fornecedor']); ?></p>
             </div>
-
-            <div class="grupo-formulario">
-                <label class="rotulo-formulario">CEP:</label>
+            <div class="grupo-formulario"><label><b>CEP:</b></label>
                 <p><?= htmlspecialchars($fornecedor['cep_fornecedor']); ?></p>
             </div>
-
-            <div class="grupo-formulario">
-                <label class="rotulo-formulario">Rua:</label>
+            <div class="grupo-formulario"><label><b>Rua:</b></label>
                 <p><?= htmlspecialchars($fornecedor['rua_fornecedor']); ?></p>
             </div>
-
-            <div class="grupo-formulario">
-                <label class="rotulo-formulario">Número:</label>
+            <div class="grupo-formulario"><label><b>Número:</b></label>
                 <p><?= htmlspecialchars($fornecedor['numero_fornecedor']); ?></p>
             </div>
-
-            <div class="grupo-formulario">
-                <label class="rotulo-formulario">Bairro:</label>
+            <div class="grupo-formulario"><label><b>Bairro:</b></label>
                 <p><?= htmlspecialchars($fornecedor['bairro_fornecedor']); ?></p>
             </div>
-
-            <div class="grupo-formulario">
-                <label class="rotulo-formulario">Cidade:</label>
+            <div class="grupo-formulario"><label><b>Cidade:</b></label>
                 <p><?= htmlspecialchars($fornecedor['cidade_fornecedor']); ?></p>
             </div>
-
-            <div class="grupo-formulario">
-                <label class="rotulo-formulario">UF:</label>
+            <div class="grupo-formulario"><label><b>UF:</b></label>
                 <p><?= htmlspecialchars($fornecedor['uf_fornecedor']); ?></p>
             </div>
+            
 
             <div class="acoes-formulario">
-                <a href="../alteracoes/Alterar_Fornecedor.php?id=<?= $fornecedor['id_fornecedor'] ?>" class="botao botao--primario">Alterar</a>
-                <span class="botao botao--secundario modal-editar__fechar">Fechar</span>
+                <a href="../alteracoes/Alterar_Fornecedor.php?id=<?= $fornecedor['id_fornecedor']; ?>" 
+                   class="botao botao--primario">Editar Fornecedor</a>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 
 <link rel="stylesheet" href="../css/modals.css">
+
+<?php else: ?>
+<p>Fornecedor não encontrado.</p>
+<?php endif; ?>

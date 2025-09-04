@@ -190,7 +190,7 @@ td:last-child, th:last-child {
 
 
 /* ===========BOTÕES=========== */
-.btn-editar, .btn-salvar, .btn-cancelar, .btn-apagar, .btn-inativar, .btn-excluir {
+.btn-editar, .btn-salvar, .btn-cancelar, .btn-apagar, .btn-excluir {
     margin: 3px 2px;
     padding: 6px 12px;
     border: none;
@@ -206,13 +206,12 @@ td:last-child, th:last-child {
 .btn-salvar { background-color: #5cb85c; }
 .btn-cancelar { background-color: #f0ad4e; }
 .btn-apagar, .btn-excluir { background-color: #e74c3c; }
-.btn-inativar { background-color: #c0392b; }
+
 
 .btn-editar:hover { background-color: #025aa5; }
 .btn-salvar:hover { background-color: #449d44; }
 .btn-cancelar:hover { background-color: #ec971f; }
 .btn-apagar:hover, .btn-excluir:hover { background-color: #c0392b; }
-.btn-inativar:hover { background-color: #a93226; }
 
 /* ============ BOTÃO VOLTAR=============== */
 .voltar {
@@ -349,4 +348,52 @@ td:last-child, th:last-child {
 .acao i:hover {
     transform: scale(1.3); /* aumenta levemente no hover */
     color: #555;           /* escurecimento suave */
+}
+
+
+/* ================== SELECT FILTRO ================== */
+.select {
+    position: relative;
+    display: inline-block;
+    width: 180px; 
+    margin-left: 10px;
+    margin-top: -20px; 
+}
+
+.select select {
+    width: 100%;
+    padding: 12px 40px 12px 15px; 
+    border: 2px solid #555;
+    border-radius: 8px;
+    background-color: #fcf8f8;
+    color: #0a0606;
+    font-size: 1rem;
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.select select:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 10px rgba(7, 7, 6, 0.5);
+}
+
+/* Seta customizada */
+.select::after {
+    content: '\25BC'; /* seta para baixo */
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    pointer-events: none; /* não interfere no clique */
+    font-size: 0.8rem;
+    color: #555;
+}
+
+/* Hover suave */
+.select select:hover {
+    border-color: #3D2412;
 }

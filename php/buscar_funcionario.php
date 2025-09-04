@@ -43,4 +43,29 @@ try {
 } catch (PDOException $e) {
     echo "Erro ao buscar funcionários: " . $e->getMessage();
 }
+
+
+$statusFilter = isset($_POST['status']) && $_POST['status'] !== '' ? intval($_POST['status']) : null;
+$busca = isset($_POST['busca']) ? trim($_POST['busca']) : '';
+
+$sql = "SELECT * FROM funcionarios WHERE 1=1";
+if($statusFilter !== null){
+    $sql .= " AND ativo = :status";
+}
+if($busca !== ''){
+    $sql .= " AND (id_funcionario LIKE :busca OR nome_funcionario LIKE :busca)";
+}
+
+$stmt = $pdo->prepare($sql);
+
+if($statusFilter !== null){
+    $stmt->bindParam(':status', $statusFilter, PDO::PARAM_INT);
+}
+if($busca !== ''){
+    $buscaParam = "%$busca%";
+    $stmt->bindParam(':busca', $buscaParam, PDO::PARAM_STR);
+}
+
+$stmt->execute();
+$funcionarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
