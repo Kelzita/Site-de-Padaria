@@ -37,3 +37,5 @@ document.addEventListener("DOMContentLoaded", () => {
         input.value = "R$ " + valor;
     });
 });
+
+

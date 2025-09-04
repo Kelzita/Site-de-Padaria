@@ -28,7 +28,7 @@ require_once '../php/buscar_funcionario.php';
     <h2>Buscar Funcionário</h2>
     
     <!-- Formulário de busca -->
-    <form action="lista_de_funcionario.php" method="POST" class="search-form">
+    <form action="lista_de_funcionarios.php" method="POST" class="search-form">
         <div class="input-container">
             <input type="text" id="busca" name="busca" placeholder="Insira a Busca (por ID ou nome)" />
             <button type="submit"><i class="fa fa-search"></i></button>
