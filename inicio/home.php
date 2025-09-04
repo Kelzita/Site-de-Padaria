@@ -45,5 +45,6 @@ $nome_funcao = $funcao['nome_funcao'] ?? 'Função não encontrada';
     <form action="../php/logout.php" method="POST">
         <button type="submit">Logout</button>
     </form>
+</div>
 </body>
 </html>
