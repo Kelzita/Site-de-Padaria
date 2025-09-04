@@ -108,24 +108,23 @@ if (isset($_POST['finalizar_venda'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Comanda</title>
-  <link rel="stylesheet" href="../css/stylecomanda3.css">
+  <link rel="stylesheet" href="../css/stylecomanda.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 <header>
-    <img src="../img/logo_pg.png" alt="Logo da Padaria">
+    <img src="../img/logo.png" alt="Logo da Padaria">
 </header>
 
 <div class="retangulo">
   <div class="topo-retangulo">
-    <a href="../entrada_comanda.html" class="voltar"> 
+    <a href="entrada_comanda.html" class="voltar"> 
       <img class="seta" src="../img/btn_voltar.png" title="seta">
     </a>
     <a href="produtos_adicionados.php" class="produtos_adicionados">

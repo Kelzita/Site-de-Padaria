@@ -18,3 +18,4 @@ finfo_close($finfo);
 header("Content-Type: $tipo");
 readfile($caminho);
 exit;
+?>

@@ -19,6 +19,7 @@ require_once '../php/funcoes.php';
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/style_cadastro.css" />
+    <script src="../javascript/funcoes.js" defer></script>
     
 
 </head>
@@ -39,7 +40,7 @@ require_once '../php/funcoes.php';
             <textarea id="descricao" name="descricao" placeholder="Insira uma descrição (Opcional)" ></textarea>
 
             <label for="preco"><i class="fas fa-dollar-sign"></i> Preço:</label>
-            <input type="number" step="0.01" id="preco" name="preco" placeholder="R$ 0,00" >
+            <input type="text" id="preco" name="preco" placeholder="R$ 0,00">
 
             <label for="unmedida"><i class="fas fa-cube"></i> Unidade de Medida:</label>
                 <select id="unmedida" name="unmedida" class="entrada-formulario" required>
@@ -77,7 +78,7 @@ require_once '../php/funcoes.php';
             <button type="submit" class="btn-cadastrar"><i class="fas fa-save"></i> Cadastrar</button>
         </form>
     </div>
-    <script src="../js/validacao_cad_produto.js"></script>
+   <script src="../javascript/produto.js"></script>
   
 
 </body>

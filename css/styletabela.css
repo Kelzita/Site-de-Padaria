@@ -44,6 +44,53 @@ form {
     margin-bottom: 40px;
     width: 100%;
 }
+/* ================== CONTAINER DO INPUT E BOTÃO ================== */
+.input-container {
+    position: relative;
+    width: 300px;          /* largura do conjunto */
+    display: flex;         /* garante alinhamento do input e botão */
+}
+
+/* ================== INPUT ================== */
+.input-container input {
+    flex: 1;                        /* ocupa todo espaço disponível */
+    padding: 12px 20px;             /* padding interno */
+    border: 2px solid #555;         /* borda escura */
+    border-radius: 50px 0 0 50px;   /* arredondado apenas do lado esquerdo */
+    font-size: 1rem;
+    background-color: #fcf8f8;
+    color: #f3f3f3;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-container input::placeholder {
+    color: #aaa; /* placeholder discreto */
+}
+
+.input-container input:focus {
+    border-color: #ff9900;
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.5);
+}
+
+/* ================== BOTÃO ================== */
+.input-container button {
+    border: none;
+    background: #3D2412;
+    color: #fff;
+    height: 100%;              
+    padding: 0 18px;               
+    border-radius: 0 50px 50px 0;  
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-container button:hover {
+    box-shadow: #3D2412;
+}
 
 /* Container do input + botão */
 .input-container {
@@ -88,7 +135,7 @@ form {
 }
 
 .input-container button:hover {
-    background-color: #5b311f;
+    background-color: #3D2412;
 }
 
 /* ================== TABELA ================== */
@@ -278,4 +325,28 @@ td:last-child, th:last-child {
     justify-content: flex-end; 
     padding: 15px 0 0 0;
     gap: 10px; 
+}
+
+/*====== Ações =====*/
+.acoes {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.acao {
+    text-decoration: none; /* remove sublinhado */
+}
+
+.acao i {
+    font-size: 20px;   /* maior e visível */
+    color: #000;       /* preto elegante */
+    transition: transform 0.2s, color 0.2s;
+    cursor: pointer;
+}
+
+.acao i:hover {
+    transform: scale(1.3); /* aumenta levemente no hover */
+    color: #555;           /* escurecimento suave */
 }
