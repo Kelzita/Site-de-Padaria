@@ -189,31 +189,28 @@ input:-webkit-autofill + .style-label {
     position: relative;
     display: inline-block;
     text-decoration: none;
-    overflow: hidden;
-    transition: color 0.3s ease;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
-    line-height: 1.2; /* garante espaço vertical */
+    line-height: 1.6;
+    padding-bottom: 2px; /* espaço pro underline */
 }
 
 .link-animado::after {
     content: '';
     position: absolute;
-    width: 100%;
+    left: 50%;               /* começa do meio */
+    bottom: 0;               /* bem abaixo do texto */
+    width: 0;                /* começa sem largura */
     height: 2px;
     background-color: white;
-    left: -100%;    /* começa fora */
-    bottom: 0;      /* fica alinhado com a base do texto */
-    transition: left 0.4s ease;
-}
-
-.link-animado:hover {
-    color: #cacaca;
+    transition: width 0.3s ease, left 0.3s ease;
 }
 
 .link-animado:hover::after {
-    left: 0;  /* faz a linha deslizar para dentro */
+    width: 100%;             /* cresce até a largura do link */
+    left: 0;                 /* move para alinhar do começo */
 }
+
 
 
 /*==================== BOTÃO ====================*/

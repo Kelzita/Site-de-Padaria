@@ -37,7 +37,7 @@ $nome_funcao = $funcao['nome_funcao'];
 // ========== PERMISSÕES DE MENU ==========
 $permissoes = [
     1 => [
-        "Histórico de Vendas" => ["../php/HistoricoVendas.php" => "Histórico de Vendas"],
+        "Histórico de Vendas" => ["../historicodevendas.html" => "Histórico de Vendas"],
         "Gestão de Produtos e Estoque" => [
             "../html_cadastros/cadastrar_produto.php" => "Cadastrar Produto",
             "../html_listas/estoque_atual.php" => "Estoque Atual",

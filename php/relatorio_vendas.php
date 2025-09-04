@@ -1,233 +1,155 @@
 <?php
 session_start();
-require 'conexao.php';
+require_once("conexao.php");
 
-// Conexão com banco de dados
-$host = "localhost";
-$user = "root";
-$pass = "";
-$banco = "padaria_pao_genial";
+// ==================== FUNÇÕES ==================== //
 
-try {
-    $dsn = "mysql:host=$host;dbname=$banco;charset=utf8";
-    $pdo = new PDO($dsn, $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e){
-    die("<script>alert('Erro ao conectar-se ao banco');</script>" . $e->getMessage());
-}
-
+// Função genérica para buscar dados
 function fetchData($pdo, $sql, $params = []) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
     return $stmt->fetchAll(PDO::FETCH_NUM);
 }
 
+// Organiza dados para gráfico, ignorando meses futuros
+function arr_tar($data, $tipoMes = false) {
+    $labels = [];
+    $vals = [];
+
+    // Mês atual
+    $mesAtual = (int)date('n');
+
+    foreach ($data as $row) {
+        $mes = $row[0];
+        if($tipoMes && $mes > $mesAtual) continue; // ignora meses futuros
+
+        $labels[] = $tipoMes ? ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][$mes-1] : $row[0];
+        $vals[] = (float)$row[1];
+    }
+
+    return [$labels,$vals];
+}
+
+// Monta URL do QuickChart
+function quickchartUrl($type, $labels, $data, $labelText='', $colors=[]) {
+    if(empty($labels)) $labels=['Sem dados'];
+    if(empty($data)) $data=[0];
+    if(empty($colors)) $colors=array_fill(0,count($labels),'#3D2412');
+
+    $dataset = ['label'=>$labelText,'data'=>$data];
+    if($type==='pie' || $type==='bar') $dataset['backgroundColor'] = $colors;
+    if($type==='line'){ $dataset['borderColor'] = $colors[0]; $dataset['fill'] = false; }
+
+    $config = ['type'=>$type,'data'=>['labels'=>$labels,'datasets'=>[$dataset]],'options'=>['plugins'=>['legend'=>['display'=>true]]]];
+
+    return "https://quickchart.io/chart?c=".urlencode(json_encode($config))."&w=600&h=400&devicePixelRatio=2";
+}
+
+// ==================== CONSULTAS ==================== //
+
+// 1) Receita Mensal
 $receitaMensal = fetchData($pdo, "
-    SELECT MONTH(c.data_abertura), SUM(ic.total)
+    SELECT MONTH(c.data_fechamento), COALESCE(SUM(ic.total),0)
     FROM comanda c
     JOIN item_comanda ic ON ic.id_comanda = c.id_comanda
-    WHERE c.status='finalizado' AND YEAR(c.data_abertura) = YEAR(CURDATE())
-    GROUP BY MONTH(c.data_abertura)
-    ORDER BY MONTH(c.data_abertura)
+    WHERE LOWER(c.status)='fechada' AND YEAR(c.data_fechamento) = YEAR(CURDATE())
+    GROUP BY MONTH(c.data_fechamento)
+    ORDER BY MONTH(c.data_fechamento)
 ");
 
-$catReceitas = fetchData($pdo, "
-    SELECT p.unmedida, SUM(ic.total)
-    FROM item_comanda ic
-    JOIN comanda c ON c.id_comanda = ic.id_comanda
-    JOIN produto p ON p.id_produto = ic.id_produto
-    WHERE c.status='finalizado' AND MONTH(c.data_abertura) = MONTH(CURDATE()) AND YEAR(c.data_abertura) = YEAR(CURDATE())
-    GROUP BY p.unmedida
-");
+// 2) Formas de Pagamento
+$formasFixas = ['dinheiro','pix','cartão de débito','cartão de crédito','vale alimentação'];
+$coresFixas = ['#3D2412','#B88C6D','#F5E6C7','#A67B5B','#CBAE8B'];
 
-$pagamentos = fetchData($pdo, "
-    SELECT c.forma_pagamento, COUNT(*) 
+$pagamentosRaw = fetchData($pdo, "
+    SELECT LOWER(c.forma_pagamento) AS forma, COUNT(*) AS total
     FROM comanda c
-    WHERE MONTH(c.data_abertura) = MONTH(CURDATE()) AND YEAR(c.data_abertura) = YEAR(CURDATE())
-    GROUP BY c.forma_pagamento
+    WHERE LOWER(c.status)='fechada'
+      AND MONTH(c.data_fechamento)=MONTH(CURDATE())
+      AND YEAR(c.data_fechamento)=YEAR(CURDATE())
+    GROUP BY LOWER(c.forma_pagamento)
 ");
 
+$pagamentosAssoc = [];
+foreach($pagamentosRaw as $p){
+    $pagamentosAssoc[$p[0]] = (int)$p[1];
+}
+
+$labelsP = $formasFixas;
+$valuesP = [];
+foreach($formasFixas as $f){
+    $valuesP[] = $pagamentosAssoc[$f] ?? 0;
+}
+$coresPag = $coresFixas;
+
+// 3) Top 5 Produtos Mais Vendidos (somente produtos reais)
 $topProdutos = fetchData($pdo, "
-    SELECT p.nome_produto, SUM(ic.quantidade)
+    SELECT p.nome_produto, COALESCE(SUM(ic.quantidade),0) AS total_vendido
     FROM item_comanda ic
     JOIN comanda c ON c.id_comanda = ic.id_comanda
     JOIN produto p ON p.id_produto = ic.id_produto
-    WHERE MONTH(c.data_abertura) = MONTH(CURDATE()) AND YEAR(c.data_abertura) = YEAR(CURDATE())
-    GROUP BY p.nome_produto
-    ORDER BY SUM(ic.quantidade) DESC
+    WHERE LOWER(c.status)='fechada'
+      AND MONTH(c.data_fechamento)=MONTH(CURDATE())
+      AND YEAR(c.data_fechamento)=YEAR(CURDATE())
+    GROUP BY p.id_produto
+    ORDER BY total_vendido DESC
     LIMIT 5
 ");
 
-function arr_tar($data) {
-    $labels = array_map('strval', array_column($data, 0));
-    $vals = array_map('floatval', array_column($data, 1));
-    return [$labels, $vals];
-}
+list($labelsM,$valuesM) = arr_tar($receitaMensal,true);
+list($labelsT,$valuesT) = arr_tar($topProdutos);
+$coresTop=['#3D2412','#B88C6D','#F5E6C7','#A67B5B','#CBAE8B'];
 
-list($labelsM, $valuesM) = arr_tar($receitaMensal);
-list($labelsC, $valuesC) = arr_tar($catReceitas);
-list($labelsP, $valuesP) = arr_tar($pagamentos);
-list($labelsT, $valuesT) = arr_tar($topProdutos);
-
-function quickchartUrl($type, $labels, $data, $labelText='') {
-    if (empty($labels) || empty($data)) {
-        $labels = ['Nenhum dado'];
-        $data = [0];
-    }
-    $config = [
-        'type' => $type,
-        'data' => [
-            'labels' => $labels,
-            'datasets' => [['label' => $labelText, 'data' => $data]]
-        ],
-        'options' => [
-            'plugins' => [
-                'legend' => ['display' => true]
-            ]
-        ]
-    ];
-    $json = urlencode(json_encode($config));
-    return "https://quickchart.io/chart?c={$json}&w=600&h=400&devicePixelRatio=2";
-}
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Relatório Mensal</title>
+<title>Relatórios Dashboard</title>
 <style>
 body {
-    /* Ajuste aqui o caminho para a imagem fundo.png */
-    background-image: url('img/fundo.png'); /* ajuste conforme a localização do arquivo */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
+    font-family: 'Times New Roman', serif;
+    background-image:url('../img/fundo_padaria.png');
+    background-size:cover;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
-
-/* Resto do seu CSS */
-.dashboard {
-    position: relative; 
-    padding-top: 20px; 
-    max-width: 1100px;
-    margin: auto;
+.dashboard{ max-width:1100px; width:100%; margin-top:80px;}
+.chart-container, .card{
+    background-color:rgba(255,255,255,0.85);
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:30px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
-
-.voltar {
-    position: absolute;
-    top: 30px;       
-    left: 10px;     
-    display: block;
-    z-index: 10;     
-    text-decoration: none;
-    font-weight: bold;
-    color: #34495e;
-    font-size: 16px;
-}
-
-.chart-container {
-    background: #ffffff;
-    padding: 25px 30px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-}
-
-.chart-container h2 {
-    font-size: 1.4rem;
-    color: #2c3e50;
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.chart-container img {
-    max-height: 320px;
-    display: block;
-    margin: 0 auto;
-}
-
-.cards {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.card {
-    background: #fff;
-    flex: 1 1 300px;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card h2 {
-    font-size: 1.2rem;
-    color: #2c3e50;
-    margin-bottom: 18px;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.card img {
-    max-height: 280px;
-    display: block;
-    margin: 0 auto;
-}
-
-.dashboard h2 {
-    font-size: 1.5rem;
-    color: #34495e;
-    margin-bottom: 15px;
-    font-weight: 700;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-}
-
-.chart-container, .card {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-.chart-container:hover, .card:hover {
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-}
+.cards{ display:flex; flex-wrap:wrap; gap:20px; justify-content:center;}
+.chart-container h2, .card h2{ color:#3D2412; margin-bottom:20px; text-transform:uppercase; }
+img{ max-height:320px; display:block; margin:0 auto;}
+.voltar{ display:block; text-decoration:none; color:#3D2412; font-weight:bold; margin-bottom:20px;}
 </style>
 </head>
 <body>
-
 <div class="dashboard">
-
 <a href="#" class="voltar">&#8592; Voltar</a>
 
 <div class="chart-container">
   <h2>RECEITA MENSAL</h2>
-  <img src="<?= quickchartUrl('line', $labelsM, $valuesM, 'Receita R$'); ?>" alt="Receita Mensal">
+  <img src="<?= quickchartUrl('line',$labelsM,$valuesM,'Receita R$',['#3D2412']); ?>" alt="Receita Mensal">
 </div>
 
 <div class="cards">
   <div class="card">
-    <h2>RECEITA POR CATEGORIA</h2>
-    <img src="<?= quickchartUrl('bar', $labelsC, $valuesC, 'Receita por Unidade'); ?>" alt="Receita Categorias">
-  </div>
-  <div class="card">
     <h2>FORMAS DE PAGAMENTO</h2>
-    <img src="<?= quickchartUrl('pie', $labelsP, $valuesP, 'Pagamentos'); ?>" alt="Formas de Pagamento">
+    <img src="<?= quickchartUrl('pie',$labelsP,$valuesP,'Pagamentos',$coresPag); ?>" alt="Formas de Pagamento">
   </div>
   <div class="card">
     <h2>TOP 5 PRODUTOS MAIS VENDIDOS</h2>
-    <img src="<?= quickchartUrl('bar', $labelsT, $valuesT, 'Quantidade Vendida'); ?>" alt="Top Produtos">
+    <img src="<?= quickchartUrl('bar',$labelsT,$valuesT,'Quantidade Vendida',$coresTop); ?>" alt="Top Produtos">
   </div>
 </div>
-
 </div>
-
 </body>
 </html>
