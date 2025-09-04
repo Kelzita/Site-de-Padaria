@@ -111,37 +111,6 @@ if (isset($_POST['alterar'])) {
     <link rel="stylesheet" href="../css/styleperfilfunc.css">
     <!-- CDN do Remix Icon para o ícone do olho -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
-    <style>
-        /* Estilização do campo de senha com ícone */
-        .campo-senha {
-            position: relative;
-            width: 100%;
-            display: flex;
-            align-items: center;
-        }
-
-        .campo-senha input {
-            width: 100%;
-            padding-right: 40px; /* Espaço para o ícone */
-            box-sizing: border-box;
-        }
-
-        .toggle-olho {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            font-size: 20px;
-            color: #777;
-            transition: 0.3s;
-        }
-
-        .toggle-olho:hover {
-            color: #333;
-            transform: translateY(-50%) scale(1.15);
-        }
-    </style>
 </head>
 <body>
 <header>
@@ -178,53 +147,60 @@ if (isset($_POST['alterar'])) {
         </div>
         <small id="erro-senha" style="color:red; display:none;"></small>
 
-
         <button type="submit" name="alterar">Alterar</button>
     </form>
 </div>
 
 <script>
     const form = document.getElementById('form-perfil');
-const erroSenha = document.getElementById('erro-senha');
+    const erroSenha = document.getElementById('erro-senha');
 
-form.addEventListener('submit', function(event) {
-    const senha = document.getElementById('senha_funcionario').value.trim();
+    form.addEventListener('submit', function(event) {
+        const senha = document.getElementById('senha_funcionario').value.trim();
 
-    // Se o campo estiver vazio, permite (não altera a senha)
-    if (senha !== "") {
-        const regex = /^(?=.*[A-Z])(?=.*\d).{6,20}$/;
-        // Explicação:
-        // (?=.*[A-Z]) -> pelo menos uma letra maiúscula
-        // (?=.*\d)    -> pelo menos um número
-        // .{6,20}     -> mínimo 6 e máximo 20 caracteres
+        if (senha !== "") {
+            const regex = /^(?=.*[A-Z])(?=.*\d).{6,20}$/;
+            if (!regex.test(senha)) {
+                erroSenha.style.display = "block";
+                erroSenha.textContent = "Senha deve ter 6-20 caracteres, pelo menos uma letra maiúscula e um número.";
+                event.preventDefault();
+                return false;
+            } else {
+                erroSenha.style.display = "none";
+            }
+        }
+    });
 
-        if (!regex.test(senha)) {
-            erroSenha.style.display = "block";
-            erroSenha.textContent = "Senha deve ter 6-20 caracteres, pelo menos uma letra maiúscula e um número.";
-            event.preventDefault(); // impede envio
-            return false;
+    // Função para mostrar/ocultar a senha
+    function toggleSenha() {
+        const input = document.getElementById('senha_funcionario');
+        const icone = document.querySelector('.toggle-olho');
+
+        if (input.type === "password") {
+            input.type = "text";
+            icone.classList.remove("ri-eye-off-line");
+            icone.classList.add("ri-eye-line");
         } else {
-            erroSenha.style.display = "none";
+            input.type = "password";
+            icone.classList.remove("ri-eye-line");
+            icone.classList.add("ri-eye-off-line");
         }
     }
-});
 
-// Função para mostrar/ocultar a senha
-function toggleSenha() {
-    const input = document.getElementById('senha_funcionario');
-    const icone = document.querySelector('.toggle-olho');
+    // Preview da imagem escolhida
+    const inputImagem = document.getElementById("imagem_funcionario");
+    const previewImg = document.getElementById("preview-img");
 
-    if (input.type === "password") {
-        input.type = "text";
-        icone.classList.remove("ri-eye-off-line");
-        icone.classList.add("ri-eye-line");
-    } else {
-        input.type = "password";
-        icone.classList.remove("ri-eye-line");
-        icone.classList.add("ri-eye-off-line");
-    }
-}
-
+    inputImagem.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                previewImg.src = e.target.result; // troca na hora
+            };
+            reader.readAsDataURL(file);
+        }
+    });
 </script>
 
 </body>
