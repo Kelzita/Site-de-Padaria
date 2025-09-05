@@ -40,7 +40,7 @@ if (!$funcao) {
 
 $nome_funcao = $funcao['nome_funcao'];
 
-// ========== PERMISSÕES DE MENU ==========
+// ========== PERMISSÕES DE MENU ========== 
 $permissoes = [
     1 => [
         "Histórico de Vendas" => ["../php/historicodevendas.php" => "Histórico de Vendas"],
@@ -60,7 +60,11 @@ $permissoes = [
         "Relatórios" => ["../php/relatorio_vendas.php" => "Relatório de Vendas"],
         "Caixa" => ["../php/caixa.php" => "Acessar Caixa"],
         "Comanda" => ["../php/comanda.php" => "Abrir Comanda"],
-        "Perfil" => ["../inicio/perfil.php" => "Meu Perfil"],
+        "Perfil" => [
+            "../inicio/perfil.php" => "Meu Perfil",
+            "../inicio/suporte.php" => "Suporte",
+            "../php/logout.php" => "Sair"
+        ]
     ],
     2 => [
         "Gestão de Produtos e Estoque" => [
@@ -69,17 +73,30 @@ $permissoes = [
             "../html_gerenciamento/gerenciar_produtos.php" => "Gerenciar Produtos"
         ],
         "Relatórios" => ["../php/relatorio_vendas.php" => "Relatório de Vendas"],
-        "Perfil" => ["../inicio/perfil.php" => "Meu Perfil"],
+        "Perfil" => [
+            "../inicio/perfil.php" => "Meu Perfil",
+            "../inicio/suporte.php" => "Suporte",
+            "../php/logout.php" => "Sair"
+        ]
     ],
     3 => [
         "Comanda" => ["../php/comanda.php" => "Abrir Comanda"],
-        "Perfil" => ["../inicio/perfil.php" => "Meu Perfil"],
+        "Perfil" => [
+            "../inicio/perfil.php" => "Meu Perfil",
+            "../inicio/suporte.php" => "Suporte",
+            "../php/logout.php" => "Sair"
+        ]
     ],
     4 => [
         "Caixa" => ["../php/caixa.php" => "Acessar Caixa"],
-        "Perfil" => ["../inicio/perfil.php" => "Meu Perfil"],
+        "Perfil" => [
+            "../inicio/perfil.php" => "Meu Perfil",
+            "../inicio/suporte.php" => "Suporte",
+            "../php/logout.php" => "Sair"
+        ]
     ]
 ];
+
 
 // Verifica se existem permissões para o perfil
 if (!isset($permissoes[$id_funcao])) {
@@ -88,118 +105,7 @@ if (!isset($permissoes[$id_funcao])) {
 
 $opcoes_menu = $permissoes[$id_funcao];
 ?>
-
-<style>
-/* RESET */
-html, body {
-    margin: 0;
-    padding: 0;
-}
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: sans-serif;
-    background-color: #fafafa;
-    color: #333;
-    font-weight: bold;
-}
-
-/* MENU PRINCIPAL */
-nav {
-    background: #ffffff;
-    padding: 0 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    
-}
-
-nav ul.menu {
-    list-style: none;
-    display: flex;
-    justify-content: flex-start; /* Alinha itens à esquerda */
-    align-items: center;
-    width: 100%;
-    gap: 20px; /* Espaçamento fixo */
-}
-
-nav ul.menu > li.logo {
-    margin-right: auto; /* Empurra os outros itens para a direita */
-}
-
-nav ul.menu > li.dropdown {
-    min-width: 120px; /* Garante largura mínima */
-    text-align: center;
-    position: relative;
-}
-
-nav ul.menu > li > a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 15px 20px;
-    color: #555;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background 0.3s, color 0.3s;
-    border-radius: 5px;
-}
-
-nav ul.menu > li > a:hover {
-    background: #f2f2f2;
-    color: #000;
-}
-
-/* FOTO DE PERFIL */
-.perfil-menu-img {
-    width: 100px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ffffff;
-}
-
-/* SUBMENU */
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    list-style: none;
-    background: #ffffff;
-    padding: 10px 0;
-    min-width: 180px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s ease-in-out;
-    border-radius: 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-}
-
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.dropdown-menu li a {
-    display: block;
-    padding: 10px 20px;
-    color: #555;
-    text-decoration: none;
-    transition: background 0.3s, color 0.3s;
-    border-radius: 5px;
-}
-
-.dropdown-menu li a:hover {
-    background: #f2f2f2;
-    color: #000;
-}
-</style>
+<link rel="stylesheet" href="../css/menu.css"/>
 
 <nav>
     <ul class="menu">

@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-include_once '../php/menu.php';
+require_once '../php/menu.php';
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['id_funcionario'])) {
@@ -42,10 +42,6 @@ $nome_funcao = $funcao['nome_funcao'] ?? 'Função não encontrada';
         Bem-vindo(a) <?= htmlspecialchars($_SESSION['nome_funcionario']); ?> 
         <br>Função: <?= htmlspecialchars($nome_funcao); ?>
     </h1>
-
-    <form action="../php/logout.php" method="POST">
-        <button type="submit">Logout</button>
-    </form>
 </div>
 </body>
 </html>

@@ -211,6 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
         radixPoint: ",",
         allowMinus: false,
         autoUnmask: false,
-        removeMaskOnSubmit: false
+        removeMaskOnSubmit: false,
+        rightAlign: false // <-- valor ficará alinhado à esquerda
     }).mask("#salario");
 });
