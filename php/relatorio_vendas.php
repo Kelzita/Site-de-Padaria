@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("conexao.php");
+require_once("menu.php");
 
 // ==================== FUNÇÕES ==================== //
 
@@ -156,6 +157,7 @@ margin-left: -650px;
 left: 5px;
 }
 </style>
+<link rel="stylesheet" href="../css/stylehome.css"/>
 </head>
 <body>
 <div class="dashboard">
