@@ -15,11 +15,25 @@ require_once '../php/menu.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
-<body>
+<style>
+    .voltar {
+  width: 50px ;
+  height: 40px ;
+  margin-top: 20px;
+  margin-left: -1250px;
+  left: 5px;
+}
 
-    <a href="../inicio/home.php" class="voltar"> 
-        <img class="seta1" src="../img/btn_voltar.png" title="seta" />
-    </a>
+.seta1 {
+  width: 50px ;
+  height: 40px ;
+  margin-top: 20px;
+  margin-left: 20px;
+  left: 5px;
+}
+
+</style>
+<body>
 
 <div class="container">
     <h1>Lista de Produtos</h1>
@@ -69,6 +83,9 @@ require_once '../php/menu.php';
         <p style="color:white;">Nenhum produto cadastrado.</p>
     <?php endif; ?>
 </div>
+<a href="../inicio/home.php" class="voltar"> 
+        <img class="seta" src="../img/btn_voltar.png" title="seta">
+</a>
 <script src="../javascript/validacao_prod.js"></script>
 
 <script>

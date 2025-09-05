@@ -20,6 +20,24 @@ $fornecedores = listarFornecedores();
 
 <title>Lista de Fornecedores</title>
 </head>
+<style>
+    .voltar {
+  width: 50px ;
+  height: 40px ;
+  margin-top: 20px;
+  margin-left: -1250px;
+  left: 5px;
+}
+
+.seta1 {
+  width: 50px ;
+  height: 40px ;
+  margin-top: 20px;
+  margin-left: 20px;
+  left: 5px;
+}
+
+</style>
 <body>
 
 <div class="container">
@@ -73,6 +91,9 @@ $fornecedores = listarFornecedores();
         </tbody>
     </table>
 </div>
+<a href="../inicio/home.php" class="voltar"> 
+        <img class="seta" src="../img/btn_voltar.png" title="seta">
+</a>
 
 <script>
 // ====== Modal Visualizar ======
