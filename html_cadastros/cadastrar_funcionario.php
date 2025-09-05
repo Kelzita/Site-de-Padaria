@@ -85,7 +85,7 @@ try {
     
 
         <label for="salario"><i class="fas fa-money-bill-wave"></i> Salário:</label>
-        <input type="number" step="0.01" id="salario" name="salario" placeholder="R$ 0,00">
+        <input type="input" id="salario" name="salario" placeholder="R$0,00">
 
         <label for="id_funcao"><i class="fas fa-user-cog"></i> Função:</label>
         <select name="id_funcao" id="id_funcao">

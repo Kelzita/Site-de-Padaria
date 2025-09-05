@@ -118,9 +118,7 @@ if (isset($_POST['finalizar_venda'])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-<header>
-    <img src="../img/logo.png" alt="Logo da Padaria">
-</header>
+
 
 <div class="retangulo">
   <div class="topo-retangulo">

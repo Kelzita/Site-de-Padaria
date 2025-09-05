@@ -14,24 +14,6 @@ html, body {
   overflow-x: hidden;
 }
 
-/* ------------------- HEADER ------------------- */
-header {
-  background-color: white;
-  width: 100vw;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  padding-left: 60px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  z-index: 10;
-}
-
-header img {
-  height: 70px;
-  width: 70px;
-}
 
 h2{
   text-align: center;
