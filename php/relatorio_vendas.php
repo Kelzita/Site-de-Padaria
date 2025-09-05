@@ -58,7 +58,7 @@ $receitaMensal = fetchData($pdo, "
 ");
 
 // 2) Formas de Pagamento
-$formasFixas = ['dinheiro','pix','cartão de débito','cartão de crédito','vale alimentação'];
+$formasFixas = ['dinheiro','pix','cartao de debito','cartao de credito','vale alimentação'];
 $coresFixas = ['#3D2412','#B88C6D','#F5E6C7','#A67B5B','#CBAE8B'];
 
 $pagamentosRaw = fetchData($pdo, "

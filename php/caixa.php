@@ -92,11 +92,11 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <label for="forma_pagamento">Forma de Pagamento:</label>
         <select id="forma_pagamento">
-            <option value="Dinheiro">Dinheiro</option>
-            <option value="Pix">Pix</option>
-            <option value="Vale Alimentação">Vale Alimentação</option>
-            <option value="Cartão de Débito">Cartão de Débito</option>
-            <option value="Cartão de Crédito">Cartão de Crédito</option>
+            <option value="dinheiro">Dinheiro</option>
+            <option value="pix">Pix</option>
+            <option value="vale alimentação">Vale Alimentação</option>
+            <option value="cartao de debito">Cartão de Débito</option>
+            <option value="cartao de credito">Cartão de Crédito</option>
         </select>
 
         <div class="botoes_modal">
