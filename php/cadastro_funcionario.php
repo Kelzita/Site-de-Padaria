@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     $stmt->bindParam(':id_funcao', $id_funcao);
 
     if($stmt->execute()){
-        echo "<script>alert('Funcionário cadastrado com sucesso!'); window.location.href='../html_listas/lista_de_funcionarios.php';</script>";
+        echo "<script>alert('Funcionário cadastrado com sucesso!'); window.location.href='../html_cadastros/cadastrar_funcionario.php';</script>";
         exit;
     } else {
         echo "Erro ao cadastrar funcionário!";

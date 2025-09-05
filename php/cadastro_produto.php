@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $stmt->bindParam(':quantidade', $quantidade);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Produto cadastrado com sucesso!'); window.location.href='../html_listas/lista_de_produto.php';</script>";
+        echo "<script>alert('Produto cadastrado com sucesso!'); window.location.href='../html_cadastros/cadastrar_produto.php';</script>";
         exit;
     } else {
         echo "Erro ao cadastrar produto!";

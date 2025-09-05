@@ -70,3 +70,55 @@ function buscarProdutoPorId($id_produto) {
 
 ?>
 
+<?php
+require_once 'conexao.php';
+
+// Buscar fornecedor por ID
+function buscarFornecedorPorId($id_fornecedor){
+    global $pdo;
+    try {
+        $sql = "SELECT * FROM fornecedores WHERE id_fornecedor = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id_fornecedor, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch(PDOException $e){
+        error_log("Erro ao buscar fornecedor: ".$e->getMessage());
+        return null;
+    }
+}
+
+// Listar todos os fornecedores
+function listarFornecedores(){
+    global $pdo;
+    try {
+        $sql = "SELECT * FROM fornecedores ORDER BY id_fornecedor DESC";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch(PDOException $e){
+        error_log("Erro ao listar fornecedores: ".$e->getMessage());
+        return [];
+    }
+}
+
+// Inativar/Ativar fornecedor
+function toggleFornecedor($id){
+    global $pdo;
+    try{
+        $fornecedor = buscarFornecedorPorId($id);
+        if(!$fornecedor) return ['sucesso'=>false];
+
+        $novoStatus = $fornecedor['ativo'] ? 0 : 1;
+        $sql = "UPDATE fornecedores SET ativo = :ativo WHERE id_fornecedor = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':ativo', $novoStatus, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return ['sucesso'=>true, 'ativo'=>$novoStatus];
+    } catch(PDOException $e){
+        error_log("Erro ao alterar status fornecedor: ".$e->getMessage());
+        return ['sucesso'=>false];
+    }
+}
+?>

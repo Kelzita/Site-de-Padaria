@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 
     // ===== Máscaras =====
@@ -146,146 +147,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// ===== Buscar CEP FORNECEDOR =====
-async function buscarCEP(cep){
-    cep = cep.replace(/\D/g,'');
-    if(cep.length !== 8){ 
-        mostrarNotificacao("CEP inválido! Deve conter 8 dígitos.", "error");
-        return null; 
-    }
+// ===== Buscar CEP =====
+async function buscarCEPFornecedor() {
+    const cepInput = document.getElementById("cep_fornecedor");
+    const cep = cepInput.value.replace(/\D/g, '');
+    if (cep.length !== 8) return alert("CEP inválido!");
 
-    if(localStorage.getItem(`cep_${cep}`)){
-        return JSON.parse(localStorage.getItem(`cep_${cep}`));
-    }
+    const lupaIcon = document.querySelector("#cep_fornecedor + .busca_lupa");
+    const originalClass = lupaIcon.className;
+    lupaIcon.className = "ri-loader-4-line busca_lupa animar";
 
     try {
         let response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
         let data = await response.json();
-        if(data.erro){ 
-            mostrarNotificacao("CEP não encontrado!", "error"); 
-            return null; 
-        }
-        localStorage.setItem(`cep_${cep}`, JSON.stringify(data));
-        return data;
-    } catch(e){ 
-        mostrarNotificacao("Erro ao buscar o CEP!", "error"); 
-        return null; 
-    }
-}
-
-// ===== Preencher campos =====
-function preencherEndereco(prefixo, data){
-    document.getElementById(`rua_${prefixo}`).value = data.logradouro || '';
-    document.getElementById(`bairro_${prefixo}`).value = data.bairro || '';
-    document.getElementById(`cidade_${prefixo}`).value = data.localidade || '';
-    document.getElementById(`uf_${prefixo}`).value = data.uf || '';
-}
-
-// ===== CEP Fornecedor =====
-async function buscarCEPFornecedor(){
-    const cepInput = document.getElementById("cep_fornecedor");
-    let cep = cepInput.value;
-    
-    // Mostrar loading
-    const lupaIcon = document.querySelector("#cep_fornecedor + .busca_lupa");
-    const originalClass = lupaIcon.className;
-    lupaIcon.className = "ri-loader-4-line busca_lupa animar";
-    
-    try {
-        let data = await buscarCEP(cep);
+        if (data.erro) return alert("CEP não encontrado!");
         
-        if(data){ 
-            preencherEndereco('fornecedor', data);
-            mostrarNotificacao("Endereço preenchido com sucesso!", "success");
-        }
-    } catch(error) {
-        console.error("Erro na busca de CEP:", error);
-        mostrarNotificacao("Ocorreu um erro ao buscar o CEP. Tente novamente.", "error");
+        // Preencher campos
+        document.getElementById("rua_fornecedor").value = data.logradouro || '';
+        document.getElementById("bairro_fornecedor").value = data.bairro || '';
+        document.getElementById("cidade_fornecedor").value = data.localidade || '';
+        document.getElementById("uf_fornecedor").value = data.uf || '';
+    } catch(e) {
+        console.error(e);
+        alert("Erro ao buscar o CEP!");
     } finally {
-        // Restaurar ícone original (executa sempre, mesmo em caso de erro)
         lupaIcon.className = originalClass;
     }
 }
 
-// ===== Máscara CEP =====
-function aplicarMascaraCEP(cep) {
-    cep = cep.replace(/\D/g, '');
-    if (cep.length > 5) {
-        cep = cep.replace(/^(\d{5})(\d)/, '$1-$2');
-    }
-    return cep;
+// ===== Aplicar máscara =====
+function aplicarMascaraCEP(input) {
+    input.value = input.value.replace(/\D/g,'').replace(/^(\d{5})(\d)/, '$1-$2');
 }
 
-// ===== Formatar CEP durante a digitação =====
-function formatCEP(input) {
-    input.value = aplicarMascaraCEP(input.value);
-}
+// ===== Event Listeners =====
+document.addEventListener('DOMContentLoaded', () => {
+    const cepInput = document.getElementById('cep_fornecedor');
 
-// ===== Mostrar notificação =====
-function mostrarNotificacao(mensagem, tipo) {
-    const notification = document.getElementById("notification");
-    notification.textContent = mensagem;
-    notification.className = "notification " + tipo;
-    notification.style.display = "block";
-    
-    // Esconder a notificação após 5 segundos
-    setTimeout(() => {
-        notification.style.display = "none";
-    }, 5000);
-}
-
-// ===== Validar formulário =====
-function validarFormulario() {
-    const cep = document.getElementById("cep_fornecedor").value;
-    const razaoSocial = document.getElementById("razao_social").value;
-    
-    if (!razaoSocial) {
-        mostrarNotificacao("Por favor, preencha a Razão Social!", "error");
-        return;
-    }
-    
-    if (cep.replace(/\D/g, '').length !== 8) {
-        mostrarNotificacao("Por favor, insira um CEP válido!", "error");
-        return;
-    }
-    
-    mostrarNotificacao("Fornecedor cadastrado com sucesso!", "success");
-}
-
-// ===== Event Listeners para o CEP do fornecedor =====
-document.addEventListener('DOMContentLoaded', function() {
-    const cepFornecedorInput = document.getElementById('cep_fornecedor');
-    
-    // Permitir busca de CEP ao pressionar Enter
-    cepFornecedorInput.addEventListener("keypress", function(e) {
-        if (e.key === "Enter") {
+    cepInput.addEventListener('keypress', e => {
+        if(e.key === "Enter") {
             e.preventDefault();
             buscarCEPFornecedor();
         }
     });
-    
-    // Aplicar máscara quando o campo perde o foco (caso o usuário cole um valor)
-    cepFornecedorInput.addEventListener("blur", function() {
-        this.value = aplicarMascaraCEP(this.value);
-    });
-    
-    // Aplicar máscara também durante a digitação (backup)
-    cepFornecedorInput.addEventListener("input", function() {
-        this.value = aplicarMascaraCEP(this.value);
-    });
-    
-    // Adicionar animação de rotação
+
+    cepInput.addEventListener('blur', () => aplicarMascaraCEP(cepInput));
+    cepInput.addEventListener('input', () => aplicarMascaraCEP(cepInput));
+
+    // Spinner CSS
     const style = document.createElement('style');
     style.textContent = `
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .animar {
-             animation: spin 1s linear infinite;
-            top: 12px;
- 
-        }
+        @keyframes spin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+        .animar {animation: spin 1s linear infinite;}
     `;
     document.head.appendChild(style);
 });

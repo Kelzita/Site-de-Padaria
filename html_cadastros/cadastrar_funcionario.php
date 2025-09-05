@@ -34,22 +34,22 @@ try {
     <form method="POST" action="../php/cadastro_funcionario.php" class="formulario-cadastro" enctype="multipart/form-data">
 
         <label for="nome_funcionario"><i class="fas fa-user"></i> Nome:</label>
-        <input type="text" id="nome_funcionario" name="nome_funcionario" placeholder="Nome completo" required>
+        <input type="text" id="nome_funcionario" name="nome_funcionario" placeholder="Nome completo">
 
         <label for="cpf_funcionario"><i class="fas fa-id-card"></i> CPF:</label>
-        <input type="text" id="cpf_funcionario" name="cpf_funcionario" placeholder="000.000.000-00" maxlength="14" required>
+        <input type="text" id="cpf_funcionario" name="cpf_funcionario" placeholder="000.000.000-00" maxlength="14">
 
         <label for="email_funcionario"><i class="fas fa-envelope"></i> E-mail:</label>
-        <input type="email" id="email_funcionario" name="email_funcionario" placeholder="Digite o e-mail" required>
+        <input type="email" id="email_funcionario" name="email_funcionario" placeholder="Digite o e-mail">
 
         <label for="senha"><i class="fas fa-key"></i> Senha:</label>
         <div class="input-container-usuario">
-            <input type="password" id="senha" name="senha" placeholder="Insira a senha" required>
+            <input type="password" id="senha" name="senha" placeholder="Insira a senha">
             <i class="ri-eye-off-line login__eye" id="login-eye" onclick="toggleSenha()"></i>
         </div>
 
         <label for="telefone_funcionario"><i class="fas fa-phone"></i> Telefone:</label>
-        <input type="tel" id="telefone_funcionario" name="telefone_funcionario" placeholder="(00) 00000-0000" maxlength="15" required>
+        <input type="tel" id="telefone_funcionario" name="telefone_funcionario" placeholder="(00) 00000-0000" maxlength="15">
 
         <label for="cep_funcionario"><i class="fas fa-map-pin"></i> CEP:</label>
         <div class="input-container-cep">
@@ -58,19 +58,19 @@ try {
         </div>
 
         <label for="rua_funcionario"><i class="fas fa-road"></i> Rua:</label>
-        <input type="text" id="rua_funcionario" name="rua_funcionario" placeholder="Insira a rua" required>
+        <input type="text" id="rua_funcionario" name="rua_funcionario" placeholder="Insira a rua">
 
         <label for="numero_funcionario"><i class="fas fa-home"></i> Número:</label>
-        <input type="number" id="numero_funcionario" name="numero_funcionario" placeholder="Insira o número" required>
+        <input type="number" id="numero_funcionario" name="numero_funcionario" placeholder="Insira o número">
 
         <label for="bairro_funcionario"><i class="fas fa-city"></i> Bairro:</label>
-        <input type="text" id="bairro_funcionario" name="bairro_funcionario" placeholder="Insira o bairro" required>
+        <input type="text" id="bairro_funcionario" name="bairro_funcionario" placeholder="Insira o bairro">
 
         <label for="cidade_funcionario"><i class="fas fa-building"></i> Cidade:</label>
-        <input type="text" id="cidade_funcionario" name="cidade_funcionario" placeholder="Insira a cidade" required>
+        <input type="text" id="cidade_funcionario" name="cidade_funcionario" placeholder="Insira a cidade">
 
         <label for="uf_funcionario"><i class="fas fa-flag"></i> UF:</label>
-        <select id="uf_funcionario" name="uf_funcionario" required>
+        <select id="uf_funcionario" name="uf_funcionario">
             <option value="" disabled selected>Escolha o Estado</option>
             <?php
             $ufs = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
@@ -81,15 +81,15 @@ try {
         </select>
 
         <label for="data_admissao"><i class="fas fa-calendar-alt"></i> Data de Admissão:</label>
-        <input type="date" id="data_admissao" name="data_admissao" required>
+        <input type="date" id="data_admissao" name="data_admissao">
 
     
 
         <label for="salario"><i class="fas fa-money-bill-wave"></i> Salário:</label>
-        <input type="number" step="0.01" id="salario" name="salario" placeholder="R$ 0,00" required>
+        <input type="number" step="0.01" id="salario" name="salario" placeholder="R$ 0,00">
 
         <label for="id_funcao"><i class="fas fa-user-cog"></i> Função:</label>
-        <select name="id_funcao" id="id_funcao" required>
+        <select name="id_funcao" id="id_funcao">
             <option value="" disabled selected>Selecione a Função</option>
             <?php foreach ($funcoes as $funcao): ?>
                 <option value="<?= $funcao['id_funcao'] ?>"><?= $funcao['id_funcao'] ?> - <?= htmlspecialchars($funcao['nome_funcao']) ?></option>

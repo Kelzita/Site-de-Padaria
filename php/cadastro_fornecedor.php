@@ -14,16 +14,11 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     $cidade = trim($_POST['cidade_fornecedor']);
     $uf = trim($_POST['uf_fornecedor']);
 
-    // Lida com o arquivo de imagem
-    $foto = null;
-    if(isset($_FILES['foto_fornecedor']) && $_FILES['foto_fornecedor']['error'] === UPLOAD_ERR_OK){
-        $foto = file_get_contents($_FILES['foto_fornecedor']['tmp_name']);
-    }
 
     $stmt = $pdo->prepare("INSERT INTO fornecedores
-        (razao_social, responsavel, cnpj_fornecedor, telefone_fornecedor, email_fornecedor, cep_fornecedor, rua_fornecedor, numero_fornecedor, bairro_fornecedor, cidade_fornecedor, uf_fornecedor, foto_fornecedor)
+        (razao_social, responsavel, cnpj_fornecedor, telefone_fornecedor, email_fornecedor, cep_fornecedor, rua_fornecedor, numero_fornecedor, bairro_fornecedor, cidade_fornecedor, uf_fornecedor)
         VALUES
-        (:razao_social, :responsavel, :cnpj, :telefone, :email, :cep, :rua, :numero, :bairro, :cidade, :uf, :foto)");
+        (:razao_social, :responsavel, :cnpj, :telefone, :email, :cep, :rua, :numero, :bairro, :cidade, :uf)");
 
     $stmt->bindParam(':razao_social', $razao_social);
     $stmt->bindParam(':responsavel', $responsavel);
@@ -36,10 +31,9 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     $stmt->bindParam(':bairro', $bairro);
     $stmt->bindParam(':cidade', $cidade);
     $stmt->bindParam(':uf', $uf);
-    $stmt->bindParam(':foto', $foto, PDO::PARAM_LOB);
 
     if($stmt->execute()){
-        echo "<script>alert('Fornecedor cadastrado com sucesso!'); window.location.href='../html_listas/lista_de_fornecedores.php';</script>";
+        echo "<script>alert('Fornecedor cadastrado com sucesso!'); window.location.href='../html_cadastros/cadastrar_fornecedor.php';</script>";
         exit;
     } else {
         echo "Erro ao cadastrar fornecedor!";
