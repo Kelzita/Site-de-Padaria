@@ -60,7 +60,6 @@ try {
                 <option value="<?= $f['id_fornecedor'] ?>"><?= $f['id_fornecedor'] ?> - <?= htmlspecialchars($f['razao_social']) ?></option>
             <?php endforeach; ?>
         </select>
-
         <label for="imagem_produto"><i class="fa-solid fa-image"></i> Foto:</label>
         <input type="file" name="imagem_produto" id="imagem_produto" required>
 
