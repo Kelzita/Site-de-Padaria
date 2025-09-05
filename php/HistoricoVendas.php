@@ -1,5 +1,6 @@
 <?php
 require_once "conexao.php";
+require_once 'menu.php';
 
 // Pegar as datas enviadas pelo formulário
 $dataInicial = $_GET['dataInicial'] ?? null;
@@ -49,12 +50,9 @@ foreach ($vendas as $venda) {
   <title>Histórico de Vendas</title>
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="stylesheet" href="../css/stylesHV.css">
+  <link rel="stylesheet" href="../css/stylehome.css">
 </head>
 <body>
-  <header>
-    <img src="../img/logo.png" title="Logo da Padaria">
-  </header>
-
   <div class="titulos">
       <h1>Histórico de Vendas</h1>
       <?php if ($dataInicial && $dataFinal): ?>
@@ -99,7 +97,7 @@ foreach ($vendas as $venda) {
   <?php endif; ?>
 
   <br>
-  <a href="../historicodevendas.html" class="voltar"> 
+  <a href="../historicodevendas.php" class="voltar"> 
         <img class="seta1" src="../img/btn_voltar.png" title="seta">
     </a>
 

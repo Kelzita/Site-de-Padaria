@@ -202,3 +202,15 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
 });
+document.addEventListener("DOMContentLoaded", function () {
+    // Máscara de moeda para o salário
+    Inputmask({
+        alias: "currency",
+        prefix: "R$ ",
+        groupSeparator: ".",
+        radixPoint: ",",
+        allowMinus: false,
+        autoUnmask: false,
+        removeMaskOnSubmit: false
+    }).mask("#salario");
+});

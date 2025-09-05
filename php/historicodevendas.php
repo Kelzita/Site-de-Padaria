@@ -1,18 +1,21 @@
+<?php 
+require_once 'conexao.php';
+require_once 'menu.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Histórico de Vendas</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/stylehome.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="../Site-de-Padaria/css/stylesHV.css"/>
+  <link rel="stylesheet" href="../css/stylesHV.css"/>
 </head>
 <body>
-  <header>
-    <img src="img/logo.png" title="Logo da Padaria">
-  </header>
-
   <div class="retangulo">
 
     <h1 class="titulo">HISTÓRICO DE VENDAS  <i class="fas fa-history"></i></h1>
@@ -33,8 +36,8 @@
     <button type="submit" class="gerar">Gerar Histórico</button>
   </form>
 
-    <a href="inicio/home.php" class="voltar"> 
-        <img class="seta" src="img/btn_voltar.png" title="seta">
+    <a href="../inicio/home.php" class="voltar"> 
+        <img class="seta" src="../img/btn_voltar.png" title="seta">
     </a>
 
    </div>
