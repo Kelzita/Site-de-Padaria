@@ -59,7 +59,7 @@ $fornecedores = listarFornecedores();
                     <a href="../alteracoes/Alterar_Fornecedor.php?id=<?= $f['id_fornecedor'] ?>" class="acao" title="Alterar">
                         <i class="ri-edit-line"></i>
                     </a>
-                     <!-- deletar -->
+
                     <!-- deletar -->
                     <a href="#" onclick="deletarFornecedor(event, <?= $f['id_fornecedor'] ?>)" class="acao" title="Deletar">
                         <i class="ri-delete-bin-line"></i>
@@ -107,7 +107,7 @@ function deletarFornecedor(event, id) {
     })
     .then(res => res.text())
     .then(response => {
-        alert("Fornecedor deletado com sucesso!");
+        alert("Fornecedor deletado com sucesso!");window.location.href='../html_listas/lista_de_fornecedores.php';
         // Opcional: remover a linha da tabela sem recarregar
         const row = document.querySelector(`#tabela-fornecedores tr[data-id='${id}']`);
         if(row) row.remove();

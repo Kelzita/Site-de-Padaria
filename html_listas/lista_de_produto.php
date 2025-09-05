@@ -25,13 +25,13 @@ require_once '../php/menu.php';
     <h1>Lista de Produtos</h1>
     <h2>Buscar Produto</h2>
 
-    <form action="lista_de_produto.php" method="POST" class="search-form">
-        <div class="input-container">
-            <input type="text" id="busca" name="busca" placeholder="Insira a Busca (por ID ou nome)" />
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </div>
-    </form>
-
+    <form action="lista_de_produto.php" method="POST" class="search-form" id="formBusca">
+    <div class="input-container">
+        <input type="text" id="busca" name="busca" placeholder="Insira a Busca (por ID ou nome)" />
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </div>
+</form>
+<p id="erroBusca" style="color: red;"></p>
     <?php if (!empty($produtos)): ?>
     <table>
         <thead>
@@ -69,6 +69,7 @@ require_once '../php/menu.php';
         <p style="color:white;">Nenhum produto cadastrado.</p>
     <?php endif; ?>
 </div>
+<script src="../javascript/validacao_prod.js"></script>
 
 <script>
 function deletarProduto(id) {
