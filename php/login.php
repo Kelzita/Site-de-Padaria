@@ -30,12 +30,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 exit;
             }
 
-            // Armazena informações na sessão
+           // Armazena informações na sessão
             $_SESSION['id_funcionario'] = $funcionario['id_funcionario'];
             $_SESSION['nome_funcionario'] = $funcionario['nome_funcionario'];
             $_SESSION['id_funcao'] = $funcionario['id_funcao'];
             $_SESSION['nome_funcao'] = $funcao['nome_funcao'];
 
+            // ====== ADICIONA FOTO NA SESSÃO ======
+            if (!empty($funcionario['imagem_funcionario'])) {
+             $_SESSION['imagem_funcionario'] = 'data:image/jpeg;base64,' . base64_encode($funcionario['imagem_funcionario']);
+            } else {
+             $_SESSION['imagem_funcionario'] = '../img/default_avatar.png';
+            }
+
+            
             // Redireciona dependendo da senha temporária
             if ($funcionario['senha_temporaria'] == 1) {
                 header("Location: ../nova_senha.php");
