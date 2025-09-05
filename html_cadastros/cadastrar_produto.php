@@ -30,16 +30,16 @@ try {
     <form method="POST" action="../php/cadastro_produto.php" enctype="multipart/form-data" class="formulario-cadastro">
 
     <label for="nome_produto"><i class="fas fa-barcode"></i> Nome do Produto:</label>
-            <input type="text" id="nome_produto" name="nome_produto" placeholder="Insira o nome do produto" required>
+            <input type="text" id="nome_produto" name="nome_produto" placeholder="Insira o nome do produto" >
 
             <label for="descricao"><i class="ri-file-text-line"></i> Descrição:</label>
             <textarea id="descricao" name="descricao" placeholder="Insira uma descrição (Opcional)"></textarea>
 
             <label for="preco"><i class="fas fa-dollar-sign"></i> Preço:</label>
-            <input type="text" id="preco" name="preco" placeholder="R$ 0,00" required>
+            <input type="text" id="preco" name="preco" placeholder="R$ 0,00" >
 
             <label for="unmedida"><i class="fas fa-cube"></i> Unidade de Medida:</label>
-            <select id="unmedida" name="unmedida" required>
+            <select id="unmedida" name="unmedida" >
                 <option value="" disabled selected>Selecione...</option>
                 <option value="un">Unidade (un)</option>
                 <option value="kg">Quilo (kg)</option>
@@ -48,20 +48,20 @@ try {
             </select>
 
             <label for="quantidade_produto"><i class="fas fa-boxes"></i> Quantidade do Produto:</label>
-            <input type="number" id="quantidade_produto" name="quantidade_produto" placeholder="Digite a quantidade disponível" min="1" required>
+            <input type="number" id="quantidade_produto" name="quantidade_produto" placeholder="Digite a quantidade disponível" min="1" >
 
         <label for="validade"><i class="fas fa-calendar-alt"></i> Validade:</label>
         <input type="date" name="validade" id="validade">
 
         <label for="id_fornecedor"><i class="fas fa-truck"></i> Fornecedor:</label>
-        <select name="id_fornecedor" id="id_fornecedor" required>
+        <select name="id_fornecedor" id="id_fornecedor" >
             <option value="">Selecione o fornecedor</option>
             <?php foreach ($fornecedores as $f): ?>
                 <option value="<?= $f['id_fornecedor'] ?>"><?= $f['id_fornecedor'] ?> - <?= htmlspecialchars($f['razao_social']) ?></option>
             <?php endforeach; ?>
         </select>
         <label for="imagem_produto"><i class="fa-solid fa-image"></i> Foto:</label>
-        <input type="file" name="imagem_produto" id="imagem_produto" required>
+        <input type="file" name="imagem_produto" id="imagem_produto" >
 
         <button type="submit" class="btn-cadastrar"><i class="fas fa-save"></i> Cadastrar</button>
     </form>
@@ -70,6 +70,7 @@ try {
 <a href='../inicio/home.php' class="voltar"> 
         <img class="seta1" src="../img/btn_voltar.png" title="seta">
     </a>
+    <script src="../javascript/validacao_prod.js"></script>
 <script src="../javascript/produto.js"></script>
 </body>
 </html>

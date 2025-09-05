@@ -14,12 +14,18 @@ if (!isset($_SESSION['id_funcionario'])) {
 
 // ====== DADOS DO FUNCIONÁRIO ======
 $id_funcao = $_SESSION['id_funcao'] ?? null;
-$imagem_funcionario = $_SESSION['imagem_funcionario'] ?? '../img/default_avatar.png';
+$imagem_funcionario = $_SESSION['imagem_funcionario'] ?? null;
 
-// Caso a imagem salva não exista fisicamente, usa a padrão
-if (!file_exists($imagem_funcionario)) {
-    $imagem_funcionario = '../img/default_avatar.png';
+if ($imagem_funcionario) {
+    // Se for binário do banco, transforma em base64
+    if (!str_starts_with($imagem_funcionario, 'data:image')) {
+        $imagem_funcionario = 'data:image/jpeg;base64,' . base64_encode($imagem_funcionario);
+    }
+} else {
+    $imagem_funcionario = '../img/avatars/default_avatar.png';
 }
+
+
 
 // ====== BUSCA O NOME DA FUNÇÃO ======
 $sqlFuncao = "SELECT nome_funcao FROM funcao WHERE id_funcao = :id_funcao";
@@ -37,7 +43,7 @@ $nome_funcao = $funcao['nome_funcao'];
 // ========== PERMISSÕES DE MENU ==========
 $permissoes = [
     1 => [
-        "Histórico de Vendas" => ["../historicodevendas.html" => "Histórico de Vendas"],
+        "Histórico de Vendas" => ["../php/historicodevendas.php" => "Histórico de Vendas"],
         "Gestão de Produtos e Estoque" => [
             "../html_cadastros/cadastrar_produto.php" => "Cadastrar Produto",
             "../html_listas/estoque_atual.php" => "Estoque Atual",
@@ -54,7 +60,7 @@ $permissoes = [
         "Relatórios" => ["../php/relatorio_vendas.php" => "Relatório de Vendas"],
         "Caixa" => ["../php/caixa.php" => "Acessar Caixa"],
         "Comanda" => ["../php/comanda.php" => "Abrir Comanda"],
-        "Perfil" => ["../php/perfil.php" => "Meu Perfil"],
+        "Perfil" => ["../inicio/perfil.php" => "Meu Perfil"],
     ],
     2 => [
         "Gestão de Produtos e Estoque" => [
@@ -63,15 +69,15 @@ $permissoes = [
             "../html_gerenciamento/gerenciar_produtos.php" => "Gerenciar Produtos"
         ],
         "Relatórios" => ["../php/relatorio_vendas.php" => "Relatório de Vendas"],
-        "Perfil" => ["../php/perfil.php" => "Meu Perfil"],
+        "Perfil" => ["../inicio/perfil.php" => "Meu Perfil"],
     ],
     3 => [
         "Comanda" => ["../php/comanda.php" => "Abrir Comanda"],
-        "Perfil" => ["../php/perfil.php" => "Meu Perfil"],
+        "Perfil" => ["../inicio/perfil.php" => "Meu Perfil"],
     ],
     4 => [
         "Caixa" => ["../php/caixa.php" => "Acessar Caixa"],
-        "Perfil" => ["../php/perfil.php" => "Meu Perfil"],
+        "Perfil" => ["../inicio/perfil.php" => "Meu Perfil"],
     ]
 ];
 
@@ -149,7 +155,7 @@ nav ul.menu > li > a:hover {
 
 /* FOTO DE PERFIL */
 .perfil-menu-img {
-    width: 40px;
+    width: 100px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
