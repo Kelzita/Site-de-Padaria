@@ -103,7 +103,7 @@ if (isset($_POST['finalizar_venda'])) {
     }
 
     // Redireciona para o caixa
-    header("Location: caixa.php");
+    header("Location: comanda.php");
     exit;
 }
 ?>
@@ -186,7 +186,7 @@ if (isset($_POST['finalizar_venda'])) {
             </tbody>
         </table>
     </div>
-        <form method="GET" action="caixa.php">
+        <form method="GET" action="comanda.php">
             <input type="hidden" name="id_comanda" value="<?= $id_comanda ?>">
             <button type="submit" class="finalizar_venda">Enviar para o caixa</button>
         </form>
