@@ -59,10 +59,14 @@ $fornecedores = listarFornecedores();
                     <a href="../alteracoes/Alterar_Fornecedor.php?id=<?= $f['id_fornecedor'] ?>" class="acao" title="Alterar">
                         <i class="ri-edit-line"></i>
                     </a>
-                    <!-- deleta-->
-                    <a href="#" class="acao btn-dele" onclick="deletarFornecedor(<?= $f['id_fornecedor'] ?>)">
-                 <i class="ri-delete-bin-line"></i>
-            </a>
+                     <!-- deletar -->
+                    <!-- deletar -->
+                    <a href="#" onclick="deletarFornecedor(event, <?= $f['id_fornecedor'] ?>)" class="acao" title="Deletar">
+                        <i class="ri-delete-bin-line"></i>
+                    </a>
+
+
+
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -92,6 +96,25 @@ document.addEventListener('click', function(e){
         modal.remove();
     }
 });
+function deletarFornecedor(event, id) {
+    event.preventDefault();
+    if (!confirm("Deseja realmente deletar este fornecedor?")) return;
+
+    fetch('../php/deletar_fornecedor.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `id_fornecedor=${id}`
+    })
+    .then(res => res.text())
+    .then(response => {
+        alert("Fornecedor deletado com sucesso!");
+        // Opcional: remover a linha da tabela sem recarregar
+        const row = document.querySelector(`#tabela-fornecedores tr[data-id='${id}']`);
+        if(row) row.remove();
+    })
+    .catch(err => alert("Erro ao deletar fornecedor."));
+}
+
 
 
 </script>
