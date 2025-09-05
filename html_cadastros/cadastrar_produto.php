@@ -62,9 +62,6 @@ try {
             <?php endforeach; ?>
         </select>
    
-   <a href='../inicio/home.php' class="voltar"> 
-        <img class="seta1" src="../img/btn_voltar.png" title="seta">
-    </a>
         <label for="imagem_produto"><i class="fa-solid fa-image"></i> Foto:</label>
         <input type="file" name="imagem_produto" id="imagem_produto" required>
 
@@ -72,5 +69,8 @@ try {
     </form>
 </div>
 <script src="../javascript/produto.js"></script>
+        <a href='../inicio/home.php' class="voltar"> 
+        <img class="seta1" src="../img/btn_voltar.png" title="seta">
+        </a>
 </body>
 </html>
