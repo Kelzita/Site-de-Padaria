@@ -2,7 +2,7 @@
 session_start();
 require_once "conexao.php";
 
-// 1️⃣ Cria nova comanda se não existir
+// Cria nova comanda se não existir
 if (!isset($_SESSION['id_comanda'])) {
     date_default_timezone_set('America/Sao_Paulo');
     $status = 'Aberta';
@@ -25,7 +25,7 @@ if (!isset($_SESSION['id_comanda'])) {
 
 $id_comanda = $_SESSION['id_comanda'];
 
-// 2️⃣ Adiciona item à comanda
+// Adiciona item à comanda
 if (isset($_POST['adicionar_item'])) {
     $id_produto = $_POST['id_produto'];
     $quantidade = $_POST['quantidade'];
@@ -55,7 +55,7 @@ if (isset($_POST['adicionar_item'])) {
     exit;
 }
 
-// 3️⃣ Busca produtos (se houver pesquisa)
+// Busca produtos (se houver pesquisa)
 $produtos = [];
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['busca'])) {
     $busca = trim($_POST['busca']);
@@ -84,7 +84,7 @@ if (empty($produtos)) {
     $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// 4️⃣ Enviar para o caixa / finalizar venda
+// Enviar para o caixa / finalizar venda
 if (isset($_POST['finalizar_venda'])) {
     $forma_pagamento = $_POST['forma_pagamento'] ?? 'Não especificado';
 
