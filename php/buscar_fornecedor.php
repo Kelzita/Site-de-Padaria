@@ -3,7 +3,7 @@ session_start();
 require_once 'conexao.php';
 
 if($_SESSION['id_funcao'] != 1) {
-    echo "<script>alert('Acesso Negado!');window.location.href='../principal.php';</script>";
+    echo "<script>alert('Acesso Negado!');window.location.href='../inicio/home.php';</script>";
 }
 
 $fornecedor = [];

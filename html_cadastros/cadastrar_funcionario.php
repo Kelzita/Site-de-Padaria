@@ -1,5 +1,6 @@
 <?php
 require_once '../php/conexao.php';
+require_once '../php/menu.php';
 
 // Buscar funções para select
 try {
@@ -18,15 +19,13 @@ try {
     <title>Cadastrar Funcionário</title>
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/style_cadastro.css" />
+    <link rel="stylesheet" href="../css/stylehome.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../javascript/inputmask.min.js"></script>
 </head>
 <body>
-<header>
-    <img src="../img/logo.png" alt="Logo" />
-</header>
 
 <div class="container">
     <h1>Cadastrar Funcionário</h1>

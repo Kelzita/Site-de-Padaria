@@ -1,6 +1,23 @@
 <?php
 require_once "conexao.php";
 
+session_start();
+
+// Se não estiver logado, manda para login
+if (!isset($_SESSION['id_usuario'])) {
+    header("Location: ../index.php");
+    exit;
+}
+
+// Se estiver logado mas não for da função 1, nega acesso
+if ($_SESSION['id_funcao'] !== 1) {
+    echo "<script>alert('Acesso Negado!'); window.location.href='../inicio/home.php';</script>";
+    exit;
+}
+
+
+
+
 if($_SERVER['REQUEST_METHOD'] === "POST"){
     $nome = trim($_POST['nome_funcionario']);
     $cpf = trim($_POST['cpf_funcionario']);

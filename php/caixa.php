@@ -2,9 +2,19 @@
 session_start();
 require_once "conexao.php";
 
-//if($_SESSION['id_funcao']!==1 && $_SESSION['id_funcao']!==4 ){
-    //echo "<script>alert('Acesso Negado!')</script>";
-//}
+if ($_SESSION['id_funcao'] !== 1 && $_SESSION['id_funcao'] !== 4) {
+    echo "<script>alert('Acesso Negado!');</script>";
+
+    if (isset($_SESSION['id_funcionario'])) {
+        // Usuário está logado -> vai pra home
+        echo "<script>window.location.href='../inicio/home.php';</script>";
+    } else {
+        // Usuário não está logado -> vai pra index (login)
+        echo "<script>window.location.href='../index.php';</script>";
+    }
+    exit;
+}
+
 
 // ID da comanda atual
 $id_comanda = $_SESSION['id_comanda'] ?? null;

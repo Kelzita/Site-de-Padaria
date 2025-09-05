@@ -1,5 +1,6 @@
 <?php 
 require_once '../php/conexao.php';
+require_once '../php/menu.php';
 
 // Buscar fornecedores
 try {
@@ -18,13 +19,11 @@ try {
     <title>Cadastrar Produto</title>
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/style_cadastro.css" />
+    <link rel="stylesheet" href="../css/stylehome.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
-<header>
-    <img src="../img/logo.png" alt="Logo" />
-</header>
 
 <div class="container">
     <h1>Cadastrar Produto</h1>
@@ -61,16 +60,17 @@ try {
                 <option value="<?= $f['id_fornecedor'] ?>"><?= $f['id_fornecedor'] ?> - <?= htmlspecialchars($f['razao_social']) ?></option>
             <?php endforeach; ?>
         </select>
-   
-   <a href='../inicio/home.php' class="voltar"> 
-        <img class="seta1" src="../img/btn_voltar.png" title="seta">
-    </a>
+
         <label for="imagem_produto"><i class="fa-solid fa-image"></i> Foto:</label>
         <input type="file" name="imagem_produto" id="imagem_produto" required>
 
         <button type="submit" class="btn-cadastrar"><i class="fas fa-save"></i> Cadastrar</button>
     </form>
 </div>
+   
+<a href='../inicio/home.php' class="voltar"> 
+        <img class="seta1" src="../img/btn_voltar.png" title="seta">
+    </a>
 <script src="../javascript/produto.js"></script>
 </body>
 </html>

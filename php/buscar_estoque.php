@@ -11,3 +11,4 @@ try {
     echo "Erro ao buscar estoque: " . $e->getMessage();
     $produtosEstoque = [];
 }
+?>

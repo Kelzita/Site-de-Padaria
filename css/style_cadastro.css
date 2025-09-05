@@ -74,8 +74,11 @@ h1 {
 /* adiciona espaço extra antes do botão */
 .formulario-cadastro input:last-of-type,
 .formulario-cadastro select:last-of-type {
+    
     margin-bottom: 25px;
 }
+
+
 
 
 /* -------- Botão -------- */
