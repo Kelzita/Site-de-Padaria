@@ -1333,6 +1333,12 @@ ALTER TABLE `funcionarios`
   MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT de tabela `item_comanda`
+--
+ALTER TABLE `item_comanda`
+  MODIFY `id_item_comanda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+
+--
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
