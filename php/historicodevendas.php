@@ -20,7 +20,7 @@ require_once 'menu.php';
 
     <h1 class="titulo">HISTÓRICO DE VENDAS  <i class="fas fa-history"></i></h1>
 
-  <form action="../Site-de-Padaria/php/HistoricoVendas.php" method="get">
+  <form action="HistoricoVendas.php" method="get">
     <label for="dataInicial" class="subtitulo">Selecione a data inicial:</label>
     <input type="date" id="dataInicial" name="dataInicial" >
     

@@ -48,8 +48,8 @@ foreach ($vendas as $venda) {
 <head>
   <meta charset="UTF-8">
   <title>Histórico de Vendas</title>
-  <link rel="stylesheet" href="../css/styles.css" />
   <link rel="stylesheet" href="../css/stylesHV.css">
+  <link rel="stylesheet" href="../css/styles.css" />
   <link rel="stylesheet" href="../css/stylehome.css">
 </head>
 <body>
@@ -97,7 +97,7 @@ foreach ($vendas as $venda) {
   <?php endif; ?>
 
   <br>
-  <a href="../historicodevendas.php" class="voltar"> 
+  <a href="historicodevendas.php" class="voltar"> 
         <img class="seta1" src="../img/btn_voltar.png" title="seta">
     </a>
 
