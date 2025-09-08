@@ -50,14 +50,21 @@ function quickchartUrl($type, $labels, $data, $labelText='', $colors=[]) {
 
 // 1) Receita Mensal
 $receitaMensal = fetchData($pdo, "
-    SELECT MONTH(c.data_fechamento), 
-           COALESCE(SUM(ic.total),0) AS receita
-    FROM comanda c
-    JOIN item_comanda ic ON ic.id_comanda = c.id_comanda
-    WHERE LOWER(c.status)='fechada' 
-      AND YEAR(c.data_fechamento) = YEAR(CURDATE())
-    GROUP BY MONTH(c.data_fechamento)
-    ORDER BY MONTH(c.data_fechamento)
+SELECT 
+    MONTH(c.data_fechamento) AS mes,
+    COALESCE(SUM(ic.total), 0) AS receita
+FROM comanda c
+INNER JOIN item_comanda ic ON c.id_comanda = ic.id_comanda
+INNER JOIN produto p ON ic.id_produto = p.id_produto
+WHERE LOWER(c.status) = 'fechada'
+  AND c.data_fechamento IS NOT NULL
+  AND YEAR(c.data_fechamento) = YEAR(CURDATE())
+GROUP BY MONTH(c.data_fechamento)
+ORDER BY mes;
+
+
+
+
 ");
 
 
