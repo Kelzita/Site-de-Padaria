@@ -65,7 +65,7 @@ $imagem = !empty($funcionario['imagem_funcionario'])
         <input type="password" id="conf_senha" name="conf_senha" placeholder="Confirme a nova senha">
 
         <div class="acoes-formulario">
-            <button type="submit" class="botao botao--primario"><i class="fas fa-save"></i> Salvar Alterações</button>
+            <button type="submit" class="botao botao--primario"><i class="fas fa-save"></i>   Salvar Alterações</button>
         </div>
     </form>
 </div>

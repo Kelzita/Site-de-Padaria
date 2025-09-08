@@ -70,7 +70,7 @@ $permissoes = [
         "Gestão de Produtos e Estoque" => [
             "../html_cadastros/cadastrar_produto.php" => "Cadastrar Produto",
             "../html_listas/estoque_atual.php" => "Estoque Atual",
-            "../html_gerenciamento/gerenciar_produtos.php" => "Gerenciar Produtos"
+            "../html_listas/lista_de_produto.php" => "Gerenciar Produtos"
         ],
         "Relatórios" => ["../php/relatorio_vendas.php" => "Relatório de Vendas"],
         "Perfil" => [

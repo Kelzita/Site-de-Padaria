@@ -61,12 +61,7 @@ WHERE LOWER(c.status) = 'fechada'
   AND YEAR(c.data_fechamento) = YEAR(CURDATE())
 GROUP BY MONTH(c.data_fechamento)
 ORDER BY mes;
-
-
-
-
 ");
-
 
 // 2) Formas de Pagamento
 $formasFixas = ['dinheiro','pix','cartao de debito','cartao de credito','vale alimentação'];

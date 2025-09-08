@@ -55,7 +55,7 @@ if (!$funcionario) {
                     <label for="foto_funcionario" class="rotulo-foto">
                         <i class="ri-camera-line"></i> Alterar Foto
                     </label>
-                    <p class="instrucoes-foto">Clique na imagem ou no botão para alterar a foto</p>
+                    <p class="instrucoes-foto">Clique no botão para alterar a foto</p>
                     <input type="hidden" name="foto_atual" id="foto_atual" value="<?= !empty($funcionario['imagem_funcionario']) ? base64_encode($funcionario['imagem_funcionario']) : '' ?>">
                 </div>
             </div>
