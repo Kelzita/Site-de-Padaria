@@ -11,16 +11,17 @@ require_once 'menu.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Histórico de Vendas</title>
   <link rel="stylesheet" href="../css/styles.css" />
-  <link rel="stylesheet" href="../css/stylehome.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/stylesHV.css"/>
+  <link rel="stylesheet" href="../css/stylehome.css">
+  <link rel="stylesheet" href="../css/stylesHV.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
   <div class="retangulo">
 
     <h1 class="titulo">HISTÓRICO DE VENDAS  <i class="fas fa-history"></i></h1>
 
-  <form action="../Site-de-Padaria/php/HistoricoVendas.php" method="get">
+  <form action="HistoricoVendas.php" method="get">
     <label for="dataInicial" class="subtitulo">Selecione a data inicial:</label>
     <input type="date" id="dataInicial" name="dataInicial" >
     
