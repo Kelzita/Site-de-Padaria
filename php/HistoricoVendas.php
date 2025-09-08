@@ -31,7 +31,7 @@ if ($dataInicial && $dataFinal) {
     $params[':dataFinal']   = $dataFinal;
 }
 
-$sql .= " ORDER BY c.data_fechamento DESC, c.hora_fechamento DESC";
+$sql .= " ORDER BY c.data_fechamento ASC, c.hora_fechamento ASC";
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute($params);

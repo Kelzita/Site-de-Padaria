@@ -1,19 +1,18 @@
 <?php
 session_start();
 require_once "conexao.php";
-
-// Verifica se tem comanda ativa
-$id_comanda = $_SESSION['id_comanda'] ?? null;
-
-if (!$id_comanda) {
-    echo json_encode(["erro" => "Nenhuma comanda ativa!"]);
-    exit;
-}
+header("Content-Type: application/json; charset=UTF-8");
 
 // Pega dados via GET
-$id_produto = $_GET['id_produto'] ?? null;
-$quantidade = $_GET['quantidade'] ?? 1;
-$observacao = $_GET['observacao'] ?? null;
+$id_comanda  = $_GET['id_comanda'] ?? null;
+$id_produto  = $_GET['id_produto'] ?? null;
+$quantidade  = $_GET['quantidade'] ?? 1;
+$observacao  = $_GET['observacao'] ?? null;
+
+if (!$id_comanda) {
+    echo json_encode(["erro" => "ID da comanda não informado!"]);
+    exit;
+}
 
 if (!$id_produto) {
     echo json_encode(["erro" => "Produto não informado"]);
@@ -59,6 +58,5 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute(['id_comanda' => $id_comanda]);
 $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-echo json_encode($itens);
-?>
+echo json_encode($itens, JSON_UNESCAPED_UNICODE);
 

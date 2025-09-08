@@ -63,15 +63,20 @@ nav ul.menu > li > a:hover {
     color: #000;
 }
 
-/* FOTO DE PERFIL */
 .perfil-menu-img {
-    width: 70px;
-    height: 60px;
-    text-align: center;
-    border-radius: 50%;
-    object-fit: cover;
+    width: 45px;              /* Largura fixa */
+    height: 45px;             /* Altura fixa igual à largura */
+    border-radius: 50%;       /* Torna redondo */
+    object-fit: cover;        /* Corta a imagem para caber certinho */
     border: 2px solid #ffffff;
+    display: block;           /* Remove espaçamento inline indesejado */
 }
+
+.perfil-menu-img {
+    flex-shrink: 0;  /* Impede de encolher no flex */
+    flex-grow: 0;    /* Impede de expandir no flex */
+}
+
 
 /* SUBMENU */
 .dropdown-menu {
