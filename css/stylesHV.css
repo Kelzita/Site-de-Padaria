@@ -81,8 +81,8 @@ transform: scale(1.05);
 .seta {
 width: 50px ;
 height: 40px ;
-margin-top: 10px;
-margin-left: -250px;
+margin-top: 20px;
+margin-left: 10px;
 left: 5px;
 }
 
@@ -149,31 +149,14 @@ td:last-child, th:last-child {
 
 .titulos {
     background-color: rgba(255, 255, 255, 0.85); /* Fundo branco semitransparente */
+    color: #000000; /* Texto preto */
     border-radius: 10px;
-    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+    margin: 20px auto;
+    max-width: 800px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.titulos h1{
-   margin-top: 10px;
-   margin-left: 10px;
-  margin-right: 10px;
-   padding-top: 0px;
-   color: black;
-   font-size: 20px;
-   font-family: 'Times New Roman', serif;
-   text-align: center;
-}
-
-.titulos p{
-  color: black;
-  font-size: 20px;
-  margin-top: 5px;
-  font-family: 'Times New Roman', serif;
-  text-align: center;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .total-geral{
@@ -187,7 +170,7 @@ td:last-child, th:last-child {
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 .valorTG{
@@ -198,4 +181,12 @@ td:last-child, th:last-child {
     background-color: rgba(255, 255, 255, 0.85);
     border-radius: 10px;
 
+}
+
+.seta1 {
+width: 50px ;
+height: 40px ;
+margin-top: 20px;
+margin-left: -650px;
+left: 5px;
 }

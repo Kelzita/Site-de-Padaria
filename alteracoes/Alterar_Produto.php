@@ -47,7 +47,7 @@ if($id_produto > 0) {
                 <label for="foto_produto" class="rotulo-foto">
                 <i class="ri-camera-line"></i> Alterar Foto
             </label>
-            <p class="instrucoes-foto">Clique na imagem ou no botão para alterar a foto</p>
+            <p class="instrucoes-foto">Clique no botão para alterar a foto</p>
             </div>
             <!-- DADOS DO PRODUTO -->
             <div class="grupo-formulario">
