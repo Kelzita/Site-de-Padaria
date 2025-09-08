@@ -97,7 +97,7 @@ foreach ($vendas as $venda) {
   <?php endif; ?>
 
   <br>
-  <a href="../historicodevendas.php" class="voltar"> 
+  <a href="historicodevendas.php" class="voltar"> 
         <img class="seta1" src="../img/btn_voltar.png" title="seta">
     </a>
 
