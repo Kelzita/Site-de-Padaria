@@ -64,17 +64,17 @@ nav ul.menu > li > a:hover {
 }
 
 .perfil-menu-img {
-    width: 45px;              /* Largura fixa */
-    height: 45px;             /* Altura fixa igual à largura */
-    border-radius: 50%;       /* Torna redondo */
-    object-fit: cover;        /* Corta a imagem para caber certinho */
+    width: 45px;              
+    height: 45px;            
+    border-radius: 50%;     
+    object-fit: cover;        
     border: 2px solid #ffffff;
-    display: block;           /* Remove espaçamento inline indesejado */
+    display: block;           
 }
 
 .perfil-menu-img {
-    flex-shrink: 0;  /* Impede de encolher no flex */
-    flex-grow: 0;    /* Impede de expandir no flex */
+    flex-shrink: 0;  
+    flex-grow: 0;   
 }
 
 
