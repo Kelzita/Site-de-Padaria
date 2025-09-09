@@ -39,6 +39,7 @@ foreach ($itens as $item) {
 <head>
     <meta charset="UTF-8">
     <title>Nota Fiscal - Comanda <?= $id_comanda ?></title>
+    <link rel="icon" href="img/logo_title.png">
  <style>
 /* Base */
 body {

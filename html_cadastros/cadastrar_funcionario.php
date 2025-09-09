@@ -24,6 +24,7 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../javascript/inputmask.min.js"></script>
+    <link rel="icon" href="img/logo_title.png">
 </head>
 <body>
 

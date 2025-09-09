@@ -35,6 +35,7 @@ $nome_funcao = $funcao['nome_funcao'] ?? 'Função não encontrada';
   <title>Home</title>
   <link rel="stylesheet" href="../css/stylehome.css">
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" href="../img/logo_title.png">
 </head>
 <body>
 <div class="retangulo">

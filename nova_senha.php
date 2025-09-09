@@ -13,6 +13,7 @@ if (!isset($_SESSION['id_funcionario'])) {
     <title>Redefinir Senha</title>
     <link rel="stylesheet" href="css/stylelogin.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link rel="icon" href="img/logo_title.png">
     <style>
         .campo-input {
             position: relative;

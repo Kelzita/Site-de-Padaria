@@ -13,6 +13,7 @@ require_once '../php/menu.php';
     <link rel="stylesheet" href="../css/stylehome.css">
     <link rel="stylesheet" href="../css/styletabela.css" />
     <title>Estoque Atual</title>
+    <link rel="icon" href="img/logo_title.png">
     <style>
         /* Linhas normais */
 tr.ok td {
