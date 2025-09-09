@@ -411,3 +411,8 @@ button:hover {
     color: #fff;
     transform: scale(1.05);
 }
+.seta {
+  display: flex; 
+  justify-content: flex-start;
+  align-items: flex-start;  
+}

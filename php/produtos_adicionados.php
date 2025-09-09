@@ -34,10 +34,10 @@ $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-<header>
-    <img src="../img/logo_pg.png" alt="Logo da Padaria">
-</header>
 <div class="retangulo">
+<a href="../php/comanda.php" class="voltar"> 
+        <img class="seta" src="../img/btn_voltar.png" title="seta">
+</a>
     <h2>Itens da Comanda Nº<?= htmlspecialchars($id_comanda) ?></h2>
     <div class="retangulo-conteudo">
         <?php if ($itens): ?>
