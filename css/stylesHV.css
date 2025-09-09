@@ -81,8 +81,8 @@ transform: scale(1.05);
 .seta {
 width: 50px ;
 height: 40px ;
-margin-top: 20px;
-margin-left: 10px;
+margin-top: 15px;
+margin-left: -265px;
 left: 5px;
 }
 
@@ -147,16 +147,30 @@ td:last-child, th:last-child {
   border-radius: 0 8px 8px 0;
 }
 
-.titulos {
+.titulos{
     background-color: rgba(255, 255, 255, 0.85); /* Fundo branco semitransparente */
-    color: #000000; /* Texto preto */
     border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    font-family: 'Times New Roman', serif;
-    margin: 20px auto;
+    margin-top: 20px;
     max-width: 800px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.titulos h1{
+  color: #000000; /* Texto preto */
+  text-align: center;
+  font-family: 'Times New Roman', serif;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.titulos p{
+  color: #000000; /* Texto preto */
+  text-align: center;
+  font-family: 'Times New Roman', serif;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .total-geral{
@@ -165,12 +179,12 @@ td:last-child, th:last-child {
     border-radius: 10px;
     height: 60px;
     width: 150px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 850px;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 
 .valorTG{
@@ -187,6 +201,6 @@ td:last-child, th:last-child {
 width: 50px ;
 height: 40px ;
 margin-top: 20px;
-margin-left: -650px;
+margin-left: -640px;
 left: 5px;
 }

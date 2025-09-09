@@ -6,7 +6,7 @@
   flex-direction: column;
   border-radius: 8px;
   text-align: center;
-  position: relative; /* necessário para posicionar o botão absoluto */
+  position: relative; 
   width: 500px;
   height: 530px;
 }
@@ -28,7 +28,7 @@
 }
 
   
-              /* ====== ESTILOS GERAIS - PERFIL FUNCIONÁRIO ====== */
+/* ====== ESTILOS GERAIS - PERFIL FUNCIONÁRIO ====== */
 * {
   box-sizing: border-box;
   margin: 0;

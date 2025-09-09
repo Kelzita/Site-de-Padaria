@@ -39,7 +39,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- ID COMANDA -->
     <div class="box_comanda">
-        <label>ID da Comanda:</label>
+        <label for="id_comanda">ID da Comanda:</label>
         <input type="text" id="id_comanda" placeholder="Digite o ID da Comanda" value="<?= htmlspecialchars($id_comanda) ?>">
         <button onclick="buscarComanda()" class="buscarComanda">Buscar</button>
         <button onclick="limparTela()" class="apagarBuscarComanda">Limpar</button>
@@ -107,44 +107,40 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <script>
     
 function pesquisarProduto() {
+    // Pede tipo
     let tipo = prompt("Você quer buscar pelo ID ou pelo Nome? (digite 'id' ou 'nome')");
     if (!tipo) return;
-    tipo = tipo.toLowerCase();
+    tipo = tipo.toLowerCase().trim();
+    if (tipo !== "id" && tipo !== "nome") return alert("Opção inválida! Digite 'id' ou 'nome'.");
 
-    if (tipo !== "id" && tipo !== "nome") {
-        alert("Opção inválida! Digite 'id' ou 'nome'.");
-        return;
-    }
-
+    // Pede valor
     let valor = prompt(`Digite o ${tipo === "id" ? "ID" : "Nome"} do produto:`);
-    if (!valor) return;
+    if (!valor) return alert("Você precisa digitar um valor válido!");
+    valor = valor.trim();
 
-    let id_comanda = document.getElementById("id_comanda").value;
-    if (!id_comanda) {
-        alert("Digite o ID da comanda primeiro!");
-        return;
-    }
+    // ID da comanda
+    let id_comanda = document.getElementById("id_comanda").value.trim();
+    if (!id_comanda) return alert("Digite o ID da comanda primeiro!");
 
+    // Buscar produto
     fetch(`buscar_produto_nome_id.php?tipo=${tipo}&valor=${encodeURIComponent(valor)}`)
-    .then(res => res.json())
-    .then(data => {
-        if (data.erro) {
-            alert("Produto não cadastrado!");
-            return;
-        }
-
-        let qtd = prompt("Digite a quantidade:");
-        if (!qtd || isNaN(qtd) || qtd <= 0) {
-            alert("Quantidade inválida!");
-            return;
-        }
-
-        fetch(`adicionar_produto.php?id_comanda=${id_comanda}&id_produto=${data.id_produto}&quantidade=${qtd}`)
         .then(res => res.json())
-        .then(listaAtualizada => atualizarTabela(listaAtualizada));
-    })
-    .catch(err => console.error("Erro:", err));
+        .then(prod => {
+            if (prod.erro) return alert(prod.erro);
+
+            let qtd = prompt("Digite a quantidade:");
+            if (!qtd || isNaN(qtd) || qtd <= 0) return alert("Quantidade inválida!");
+
+            // Adiciona produto
+            fetch(`adicionar_produto.php?id_comanda=${id_comanda}&id_produto=${prod.id_produto}&quantidade=${qtd}`)
+                .then(res => res.json())
+                .then(itens => atualizarTabela(itens))
+                .catch(err => console.error("Erro ao adicionar produto:", err));
+        })
+        .catch(err => console.error("Erro ao buscar produto:", err));
 }
+
+
 
 // Buscar comanda existente
 function buscarComanda() {
