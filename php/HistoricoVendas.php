@@ -51,6 +51,7 @@ foreach ($vendas as $venda) {
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="stylesheet" href="../css/stylesHV.css">
   <link rel="stylesheet" href="../css/stylehome.css">
+  <link rel="icon" href="img/logo_title.png">
 </head>
 <body>
   <div class="titulos">

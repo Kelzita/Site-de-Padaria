@@ -114,6 +114,7 @@ $coresTop=['#3D2412','#B88C6D','#F5E6C7','#A67B5B','#CBAE8B'];
 <head>
 <meta charset="UTF-8">
 <title>Relatórios Dashboard</title>
+<link rel="icon" href="img/logo_title.png">
 <style>
 body {
     font-family: 'Times New Roman', serif;

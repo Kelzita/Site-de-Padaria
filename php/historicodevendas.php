@@ -15,6 +15,7 @@ require_once 'menu.php';
   <link rel="stylesheet" href="../css/stylehome.css">
   <link rel="stylesheet" href="../css/stylesHV.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" href="../img/logo_title.png">
 </head>
 <body>
   <div class="retangulo">

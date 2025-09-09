@@ -24,6 +24,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <title>Caixa - Padaria Pão Genial</title>
     <link rel="stylesheet" href="../css/styleCaixa.css">
+    <link rel="icon" href="img/logo_title.png">
 </head>
 <body>
 <div class="box_principal">

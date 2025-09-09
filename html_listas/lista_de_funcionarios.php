@@ -17,6 +17,7 @@ require_once '../php/menu.php';
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
     
     <title>Lista de Funcionários</title>
+    <link rel="icon" href="img/logo_title.png">
 </head>
 <style>
     .voltar {

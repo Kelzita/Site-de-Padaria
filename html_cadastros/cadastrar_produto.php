@@ -22,6 +22,7 @@ try {
     <link rel="stylesheet" href="../css/stylehome.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="icon" href="img/logo_title.png">
 </head>
 <body>
 
