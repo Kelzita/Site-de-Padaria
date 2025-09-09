@@ -37,22 +37,22 @@ if(!$fornecedor){
             <!-- Dados do Fornecedor -->
             <div class="grupo-formulario">
                 <label class="rotulo-formulario">Razão Social:</label>
-                <input type="text" name="razao_social" class="entrada-formulario" value="<?= htmlspecialchars($fornecedor['razao_social']) ?>" required>
+                <input type="text" name="razao_social" class="entrada-formulario" value="<?= htmlspecialchars($fornecedor['razao_social']) ?>" >
             </div>
 
             <div class="grupo-formulario">
                 <label class="rotulo-formulario">Responsável:</label>
-                <input type="text" name="responsavel" class="entrada-formulario" value="<?= htmlspecialchars($fornecedor['responsavel']) ?>" required>
+                <input type="text" name="responsavel" class="entrada-formulario" value="<?= htmlspecialchars($fornecedor['responsavel']) ?>" >
             </div>
 
             <div class="grupo-formulario">
                 <label class="rotulo-formulario">CNPJ:</label>
-                <input type="text" name="cnpj_fornecedor" class="entrada-formulario" value="<?= htmlspecialchars($fornecedor['cnpj_fornecedor']) ?>" required>
+                <input type="text" name="cnpj_fornecedor" class="entrada-formulario" value="<?= htmlspecialchars($fornecedor['cnpj_fornecedor']) ?>" >
             </div>
 
             <div class="grupo-formulario">
                 <label class="rotulo-formulario">Email:</label>
-                <input type="email" name="email_fornecedor" class="entrada-formulario" value="<?= htmlspecialchars($fornecedor['email_fornecedor']) ?>" required>
+                <input type="email" name="email_fornecedor" class="entrada-formulario" value="<?= htmlspecialchars($fornecedor['email_fornecedor']) ?>" >
             </div>
 
             <div class="grupo-formulario">
@@ -110,7 +110,7 @@ if(!$fornecedor){
         </form>
     </div>
 </div>
-
+<script src="../javascript/alterar_fornecedor.js"></script>
 <script>
 $(document).ready(function(){
     Inputmask({"mask": "(99) 99999-9999"}).mask("input[name='telefone_fornecedor']");

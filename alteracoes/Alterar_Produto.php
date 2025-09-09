@@ -52,22 +52,22 @@ if($id_produto > 0) {
             <!-- DADOS DO PRODUTO -->
             <div class="grupo-formulario">
                 <label for="nome_produto" class="rotulo-formulario">Nome do Produto:</label>
-                <input type="text" name="nome_produto" id="nome_produto" class="entrada-formulario" value="<?= htmlspecialchars($produto['nome_produto']) ?>" required>
+                <input type="text" name="nome_produto" id="nome_produto" class="entrada-formulario" value="<?= htmlspecialchars($produto['nome_produto']) ?>" >
             </div>
 
             <div class="grupo-formulario">
                 <label for="descricao" class="rotulo-formulario">Descrição:</label>
-                <textarea name="descricao" id="descricao" class="entrada-formulario" required><?= htmlspecialchars($produto['descricao']) ?></textarea>
+                <textarea name="descricao" id="descricao" class="entrada-formulario" ><?= htmlspecialchars($produto['descricao']) ?></textarea>
             </div>
 
             <div class="grupo-formulario">
                 <label for="preco" class="rotulo-formulario">Preço:</label>
-                <input type="text" name="preco" id="preco" class="entrada-formulario" placeholder="R$ 0,00" required value="<?= htmlspecialchars($produto['preco']) ?>">
+                <input type="text" name="preco" id="preco" class="entrada-formulario" placeholder="R$ 0,00"  value="<?= htmlspecialchars($produto['preco']) ?>">
             </div>
 
             <div class="grupo-formulario">
                 <label for="unmedida" class="rotulo-formulario">Unidade de Medida:</label>
-                <select name="unmedida" id="unmedida" class="entrada-formulario" required>
+                <select name="unmedida" id="unmedida" class="entrada-formulario" >
                     <option value="" disabled <?= empty($produto['unmedida']) ? 'selected' : '' ?>>Selecione...</option>
                     <option value="un" <?= ($produto['unmedida'] ?? '') === 'un' ? 'selected' : '' ?>>Unidade (un)</option>
                     <option value="kg" <?= ($produto['unmedida'] ?? '') === 'kg' ? 'selected' : '' ?>>Quilo (kg)</option>
@@ -78,12 +78,12 @@ if($id_produto > 0) {
 
             <div class="grupo-formulario">
                 <label for="validade" class="rotulo-formulario">Validade:</label>
-                <input type="date" name="validade" id="validade" class="entrada-formulario" value="<?= htmlspecialchars($produto['validade']) ?>" required/>
+                <input type="date" name="validade" id="validade" class="entrada-formulario" value="<?= htmlspecialchars($produto['validade']) ?>" />
             </div>
 
             <div class="grupo-formulario">
                 <label for="quantidade_produto" class="rotulo-formulario">Quantidade:</label>
-                <input type="number" name="quantidade_produto" id="quantidade_produto" class="entrada-formulario" value="<?= htmlspecialchars($produto['quantidade_produto']) ?>" required/>
+                <input type="number" name="quantidade_produto" id="quantidade_produto" class="entrada-formulario" value="<?= htmlspecialchars($produto['quantidade_produto']) ?>" />
             </div>
 
             <div class="acoes-formulario">
@@ -93,7 +93,7 @@ if($id_produto > 0) {
         </form>
     </div>
 </div>
-
+<script src="../javascript/alterar_produto.js"></script>
 <!-- JS -->
 <script>
     // Máscara para preço

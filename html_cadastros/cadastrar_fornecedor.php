@@ -22,7 +22,7 @@ require_once '../php/menu.php';
 <div class="container">
     <h1>Cadastrar Fornecedor</h1>
 
-    <form method="POST" action="../php/cadastro_fornecedor.php" class="formulario-cadastro">
+    <form method="POST" action="../php/cadastro_fornecedor.php" id="formFornecedor" class="formulario-cadastro">
 
         <label for="razao_social"><i class="fas fa-building"></i> Razão Social:</label>
         <input type="text" id="razao_social" name="razao_social" placeholder="Insira a razão social" >
@@ -77,7 +77,7 @@ require_once '../php/menu.php';
 </a>
 
 <script src="../javascript/funcoes.js"></script>
-<script src="../javascript/validacoes.js"></script>
+<script src="../javascript/validacao_fornecedor.js"></script>
 <script>
     // Máscaras
     $(document).ready(function(){

@@ -63,17 +63,17 @@ if (!$funcionario) {
             <!-- Dados Pessoais -->
             <div class="grupo-formulario">
                 <label for="nome_funcionario" class="rotulo-formulario">Nome:</label>
-                <input type="text" name="nome_funcionario" id="nome_funcionario" class="entrada-formulario" value="<?= htmlspecialchars($funcionario['nome_funcionario']) ?>" required>
+                <input type="text" name="nome_funcionario" id="nome_funcionario" class="entrada-formulario" value="<?= htmlspecialchars($funcionario['nome_funcionario']) ?>" >
             </div>
             
             <div class="grupo-formulario">
                 <label for="cpf_funcionario" class="rotulo-formulario">CPF:</label>
-                <input type="text" name="cpf_funcionario" id="cpf_funcionario" class="entrada-formulario" maxlength="16" value="<?= htmlspecialchars($funcionario['cpf_funcionario']) ?>" required>
+                <input type="text" name="cpf_funcionario" id="cpf_funcionario" class="entrada-formulario" maxlength="16" value="<?= htmlspecialchars($funcionario['cpf_funcionario']) ?>" >
             </div>
             
             <div class="grupo-formulario">
                 <label for="email_funcionario" class="rotulo-formulario">E-mail:</label>
-                <input type="email" name="email_funcionario" id="email_funcionario" class="entrada-formulario" value="<?= htmlspecialchars($funcionario['email_funcionario']) ?>" required>
+                <input type="email" name="email_funcionario" id="email_funcionario" class="entrada-formulario" value="<?= htmlspecialchars($funcionario['email_funcionario']) ?>" >
             </div>
             
             <div class="grupo-formulario">
@@ -98,7 +98,7 @@ if (!$funcionario) {
             
             <div class="grupo-formulario">
                 <label for="id_funcao" class="rotulo-formulario">Função:</label>
-                <select name="id_funcao" id="id_funcao" class="selecao-formulario" required>
+                <select name="id_funcao" id="id_funcao" class="selecao-formulario" >
                     <option disabled>Selecione a Função</option>
                     <?php foreach ($funcoes as $funcao): ?>
                     <option value="<?= htmlspecialchars($funcao['id_funcao']) ?>" <?= $funcao['id_funcao'] == $funcionario['id_funcao'] ? 'selected' : '' ?>>
@@ -183,7 +183,7 @@ if (!$funcionario) {
         </form>
     </div>
 </div>
-
+<script src="../javascript/alterar_funcionario.js"></script>
 <script>
 $(document).ready(function() {
     // Aplicar máscaras aos campos
