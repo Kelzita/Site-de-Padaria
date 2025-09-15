@@ -12,6 +12,7 @@ require_once '../php/menu.php';
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/stylehome.css">
     <link rel="stylesheet" href="../css/styletabela.css" />
+    <link rel="stylesheet" href="../css/modal.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="icon" href="img/logo_title.png">
@@ -65,6 +66,7 @@ require_once '../php/menu.php';
                 <td><?= htmlspecialchars($p['nome_produto']); ?></td>
                 <td><?= htmlspecialchars($p['validade']); ?></td>
                 <td><?= htmlspecialchars($p['quantidade_produto']); ?></td>
+                
                 <td class="acoes">
                     <a href="#" onclick="abrirModalProduto(<?= $p['id_produto'] ?>)" class="acao" title="Visualizar">
                         <i class="ri-eye-line"></i>

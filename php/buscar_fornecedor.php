@@ -1,39 +1,38 @@
-<?php 
-session_start();
-require_once 'conexao.php';
+<?php
+// ==================== INÍCIO DO PHP ====================
+if (session_status() == PHP_SESSION_NONE) session_start();
+require_once '../php/conexao.php';
+require_once '../php/menu.php';
 
-if($_SESSION['id_funcao'] != 1) {
+if (!isset($_SESSION['id_funcao']) || $_SESSION['id_funcao'] != 1) {
     echo "<script>alert('Acesso Negado!');window.location.href='../inicio/home.php';</script>";
+    exit;
 }
 
-$fornecedor = [];
+//ARRAY
+$fornecedores = [];
 
-if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['busca'])) {
+// ==================== BUSCA ====================
+if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['busca'])) {
     $busca = trim($_POST['busca']);
 
-    if(is_numeric($busca)) {
-        $sql = "SELECT *
-                FROM fornecedores
-                WHERE id_fornecedor = :busca
-                ORDER BY razao_social ASC";
+    if (is_numeric($busca)) {
+        $sql = "SELECT * FROM fornecedores WHERE id_fornecedor = :busca ORDER BY razao_social ASC";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':busca', $busca, PDO::PARAM_INT);
+        $stmt->bindValue(':busca', $busca, PDO::PARAM_INT);
     } else {
-        $sql = "SELECT *
-                FROM fornecedores
-                WHERE razao_social LIKE :busca_nome
-                ORDER BY razao_social ASC";
+
+        $sql = "SELECT * FROM fornecedores WHERE LOWER(razao_social) LIKE LOWER(:busca_nome) ORDER BY razao_social ASC";
         $stmt = $pdo->prepare($sql);
-        $busca_nome = "%$busca%";
-        $stmt->bindParam(':busca_nome', $busca_nome, PDO::PARAM_STR);
+        $stmt->bindValue(':busca_nome', "%$busca%", PDO::PARAM_STR);
     }
 } else {
-    $sql = "SELECT *
-            FROM fornecedores
-            ORDER BY id_fornecedor ASC";
+
+    $sql = "SELECT * FROM fornecedores ORDER BY id_fornecedor ASC";
     $stmt = $pdo->prepare($sql);
 }
 
 $stmt->execute();
 $fornecedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>

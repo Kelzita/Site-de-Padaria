@@ -1,8 +1,8 @@
 <?php 
 require_once '../php/funcoes.php';
 require_once '../php/menu.php';
+require_once '../php/buscar_fornecedor.php';
 
-$fornecedores = listarFornecedores();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -21,24 +21,6 @@ $fornecedores = listarFornecedores();
 <title>Lista de Fornecedores</title>
 <link rel="icon" href="img/logo_title.png">
 </head>
-<style>
-    .voltar {
-  width: 50px ;
-  height: 40px ;
-  margin-top: 20px;
-  margin-left: -1250px;
-  left: 5px;
-}
-
-.seta1 {
-  width: 50px ;
-  height: 40px ;
-  margin-top: 20px;
-  margin-left: 20px;
-  left: 5px;
-}
-
-</style>
 <body>
 
 <div class="container">
