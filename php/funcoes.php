@@ -56,7 +56,7 @@ function buscarProdutoPorId($id_produto) {
     global $pdo;
     
     try {
-        $sql = "SELECT * FROM produto WHERE id_produto = :id";
+        $sql = "SELECT p.id_produto, p.nome_produto, p.descricao, p.preco, p.unmedida, p.validade, p.imagem_produto, p.quantidade_produto, f.razao_social FROM produto p  LEFT JOIN fornecedores f ON f.id_fornecedor = f.id_fornecedor  WHERE id_produto  = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id_produto, PDO::PARAM_INT);
         $stmt->execute();

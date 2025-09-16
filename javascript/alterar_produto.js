@@ -25,7 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 { id: "preco", nome: "Preço" },
                 { id: "unmedida", nome: "Unidade de Medida" },
                 { id: "validade", nome: "Validade" },
-                { id: "quantidade_produto", nome: "Quantidade" }
+                { id: "quantidade_produto", nome: "Quantidade" },
+                { id: "razao_social", nome: "Razão Social" }
             ];
 
             camposObrigatorios.forEach(campo => {

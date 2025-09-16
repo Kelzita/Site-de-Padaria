@@ -178,7 +178,7 @@ td:last-child, th:last-child {
     color:#000000;
     border-radius: 10px;
     height: 60px;
-    width: 150px;
+    width: 250px;
     margin-top: 10px;
     margin-left: 850px;
     text-align: center;
@@ -203,4 +203,112 @@ height: 40px ;
 margin-top: 20px;
 margin-left: -640px;
 left: 5px;
+}
+
+/* ========================= PAGINAÇÃO ========================= */
+.paginacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -90px;
+  gap: 5px;
+  flex-wrap: wrap;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.paginacao a,
+.paginacao span {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #333; /* fundo escuro */
+  border: 1px solid #444;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.paginacao a:hover {
+  background-color: #555;
+  border-color: #666;
+}
+
+.paginacao .atual {
+  background-color: #f0a500; /* destaque página atual */
+  color: #1c1c24;
+  border-color: #f0a500;
+}
+
+/* Opcional: esconder números pequenas telas */
+@media (max-width: 480px) {
+  .paginacao .numero {
+      display: none;
+  }
+}
+
+/* ==================== PAGINAÇÃO ==================== */
+
+.paginacao a, .paginacao span {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #333;
+  border: 1px solid #444;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+.paginacao a:hover { background-color: #555; border-color: #666; }
+.paginacao .atual { background-color: #3D2412; color: #ffffff; border-color: #3D2412; }
+.paginacao .numero { min-width: 32px; text-align: center; }
+
+/* Opcional: esconder números pequenas telas */
+@media (max-width: 480px) { .paginacao .numero { display: none; } }
+
+/* Estilo menor para a caixa "Ir para a página" */
+.ir-pagina-form {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+  background-color: white;
+  border-radius: 10px;
+  height: 90px;
+  width: 250px;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+.ir-pagina-form label {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.ir-pagina-form input[type="number"] {
+  width: 40px; /* menor que antes */
+  padding: 4px;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid #444;
+}
+
+.ir-pagina-form button {
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ir-pagina-form button:hover {
+  background-color: #555;
 }
