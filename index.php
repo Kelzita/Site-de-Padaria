@@ -33,6 +33,14 @@
         .toggle-olho:hover {
             color: white;
         }
+
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear,
+        input[type="password"]::-webkit-contacts-auto-fill-button,
+        input[type="password"]::-webkit-credentials-auto-fill-button {
+        display: none !important;
+        }
+
     </style>
 </head>
 <body>
