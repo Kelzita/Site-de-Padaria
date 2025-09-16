@@ -335,7 +335,7 @@ td.acoes {
     color: #000;       /* preto elegante */
     transition: transform 0.2s, color 0.2s;
     cursor: pointer;
-    pd
+ 
 }
 
 .acao i:hover {
