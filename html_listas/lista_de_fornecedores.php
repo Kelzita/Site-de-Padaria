@@ -13,6 +13,8 @@ require_once '../php/buscar_fornecedor.php';
 <link rel="stylesheet" href="../css/stylehome.css">
 <link rel="stylesheet" href="../css/modal.css" />
 <link rel="stylesheet" href="../css/styletabela.css" />
+ 
+
 
 <!-- Ícones -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />

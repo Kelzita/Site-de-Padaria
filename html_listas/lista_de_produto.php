@@ -138,6 +138,7 @@ function abrirModalProduto(id){
     .catch(err => console.error(err));
 }
 
+
 </script>
 </body>
 </html>
