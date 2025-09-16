@@ -110,62 +110,78 @@ if($id_funcionario > 0){
 
 <!-- ============ CSS ================ -->
 <style>
-    /* ====== MODAL ====== */
+/* ====== MODAL ====== */
 .modal {
   display: block;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0, 0, 0, 0.6);
   overflow-y: auto;
   padding: 2rem 0;
   z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .modal-container {
-  background: #fff;
+  background: #ffffff;
   width: 90%;
-  max-width: 700px;
+  max-width: 750px;
   margin: 0 auto;
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  border-radius: 14px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
   position: relative;
-  color: #000;
+  color: #2b2b2b;
+  animation: slideUp 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* ====== HEADER ====== */
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .modal-title {
- color: black;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
+  color: #1c1c24;
 }
 
 .modal-close {
   font-size: 1.8rem;
-  color: #888;
+  color: #666;
   cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
 }
 .modal-close:hover {
-  color: #1a1a1a;
+  transform: rotate(90deg);
+  color: #111;
 }
 
 /* ====== BODY ====== */
 .modal-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem 1.5rem;
+  gap: 1.2rem 1.8rem;
 }
 
 .campo {
-  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #eaeaea;
+  transition: background 0.2s, border 0.2s;
+}
+.campo:hover {
+  background: #f5f5f5;
+  border-color: #d4d4d4;
 }
 
 .full-width {
@@ -173,15 +189,20 @@ if($id_funcionario > 0){
 }
 
 label {
-  display: block;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #444;
   margin-bottom: 0.3rem;
+  
 }
 
 p {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  color: #222;
+  font-weight: 400; /* garante texto normal */
 }
+
 
 /* ====== FOTO ====== */
 .foto-container {
@@ -190,46 +211,58 @@ p {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: #fafafa;
-  border-radius: 10px;
+  background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
   margin-bottom: 1rem;
 }
 
 .foto {
-  width: 130px;
-  height: 130px;
+  width: 140px;
+  height: 140px;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid #fff;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 4px solid #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   margin-bottom: 0.5rem;
 }
 
 /* ====== BOTÕES ====== */
 .acoes {
   display: flex;
-  justify-content: center; /* centraliza os botões */
-  margin-top: 1rem;
+  justify-content: center;
+  margin-top: 1.2rem;
   gap: 1rem;
 }
 
-
 .btn {
-  padding: 0.6rem 1.2rem;
+  padding: 0.65rem 1.4rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 600;
+  font-size: 0.95rem;
   text-decoration: none;
   cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
 }
 
 .btn-primary {
-  background: #1a1a1a;
+  background: #1c1c24;
   color: #fff;
 }
-
 .btn-primary:hover {
   background: #333;
+  transform: translateY(-2px);
+}
+
+/* ====== ANIMAÇÕES ====== */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+@keyframes slideUp {
+  from {transform: translateY(30px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
 }
 
 /* ====== RESPONSIVO ====== */
@@ -238,8 +271,8 @@ p {
       grid-template-columns: 1fr;
   }
   .foto {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
   }
 }
 </style>
