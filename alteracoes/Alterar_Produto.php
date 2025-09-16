@@ -86,6 +86,11 @@ if($id_produto > 0) {
                 <input type="number" name="quantidade_produto" id="quantidade_produto" class="entrada-formulario" value="<?= htmlspecialchars($produto['quantidade_produto']) ?>" />
             </div>
 
+            <div class="grupo-formulario">
+                <label for="razao_social" class="rotulo-formulario">Fornecedor:</label>
+                <input type="text" name="razao_social" id="razao_social" class="entrada-formulario" value="<?= htmlspecialchars($produto['razao_social']) ?>" />
+            </div>
+
             <div class="acoes-formulario">
                 <a href="../html_listas/lista_de_produto.php" class="botao botao--secundario">Cancelar</a>
                 <button type="submit" class="botao botao--primario">Salvar Alterações</button>

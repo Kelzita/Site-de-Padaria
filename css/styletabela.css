@@ -198,16 +198,6 @@ td:last-child, th:last-child {
     color: #fff;
 }
 
-.btn-editar { background-color: #0275d8; }
-.btn-salvar { background-color: #5cb85c; }
-.btn-cancelar { background-color: #f0ad4e; }
-.btn-apagar, .btn-excluir { background-color: #e74c3c; }
-
-
-.btn-editar:hover { background-color: #025aa5; }
-.btn-salvar:hover { background-color: #449d44; }
-.btn-cancelar:hover { background-color: #ec971f; }
-.btn-apagar:hover, .btn-excluir:hover { background-color: #c0392b; }
 
 /* ============ BOTÃO VOLTAR=============== */
 .voltar {
@@ -325,10 +315,11 @@ td:last-child, th:last-child {
 /*====== Ações =====*/
 td.acoes {
     display: flex;
-    justify-content: center; /* centraliza horizontalmente */
-    align-items: center;     /* centraliza verticalmente */
-    gap: 10px;               /* espaço entre os botões */
-    padding: 8px 0;          /* reduz padding para centralizar melhor */
+    justify-content: center; 
+    align-items: center;  
+    margin-top: 30px;  
+    gap: 10px;             
+    padding: 5px 20px 30px 20px;       
 }
 
 
@@ -344,6 +335,7 @@ td.acoes {
     color: #000;       /* preto elegante */
     transition: transform 0.2s, color 0.2s;
     cursor: pointer;
+    pd
 }
 
 .acao i:hover {
@@ -414,4 +406,3 @@ td.acoes {
     margin-left: 20px;
     left: 5px;
   }
-  

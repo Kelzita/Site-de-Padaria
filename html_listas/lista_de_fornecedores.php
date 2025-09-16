@@ -2,7 +2,6 @@
 require_once '../php/funcoes.php';
 require_once '../php/menu.php';
 require_once '../php/buscar_fornecedor.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -26,13 +25,23 @@ require_once '../php/buscar_fornecedor.php';
 <div class="container">
     <h1>Lista de Fornecedores</h1>
 
-    <!-- Formulário de busca + filtro -->
+    <!-- Formulário de busca -->
     <form action="lista_de_fornecedores.php" method="POST" class="search-form">
         <div class="input-container">
             <input type="text" id="busca" name="busca" placeholder="Insira a Busca (ID ou Razão Social)" />
             <button type="submit"><i class="fa fa-search"></i></button>
         </div>
     </form>
+
+    <!-- Filtro de Status -->
+    <div class="select">
+        <select id="filtro-status" name="status">
+            <option value="">Todos</option>
+            <option value="1">Ativos</option>
+            <option value="0">Inativos</option>
+        </select>
+    </div>
+    <?php if (!empty($fornecedores)): ?>
     <table id="tabela-fornecedores">
         <thead>
             <tr>
@@ -41,43 +50,46 @@ require_once '../php/buscar_fornecedor.php';
                 <th>Responsável</th>
                 <th>CNPJ</th>
                 <th>Email</th>
+                <th>Status</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($fornecedores as $f): ?>
-                <td><?= $f['id_fornecedor'] ?></td>
-                <td><?= htmlspecialchars($f['razao_social']) ?></td>
-                <td><?= htmlspecialchars($f['responsavel']) ?></td>
-                <td><?= htmlspecialchars($f['cnpj_fornecedor']) ?></td>
-                <td><?= htmlspecialchars($f['email_fornecedor']) ?></td>
-                <td class="acoes">
-                    <!-- Abrir modal -->
-                    <a href="#" onclick="abrirModalFornecedor(<?= $f['id_fornecedor'] ?>)" class="acao" title="Visualizar">
-                        <i class="ri-eye-line"></i>
-                    </a>
-                    <!-- Alterar -->
-                    <a href="../alteracoes/Alterar_Fornecedor.php?id=<?= $f['id_fornecedor'] ?>" class="acao" title="Alterar">
-                        <i class="ri-edit-line"></i>
-                    </a>
-
-                    <!-- deletar -->
-                    <a href="#" onclick="deletarFornecedor(event, <?= $f['id_fornecedor'] ?>)" class="acao" title="Deletar">
-                        <i class="ri-delete-bin-line"></i>
-                    </a>
-
-
-
-                </td>
-            </tr>
-            <?php endforeach; ?>
+        <?php foreach ($fornecedores as $f): ?>
+        <tr data-status="<?= $f['ativo'] ?>">
+            <td><?= $f['id_fornecedor'] ?></td>
+            <td><?= htmlspecialchars($f['razao_social']) ?></td>
+            <td><?= htmlspecialchars($f['responsavel']) ?></td>
+            <td><?= htmlspecialchars($f['cnpj_fornecedor']) ?></td>
+            <td><?= htmlspecialchars($f['email_fornecedor']) ?></td>
+            <td class="status"><?= $f['ativo'] ? 'Ativo' : 'Inativo' ?></td>
+            <td class="acoes">
+                <!-- Visualizar -->
+                <a href="#" onclick="abrirModalFornecedor(<?= $f['id_fornecedor'] ?>)" class="acao" title="Visualizar">
+                    <i class="ri-eye-line"></i>
+                </a>
+                <!-- Alterar -->
+                <a href="../alteracoes/Alterar_Fornecedor.php?id=<?= $f['id_fornecedor'] ?>" class="acao" title="Alterar">
+                    <i class="ri-edit-line"></i>
+                </a>
+                <!-- Inativar / Ativar -->
+                <a href="#" class="acao btn-inativar" onclick="toggleAtivoFornecedor(this, <?= $f['id_fornecedor'] ?>)">
+                    <i class="<?= $f['ativo'] ? 'ri-building-2-line' : 'ri-building-line' ?>"></i>
+                </a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
         </tbody>
     </table>
 </div>
+
 <a href="../inicio/home.php" class="voltar"> 
-        <img class="seta" src="../img/btn_voltar.png" title="seta">
+    <img class="seta" src="../img/btn_voltar.png" title="seta">
 </a>
 
+<?php else: ?>
+        <p style="margin-top: 10px; color:white;">Nenhum Fornecedor cadastrado.</p>
+<?php endif; ?>
 <script>
 // ====== Modal Visualizar ======
 function abrirModalFornecedor(id){
@@ -100,27 +112,59 @@ document.addEventListener('click', function(e){
         modal.remove();
     }
 });
-function deletarFornecedor(event, id) {
-    event.preventDefault();
-    if (!confirm("Deseja realmente deletar este fornecedor?")) return;
 
-    fetch('../php/deletar_fornecedor.php', {
+// ====== Toggle Ativo/Inativo ======
+function toggleAtivoFornecedor(element, id) {
+    if (!confirm('Deseja realmente alterar o status deste fornecedor?')) return;
+
+    fetch('../php/inativar_fornecedor.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `id_fornecedor=${id}`
     })
-    .then(res => res.text())
-    .then(response => {
-        alert("Fornecedor deletado com sucesso!");window.location.href='../html_listas/lista_de_fornecedores.php';
-        // Opcional: remover a linha da tabela sem recarregar
-        const row = document.querySelector(`#tabela-fornecedores tr[data-id='${id}']`);
-        if(row) row.remove();
+    .then(res => res.json())
+    .then(data => {
+        if (data.sucesso) {
+            const icone = element.querySelector('i');
+            const tr = element.closest('tr');
+            const statusCell = tr.querySelector('.status');
+
+            if (data.ativo) {
+                icone.classList.remove('ri-building-line');
+                icone.classList.add('ri-building-2-line');
+                statusCell.textContent = 'Ativo';
+                tr.setAttribute('data-status', 1);
+                element.setAttribute('title','Inativar Fornecedor');
+                alert('Fornecedor ativado com sucesso!');
+            } else {
+                icone.classList.remove('ri-building-2-line');
+                icone.classList.add('ri-building-line');
+                statusCell.textContent = 'Inativo';
+                tr.setAttribute('data-status', 0);
+                element.setAttribute('title','Ativar Fornecedor');
+                alert('Fornecedor inativado com sucesso!');
+            }
+        } else {
+            alert('Erro ao alterar status!');
+        }
     })
-    .catch(err => alert("Erro ao deletar fornecedor."));
+    .catch(err => {
+        console.error(err);
+        alert('Erro no servidor ao alterar fornecedor!');
+    });
 }
 
-
-
+// ====== Filtro Ativos/Inativos via select ======
+document.getElementById('filtro-status').addEventListener('change', function(){
+    const status = this.value;
+    document.querySelectorAll('#tabela-fornecedores tbody tr').forEach(tr => {
+        if(status === '') {
+            tr.style.display = '';
+        } else {
+            tr.style.display = tr.dataset.status === status ? '' : 'none';
+        }
+    });
+});
 </script>
 
 </body>

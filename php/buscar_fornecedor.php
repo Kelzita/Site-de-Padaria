@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST['busca'])) {
 
         $sql = "SELECT * FROM fornecedores WHERE LOWER(razao_social) LIKE LOWER(:busca_nome) ORDER BY razao_social ASC";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(':busca_nome', "%$busca%", PDO::PARAM_STR);
+        $stmt->bindValue(':busca_nome', "$busca%", PDO::PARAM_STR);
     }
 } else {
 
