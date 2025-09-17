@@ -63,7 +63,7 @@ foreach($mesesDisponiveis as $m){
 }
 
 // ------------------- FORMAS DE PAGAMENTO ------------------- //
-$formasFixas = ['dinheiro','pix','cartao de debito','cartao de credito','vale alimentação'];
+$formasFixas = ['dinheiro','pix','cartao de debito','cartao de credito','vale alimentacao'];
 $coresFixas = ['#3D2412','#B88C6D','#F5E6C7','#A67B5B','#CBAE8B'];
 
 $sqlPagamentos = "
