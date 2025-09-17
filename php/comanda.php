@@ -12,13 +12,10 @@ if (!isset($_SESSION['id_funcionario'])) {
 
 $id_funcionario = $_SESSION['id_funcionario'];
 
-<<<<<<< Updated upstream
 // Verificar se é uma requisição AJAX
 $isAjax = isset($_POST['ajax']) || isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
           strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 
-=======
->>>>>>> Stashed changes
 // Buscar informações do funcionário logado
 $sql_funcionario = "SELECT nome_funcionario, imagem_funcionario FROM funcionarios WHERE id_funcionario = :id_funcionario";
 $stmt_funcionario = $pdo->prepare($sql_funcionario);
@@ -212,11 +209,7 @@ if (isset($_POST['adicionar_item'])) {
     ]);
 
     // Se for uma requisição AJAX, retornar JSON
-<<<<<<< Updated upstream
     if ($isAjax) {
-=======
-    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
->>>>>>> Stashed changes
         echo json_encode(['success' => true]);
         exit;
     } else {
@@ -237,15 +230,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['busca'])) {
         } else {
             $sql = "SELECT * FROM produto WHERE nome_produto LIKE :busca_nome ORDER BY nome_produto ASC";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([':busca_nome' => "%$busca%"]);
+            $stmt->execute([':busca_nome' => "$busca%"]);
         }
         $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-<<<<<<< Updated upstream
         if(!$produtos && !$isAjax){
-=======
-        if(!$produtos){
->>>>>>> Stashed changes
             echo "<script>alert('Produto não encontrado!');</script>";
         }
     }
@@ -260,11 +249,7 @@ if (empty($produtos)) {
 
 // ==================== BUSCAR COMANDA ABERTAS ==================== //
 $comandas_abertas = [];
-<<<<<<< Updated upstream
 $mostrar_comandas_abertas = isset($_GET['mostrar_comandas']) || isset($_POST['mostrar_comandas']);
-=======
-$mostrar_comandas_abertas = isset($_GET['mostrar_comandas']);
->>>>>>> Stashed changes
 $busca_comanda = isset($_POST['busca_comanda']) ? trim($_POST['busca_comanda']) : '';
 
 if ($mostrar_comandas_abertas) {
@@ -302,7 +287,6 @@ if (isset($comanda_atual)) {
     $stmt->execute([':id_comanda' => $id_comanda]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $total_comanda = $result['total'] ?? 0;
-<<<<<<< Updated upstream
 }
 
 // Se for uma requisição AJAX, retornar apenas o conteúdo necessário
@@ -403,8 +387,6 @@ if ($isAjax) {
         echo $content;
         exit;
     }
-=======
->>>>>>> Stashed changes
 }
 ?>
 
@@ -416,11 +398,8 @@ if ($isAjax) {
   <title>Sistema de Comandas</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-<<<<<<< Updated upstream
 /* botão voltar */
 
-=======
->>>>>>> Stashed changes
     * {
         box-sizing: border-box;
         margin: 0;
@@ -529,7 +508,6 @@ if ($isAjax) {
     }
     
     .btn-warning {
-<<<<<<< Updated upstream
         background:rgb(17, 14, 4);
         color: #fff;
 
@@ -537,14 +515,6 @@ if ($isAjax) {
     
     .btn-warning:hover {
         background:rgb(0, 0, 0);
-=======
-        background: #ffc107;
-        color: #000;
-    }
-    
-    .btn-warning:hover {
-        background: #e0a800;
->>>>>>> Stashed changes
         transform: translateY(-2px);
     }
     
@@ -751,15 +721,12 @@ if ($isAjax) {
         padding: 20px;
     }
     
-<<<<<<< Updated upstream
     .loading-comandas {
         display: none;
         text-align: center;
         padding: 20px;
     }
     
-=======
->>>>>>> Stashed changes
     .loading-spinner {
         border: 4px solid #f3f3f3;
         border-top: 4px solid #3D2412;
@@ -848,11 +815,7 @@ if ($isAjax) {
     </div>
 
     <div class="search-box">
-<<<<<<< Updated upstream
         <form id="search-form" action="comanda.php" method="POST">
-=======
-        <form id="search-form" action="#" method="POST">
->>>>>>> Stashed changes
             <input type="text" class="search-input" name="busca" id="busca-input" placeholder="Digite o nome ou ID do produto..." value="<?= isset($_POST['busca']) ? htmlspecialchars($_POST['busca']) : '' ?>">
             <button type="submit" class="btn btn-primary">
                 <i class="fas fa-search"></i> Pesquisar Produto
@@ -926,7 +889,6 @@ if ($isAjax) {
         </div>
         
         <?php if ($mostrar_comandas_abertas): ?>
-<<<<<<< Updated upstream
             <form id="comanda-search-form" method="POST" class="comanda-search-box">
                 <input type="text" class="comanda-search-input" name="busca_comanda" id="busca-comanda-input" 
                        placeholder="Buscar por número da comanda ou nome do atendente..." 
@@ -974,45 +936,6 @@ if ($isAjax) {
                     </div>
                 <?php endif; ?>
             </div>
-=======
-            <form method="POST" action="comanda.php?mostrar_comandas=1" class="comanda-search-box">
-                <input type="text" class="comanda-search-input" name="busca_comanda" placeholder="Buscar por número da comanda ou nome do atendente..." value="<?= htmlspecialchars($busca_comanda) ?>">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-search"></i> Buscar
-                </button>
-            </form>
-            
-            <?php if (!empty($comandas_abertas)): ?>
-                <div class="comandas-list">
-                    <?php foreach ($comandas_abertas as $comanda): ?>
-                    <div class="comanda-card">
-                        <h3>Comanda #<?= $comanda['id_comanda'] ?></h3>
-                        <p><strong>Atendente:</strong> <?= $comanda['nome_funcionario'] ?></p>
-                        <p><strong>Data:</strong> <?= $comanda['data_abertura'] ?></p>
-                        <p><strong>Total:</strong> R$ <?= number_format($comanda['total_comanda'] ?? 0, 2, ',', '.') ?></p>
-                        
-                        <div class="comanda-actions">
-                            <a href="produtos_adicionados.php?id_comanda=<?= $comanda['id_comanda'] ?>" class="btn btn-secondary btn-sm">
-                                <i class="fas fa-eye"></i> Ver Itens
-                            </a>
-                            
-                            <?php if ($comanda['id_comanda'] != $id_comanda): ?>
-                            <a href="comanda.php?acao=alterar_comanda&id_comanda=<?= $comanda['id_comanda'] ?>" class="btn btn-primary btn-sm">
-                                <i class="fas fa-edit"></i> Usar
-                            </a>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php else: ?>
-                <div class="empty-state">
-                    <i class="fas fa-receipt"></i>
-                    <h3>Nenhuma comanda encontrada</h3>
-                    <p><?= !empty($busca_comanda) ? 'Tente ajustar os termos da sua pesquisa' : 'Todas as comandas estão fechadas no momento' ?></p>
-                </div>
-            <?php endif; ?>
->>>>>>> Stashed changes
         <?php else: ?>
             <div class="empty-state">
                 <i class="fas fa-receipt"></i>
@@ -1084,11 +1007,6 @@ if ($isAjax) {
         });
     }
 
-<<<<<<< Updated upstream
-=======
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
->>>>>>> Stashed changes
     // Adicionar funcionalidade de pesquisa em tempo real para produtos
     document.addEventListener('DOMContentLoaded', function() {
         const buscaInput = document.getElementById('busca-input');
@@ -1098,16 +1016,11 @@ if ($isAjax) {
         const loadingElement = document.querySelector('.loading');
         
         // Mostrar botão de limpar se houver texto na busca
-<<<<<<< Updated upstream
         if (buscaInput && buscaInput.value) {
-=======
-        if (buscaInput.value) {
->>>>>>> Stashed changes
             clearSearchBtn.style.display = 'inline-flex';
         }
         
         // Evento para o botão de limpar busca
-<<<<<<< Updated upstream
         if (clearSearchBtn) {
             clearSearchBtn.addEventListener('click', function() {
                 buscaInput.value = '';
@@ -1145,46 +1058,6 @@ if ($isAjax) {
                 .then(html => {
                     // Atualizar apenas a seção de produtos
                     productsContainer.innerHTML = html;
-=======
-        clearSearchBtn.addEventListener('click', function() {
-            buscaInput.value = '';
-            clearSearchBtn.style.display = 'none';
-            searchForm.submit();
-        });
-        
-        // Evento para mudanças no input de busca
-        buscaInput.addEventListener('input', function() {
-            if (this.value) {
-                clearSearchBtn.style.display = 'inline-flex';
-            } else {
-                clearSearchBtn.style.display = 'none';
-            }
-            
-            // Pesquisa em tempo real com AJAX
-            const searchTerm = this.value.toLowerCase();
-            
-            // Mostrar loading
-            loadingElement.style.display = 'block';
-            productsContainer.style.opacity = '0.5';
-            
-            // Fazer requisição AJAX
-            $.ajax({
-                url: 'comanda.php',
-                method: 'POST',
-                data: {
-                    busca: searchTerm,
-                    ajax: true
-                },
-                success: function(response) {
-                    // Extrair apenas a parte dos produtos da resposta
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(response, 'text/html');
-                    const newProducts = doc.getElementById('products-container');
-                    
-                    if (newProducts) {
-                        productsContainer.innerHTML = newProducts.innerHTML;
-                    }
->>>>>>> Stashed changes
                     
                     // Reaplicar eventos aos formulários
                     document.querySelectorAll('.product-form').forEach(form => {
@@ -1196,19 +1069,13 @@ if ($isAjax) {
                     // Esconder loading
                     loadingElement.style.display = 'none';
                     productsContainer.style.opacity = '1';
-<<<<<<< Updated upstream
                 })
                 .catch(error => {
                     console.error('Erro:', error);
-=======
-                },
-                error: function() {
->>>>>>> Stashed changes
                     // Esconder loading em caso de erro
                     loadingElement.style.display = 'none';
                     productsContainer.style.opacity = '1';
                     alert('Erro ao buscar produtos. Tente novamente.');
-<<<<<<< Updated upstream
                 });
             });
         }
@@ -1269,73 +1136,6 @@ if ($isAjax) {
             });
         }
     });
-=======
-                }
-            });
-        });
-        
-        // Filtrar produtos localmente também (fallback)
-        function filtrarProdutos(searchTerm) {
-            const productCards = document.querySelectorAll('.product-card');
-            productCards.forEach(card => {
-                const productName = card.querySelector('.product-title').textContent.toLowerCase();
-                const productId = card.querySelector('input[name="id_produto"]').value;
-                
-                if (productName.includes(searchTerm) || productId.includes(searchTerm)) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    });
-    
-    // Função para adicionar item à comanda via AJAX
-    function addItemToComanda(event, form) {
-        event.preventDefault();
-        
-        // Mostrar loading
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adicionando...';
-        submitBtn.disabled = true;
-        
-        // Fazer requisição AJAX
-        const formData = new FormData(form);
-        
-        fetch('comanda.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Feedback visual de sucesso
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Adicionado!';
-                submitBtn.style.background = '#4CAF50';
-                
-                // Restaurar botão após 2 segundos
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.background = '';
-                    submitBtn.disabled = false;
-                    
-                    // Resetar quantidade para 1
-                    form.querySelector('input[name="quantidade"]').value = 1;
-                    
-                    // Limpar observações
-                    form.querySelector('textarea[name="observacoes"]').value = '';
-                }, 2000);
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            alert('Erro ao adicionar item. Tente novamente.');
-        });
-    }
->>>>>>> Stashed changes
 </script>
 </body>
 </html>
