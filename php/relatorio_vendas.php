@@ -10,11 +10,11 @@ function fetchData($pdo, $sql, $params = []) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// ------------------- FILTRO DE MÊS ------------------- //
-$mesSelecionado = $_GET['mes'] ?? null;
+// ------------------- FILTROS ------------------- //
+$mesSelecionado = $_GET['mes'] ?? null; // Para pagamentos e produtos
+$anoSelecionado = $_GET['ano'] ?? date('Y'); // Para receita mensal
 
 // ------------------- RECEITA MENSAL ------------------- //
-$anoAtual = date('Y');
 $sqlReceitaMensal = "
     SELECT 
         MONTH(c.data_fechamento) AS mes,
@@ -28,7 +28,7 @@ $sqlReceitaMensal = "
     GROUP BY MONTH(c.data_fechamento)
     ORDER BY mes
 ";
-$receitaMensal = fetchData($pdo, $sqlReceitaMensal, [':ano'=>$anoAtual]);
+$receitaMensal = fetchData($pdo, $sqlReceitaMensal, [':ano'=>$anoSelecionado]);
 
 $nomesMeses = [
   1=>'Janeiro', 2=>'Fevereiro', 3=>'Março', 4=>'Abril',
@@ -52,12 +52,14 @@ $mesesDisponiveis = fetchData($pdo, "
 ");
 
 $mesesFormatados = [];
+$anosDisponiveis = [];
 foreach($mesesDisponiveis as $m){
     [$ano,$mes] = explode('-', $m['ano_mes']);
     $mesesFormatados[] = [
         'valor' => $m['ano_mes'],
         'texto' => $nomesMeses[(int)$mes]."/$ano"
     ];
+    if(!in_array($ano, $anosDisponiveis)) $anosDisponiveis[] = $ano;
 }
 
 // ------------------- FORMAS DE PAGAMENTO ------------------- //
@@ -111,6 +113,15 @@ foreach($topProdutos as $t){
     $valuesT[] = (float)$t['total_vendido'];
 }
 $coresTop=['#3D2412','#B88C6D','#F5E6C7','#A67B5B','#CBAE8B'];
+
+// Preparar título para pagamentos e produtos
+$tituloPagProd = "Mês: ";
+if($mesSelecionado){
+    [$anoFiltro, $mesFiltro] = explode('-', $mesSelecionado);
+    $tituloPagProd .= $nomesMeses[(int)$mesFiltro]."/$anoFiltro";
+} else {
+    $tituloPagProd .= "Todos";
+}
 ?>
 
 <!DOCTYPE html>
@@ -118,6 +129,7 @@ $coresTop=['#3D2412','#B88C6D','#F5E6C7','#A67B5B','#CBAE8B'];
 <head>
 <meta charset="UTF-8">
 <title>Dashboard Padaria</title>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 body {
@@ -142,14 +154,37 @@ body {
 .large-card { flex: 1 1 450px; max-width: 500px; min-width: 300px; }
 canvas { width: 100% !important; height: 350px !important; }
 #graficoReceita { height: 400px !important; }
-.filtro-mes {
-    text-align: center;
-    margin-bottom: 30px;
-    background: rgba(255,255,255,0.9);
-    padding: 15px;
-    border-radius: 10px;
+
+/* filtros */
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
 }
-.filtro-mes button {
+.filtro-box {
+    background: rgba(255,255,255,0.95);
+    padding: 18px 22px;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 240px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.filtro-box h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: #3D2412;
+}
+.filtro-box input {
+    padding: 6px 10px;
+    border: 1px solid #B88C6D;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 150px;
+}
+.filtro-box button {
+    margin-top: 10px;
     padding: 6px 14px;
     font-size: 14px;
     background: #3D2412;
@@ -158,64 +193,74 @@ canvas { width: 100% !important; height: 350px !important; }
     border-radius: 6px;
     cursor: pointer;
 }
-.filtro-mes button:hover { background: #5a3820; }
+.filtro-box button:hover { background: #5a3820; }
+
 .chart-container h2, .card h2 { color: #3D2412; margin-bottom: 20px; text-transform: uppercase; }
 
-.seta {
-    width: 50px;
-    height: 40px;
-    margin-top: 1200px;
-    display: block;
-    margin-left: 20px; 
-}
-
+/* botão voltar */
 .seta {
     width: 50px;
     height: 40px;
     position: absolute;
-    top: 20px;
+    top: 1300px;
     left: 20px;
 }
-
-
 </style>
 </head>
 <body>
 <div class="dashboard">
 
-<!-- GRÁFICO DE RECEITA MENSAL -->
-<div class="chart-container">
-  <h2>Receita Mensal</h2>
-  <canvas id="graficoReceita"></canvas>
+<!-- FILTROS -->
+<div class="filtros">
+    <!-- Receita Mensal -->
+    <form method="get" class="filtro-box">
+        <h3><i class="ri-bar-chart-line"></i> Receita Mensal</h3>
+        <label for="ano"><b>Ano:</b></label><br>
+        <input list="anos" name="ano" id="ano" value="<?= $anoSelecionado ?>" placeholder="Escolha ano">
+        <datalist id="anos">
+            <?php foreach($anosDisponiveis as $ano): ?>
+                <option value="<?= $ano ?>"></option>
+            <?php endforeach; ?>
+        </datalist>
+        <button type="submit">Filtrar</button>
+    </form>
+
+    <!-- Pagamentos e Produtos -->
+    <form method="get" class="filtro-box">
+        <h3><i class="ri-shopping-cart-line"></i> Pagamentos & Produtos</h3>
+        <label for="mes"><b>Mês:</b></label><br>
+        <input list="meses" name="mes" id="mes" value="<?= $mesSelecionado ?>" placeholder="Escolha mês">
+        <datalist id="meses">
+            <?php foreach($mesesFormatados as $m): ?>
+                <option value="<?= $m['valor'] ?>"><?= $m['texto'] ?></option>
+            <?php endforeach; ?>
+        </datalist>
+        <button type="submit">Filtrar</button>
+    </form>
 </div>
 
-<!-- FILTRO DE MÊS PARA PAGAMENTOS E TOP PRODUTOS -->
-<form method="get" class="filtro-mes">
-    <label for="mes"><b>Selecione o mês:</b></label>
-    <input list="meses" name="mes" id="mes" value="<?= $mesSelecionado ?>">
-    <datalist id="meses">
-      <?php foreach($mesesFormatados as $m): ?>
-        <option value="<?= $m['valor'] ?>"><?= $m['texto'] ?></option>
-      <?php endforeach; ?>
-    </datalist>
-    <button type="submit">Filtrar</button>
-</form>
+<!-- GRÁFICO DE RECEITA MENSAL -->
+<div class="chart-container">
+  <h2>Receita Mensal (<?= $anoSelecionado ?>)</h2>
+  <canvas id="graficoReceita"></canvas>
+</div>
 
 <!-- GRÁFICOS LADO A LADO -->
 <div class="cards-horizontal">
   <div class="card large-card">
-    <h2>Formas de Pagamento</h2>
+    <h2>Formas de Pagamento (<?= $tituloPagProd ?>)</h2>
     <canvas id="graficoPag"></canvas>
   </div>
 
   <div class="card large-card">
-    <h2>Top 5 Produtos Mais Vendidos</h2>
+    <h2>Top 5 Produtos Mais Vendidos (<?= $tituloPagProd ?>)</h2>
     <canvas id="graficoTop"></canvas>
   </div>
 </div>
 
-<a href="../inicio/home.php" class="voltar"> 
-        <img class="seta" src="../img/btn_voltar.png" title="seta">
+<!-- BOTÃO VOLTAR -->
+<a href="../inicio/home.php"> 
+    <img class="seta" src="../img/btn_voltar.png" title="Voltar">
 </a>
 
 <script>
