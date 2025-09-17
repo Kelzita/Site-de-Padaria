@@ -85,12 +85,29 @@ def generate_insert_scripts(num_inserts=5000, filename="inserts.sql"):
     for i in range(1, num_inserts + 1):
         id_comanda = current_comanda_id + i
         
+        # --- LÓGICA DE HORÁRIOS ROBUSTA ---
+        # 1. Gerar uma data aleatória
         time_difference = end_date - start_date
         random_days = random.randrange(time_difference.days)
-        random_seconds = random.randrange(86400)
-        data_abertura = start_date + timedelta(days=random_days, seconds=random_seconds)
+        
+        # 2. Gerar uma hora de abertura entre 06:00 e 21:00
+        hour_abertura = random.randint(6, 21)
+        minute_abertura = random.randint(0, 59)
+        second_abertura = random.randint(0, 59)
+        
+        # 3. Criar o objeto de data e hora de abertura
+        data_abertura = start_date + timedelta(days=random_days, hours=hour_abertura, minutes=minute_abertura, seconds=second_abertura)
+        
+        # 4. Gerar uma hora de fechamento (entre 15 e 120 minutos depois da abertura)
+        # O horário de fechamento não pode ultrapassar 22:00:00
         data_fechamento = data_abertura + timedelta(minutes=random.randint(15, 120))
         
+        # Se a comanda fechar depois das 22h, ajustamos para fechar às 22h
+        limite_fechamento = data_abertura.replace(hour=22, minute=0, second=0)
+        if data_fechamento > limite_fechamento:
+            data_fechamento = limite_fechamento
+
+        # Formatar datas e horários para SQL
         data_abertura_str = data_abertura.strftime('%Y-%m-%d')
         hora_abertura_str = data_abertura.strftime('%H:%M:%S')
         data_fechamento_str = data_fechamento.strftime('%Y-%m-%d')
@@ -151,5 +168,6 @@ def save_inserts_to_file(filename="inserts.sql"):
 if __name__ == "__main__":
     save_inserts_to_file()
 
-# USAR ISSO PARA QUE FUNCIONE!
-#  pip install mysql-connector-python 
+    # USAR ISSO
+
+   # pip install mysql-connector-python 
