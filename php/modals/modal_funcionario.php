@@ -10,89 +10,103 @@ if($id_funcionario > 0){
 ?>
 
 <?php if($funcionario): ?>
-<div class="modal-editar">
-    <div class="modal-editar__container" style="background:#fff; color:#000;">
-        <div class="modal-editar__header">
-            <h2 class="modal-editar__titulo">Detalhes do Funcionário</h2>
-            <span class="modal-editar__fechar">&times;</span>
+<div class="modal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h2 class="modal-title">Detalhes do Funcionário</h2>
+            <span class="modal-close">&times;</span>
         </div>
 
-        <div class="formulario">
-            <div class="container-foto">
+        <div class="modal-body">
+            <!-- FOTO CENTRALIZADA -->
+            <div class="foto-container full-width">
                 <?php if(!empty($funcionario['imagem_funcionario'])): ?>
-                    <img src="data:image/jpeg;base64,<?= base64_encode($funcionario['imagem_funcionario']) ?>"  
-                         alt="<?= htmlspecialchars($funcionario['nome_funcionario']); ?>" 
-                         class="previsualizacao-foto">
+                    <img src="data:image/jpeg;base64,<?= base64_encode($funcionario['imagem_funcionario']) ?>"
+                         alt="<?= htmlspecialchars($funcionario['nome_funcionario']); ?>" class="foto">
                 <?php else: ?>
-                    <img src="../img/imagem_padrao.png" alt="Imagem padrão" class="previsualizacao-foto">
+                    <img src="../img/imagem_padrao.png" alt="Imagem padrão" class="foto">
                 <?php endif; ?>
             </div>
 
-        
-            <div class="grupo-formulario">
-                <label><b>ID:</b></label>
-    <p><?= htmlspecialchars($funcionario['id_funcionario']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>Função:</b></label>
-    <p><?= htmlspecialchars($funcionario['nome_funcao']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>Nome:</b></label>
-    <p><?= htmlspecialchars($funcionario['nome_funcionario']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>CPF:</b></label>
-    <p><?= htmlspecialchars($funcionario['cpf_funcionario']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>Email:</b></label>
-    <p><?= htmlspecialchars($funcionario['email_funcionario']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>CEP:</b></label>
-    <p><?= htmlspecialchars($funcionario['cep_funcionario']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>Rua:</b></label>
-    <p><?= htmlspecialchars($funcionario['rua_funcionario']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>Número:</b></label>
-    <p><?= htmlspecialchars($funcionario['numero_funcionario']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>Bairro:</b></label>
-    <p><?= htmlspecialchars($funcionario['bairro_funcionario']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>Cidade:</b></label>
-    <p><?= htmlspecialchars($funcionario['cidade_funcionario']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>UF:</b></label>
-    <p><?= htmlspecialchars($funcionario['uf_funcionario']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>Telefone:</b></label>
-    <p><?= htmlspecialchars($funcionario['telefone_funcionario']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>Data de Admissão:</b></label>
-    <p><?= htmlspecialchars($funcionario['data_admissao']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>Salário:</b></label>
-    <p>R$ <?= htmlspecialchars($funcionario['salario']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>Senha:</b></label>
-    <p><?= htmlspecialchars(substr($funcionario['senha'], 0, 10)); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>Senha Temporária:</b></label>
-    <p><?= htmlspecialchars($funcionario['senha_temporaria']); ?></p>
-</div>
-<div class="grupo-formulario"><label><b>Ativo:</b></label>
-    <p><?= $funcionario['ativo'] ? 'Sim' : 'Não'; ?></p>
-</div>
+            <!-- ID -->
+            <div class="campo full-width">
+                <label>ID:</label>
+                <p><?= htmlspecialchars($funcionario['id_funcionario']); ?></p>
+            </div>
 
+            <!-- INFORMAÇÕES EM DUAS COLUNAS -->
+            <div class="campo">
+                <label>Função:</label>
+                <p><?= htmlspecialchars($funcionario['nome_funcao']); ?></p>
+            </div>
+            <div class="campo">
+                <label>Nome:</label>
+                <p><?= htmlspecialchars($funcionario['nome_funcionario']); ?></p>
+            </div>
+            <div class="campo">
+                <label>CPF:</label>
+                <p><?= htmlspecialchars($funcionario['cpf_funcionario']); ?></p>
+            </div>
+            <div class="campo">
+                <label>Email:</label>
+                <p><?= htmlspecialchars($funcionario['email_funcionario']); ?></p>
+            </div>
+            <div class="campo">
+                <label>CEP:</label>
+                <p><?= htmlspecialchars($funcionario['cep_funcionario']); ?></p>
+            </div>
+            <div class="campo">
+                <label>Rua:</label>
+                <p><?= htmlspecialchars($funcionario['rua_funcionario']); ?></p>
+            </div>
+            <div class="campo">
+                <label>Número:</label>
+                <p><?= htmlspecialchars($funcionario['numero_funcionario']); ?></p>
+            </div>
+            <div class="campo">
+                <label>Bairro:</label>
+                <p><?= htmlspecialchars($funcionario['bairro_funcionario']); ?></p>
+            </div>
+            <div class="campo">
+                <label>Cidade:</label>
+                <p><?= htmlspecialchars($funcionario['cidade_funcionario']); ?></p>
+            </div>
+            <div class="campo">
+                <label>UF:</label>
+                <p><?= htmlspecialchars($funcionario['uf_funcionario']); ?></p>
+            </div>
+            <div class="campo">
+                <label>Telefone:</label>
+                <p><?= htmlspecialchars($funcionario['telefone_funcionario']); ?></p>
+            </div>
+            <div class="campo">
+                <label>Data de Admissão:</label>
+                <p><?= htmlspecialchars($funcionario['data_admissao']); ?></p>
+            </div>
+            <div class="campo">
+                <label>Salário:</label>
+                <p>R$ <?= htmlspecialchars($funcionario['salario']); ?></p>
+            </div>
+            <div class="campo">
+                <label>Senha:</label>
+                <p><?= htmlspecialchars(substr($funcionario['senha'], 0, 10)); ?></p>
+            </div>
+            <div class="campo">
+                <label>Ativo:</label>
+                <p><?= $funcionario['ativo'] ? 'Sim' : 'Não'; ?></p>
+            </div>
 
-            <div class="acoes-formulario">
-                <a href="../alteracoes/Alterar_Funcionario.php?id=<?= $funcionario['id_funcionario']; ?>" 
-                   class="botao botao--primario">Editar Funcionário</a>
+            <!-- BOTÃO -->
+            <div class="acoes full-width">
+                <a href="../alteracoes/Alterar_Funcionario.php?id=<?= $funcionario['id_funcionario']; ?>"
+                   class="btn btn-primary">Editar Funcionário</a>
             </div>
         </div>
     </div>
 </div>
-
-<link rel="stylesheet" href="../css/modals.css">
-
+<link rel="stylesheet" href="modals.css"/>
 <?php else: ?>
 <p>Funcionário não encontrado.</p>
 <?php endif; ?>
+
+

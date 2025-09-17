@@ -56,7 +56,7 @@ require_once '../php/menu.php';
                 <option value="0">Inativos</option>
             </select>
     </div>
-
+    <?php if (!empty($funcionarios)): ?>
     <table id="tabela-funcionarios">
         <thead>
             <tr>
@@ -97,6 +97,9 @@ require_once '../php/menu.php';
 <a href="../inicio/home.php" class="voltar"> 
         <img class="seta" src="../img/btn_voltar.png" title="seta">
 </a>
+<?php else: ?>
+        <p style="margin-top: 10px; color:white;">Nenhum Funcionário cadastrado.</p>
+<?php endif; ?>
 
 <script>
 // ====== Modal Visualizar ======
@@ -163,6 +166,9 @@ document.getElementById('filtro-status').addEventListener('change', function(){
         }
     });
 });
+
+
+
 </script>
 </body>
 </html>

@@ -33,6 +33,14 @@
         .toggle-olho:hover {
             color: white;
         }
+
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear,
+        input[type="password"]::-webkit-contacts-auto-fill-button,
+        input[type="password"]::-webkit-credentials-auto-fill-button {
+        display: none !important;
+        }
+
     </style>
 </head>
 <body>
@@ -50,10 +58,8 @@
                 <div class="caixa-style">
                     <i class="ri-lock-2-line login__icon"></i>
                     <div class="campo-input">
-                        <!-- Adicionei id="senha" -->
                         <input name="senha" id="senha" type="password" class="style-input" placeholder=" ">
                         <label class="style-label">Senha</label>
-                        <!-- Agora chama toggleSenha('senha', this) -->
                         <i class="ri-eye-off-line toggle-olho" onclick="toggleSenha('senha', this)"></i>
                     </div>
                 </div>

@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['busca'])) {
         } else {
             $sql = "SELECT * FROM produto WHERE nome_produto LIKE :busca_nome ORDER BY nome_produto ASC";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([':busca_nome' => "%$busca%"]);
+            $stmt->execute([':busca_nome' => "$busca%"]);
         }
         $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

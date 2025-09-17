@@ -3,84 +3,83 @@ session_start();
 require_once("conexao.php");
 require_once("menu.php");
 
-// ==================== FUNÇÕES ==================== //
-
-// Função genérica para buscar dados
+// ------------------- FUNÇÕES ------------------- //
 function fetchData($pdo, $sql, $params = []) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
-    return $stmt->fetchAll(PDO::FETCH_NUM);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Organiza dados para gráfico, ignorando meses futuros
-function arr_tar($data, $tipoMes = false) {
-    $labels = [];
-    $vals = [];
+// ------------------- FILTRO DE MÊS ------------------- //
+$mesSelecionado = $_GET['mes'] ?? null;
 
-    // Mês atual
-    $mesAtual = (int)date('n');
+// ------------------- RECEITA MENSAL ------------------- //
+$anoAtual = date('Y');
+$sqlReceitaMensal = "
+    SELECT 
+        MONTH(c.data_fechamento) AS mes,
+        COALESCE(SUM(ic.total), 0) AS receita
+    FROM comanda c
+    INNER JOIN item_comanda ic ON c.id_comanda = ic.id_comanda
+    INNER JOIN produto p ON ic.id_produto = p.id_produto
+    WHERE LOWER(c.status) = 'fechada'
+      AND c.data_fechamento IS NOT NULL
+      AND YEAR(c.data_fechamento) = :ano
+    GROUP BY MONTH(c.data_fechamento)
+    ORDER BY mes
+";
+$receitaMensal = fetchData($pdo, $sqlReceitaMensal, [':ano'=>$anoAtual]);
 
-    foreach ($data as $row) {
-        $mes = $row[0];
-        if($tipoMes && $mes > $mesAtual) continue; // ignora meses futuros
+$nomesMeses = [
+  1=>'Janeiro', 2=>'Fevereiro', 3=>'Março', 4=>'Abril',
+  5=>'Maio', 6=>'Junho', 7=>'Julho', 8=>'Agosto',
+  9=>'Setembro', 10=>'Outubro', 11=>'Novembro', 12=>'Dezembro'
+];
 
-        $labels[] = $tipoMes ? ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][$mes-1] : $row[0];
-        $vals[] = (float)$row[1];
-    }
-
-    return [$labels,$vals];
+$labelsM = [];
+$valuesM = [];
+foreach ($receitaMensal as $r) {
+    $labelsM[] = $nomesMeses[(int)$r['mes']];
+    $valuesM[] = (float)$r['receita'];
 }
 
-// Monta URL do QuickChart
-function quickchartUrl($type, $labels, $data, $labelText='', $colors=[]) {
-    if(empty($labels)) $labels=['Sem dados'];
-    if(empty($data)) $data=[0];
-    if(empty($colors)) $colors=array_fill(0,count($labels),'#3D2412');
-
-    $dataset = ['label'=>$labelText,'data'=>$data];
-    if($type==='pie' || $type==='bar') $dataset['backgroundColor'] = $colors;
-    if($type==='line'){ $dataset['borderColor'] = $colors[0]; $dataset['fill'] = false; }
-
-    $config = ['type'=>$type,'data'=>['labels'=>$labels,'datasets'=>[$dataset]],'options'=>['plugins'=>['legend'=>['display'=>true]]]];
-
-    return "https://quickchart.io/chart?c=".urlencode(json_encode($config))."&w=600&h=400&devicePixelRatio=2";
-}
-
-// ==================== CONSULTAS ==================== //
-
-// 1) Receita Mensal
-$receitaMensal = fetchData($pdo, "
-SELECT 
-    MONTH(c.data_fechamento) AS mes,
-    COALESCE(SUM(ic.total), 0) AS receita
-FROM comanda c
-INNER JOIN item_comanda ic ON c.id_comanda = ic.id_comanda
-INNER JOIN produto p ON ic.id_produto = p.id_produto
-WHERE LOWER(c.status) = 'fechada'
-  AND c.data_fechamento IS NOT NULL
-  AND YEAR(c.data_fechamento) = YEAR(CURDATE())
-GROUP BY MONTH(c.data_fechamento)
-ORDER BY mes;
-
+// ------------------- LISTA DE MESES PARA FILTRO ------------------- //
+$mesesDisponiveis = fetchData($pdo, "
+    SELECT DISTINCT DATE_FORMAT(data_fechamento, '%Y-%m') AS ano_mes
+    FROM comanda
+    WHERE LOWER(status)='fechada'
+    ORDER BY ano_mes DESC
 ");
 
+$mesesFormatados = [];
+foreach($mesesDisponiveis as $m){
+    [$ano,$mes] = explode('-', $m['ano_mes']);
+    $mesesFormatados[] = [
+        'valor' => $m['ano_mes'],
+        'texto' => $nomesMeses[(int)$mes]."/$ano"
+    ];
+}
 
-// 2) Formas de Pagamento
+// ------------------- FORMAS DE PAGAMENTO ------------------- //
 $formasFixas = ['dinheiro','pix','cartao de debito','cartao de credito','vale alimentação'];
 $coresFixas = ['#3D2412','#B88C6D','#F5E6C7','#A67B5B','#CBAE8B'];
 
-$pagamentosRaw = fetchData($pdo, "
+$sqlPagamentos = "
     SELECT LOWER(c.forma_pagamento) AS forma, COUNT(*) AS total
     FROM comanda c
     WHERE LOWER(c.status)='fechada'
-      AND MONTH(c.data_fechamento)=MONTH(CURDATE())
-      AND YEAR(c.data_fechamento)=YEAR(CURDATE())
-    GROUP BY LOWER(c.forma_pagamento)
-");
+";
+$paramsPag = [];
+if($mesSelecionado){
+    $sqlPagamentos .= " AND DATE_FORMAT(c.data_fechamento, '%Y-%m') = :mes";
+    $paramsPag[':mes'] = $mesSelecionado;
+}
+$sqlPagamentos .= " GROUP BY LOWER(c.forma_pagamento)";
+$pagamentosRaw = fetchData($pdo, $sqlPagamentos, $paramsPag);
 
 $pagamentosAssoc = [];
 foreach($pagamentosRaw as $p){
-    $pagamentosAssoc[$p[0]] = (int)$p[1];
+    $pagamentosAssoc[$p['forma']] = (int)$p['total'];
 }
 
 $labelsP = $formasFixas;
@@ -88,105 +87,191 @@ $valuesP = [];
 foreach($formasFixas as $f){
     $valuesP[] = $pagamentosAssoc[$f] ?? 0;
 }
-$coresPag = $coresFixas;
 
-// 3) Top 5 Produtos Mais Vendidos (somente produtos reais)
-$topProdutos = fetchData($pdo, "
-    SELECT p.nome_produto, COALESCE(SUM(ic.quantidade),0) AS total_vendido
+// ------------------- TOP 5 PRODUTOS ------------------- //
+$sqlTopProdutos = "
+    SELECT p.nome_produto, SUM(ic.quantidade) AS total_vendido
     FROM item_comanda ic
     JOIN comanda c ON c.id_comanda = ic.id_comanda
     JOIN produto p ON p.id_produto = ic.id_produto
     WHERE LOWER(c.status)='fechada'
-      AND MONTH(c.data_fechamento)=MONTH(CURDATE())
-      AND YEAR(c.data_fechamento)=YEAR(CURDATE())
-    GROUP BY p.id_produto
-    ORDER BY total_vendido DESC
-    LIMIT 5
-");
+";
+$paramsTop = [];
+if($mesSelecionado){
+    $sqlTopProdutos .= " AND DATE_FORMAT(c.data_fechamento, '%Y-%m') = :mes";
+    $paramsTop[':mes'] = $mesSelecionado;
+}
+$sqlTopProdutos .= " GROUP BY p.id_produto ORDER BY total_vendido DESC LIMIT 5";
+$topProdutos = fetchData($pdo, $sqlTopProdutos, $paramsTop);
 
-list($labelsM,$valuesM) = arr_tar($receitaMensal,true);
-list($labelsT,$valuesT) = arr_tar($topProdutos);
+$labelsT = [];
+$valuesT = [];
+foreach($topProdutos as $t){
+    $labelsT[] = $t['nome_produto'];
+    $valuesT[] = (float)$t['total_vendido'];
+}
 $coresTop=['#3D2412','#B88C6D','#F5E6C7','#A67B5B','#CBAE8B'];
-
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Relatórios Dashboard</title>
-<link rel="icon" href="img/logo_title.png">
+<title>Dashboard Padaria</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 body {
     font-family: 'Times New Roman', serif;
-    background-image:url('../img/fundo_padaria.png');
-    background-size:cover;
-    margin:0;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+    background-image: url('../img/fundo_padaria.png');
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.dashboard{ max-width:1100px; 
-width:100%; 
-margin-top:80px;}
-.chart-container, .card{
-    background-color:rgba(255,255,255,0.85);
-    border-radius:10px;
-    padding:20px;
-    margin-bottom:30px;
-    text-align:center;
-    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+.dashboard { max-width: 1100px; width: 100%; margin-top: 80px; }
+.chart-container, .card {
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
 }
-.cards{ 
-display:flex; 
-flex-wrap:wrap; gap:20px; 
-justify-content:center;
+.cards-horizontal { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
+.large-card { flex: 1 1 450px; max-width: 500px; min-width: 300px; }
+canvas { width: 100% !important; height: 350px !important; }
+#graficoReceita { height: 400px !important; }
+.filtro-mes {
+    text-align: center;
+    margin-bottom: 30px;
+    background: rgba(255,255,255,0.9);
+    padding: 15px;
+    border-radius: 10px;
 }
-.chart-container h2, .card h2{ 
-color:#3D2412; margin-bottom:20px; 
-text-transform:uppercase; 
+.filtro-mes button {
+    padding: 6px 14px;
+    font-size: 14px;
+    background: #3D2412;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
 }
-img{ 
-max-height:320px; 
-display:block; 
-margin:0 auto;
+.filtro-mes button:hover { background: #5a3820; }
+.chart-container h2, .card h2 { color: #3D2412; margin-bottom: 20px; text-transform: uppercase; }
+
+.seta {
+    width: 50px;
+    height: 40px;
+    margin-top: 1200px;
+    display: block;
+    margin-left: 20px; 
 }
-.voltar{ 
-display:block; 
-text-decoration:none; 
-color:#3D2412; 
-font-weight:bold; 
-margin-bottom:20px;
+
+.seta {
+    width: 50px;
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
-.seta{
-width: 50px ;
-height: 40px ;
-margin-top: 20px;
-margin-left: -650px;
-left: 5px;
-}
+
+
 </style>
-<link rel="stylesheet" href="../css/stylehome.css"/>
 </head>
 <body>
 <div class="dashboard">
+
+<!-- GRÁFICO DE RECEITA MENSAL -->
 <div class="chart-container">
-  <h2>RECEITA MENSAL</h2>
-  <img src="<?= quickchartUrl('line',$labelsM,$valuesM,'Receita R$',['#3D2412']); ?>" alt="Receita Mensal">
+  <h2>Receita Mensal</h2>
+  <canvas id="graficoReceita"></canvas>
 </div>
 
-<div class="cards">
-  <div class="card">
-    <h2>FORMAS DE PAGAMENTO</h2>
-    <img src="<?= quickchartUrl('pie',$labelsP,$valuesP,'Pagamentos',$coresPag); ?>" alt="Formas de Pagamento">
+<!-- FILTRO DE MÊS PARA PAGAMENTOS E TOP PRODUTOS -->
+<form method="get" class="filtro-mes">
+    <label for="mes"><b>Selecione o mês:</b></label>
+    <input list="meses" name="mes" id="mes" value="<?= $mesSelecionado ?>">
+    <datalist id="meses">
+      <?php foreach($mesesFormatados as $m): ?>
+        <option value="<?= $m['valor'] ?>"><?= $m['texto'] ?></option>
+      <?php endforeach; ?>
+    </datalist>
+    <button type="submit">Filtrar</button>
+</form>
+
+<!-- GRÁFICOS LADO A LADO -->
+<div class="cards-horizontal">
+  <div class="card large-card">
+    <h2>Formas de Pagamento</h2>
+    <canvas id="graficoPag"></canvas>
   </div>
-  <div class="card">
-    <h2>TOP 5 PRODUTOS MAIS VENDIDOS</h2>
-    <img src="<?= quickchartUrl('bar',$labelsT,$valuesT,'',$coresTop); ?>" alt="Top Produtos">
+
+  <div class="card large-card">
+    <h2>Top 5 Produtos Mais Vendidos</h2>
+    <canvas id="graficoTop"></canvas>
   </div>
 </div>
-</div>
-  <a href="../inicio/home.php" class="voltar"> 
+
+<a href="../inicio/home.php" class="voltar"> 
         <img class="seta" src="../img/btn_voltar.png" title="seta">
-  </a>
+</a>
+
+<script>
+// -------- RECEITA MENSAL --------
+const ctxReceita = document.getElementById('graficoReceita').getContext('2d');
+const gradient = ctxReceita.createLinearGradient(0,0,0,400);
+gradient.addColorStop(0,'rgba(189,142,110,0.6)');
+gradient.addColorStop(1,'rgba(189,142,110,0.1)');
+
+new Chart(ctxReceita, {
+    type:'line',
+    data:{
+        labels: <?= json_encode($labelsM) ?>,
+        datasets:[{
+            label:'Receita R$',
+            data: <?= json_encode($valuesM) ?>,
+            borderColor:'#3D2412',
+            backgroundColor: gradient,
+            fill:true,
+            tension:0.4,
+            pointRadius:6,
+            pointBackgroundColor:'#3D2412'
+        }]
+    },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:true}, tooltip:{enabled:true}}, scales:{y:{beginAtZero:true}, x:{ticks:{autoSkip:false}}} }
+});
+
+// -------- FORMAS DE PAGAMENTO --------
+new Chart(document.getElementById('graficoPag'), {
+    type:'pie',
+    data:{
+        labels: <?= json_encode($labelsP) ?>,
+        datasets:[{
+            data: <?= json_encode($valuesP) ?>,
+            backgroundColor: <?= json_encode($coresFixas) ?>,
+            borderColor:'#fff',
+            borderWidth:2
+        }]
+    },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom', labels:{padding:20}}, tooltip:{enabled:true}} }
+});
+
+// -------- TOP 5 PRODUTOS --------
+new Chart(document.getElementById('graficoTop'), {
+    type:'bar',
+    data:{
+        labels: <?= json_encode($labelsT) ?>,
+        datasets:[{
+            label:'Qtd Vendida',
+            data: <?= json_encode($valuesT) ?>,
+            backgroundColor: <?= json_encode($coresTop) ?>,
+            borderRadius:6
+        }]
+    },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}, tooltip:{enabled:true}}, scales:{y:{beginAtZero:true}, x:{ticks:{autoSkip:false}}} }
+});
+</script>
 </body>
 </html>

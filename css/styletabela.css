@@ -1,11 +1,9 @@
-/* =======================
-   FORMULÁRIO DE BUSCA
-======================= */
+/* =======================  FORMULÁRIO DE BUSCA ======================= */
 /* ================== TÍTULOS ================== */
 h1, h2 {
     text-align: center;
     margin-bottom: 25px;
-    color: #f3f3f3;
+    color: #ffffff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     letter-spacing: 1px;
 }
@@ -25,7 +23,7 @@ h2 {
 .container {
     background-color: rgba(0, 0, 0, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    width: 70%;
+    width: 80%;
     min-height: 50%;
     margin: 40px auto;
     border-radius: 12px;
@@ -46,17 +44,16 @@ form {
 }
 /* ================== CONTAINER DO INPUT E BOTÃO ================== */
 .input-container {
-    position: relative;
-    width: 300px;          /* largura do conjunto */
-    display: flex;         /* garante alinhamento do input e botão */
+    position: relative;       
+    display: flex;       
 }
 
 /* ================== INPUT ================== */
 .input-container input {
-    flex: 1;                        /* ocupa todo espaço disponível */
-    padding: 12px 20px;             /* padding interno */
-    border: 2px solid #555;         /* borda escura */
-    border-radius: 50px 0 0 50px;   /* arredondado apenas do lado esquerdo */
+    flex: 1;                      
+    padding: 12px 20px;            
+    border: 2px solid #555;        
+    border-radius: 50px 0 0 50px;  
     font-size: 1rem;
     background-color: #fcf8f8;
     color: #0a0606;
@@ -65,7 +62,7 @@ form {
 }
 
 .input-container input::placeholder {
-    color: #aaa; /* placeholder discreto */
+    color: #aaa; 
 }
 
 .input-container input:focus {
@@ -92,13 +89,12 @@ form {
     box-shadow: #3D2412;
 }
 
-/* Container do input + botão */
 .input-container {
     position: relative;
-    width: 300px;
+    width: 340px;
 }
 
-/* Input */
+
 .input-container input {
     width: 100%;
     padding: 12px 50px 12px 15px;
@@ -114,7 +110,6 @@ form {
     box-shadow: 0 0 10px rgba(61, 36, 18, 0.3);
 }
 
-/* Botão dentro do input */
 .input-container button {
     position: absolute;
     top: 28%;
@@ -138,10 +133,11 @@ form {
     background-color: #3D2412;
 }
 
+
 /* ================== TABELA ================== */
 table {
-    width: 100%;
-    max-width: 700px;
+    width: 100%;           /* ocupa toda a largura do container */
+    max-width: 1200px;     /* aumenta o limite máximo */
     margin: 20px auto;
     border-collapse: separate;
     border-spacing: 0;
@@ -202,16 +198,6 @@ td:last-child, th:last-child {
     color: #fff;
 }
 
-.btn-editar { background-color: #0275d8; }
-.btn-salvar { background-color: #5cb85c; }
-.btn-cancelar { background-color: #f0ad4e; }
-.btn-apagar, .btn-excluir { background-color: #e74c3c; }
-
-
-.btn-editar:hover { background-color: #025aa5; }
-.btn-salvar:hover { background-color: #449d44; }
-.btn-cancelar:hover { background-color: #ec971f; }
-.btn-apagar:hover, .btn-excluir:hover { background-color: #c0392b; }
 
 /* ============ BOTÃO VOLTAR=============== */
 .voltar {
@@ -327,23 +313,30 @@ td:last-child, th:last-child {
 }
 
 /*====== Ações =====*/
-.acoes {
+td.acoes {
     display: flex;
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; 
+    align-items: center;  
+    margin-top: 30px;  
+    gap: 10px;             
+    padding: 2px 10px 30px 0px;       
 }
+
 
 .acao {
     text-decoration: none; /* remove sublinhado */
+    line-height: 0;
+
+    
 }
 
 .acao i {
-    font-size: 20px;   /* maior e visível */
-    color: #000;       /* preto elegante */
+    font-size: 20px;
+    color: #000;
     transition: transform 0.2s, color 0.2s;
     cursor: pointer;
 }
+
 
 .acao i:hover {
     transform: scale(1.3); /* aumenta levemente no hover */
@@ -397,3 +390,19 @@ td:last-child, th:last-child {
 .select select:hover {
     border-color: #3D2412;
 }
+
+.voltar {
+    width: 50px ;
+    height: 40px ;
+    margin-top: 20px;
+    margin-left: -1250px;
+    left: 5px;
+  }
+  
+  .seta1 {
+    width: 50px ;
+    height: 40px ;
+    margin-top: 20px;
+    margin-left: 20px;
+    left: 5px;
+  }

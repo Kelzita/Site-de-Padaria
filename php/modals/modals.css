@@ -1,77 +1,4 @@
-<?php 
-require_once __DIR__ . '/../funcoes.php';
-
-$id_produto = isset($_GET['id']) ? intval($_GET['id']) : 0;
-$produto = null;
-
-if($id_produto > 0){
-    $produto = buscarProdutoPorId($id_produto);
-}
-?>
-
-<?php if($produto): ?>
-<div class="modal">
-    <div class="modal-container">
-        <div class="modal-header">
-            <h2 class="modal-title">Detalhes do Produto</h2>
-            <span class="modal-close">&times;</span>
-        </div>
-
-        <div class="modal-body">
-            <!-- FOTO CENTRALIZADA -->
-            <div class="foto-container full-width">
-                <?php if(!empty($produto['imagem_produto'])): ?>
-                    <img src="data:image/jpeg;base64,<?= base64_encode($produto['imagem_produto']) ?>"  
-                         alt="<?= htmlspecialchars($produto['nome_produto']); ?>" 
-                         class="foto">
-                <?php else: ?>
-                    <img src="../img/imagem_padrao.png" alt="Imagem padrão" class="foto">
-                <?php endif; ?>
-            </div>
-
-            <!-- INFORMAÇÕES -->
-            <div class="campo"><label>ID:</label><p><?= htmlspecialchars($produto['id_produto']); ?></p></div>
-            <div class="campo"><label>Nome:</label><p><?= htmlspecialchars($produto['nome_produto']); ?></p></div>
-            <div class="campo"><label>Descrição:</label><p><?= htmlspecialchars($produto['descricao'] ?? 'Não informado'); ?></p></div>
-            <div class="campo"><label>Preço:</label><p>R$ <?= htmlspecialchars($produto['preco']); ?></p></div>
-            <div class="campo"><label>Unidade de Medida:</label><p><?= htmlspecialchars($produto['unmedida']); ?></p></div>
-            <div class="campo"><label>Validade:</label><p><?= htmlspecialchars($produto['validade']); ?></p></div>
-            <div class="campo"><label>Quantidade:</label><p><?= htmlspecialchars($produto['quantidade_produto']); ?></p></div>
-            <div class="campo"><label>Fornecedor:</label><p><?= htmlspecialchars($produto['razao_social']); ?></p></div>
-
-            <!-- BOTÃO -->
-            <div class="acoes full-width">
-                <a href="../alteracoes/Alterar_Produto.php?id=<?= $produto['id_produto']; ?>" class="btn btn-primary">Editar Produto</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<script>
-// Delegação de eventos para modais que podem ser criados dinamicamente
-document.addEventListener('click', function(event) {
-    // Fechar modal ao clicar no fundo
-    if(event.target.classList.contains('modal')) {
-        event.target.remove();
-    }
-
-    // Fechar modal ao clicar no X
-    if(event.target.classList.contains('modal-close')) {
-        const modal = event.target.closest('.modal');
-        if(modal) modal.remove();
-    }
-});
-</script>
-
-
-<?php else: ?>
-<p>Produto não encontrado.</p>
-<?php endif; ?>
-
-<style>
-  /* ====== MODAL ====== */
+/* ====== MODAL ====== */
 .modal {
   display: block;
   position: fixed;
@@ -236,4 +163,3 @@ p {
       height: 110px;
   }
 }
-</style>
