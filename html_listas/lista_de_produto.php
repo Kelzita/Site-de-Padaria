@@ -70,7 +70,7 @@ td.ok {
             <?php foreach ($produtos as $p): 
                 $qtd = (int)$p['quantidade_produto'];
                 $classeEstoque = $qtd <= 20 ? 'alerta' : 'ok';
-                $statusEstoque = $qtd <= 20 ? '⚠ Baixo Estoque' : '✅ OK';
+                $statusEstoque = $qtd <= 20 ? '⚠ Baixo Estoque' : '✅';
             ?>
             <tr data-status="<?= $p['ativo'] ?>">
                 <td><?= $p['id_produto'] ?></td>
