@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import os
 import re
 import mysql.connector
+import math
 
 # --- CONFIGURAÇÕES DO BANCO DE DADOS ---
 db_config = {
@@ -58,6 +59,60 @@ def get_products_from_db():
         print(f"Erro ao conectar ao banco de dados ou executar a consulta: {err}")
         return None
 
+def get_time_weighted_probability(hour):
+    """
+    Retorna um peso de probabilidade baseado na hora do dia.
+    Padarias geralmente têm picos pela manhã (6h-9h) e final da tarde (16h-18h).
+    """
+    # Distribuição típica de movimento em uma padaria
+    if 6 <= hour < 9:    # Manhã - pico
+        return 2.0
+    elif 9 <= hour < 11:  # Manhã - movimento moderado
+        return 1.5
+    elif 11 <= hour < 14: # Horário de almoço
+        return 1.2
+    elif 14 <= hour < 16: # Tarde - movimento mais lento
+        return 0.8
+    elif 16 <= hour < 19: # Final da tarde - pico
+        return 1.8
+    elif 19 <= hour < 22: # Noite - movimento moderado
+        return 1.2
+    else:                 # Fora do horário de funcionamento
+        return 0.0
+
+def generate_realistic_time(start_date, end_date):
+    """
+    Gera um horário realista baseado na distribuição típica de uma padaria.
+    """
+    # Gerar uma data aleatória dentro do intervalo
+    time_difference = end_date - start_date
+    random_days = random.randrange(time_difference.days)
+    base_date = start_date + timedelta(days=random_days)
+    
+    # Gerar hora considerando a distribuição de probabilidade
+    valid_hours = []
+    probabilities = []
+    
+    for hour in range(6, 22):  # Das 6h às 22h
+        weight = get_time_weighted_probability(hour)
+        if weight > 0:
+            valid_hours.append(hour)
+            probabilities.append(weight)
+    
+    # Normalizar probabilidades
+    total = sum(probabilities)
+    probabilities = [p/total for p in probabilities]
+    
+    # Selecionar hora baseada na distribuição de probabilidade
+    selected_hour = random.choices(valid_hours, weights=probabilities, k=1)[0]
+    
+    # Gerar minutos e segundos
+    minute = random.randint(0, 59)
+    second = random.randint(0, 59)
+    
+    # Criar datetime completo
+    return base_date.replace(hour=selected_hour, minute=minute, second=second)
+
 def generate_insert_scripts(num_inserts=5000, filename="inserts.sql"):
     """
     Gera e salva os scripts de insert agrupados.
@@ -85,22 +140,24 @@ def generate_insert_scripts(num_inserts=5000, filename="inserts.sql"):
     for i in range(1, num_inserts + 1):
         id_comanda = current_comanda_id + i
         
-        # --- LÓGICA DE HORÁRIOS ROBUSTA ---
-        # 1. Gerar uma data aleatória
-        time_difference = end_date - start_date
-        random_days = random.randrange(time_difference.days)
+        # Gerar horário realista para abertura da comanda
+        data_abertura = generate_realistic_time(start_date, end_date)
         
-        # 2. Gerar uma hora de abertura entre 06:00 e 21:00
-        hour_abertura = random.randint(6, 21)
-        minute_abertura = random.randint(0, 59)
-        second_abertura = random.randint(0, 59)
+        # Definir tempo de permanência baseado no horário
+        hour = data_abertura.hour
         
-        # 3. Criar o objeto de data e hora de abertura
-        data_abertura = start_date + timedelta(days=random_days, hours=hour_abertura, minutes=minute_abertura, seconds=second_abertura)
+        if hour < 9:  # Manhã - clientes mais rápidos
+            max_duration = 30  # minutos
+        elif hour < 14:  # Período intermediário
+            max_duration = 45  # minutos
+        else:  # Tarde/noite - clientes mais relaxados
+            max_duration = 60  # minutos
+            
+        # Garantir que o tempo de permanência seja razoável (5-45 minutos)
+        duration = min(max_duration, random.randint(5, 60))
         
-        # 4. Gerar uma hora de fechamento (entre 15 e 120 minutos depois da abertura)
-        # O horário de fechamento não pode ultrapassar 22:00:00
-        data_fechamento = data_abertura + timedelta(minutes=random.randint(15, 120))
+        # Calcular horário de fechamento
+        data_fechamento = data_abertura + timedelta(minutes=duration)
         
         # Se a comanda fechar depois das 22h, ajustamos para fechar às 22h
         limite_fechamento = data_abertura.replace(hour=22, minute=0, second=0)
@@ -121,12 +178,23 @@ def generate_insert_scripts(num_inserts=5000, filename="inserts.sql"):
             f"({id_comanda}, {id_funcionario}, '{data_abertura_str}', '{hora_abertura_str}', '{data_fechamento_str}', '{hora_fechamento_str}', '{status}', '{forma_pagamento}')"
         )
         
-        num_items = random.randint(1, 5)
+        # Número de itens baseado no horário (manhã tende a ter compras maiores)
+        if hour < 11:  # Manhã
+            num_items = random.choices([1, 2, 3, 4, 5], weights=[0.1, 0.2, 0.3, 0.3, 0.1], k=1)[0]
+        else:  # Resto do dia
+            num_items = random.choices([1, 2, 3, 4, 5], weights=[0.3, 0.3, 0.2, 0.15, 0.05], k=1)[0]
+            
         for _ in range(num_items):
             current_item_comanda_id += 1
             
             id_produto = random.choice(produtos_existentes)
-            quantidade = random.randint(1, 10)
+            
+            # Quantidade baseada no tipo de produto (pães tendem a ser comprados em maior quantidade)
+            if "pao" in str(id_produto).lower() or "bread" in str(id_produto).lower():
+                quantidade = random.choices([1, 2, 3, 4, 5, 6], weights=[0.1, 0.2, 0.3, 0.2, 0.1, 0.1], k=1)[0]
+            else:
+                quantidade = random.choices([1, 2, 3], weights=[0.7, 0.2, 0.1], k=1)[0]
+                
             price = precos.get(id_produto, 0.00)
             
             total_item = quantidade * price
