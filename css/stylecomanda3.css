@@ -284,3 +284,21 @@ button:hover {
 .finalizar_venda:hover {
   background-color: #7a4226;
 }
+
+.voltar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #3D2412;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.voltar-btn:hover {
+  background-color: #7a4226;
+  color: #fff;
+}

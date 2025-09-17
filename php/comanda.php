@@ -769,6 +769,9 @@ if ($isAjax) {
 
 <div class="container">
     <div class="header">
+        <a href="../inicio/home.php" class="btn btn-light voltar-btn">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </a>
         <h1>Comanda</h1>
         <div class="user-info">
             <?php if (!empty($funcionario['imagem_funcionario'])): ?>
