@@ -1,0 +1,26 @@
+version: "3.8" # Versão do Docker
+
+services: # Lista de serviços que serão rodados
+  web: #nome do serviço (php/apache)
+    build: . # constrói a imagem a partir do Dockerfile
+    ports: 
+      - "8080:80" # Mapeia a porta 8080 do host para a 80 do container
+    volumes:
+      - .:/var/www/html # Monta a pasta local no container
+    depends_on:
+      - db # Depende do db, que deve iniciar antes
+  
+  db: # Serviço do Banco
+    image: mysql:8.0 # usa imagem oficial do MySQL v8
+    restart: always # Reinicia automático caso o container caia
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes" # Permite senha vazia
+      MYSQL_ROOT_PASSWORD: root 
+      MYSQL_DATABASE: padaria-pao-genial
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql # volume persistente
+
+volumes:  # Volumes nomeados do Docker
+  db_data:
