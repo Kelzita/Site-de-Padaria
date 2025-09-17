@@ -42,7 +42,6 @@ $permissoes = [
         "Histórico de Vendas" => ["../php/historicodevendas.php" => "Histórico de Vendas"],
         "Gestão de Produtos e Estoque" => [
             "../html_cadastros/cadastrar_produto.php" => "Cadastrar Produto",
-            "../html_listas/estoque_atual.php" => "Estoque Atual",
             "../html_listas/lista_de_produto.php" => "Lista de Produtos",
         ],
         "Gestão de Funcionários" => [
@@ -65,7 +64,6 @@ $permissoes = [
     2 => [ // Estoque
         "Gestão de Produtos e Estoque" => [
             "../html_cadastros/cadastrar_produto.php" => "Cadastrar Produto",
-            "../html_listas/estoque_atual.php" => "Estoque Atual",
             "../html_listas/lista_de_produto.php" => "Gerenciar Produtos"
         ],
         "Perfil" => [
