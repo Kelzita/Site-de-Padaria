@@ -93,19 +93,72 @@ function abrirModalProduto(id){
     fetch(`../php/modals/modal_produto.php?id=${id}`)
     .then(res => res.text())
     .then(html => {
-        const antigo = document.querySelector('.modal-editar');
+        const antigo = document.querySelector('.modal');
         if(antigo) antigo.remove();
         document.body.insertAdjacentHTML('beforeend', html);
 
-        const modal = document.querySelector('.modal-editar');
+        const modal = document.querySelector('.modal');
+
+        // Fechar clicando fora do container
         modal.addEventListener('click', (e) => {
-            if (!e.target.closest('.modal-editar__container')) modal.remove();
+            if (!e.target.closest('.modal-container')) {
+                modal.remove();
+            }
         });
-        const btnFechar = modal.querySelector('.modal-editar__fechar');
-        if(btnFechar) btnFechar.addEventListener('click', () => modal.remove());
+
+        // Fechar clicando no X
+        const btnFechar = modal.querySelector('.modal-close');
+        if (btnFechar) {
+            btnFechar.addEventListener('click', () => modal.remove());
+        }
     })
     .catch(err => console.error(err));
 }
+
+
+function toggleAtivoProduto(element, id) {
+    if (!confirm('Deseja realmente alterar o status deste produto?')) return;
+
+    fetch('../php/inativar_produto.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `id_produto=${id}`
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.sucesso) {
+            const tr = element.closest('tr');
+            const statusCell = tr.querySelector('.status');
+            const icone = element.querySelector('i');
+
+            if(data.ativo) {
+                statusCell.textContent = 'Ativo';
+                icone.classList.remove('ri-close-circle-line');
+                icone.classList.add('ri-checkbox-circle-line');
+                tr.dataset.status = 1;
+                alert('Produto ativado com sucesso!');
+            } else {
+                statusCell.textContent = 'Inativo';
+                icone.classList.remove('ri-checkbox-circle-line');
+                icone.classList.add('ri-close-circle-line');
+                tr.dataset.status = 0;
+                alert('Produto inativado com sucesso!');
+            }
+        } else {
+            alert('Erro: ' + (data.erro || 'Não foi possível alterar o status.'));
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert('Erro no servidor ao alterar produto!');
+    });
+}
+
+// ====== Filtro Ativos/Inativos via select ====== 
+
+document.getElementById('filtro-status').addEventListener('change', function(){
+     const status = this.value; document.querySelectorAll('#tabela-produtos tbody tr').forEach(tr => { tr.style.display = (status === '' || tr.dataset.status === status) ? '' : 'none'; }); 
+    });
 
 </script>
 

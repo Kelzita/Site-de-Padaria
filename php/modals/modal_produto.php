@@ -63,6 +63,7 @@ document.addEventListener('click', function(event) {
         if(modal) modal.remove();
     }
 });
+
 </script>
 
 
@@ -70,6 +71,8 @@ document.addEventListener('click', function(event) {
 <p>Produto não encontrado.</p>
 <?php endif; ?>
 
+
+<!-- ========== CSS =========== -->
 <style>
   /* ====== MODAL ====== */
 .modal {
@@ -114,15 +117,18 @@ document.addEventListener('click', function(event) {
 }
 
 .modal-close {
-  font-size: 1.8rem;
-  color: #666;
-  cursor: pointer;
-  transition: transform 0.2s, color 0.2s;
+    font-size: 1.8rem;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;       
+    display: inline-block;
+
 }
+
 .modal-close:hover {
-  transform: rotate(90deg);
-  color: #111;
+    color: #1a1a1a;
 }
+
 
 /* ====== BODY ====== */
 .modal-body {

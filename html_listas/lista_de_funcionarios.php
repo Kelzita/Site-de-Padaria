@@ -102,26 +102,32 @@ require_once '../php/menu.php';
 <?php endif; ?>
 
 <script>
-// ====== Modal Visualizar ======
 function abrirModalFuncionario(id){
     fetch(`../php/modals/modal_funcionario.php?id=${id}`)
     .then(res => res.text())
     .then(html => {
-        const antigo = document.querySelector('.modal-editar');
+        const antigo = document.querySelector('.modal');
         if(antigo) antigo.remove();
         document.body.insertAdjacentHTML('beforeend', html);
+
+        const modal = document.querySelector('.modal');
+
+        // Fechar clicando fora do container
+        modal.addEventListener('click', (e) => {
+            if (!e.target.closest('.modal-container')) {
+                modal.remove();
+            }
+        });
+
+        // Fechar clicando no X
+        const btnFechar = modal.querySelector('.modal-close');
+        if (btnFechar) {
+            btnFechar.addEventListener('click', () => modal.remove());
+        }
     })
     .catch(err => console.error(err));
 }
 
-document.addEventListener('click', function(e){
-    const modal = e.target.closest('.modal-editar');
-    if(!modal) return;
-
-    if(!e.target.closest('.modal-editar__container') || e.target.classList.contains('modal-editar__fechar')){
-        modal.remove();
-    }
-});
 
 // ====== Toggle Ativo/Inativo ======
 function toggleAtivo(element, id) {
