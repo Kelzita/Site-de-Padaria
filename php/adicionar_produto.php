@@ -2,126 +2,100 @@
 # Inicia a sessão de um usuário e(ou) retoma, permite o armazenamento de informações - status de login e entre outros.
 session_start();
 
-require_once 'conexao.php' #Chama o arquivo que conecta-se ao banco
+require_once 'conexao.php'; #Chama o arquivo que conecta-se ao banco
 
 // ============= CAPTURANDO DADOS VIA GET =================
 
-# Pega o valor via GET, se ele existir, ou seja, o "id_comanda" na URL ele recebe o valor ex: "id_comanda=5", Caso contrário, ele irá receber valor nulo ( NULL)
-
-$id_comanda = $_GET['id_comanda'] ?? null; 
-$id_produto = $_GET['id_produto'] ?? null; 
-$quantidade = $_GET['quantidade'] ?? 1; 
-$observacao = $_GET['observacao'] ?? null; 
+# Pega os valores via GET, se eles existirem, ou seja, o "id_comanda", "id_produto", "quantidade" e "observacao".
+# Caso contrário, eles irão receber valor nulo ( NULL ) ou um padrão no caso da quantidade (=1).
+$id_comanda   = $_GET['id_comanda'] ?? null; 
+$id_produto   = $_GET['id_produto'] ?? null; 
+$quantidade   = $_GET['quantidade'] ?? 1; 
+$observacao   = $_GET['observacao'] ?? null; 
 
 // ============= VERIFICANDO OS DADOS =================
 
-# Aqui diz, se o id_comanda/id_produto está vazio ou nulo, ele irá trazer uma mensagem de erro através do "echo", mostrando que o id da comanda/produto não foi informado.
-# Os valores podem ser NULOS, 0 , Ou uma simples string vazia " ", ele trará este erro, pois estas variáveis não são propensas a estarem vazias.
-# A resposta é em JSON porque é o formato mais fácil e padrão para o front-end (JavaScript) entender e tratar o erro com maestria. 
-
+# Aqui diz, se o id_comanda/id_produto está vazio ou nulo, ele irá trazer uma mensagem de erro em JSON.
+# Isso permite que o front-end (JavaScript) trate o erro com clareza.
 if(!$id_comanda) {
-    echo json_encode(["erro" => "ID da comanda não informado!"]);
+    echo json_encode(["erro" => "ID da comanda não informado!"], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 if(!$id_produto) {
-    echo json_encode(["erro" => "Produto não informado!"]);
+    echo json_encode(["erro" => "Produto não informado!"], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 // ============= BUSCA SQL PELO PREÇO DO PRODUTO =================
 
-# Cria-se uma variável $sql, que é lhe atribuída o comando de SELECT na tabela produto, ou seja, uma busca.
-
+# Cria-se uma variável $sql, que é lhe atribuída o comando de SELECT na tabela produto, ou seja, uma busca pelo preço.
 $sql = "SELECT preco FROM produto WHERE id_produto = :id_produto";
 
-# Após isso, utilizamos a variável $stmt = statement juntamente com o $pdo, para preparar a variável que tem o comando de SELECT, de modo que possamos evitar o SQL INJECTION
-
+# Após isso, utilizamos a variável $stmt = statement juntamente com o $pdo, para preparar a query de SELECT.
 $stmt = $pdo->prepare($sql);
 
-#Em seguida, executamos a "query" preparada pelo $stmt, substituindo o placeholder :id_produto pelo valor atribuido na variável $id_produto
-
+# Em seguida, executamos a query preparada, substituindo o placeholder :id_produto pelo valor atribuído na variável $id_produto
 $stmt->execute(['id_produto' => $id_produto]);
 
 # Depois de executarmos a busca, utilizamos o "fetch" para pegar o primeiro resultado da consulta.
-# O modo FETCH_ASSOC, faz com que o resultado venha como um "array associativo" (Chaves com nomes das colunas do banco, não números, apropriadamente dizendo).
-# EX: id_produto => 5
-#     nome_produto => Pão de Queijo
-#     quantidade = > 10
-# E assim vai! 
-
+# O modo FETCH_ASSOC faz com que o resultado venha como um array associativo.
 $produto = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // ============= VERIFICANDO OS DADOS =================
-# Se não existir produto com o id_produto que fora escolhido no banco de dados, ele retorna uma mensagem de erro, tratada por JSON, mostrando que o produto não foi encontrado
-# O fetch retorna a falso, porém, neste caso ele trás uma mensagem de erro
+# Se não existir produto com o id_produto informado, ele retorna uma mensagem de erro em JSON.
 if(!$produto) {
-    echo json_encode(["erro" => "Produto não encontrado"]);
+    echo json_encode(["erro" => "Produto não encontrado"], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 // ============= CÁLCULO =================
-# pega o preço do produto através de um array associativo, ou seja, atribuindo à variável preço, o $produto que tem o ID, e o preço dele. Caso seja R$5,00 o valor atribuido ao $preco será R$5,00. Depedendendo da quantiddade, ele irá multiplicar de acordo, como pode ser visto no outro comando.
+# pega o preço do produto através do array associativo, ou seja, atribui à variável preço, o valor do campo "preco".
 $preco = $produto['preco'];
 
-# Faz o cálculo com uma multiplicação, atribuindo à variável $total que o seu valor é a variável $preco vezes a $quantidade
-# EX: R$5,00 x 2 = R$10,00 :)
+# Faz o cálculo com uma multiplicação, atribuindo à variável $total = $preco x $quantidade
 $total = $preco * $quantidade;
 
 
 // ============= INSERE ITENS NA COMANDA =================
 
-# De mesma forma como nos módulos anteriores, nós atribuímos à variável $sql, um comando que INSERE na tabela item_comanda nos seguintes campos, com os valores sendo colocados com placeholder's para melhor segurança.
+# De mesma forma como nos módulos anteriores, nós atribuímos à variável $sql, um comando que INSERE na tabela item_comanda.
 $sql = "INSERT INTO item_comanda (id_comanda, id_produto, quantidade, observacao, total)
         VALUES (:id_comanda, :id_produto, :quantidade, :observacao, :total)";
 
-
-# Preparando a variável $sql com $stmt - Statement e $pdo ( retornar à l38 para mais clareza )
-
+# Preparando a variável $sql com $stmt - Statement e $pdo
 $stmt = $pdo->prepare($sql);
 
-# Nessa parte, ele executa a query preparada, substituindo os placeholders (:id_produto, por exemplo) pelos valores passados de forma segura, inserindo ou atualizando os dados no banco.
-
+# Executa a query preparada, substituindo os placeholders pelos valores passados.
 $stmt->execute([
-    'id_comanda' => $id_comanda,
-    'id_produto' => $id_produto,
-    'quantidade' => $quantidade,
-    'observacao' => $observacao,
-    'total' => $total
+    'id_comanda'   => $id_comanda,
+    'id_produto'   => $id_produto,
+    'quantidade'   => $quantidade,
+    'observacao'   => $observacao,
+    'total'        => $total
 ]);
 
 
-// ============= RETORNA A LISTA ATUALZIADA DOS ITENS =================
+// ============= RETORNA A LISTA ATUALIZADA DOS ITENS =================
 
-# Mais uma vez... criamos a variável $sql, onde lhe atribuímos um SELECT ( BUSCAR NA TABELA ITEM_COMANDA ), Só que no caso à seguir, também fazemos um join na tabela produto.
-# Explicando melhor esta query, Fazemos um select na tabela item_comanda e o apelidamos como "id_item" e também, pegamos o id da comanda como vemos. Logo mais, para sabermos que são de tabelas diferentes, colocamos o "i" ou o "p" à frente ( i = item_comanda e p = produto), pegamos o nome, quantidade e o preco, que está sendo apelidado por valor_unitário.
-# Logo mais, fazemos um cálculo entre a quantidade x preco (i.quantidade e p.preco) desta forma, fazemos com que esse calculo seja o "total", apelidado por este parâmetro. 
-# FROM item_comanda ( Claro, os que são desta tabela )
-# JOIN produto, onde podemos utilizar o "p" para demonstrar a tabela pertencente, pegamos o id_produto que é "=" a ele mesmo ( para não haver repetições ) 
-# WHERE o i.id_comanda = :id_comanda - Placeholder criado para melhor proteção, evitando SQL INJECTION!
-
+# Fazemos um SELECT na tabela item_comanda com JOIN na tabela produto para trazer informações completas.
+# Importante: aqui usamos o campo "i.total" salvo no banco (e não recalculado), para manter consistência.
 $sql = "SELECT i.id_item_comanda AS id_item, i.id_comanda, 
                p.nome_produto, i.quantidade, 
                p.preco AS valor_unit, 
-               (i.quantidade * p.preco) AS total
+               i.total
         FROM item_comanda i
         JOIN produto p ON p.id_produto = i.id_produto
         WHERE i.id_comanda = :id_comanda";
 
-    
-# Novamente, ele vai preparar a variável com o $stmt e o $pdo, para evitar SQL INJECTION
-
+# Prepara e executa a query
 $stmt = $pdo->prepare($sql);
-
-
-#Em seguida, executamos a "query" preparada pelo $stmt, substituindo o placeholder :id_comanda pelo valor atribuido na variável $id_comanda
 $stmt->execute(['id_comanda' => $id_comanda]);
 
-# Depois de executarmos a busca, utilizamos o "fetch" para pegar o primeiro resultado.
-# Ele faz com que o resultado venha como um "array associativo" (Chaves com nomes das colunas do banco, não números).
+# Recupera todos os itens como array associativo
 $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-# Converte o array php em $itens, para JSON em um formato em que o FRONT ( javascript ) entenda 
+# Define o cabeçalho da resposta como JSON e retorna os itens
+header("Content-Type: application/json; charset=utf-8");
 echo json_encode($itens, JSON_UNESCAPED_UNICODE);
-
 
