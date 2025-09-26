@@ -1,26 +1,40 @@
-version: "3.8" # Versão do Docker
-
-services: # Lista de serviços que serão rodados
-  web: #nome do serviço (php/apache)
-    build: . # constrói a imagem a partir do Dockerfile
-    ports: 
-      - "8080:80" # Mapeia a porta 8080 do host para a 80 do container
+services:
+  app:
+    build: .
+    container_name: php_app
+    ports:
+      - "8080:80"              # http://localhost:8080 -> PHP
     volumes:
-      - .:/var/www/html # Monta a pasta local no container
+      - .:/var/www/html        # monta a raiz do projeto dentro do container
     depends_on:
-      - db # Depende do db, que deve iniciar antes
-  
-  db: # Serviço do Banco
-    image: mysql:8.0 # usa imagem oficial do MySQL v8
-    restart: always # Reinicia automático caso o container caia
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes" # Permite senha vazia
-      MYSQL_ROOT_PASSWORD: root 
-      MYSQL_DATABASE: padaria-pao-genial
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-    volumes:
-      - db_data:/var/lib/mysql # volume persistente
+      - db
 
-volumes:  # Volumes nomeados do Docker
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root              # senha do root
+      MYSQL_DATABASE: padaria_pao_genial     # banco que já será criado
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:   # <-- aqui estava com espaço extra
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+      UPLOAD_LIMIT: 64M
+    depends_on:
+      - db
+    volumes:
+      - ./sessions:/sessions
+
+volumes:
   db_data:
