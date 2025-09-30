@@ -1,14 +1,40 @@
-version: '3.8'
-
 services:
   app:
     build: .
     container_name: php_app
     ports:
-      - "8080:80"  # porta padrão para o Railway
+      - "8080:80"              # http://localhost:8080 -> PHP
+    volumes:
+      - .:/var/www/html        # monta a raiz do projeto dentro do container
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
     environment:
-      DB_HOST: ${DB_HOST}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME}
-      DB_PORT: ${DB_PORT}
+      MYSQL_ROOT_PASSWORD: root              # senha do root
+      MYSQL_DATABASE: padaria_pao_genial     # banco que já será criado
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:   # <-- aqui estava com espaço extra
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+      UPLOAD_LIMIT: 64M
+    depends_on:
+      - db
+    volumes:
+      - ./sessions:/sessions
+
+volumes:
+  db_data:
