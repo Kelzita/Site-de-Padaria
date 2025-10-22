@@ -1,8 +1,8 @@
 <?php
 //======Variáveis do Banco======
-$host = "db"; // Conecta-se ao servidor local ( Ou seja na máquina utilizada )
+$host = "localhost"; // Conecta-se ao servidor local ( Ou seja na máquina utilizada )
 $user = "root"; // Usuário, geralmente root
-$pass = "root"; // Senha, geralmente vazia
+$pass = ""; // Senha, geralmente vazia
 $banco = "padaria_pao_genial"; // Banco de dados que será utilizado
 
 //======Criando a conexão com o banco em PDO======
